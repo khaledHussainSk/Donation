@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".LoginActivity">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/toolbar"
+        android:background="#F9F9FF">
+
+        <TextView
+            android:id="@+id/welcome_back_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_21sdp"
+            android:layout_marginTop="@dimen/_80sdp"
+            android:text="@string/sign_in_welcome_back"
+            android:textColor="#00B588"
+            android:textSize="@dimen/_18ssp"
+            android:textStyle="bold"></TextView>
+
+        <TextView
+            android:id="@+id/to_continue_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/welcome_back_tv"
+            android:layout_marginStart="@dimen/_21sdp"
+            android:layout_marginTop="@dimen/_7sdp"
+            android:text="@string/sign_in_to_comtinue_tv"
+            android:textColor="#1C2340"
+            android:textSize="@dimen/_14ssp"></TextView>
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/to_continue_tv"
+            android:layout_marginStart="@dimen/_20sdp"
+            android:layout_marginTop="@dimen/_25sdp"
+            android:layout_marginEnd="@dimen/_20sdp"
+            app:cardCornerRadius="@dimen/_8sdp"
+            >
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <EditText
+                    android:id="@+id/et_email"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_50sdp"
+                    android:layout_marginStart="@dimen/_20sdp"
+                    android:layout_marginTop="@dimen/_30sdp"
+                    android:layout_marginEnd="@dimen/_20sdp"
+                    android:background="@drawable/et_shape"
+                    android:drawableStart="@drawable/ic_email"
+                    android:drawablePadding="@dimen/_7sdp"
+                    android:hint="johndoe@hotmail.com"
+                    android:inputType="textEmailAddress"
+                    android:padding="@dimen/_8sdp"
+                    android:textColor="#1C2340"
+                    android:textColorHint="#1C2340"
+                    android:textSize="@dimen/_12sdp"></EditText>
+
+                <EditText
+                    android:id="@+id/et_password"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_50sdp"
+                    android:layout_below="@+id/et_email"
+                    android:layout_marginStart="@dimen/_20sdp"
+                    android:layout_marginTop="@dimen/_15sdp"
+                    android:layout_marginEnd="@dimen/_20sdp"
+                    android:background="@drawable/et_shape"
+                    android:drawableStart="@drawable/icon_awesome_lock"
+                    android:drawablePadding="@dimen/_7sdp"
+                    android:hint="***********************"
+                    android:inputType="textPassword"
+                    android:padding="@dimen/_8sdp"
+                    android:textColor="#1C2340"
+                    android:textColorHint="#1C2340"
+                    android:textSize="@dimen/_12sdp"></EditText>
+
+                <CheckBox
+                    android:id="@+id/remember_me_cb"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/et_password"
+                    android:layout_marginStart="@dimen/_20sdp"
+                    android:layout_marginTop="@dimen/_7sdp"
+                    android:text="@string/remember_me_tv"
+                    android:textColor="#1C2340"
+                    android:textSize="@dimen/_10ssp"></CheckBox>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/et_password"
+                    android:layout_alignBaseline="@+id/remember_me_cb"
+                    android:layout_marginStart="@dimen/_30sdp"
+                    android:layout_marginEnd="@dimen/_23sdp"
+                    android:layout_toEndOf="@+id/remember_me_cb"
+                    android:text="@string/forget_password_tv"
+                    android:textColor="#340CB9"
+                    android:textSize="@dimen/_10sdp"></TextView>
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btn_الأعمال"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_50sdp"
+                    android:layout_below="@+id/remember_me_cb"
+                    android:layout_marginStart="@dimen/_20sdp"
+                    android:layout_marginTop="@dimen/_17sdp"
+                    android:layout_marginEnd="@dimen/_20sdp"
+                    android:layout_marginBottom="@dimen/_34sdp"
+                    android:gravity="center"
+                    android:text="@string/sign_in_btn"
+                    android:textAllCaps="false"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/_12sdp"
+                    app:backgroundTint="#00B588"
+                    app:cornerRadius="@dimen/_25sdp" />
+
+
+            </RelativeLayout>
+
+        </androidx.cardview.widget.CardView>
+
+        <TextView
+            android:id="@+id/already..."
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="@dimen/_48sdp"
+            android:layout_marginBottom="@dimen/_20sdp"
+            android:text="@string/already_have_not_an_account_tv"
+            android:textColor="#1C2340"
+            android:textSize="@dimen/_12ssp"></TextView>
+
+        <TextView
+            android:id="@+id/sing_up"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="@dimen/_3sdp"
+            android:layout_marginBottom="@dimen/_20sdp"
+            android:layout_toEndOf="@+id/already..."
+            android:text="@string/sing_up_tv"
+            android:textColor="#00B588"
+            android:textSize="@dimen/_12ssp"></TextView>
+
+    </RelativeLayout>
+
+    <com.google.android.material.appbar.CollapsingToolbarLayout
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:backgroundTint="#00FFFFFF">
+
+        <androidx.appcompat.widget.Toolbar
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:backgroundTint="#00FFFFFF"
+            android:theme="@style/ThemeOverlay.MaterialComponents.Toolbar.Primary">
+            >
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:backgroundTint="#00FFFFFF">
+
+                <TextView
+                    android:id="@+id/tv_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:text="@string/sign_in_tv"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_18sdp"
+                    android:textStyle="bold" />
+
+            </RelativeLayout>
+
+        </androidx.appcompat.widget.Toolbar>
+
+    </com.google.android.material.appbar.CollapsingToolbarLayout>
+
+</RelativeLayout>

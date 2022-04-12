@@ -1,0 +1,22 @@
+<resources>
+    <string name="app_name">Donation</string>
+
+
+    <string name="sign_up_tv">Sgin up</string>
+    <string name="sign_in_tv">Sgin in</string>
+    <string name="sign_in_welcome_back">Welcome back!</string>
+    <string name="sign_in_to_comtinue_tv">Sign in to continue</string>
+    <string name="remember_me_tv">Remember me</string>
+    <string name="forget_password_tv">Forget password ?</string>
+    <string name="sign_in_btn">Sign in</string>
+    <string name="already_have_not_an_account_tv">Already have not an account?</string>
+    <string name="sing_up_tv">Sing up !</string>
+    <string name="sign_un_tv">Sign Up</string>
+    <string name="fullname_hint">Full Name</string>
+    <string name="phoneNumber_hint">Phone Number</string>
+    <string name="email_hint">Email</string>
+    <string name="password_hint">Password</string>
+    <string name="confirmPassword_hint">Confirm Password</string>
+    <string name="sign_in">Sign in !</string>
+
+</resources>
