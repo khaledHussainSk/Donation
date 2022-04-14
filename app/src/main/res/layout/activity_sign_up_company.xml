@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#F9F9FF"
-    tools:context=".SignUpActivity">
+    tools:context=".SignUpCompanyActivity">
 
     <androidx.cardview.widget.CardView
         android:layout_below="@+id/toolbar"
@@ -62,14 +62,14 @@
 
 
                 <EditText
-                    android:id="@+id/et_fullName"
+                    android:id="@+id/et_companyName"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/_50sdp"
                     android:layout_marginStart="@dimen/_20sdp"
                     android:layout_marginTop="@dimen/_20sdp"
                     android:layout_marginEnd="@dimen/_20sdp"
                     android:background="@drawable/et_shape"
-                    android:hint="@string/fullname_hint"
+                    android:hint="@string/companyName_hint"
                     android:inputType="textPersonName"
                     android:padding="@dimen/_16sdp"
                     android:textColor="#1C2340"

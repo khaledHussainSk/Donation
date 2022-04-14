@@ -10,6 +10,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Donation">
         <activity
+            android:name=".SignUpCompanyActivity"
+            android:exported="false" />
+        <activity
+            android:name=".RegistrarActivity"
+            android:exported="false" />
+        <activity
             android:name=".SignUpActivity"
             android:exported="false" />
         <activity
