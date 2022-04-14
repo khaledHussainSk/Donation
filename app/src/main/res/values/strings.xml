@@ -22,5 +22,8 @@
     <string name="user">As a user</string>
     <string name="company">As a company</string>
     <string name="companyName_hint">Company Name</string>
+    <string name="layout_search">Search</string>
+    <string name="hint_search">Search</string>
+    <string name="layotu_notifications">Notifications</string>
 
 </resources>
