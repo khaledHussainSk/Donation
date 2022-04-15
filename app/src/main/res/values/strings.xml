@@ -43,5 +43,10 @@
     <string name="or_tv">Or</string>
     <string name="addMore">Add more</string>
     <string name="post">Post</string>
+    <string name="app_review">App Review</string>
+    <string name="introduction_review">Please rate the quality of service for the App</string>
+    <string name="desc_review">Your comments and suggestions help us improve the service quality better!</string>
+    <string name="note_review">Enter your note here</string>
+    <string name="btn_submit_reivew">Submit</string>
 
 </resources>
