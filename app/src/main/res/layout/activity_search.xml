@@ -14,7 +14,8 @@
         android:layout_height="wrap_content"
         android:background="@color/white"
         app:contentScrim="?attr/colorPrimary"
-        app:toolbarId="@+id/toolbar">
+        app:toolbarId="@+id/toolbar"
+        >
 
 
         <androidx.appcompat.widget.Toolbar

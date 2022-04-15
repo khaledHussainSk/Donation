@@ -16,7 +16,8 @@
             android:exported="false" />
         <activity
             android:name=".SearchActivity"
-            android:exported="true">
+            android:exported="true"
+            android:theme="@style/FullScreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -24,11 +25,34 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".SignUpActivity"
+            android:name=".AddPhotoActivity"
             android:exported="false" />
         <activity
-            android:name=".LoginActivity"
+            android:name=".ChangePasswordActivity"
+            android:exported="false"
+            android:theme="@style/FullScreen" />
+        <activity
+            android:name=".NotificationsActivity"
             android:exported="false" />
+        <activity
+            android:name=".SearchActivity"
+            android:exported="false" />
+        <activity
+            android:name=".RegistrarActivity"
+            android:exported="false"
+            android:theme="@style/FullScreen" />
+        <activity
+            android:name=".SignUpCompanyActivity"
+            android:exported="false"
+            android:theme="@style/FullScreen" />
+        <activity
+            android:name=".SignUpActivity"
+            android:exported="false"
+            android:theme="@style/FullScreen" />
+        <activity
+            android:name=".LoginActivity"
+            android:exported="false"
+            android:theme="@style/FullScreen" />
         <activity
             android:name=".SplashScreenActivity"
             android:exported="true">

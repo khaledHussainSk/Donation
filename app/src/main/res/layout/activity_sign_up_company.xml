@@ -94,6 +94,22 @@
                     ></EditText>
 
                 <EditText
+                    android:id="@+id/et_address"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_50sdp"
+                    android:layout_marginStart="@dimen/_20sdp"
+                    android:layout_marginTop="@dimen/_15sdp"
+                    android:layout_marginEnd="@dimen/_20sdp"
+                    android:background="@drawable/et_shape"
+                    android:hint="@string/address_hint"
+                    android:inputType="textPostalAddress"
+                    android:padding="@dimen/_16sdp"
+                    android:textColor="#1C2340"
+                    android:textColorHint="#1C2340"
+                    android:textSize="@dimen/_12sdp"
+                    ></EditText>
+
+                <EditText
                     android:id="@+id/et_email"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/_50sdp"

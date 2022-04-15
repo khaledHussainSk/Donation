@@ -3,6 +3,7 @@ package com.khaled.donation;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.view.View;
 
 import com.khaled.donation.databinding.ActivitySignUpCompanyBinding;
 
@@ -15,6 +16,12 @@ public class SignUpCompanyActivity extends AppCompatActivity {
         binding = ActivitySignUpCompanyBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
+        binding.icBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
 
     }
 }
