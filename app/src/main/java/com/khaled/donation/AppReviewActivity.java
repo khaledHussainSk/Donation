@@ -1,18 +1,18 @@
 package com.khaled.donation;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import android.os.Bundle;
 import android.view.View;
 
-import androidx.appcompat.app.AppCompatActivity;
+import com.khaled.donation.databinding.ActivityAppReviewBinding;
 
-import com.khaled.donation.databinding.ActivitySearchBinding;
-
-public class SearchActivity extends AppCompatActivity {
-    ActivitySearchBinding binding;
+public class AppReviewActivity extends AppCompatActivity {
+    ActivityAppReviewBinding binding;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        binding = ActivitySearchBinding.inflate(getLayoutInflater());
+        binding = ActivityAppReviewBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
         binding.icBack.setOnClickListener(new View.OnClickListener() {

@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F9F9FF"
+    tools:context=".AppReviewActivity">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/appbar"
+        android:layout_marginStart="@dimen/_20sdp"
+        android:layout_marginTop="@dimen/_18sdp"
+        android:layout_marginEnd="@dimen/_20sdp"
+        android:layout_marginBottom="@dimen/_32sdp"
+        android:background="@color/white"
+        app:cardCornerRadius="@dimen/_8sdp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/textView5"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/_16ssp"
+                android:layout_marginTop="@dimen/_15sdp"
+                android:layout_marginStart="@dimen/_5sdp"
+                android:layout_marginEnd="@dimen/_5sdp"
+                android:textStyle="bold"
+                android:gravity="center"
+                android:text="@string/introduction_review" />
+
+            <RatingBar
+                android:id="@+id/rb_rating_place"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="@dimen/_16sdp"
+                android:numStars="5"
+                android:progressBackgroundTint="#C8C8D3"
+                android:progressTint="#FFEB3B"
+                android:rating="4" />
+
+            <TextView
+                android:id="@+id/textView6"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="#8A8D9F"
+                android:gravity="center"
+                android:layout_marginTop="@dimen/_20sdp"
+                android:layout_marginStart="@dimen/_10sdp"
+                android:layout_marginEnd="@dimen/_6sdp"
+                android:textSize="@dimen/_12ssp"
+                android:text="@string/desc_review" />
+
+
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical" >
+
+                    <EditText
+                        android:id="@+id/editTextTextPersonName"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_80sdp"
+                        android:backgroundTint="#F0F1F5"
+                        android:layout_marginStart="@dimen/_15sdp"
+                        android:layout_margin="@dimen/_15sdp"
+                        android:background="@drawable/shape_note"
+                        android:inputType="textMultiLine"
+                        android:gravity="top"
+                        android:padding="@dimen/_8sdp"
+                        android:hint="@string/note_review" />
+
+                </LinearLayout>
+            </ScrollView>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/button"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_50sdp"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:layout_marginStart="@dimen/_21sdp"
+                android:layout_marginEnd="@dimen/_19sdp"
+                android:layout_marginBottom="@dimen/_20sdp"
+                app:cornerRadius="@dimen/_25sdp"
+                android:textColor="@color/white"
+                app:backgroundTint="#00B588"
+                android:textAllCaps="false"
+                android:textStyle="bold"
+                android:textSize="@dimen/_15ssp"
+                android:text="@string/btn_submit_reivew" />
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+
+    <com.google.android.material.appbar.CollapsingToolbarLayout
+        android:id="@+id/appbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        app:contentScrim="?attr/colorPrimary"
+        app:toolbarId="@+id/toolbar">
+
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbarP"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:theme="@style/ThemeOverlay.MaterialComponents.Toolbar.Primary">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:gravity="center"
+                    android:text="@string/app_review"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_18ssp"
+                    android:textStyle="bold" />
+
+                <ImageView
+                    android:id="@+id/ic_back"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="@dimen/_12sdp"
+                    android:src="@drawable/icon_ionic_ios_arrow_back" />
+            </RelativeLayout>
+
+        </androidx.appcompat.widget.Toolbar>
+
+
+    </com.google.android.material.appbar.CollapsingToolbarLayout>
+</RelativeLayout>

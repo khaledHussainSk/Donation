@@ -2,8 +2,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.khaled.donation">
 
-    <uses-permission android:name="android.permission.INTERNET"/>
-
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -12,31 +10,32 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Donation">
         <activity
-            android:name=".NotificationsActivity"
+            android:name=".AppReviewActivity"
+            android:theme="@style/FullScreen"
             android:exported="false" />
         <activity
-            android:name=".SearchActivity"
-            android:exported="true"
-            android:theme="@style/FullScreen">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+            android:name=".ProfileDetailsActivity"
+            android:theme="@style/FullScreen"
+            android:exported="false" />
+        <activity
+            android:name=".OtherProfileActivity"
+            android:exported="false"
+            android:theme="@style/FullScreen" />
         <activity
             android:name=".AddPhotoActivity"
             android:exported="false" />
+        <activity
+            android:name=".FavoriteActivity"
+            android:exported="false"
+            android:theme="@style/FullScreen" />
         <activity
             android:name=".ChangePasswordActivity"
             android:exported="false"
             android:theme="@style/FullScreen" />
         <activity
-            android:name=".NotificationsActivity"
-            android:exported="false" />
-        <activity
             android:name=".SearchActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:theme="@style/FullScreen" />
         <activity
             android:name=".RegistrarActivity"
             android:exported="false"
@@ -55,8 +54,13 @@
             android:theme="@style/FullScreen" />
         <activity
             android:name=".SplashScreenActivity"
-            android:exported="true">
+            android:exported="true"
+            android:theme="@style/FullScreen">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
         <activity
             android:name=".MainActivity"

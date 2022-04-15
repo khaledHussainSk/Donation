@@ -1,18 +1,18 @@
 package com.khaled.donation;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import android.os.Bundle;
 import android.view.View;
 
-import androidx.appcompat.app.AppCompatActivity;
+import com.khaled.donation.databinding.ActivityProfileDetailsBinding;
 
-import com.khaled.donation.databinding.ActivitySearchBinding;
-
-public class SearchActivity extends AppCompatActivity {
-    ActivitySearchBinding binding;
+public class ProfileDetailsActivity extends AppCompatActivity {
+    ActivityProfileDetailsBinding binding;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        binding = ActivitySearchBinding.inflate(getLayoutInflater());
+        binding = ActivityProfileDetailsBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
         binding.icBack.setOnClickListener(new View.OnClickListener() {

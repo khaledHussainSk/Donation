@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F9F9FF"
+    tools:context=".FavoriteActivity">
+
+  <androidx.recyclerview.widget.RecyclerView
+      android:id="@+id/rv"
+      android:layout_below="@+id/toolbar"
+      tools:listitem="@layout/custom_favorite"
+      android:layout_width="match_parent"
+      android:layout_height="match_parent" />
+
+  <com.google.android.material.appbar.CollapsingToolbarLayout
+      android:id="@+id/toolbar"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:background="@color/white"
+      >
+
+    <androidx.appcompat.widget.Toolbar
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:backgroundTint="#00FFFFFF"
+        android:theme="@style/ThemeOverlay.MaterialComponents.Toolbar.Primary">
+      >
+
+      <RelativeLayout
+          android:layout_width="match_parent"
+          android:layout_height="match_parent"
+          android:backgroundTint="#00FFFFFF">
+
+        <TextView
+            android:id="@+id/tv_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="@string/favorite"
+            android:textColor="@color/black"
+            android:textSize="@dimen/_18sdp"
+            android:textStyle="bold" />
+
+        <ImageView
+            android:id="@+id/ic_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true"
+            android:textColor="@color/white"
+            android:textSize="@dimen/_14sdp"
+            app:srcCompat="@drawable/icon_ionic_ios_arrow_back" />
+
+      </RelativeLayout>
+
+    </androidx.appcompat.widget.Toolbar>
+
+  </com.google.android.material.appbar.CollapsingToolbarLayout>
+
+</RelativeLayout>

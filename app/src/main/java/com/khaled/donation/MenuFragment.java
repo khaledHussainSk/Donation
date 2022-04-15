@@ -89,6 +89,30 @@ public class MenuFragment extends Fragment {
             }
         });
 
+        binding.constraintLayoutAllFavorites.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity(),FavoriteActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        binding.icSearch.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity(),SearchActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        binding.constraintLayoutAppReview.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity(),AppReviewActivity.class);
+                startActivity(intent);
+            }
+        });
+
         return binding.getRoot();
 
     }

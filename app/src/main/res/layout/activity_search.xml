@@ -39,6 +39,7 @@
                     android:textStyle="bold" />
 
                 <ImageView
+                    android:id="@+id/ic_back"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentLeft="true"
@@ -64,10 +65,11 @@
         android:background="@drawable/et_shape"
         android:backgroundTint="@color/white"
         android:drawableLeft="@drawable/icon___search"
+        android:drawablePadding="@dimen/_5sdp"
         android:hint="@string/hint_search"
         android:inputType="textPersonName"
         android:padding="@dimen/_12sdp"
-        android:textColor="#68070707"
+        android:textColor="@color/black"
         android:textSize="@dimen/_12ssp" />
 
     <androidx.recyclerview.widget.RecyclerView
