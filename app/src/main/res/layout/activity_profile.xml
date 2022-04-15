@@ -1,15 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#F9F9FF"
-    tools:context=".ProfileFragment">
+    tools:context=".ProfileActivity">
+
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="0dp">
 
         <com.google.android.material.appbar.CollapsingToolbarLayout
             android:id="@+id/appbar"
@@ -72,7 +75,7 @@
                 <androidx.cardview.widget.CardView
                     android:id="@+id/card"
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/_220sdp"
+                    android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/_7sdp"
                     app:cardCornerRadius="15dp"
                     app:cardElevation="10dp"
@@ -118,10 +121,9 @@
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center"
                                 android:layout_marginStart="@dimen/_6sdp"
-                                android:src="@drawable/verifed"/>
+                                android:src="@drawable/verifed" />
 
                         </LinearLayout>
-
 
 
                         <TextView
@@ -152,45 +154,9 @@
             </RelativeLayout>
 
             <LinearLayout
-                android:id="@+id/la"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/rl"
-                android:layout_marginTop="-45dp"
-                android:orientation="horizontal">
-
-                <Button
-                    android:layout_width="@dimen/_130sdp"
-                    android:layout_height="@dimen/_40sdp"
-                    android:layout_marginStart="@dimen/_20sdp"
-                    android:layout_marginEnd="@dimen/_10sdp"
-                    android:layout_weight="1"
-                    android:background="@drawable/et_shape"
-                    android:backgroundTint="#FFBC00"
-                    android:text="Follow"
-                    android:textAllCaps="false"
-                    android:textColor="@color/white"
-                    android:textSize="@dimen/_14ssp" />
-
-                <Button
-                    android:layout_width="@dimen/_130sdp"
-                    android:layout_height="@dimen/_40sdp"
-                    android:layout_marginStart="@dimen/_10sdp"
-                    android:layout_marginEnd="@dimen/_20sdp"
-                    android:layout_weight="1"
-                    android:background="@drawable/et_shape"
-                    android:backgroundTint="#00B588"
-                    android:text="Chat"
-                    android:textAllCaps="false"
-                    android:textColor="@color/white"
-                    android:textSize="@dimen/_14ssp" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/la"
                 android:layout_marginStart="@dimen/_40sdp"
                 android:layout_marginTop="@dimen/_14sdp"
                 android:layout_marginEnd="@dimen/_40sdp"
@@ -296,8 +262,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/r"
-            android:layout_marginTop="@dimen/_12sdp"
             android:layout_marginStart="@dimen/_15sdp"
+            android:layout_marginTop="@dimen/_12sdp"
             android:layout_marginEnd="@dimen/_12sdp"
             android:orientation="horizontal">
 
@@ -305,31 +271,31 @@
                 android:id="@+id/textView3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Fundraising Supported"
                 android:textColor="#1C2340"
                 android:textSize="@dimen/_14ssp"
-                android:layout_weight="1"
-                android:textStyle="bold"
-                android:text="Fundraising Supported" />
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/textView4"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:text="View All +"
                 android:textColor="#1C2340"
-                android:textStyle="bold"
                 android:textSize="@dimen/_14ssp"
-                android:text="View All +" />
+                android:textStyle="bold" />
         </LinearLayout>
 
         <androidx.recyclerview.widget.RecyclerView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginTop="@dimen/_10sdp"
+            android:layout_below="@id/l"
             android:layout_marginStart="@dimen/_5sdp"
-            android:layout_marginEnd="@dimen/_5sdp"
-            android:layout_below="@id/l"/>
+            android:layout_marginTop="@dimen/_10sdp"
+            android:layout_marginEnd="@dimen/_5sdp" />
 
 
     </RelativeLayout>
 
-</FrameLayout>
+</RelativeLayout>
