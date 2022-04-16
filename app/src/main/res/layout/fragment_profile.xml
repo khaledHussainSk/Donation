@@ -324,10 +324,12 @@
         <androidx.recyclerview.widget.RecyclerView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginTop="@dimen/_10sdp"
-            android:layout_marginStart="@dimen/_5sdp"
-            android:layout_marginEnd="@dimen/_5sdp"
-            android:layout_below="@id/l"/>
+            android:layout_below="@id/l"
+            app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+            app:spanCount="4"
+            tools:itemCount="20"
+            tools:listitem="@layout/custom_profile_image"
+            android:layout_marginTop="@dimen/_10sdp" />
 
 
     </RelativeLayout>
