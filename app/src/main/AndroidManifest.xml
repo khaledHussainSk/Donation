@@ -10,22 +10,23 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Donation">
         <activity
+            android:name=".ContentUsActivity"
+            android:exported="false" />
+        <activity
             android:name=".AppReviewActivity"
             android:exported="false" />
         <activity
             android:name=".ProfileDetailsActivity"
-            android:exported="false" />
-<!--        <activity-->
-<!--            android:name=".OtherProfileActivity"-->
-<!--            android:exported="false"-->
-<!--            android:theme="@style/FullScreen" />-->
+            android:exported="false" /> <!-- <activity -->
+        <!-- android:name=".OtherProfileActivity" -->
+        <!-- android:exported="false" -->
+        <!-- android:theme="@style/FullScreen" /> -->
         <activity
             android:name=".AddPhotoActivity"
-            android:exported="false" />
-<!--        <activity-->
-<!--            android:name=".FavoriteActivity"-->
-<!--            android:exported="false"-->
-<!--            android:theme="@style/FullScreen" />-->
+            android:exported="false" /> <!-- <activity -->
+        <!-- android:name=".FavoriteActivity" -->
+        <!-- android:exported="false" -->
+        <!-- android:theme="@style/FullScreen" /> -->
         <activity
             android:name=".ChangePasswordActivity"
             android:exported="false"
