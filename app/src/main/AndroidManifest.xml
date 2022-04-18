@@ -10,6 +10,21 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Donation">
         <activity
+            android:name=".SplachScreen5"
+            android:exported="false" />
+        <activity
+            android:name=".SplachScreen4"
+            android:exported="false" />
+        <activity
+            android:name=".SplachScreen3"
+            android:exported="false" />
+        <activity
+            android:name=".SplachScreen2"
+            android:exported="false" />
+        <activity
+            android:name=".SplachScreen1"
+            android:exported="false" />
+        <activity
             android:name=".ContentUsActivity"
             android:exported="false" />
         <activity
@@ -17,10 +32,11 @@
             android:exported="false" />
         <activity
             android:name=".ProfileDetailsActivity"
-            android:exported="false" /> <!-- <activity -->
-        <!-- android:name=".OtherProfileActivity" -->
-        <!-- android:exported="false" -->
-        <!-- android:theme="@style/FullScreen" /> -->
+            android:exported="false" />
+<!--         <activity -->
+<!--         android:name=".OtherProfileActivity" -->
+<!--         android:exported="false" -->
+<!--         android:theme="@style/FullScreen" /> -->
         <activity
             android:name=".AddPhotoActivity"
             android:exported="false" /> <!-- <activity -->
