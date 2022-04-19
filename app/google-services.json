@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "471842830911",
+    "project_id": "donation-11c06",
+    "storage_bucket": "donation-11c06.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:471842830911:android:d7f7b3313113450fee968a",
+        "android_client_info": {
+          "package_name": "com.khaled.donation"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "471842830911-797a2gd4s6r5ecr4q9op83t15us12m1r.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.khaled.donation",
+            "certificate_hash": "09b848de26635bd765f3a4ef42b05841babd458d"
+          }
+        },
+        {
+          "client_id": "471842830911-sh2cllqn00tlfv038iminci35u7o7dvc.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDCpGRlJ9XWjRousrUFOkKCMqCFHj7JCKE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "471842830911-sh2cllqn00tlfv038iminci35u7o7dvc.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

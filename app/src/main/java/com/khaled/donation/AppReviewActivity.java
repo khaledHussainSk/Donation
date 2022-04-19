@@ -14,13 +14,17 @@ public class AppReviewActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding = ActivityAppReviewBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+        fixed();
 
+
+    }
+
+    private void fixed() {
         binding.icBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 finish();
             }
         });
-
     }
 }

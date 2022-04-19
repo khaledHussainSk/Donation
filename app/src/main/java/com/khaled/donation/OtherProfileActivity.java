@@ -15,6 +15,5 @@ public class OtherProfileActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
 
 
-
     }
 }

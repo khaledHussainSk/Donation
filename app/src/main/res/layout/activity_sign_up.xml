@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -7,249 +8,263 @@
     android:background="#F9F9FF"
     tools:context=".SignUpActivity">
 
-    <androidx.cardview.widget.CardView
-        android:layout_below="@+id/toolbar"
+    <RelativeLayout
+        android:id="@+id/relativeLayout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:cardCornerRadius="@dimen/_8sdp"
-        android:layout_marginStart="@dimen/_20sdp"
-        android:layout_marginTop="@dimen/_30sdp"
-        android:layout_marginEnd="@dimen/_20sdp"
-        android:layout_marginBottom="@dimen/_15sdp"
-        android:background="@color/white"
-        >
+        android:layout_height="match_parent">
 
-
-        <ScrollView
+        <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:layout_below="@+id/toolbar"
+            android:layout_marginStart="@dimen/_20sdp"
+            android:layout_marginTop="@dimen/_30sdp"
+            android:layout_marginEnd="@dimen/_20sdp"
+            android:layout_marginBottom="@dimen/_15sdp"
+            android:background="@color/white"
+            app:cardCornerRadius="@dimen/_8sdp">
 
-            <LinearLayout
+
+            <ScrollView
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical"
-                android:gravity="center"
+                android:layout_height="match_parent">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_21sdp">
+
+                        <ImageView
+                            android:id="@+id/iv_circle"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:scaleType="centerCrop"
+                            android:src="@drawable/place_your_image"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <ImageView
+                            android:id="@+id/iv_cam"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/icon"
+                            app:layout_constraintBottom_toBottomOf="@+id/iv_circle"
+                            app:layout_constraintEnd_toEndOf="@+id/iv_circle"
+                            app:layout_constraintStart_toStartOf="@+id/iv_circle"
+                            app:layout_constraintTop_toTopOf="@+id/iv_circle" />
+
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+                    <EditText
+                        android:id="@+id/et_fullName"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_50sdp"
+                        android:layout_marginStart="@dimen/_20sdp"
+                        android:layout_marginTop="@dimen/_20sdp"
+                        android:layout_marginEnd="@dimen/_20sdp"
+                        android:background="@drawable/et_shape"
+                        android:hint="@string/fullname_hint"
+                        android:inputType="textPersonName"
+                        android:padding="@dimen/_16sdp"
+                        android:textColor="#1C2340"
+                        android:textColorHint="#1C2340"
+                        android:textSize="@dimen/_12sdp"></EditText>
+
+                    <EditText
+                        android:id="@+id/et_phoneNumber"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_50sdp"
+                        android:layout_marginStart="@dimen/_20sdp"
+                        android:layout_marginTop="@dimen/_15sdp"
+                        android:layout_marginEnd="@dimen/_20sdp"
+                        android:background="@drawable/et_shape"
+                        android:hint="@string/phoneNumber_hint"
+                        android:inputType="phone"
+                        android:padding="@dimen/_16sdp"
+                        android:textColor="#1C2340"
+                        android:textColorHint="#1C2340"
+                        android:textSize="@dimen/_12sdp"></EditText>
+
+                    <EditText
+                        android:id="@+id/et_address"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_50sdp"
+                        android:layout_marginStart="@dimen/_20sdp"
+                        android:layout_marginTop="@dimen/_15sdp"
+                        android:layout_marginEnd="@dimen/_20sdp"
+                        android:background="@drawable/et_shape"
+                        android:hint="@string/address_hint"
+                        android:inputType="textPostalAddress"
+                        android:padding="@dimen/_16sdp"
+                        android:textColor="#1C2340"
+                        android:textColorHint="#1C2340"
+                        android:textSize="@dimen/_12sdp"></EditText>
+
+                    <EditText
+                        android:id="@+id/et_email"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_50sdp"
+                        android:layout_marginStart="@dimen/_20sdp"
+                        android:layout_marginTop="@dimen/_15sdp"
+                        android:layout_marginEnd="@dimen/_20sdp"
+                        android:background="@drawable/et_shape"
+                        android:hint="@string/email_hint"
+                        android:inputType="textEmailAddress"
+                        android:padding="@dimen/_16sdp"
+                        android:textColor="#1C2340"
+                        android:textColorHint="#1C2340"
+                        android:textSize="@dimen/_12sdp"></EditText>
+
+                    <EditText
+                        android:id="@+id/et_password"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_50sdp"
+                        android:layout_marginStart="@dimen/_20sdp"
+                        android:layout_marginTop="@dimen/_15sdp"
+                        android:layout_marginEnd="@dimen/_20sdp"
+                        android:background="@drawable/et_shape"
+                        android:hint="@string/password_hint"
+                        android:inputType="textPassword"
+                        android:padding="@dimen/_16sdp"
+                        android:textColor="#1C2340"
+                        android:textColorHint="#1C2340"
+                        android:textSize="@dimen/_12sdp"></EditText>
+
+                    <EditText
+                        android:id="@+id/et_confirmPassword"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_50sdp"
+                        android:layout_marginStart="@dimen/_20sdp"
+                        android:layout_marginTop="@dimen/_15sdp"
+                        android:layout_marginEnd="@dimen/_20sdp"
+                        android:background="@drawable/et_shape"
+                        android:hint="@string/confirmPassword_hint"
+                        android:inputType="textPassword"
+                        android:padding="@dimen/_16sdp"
+                        android:textColor="#1C2340"
+                        android:textColorHint="#1C2340"
+                        android:textSize="@dimen/_12sdp"></EditText>
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btn_signUp"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_50sdp"
+                        android:layout_below="@+id/remember_me_cb"
+                        android:layout_marginStart="@dimen/_20sdp"
+                        android:layout_marginTop="@dimen/_17sdp"
+                        android:layout_marginEnd="@dimen/_20sdp"
+                        android:gravity="center"
+                        android:text="@string/sign_up_tv"
+                        android:textAllCaps="false"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/_12sdp"
+                        app:backgroundTint="#00B588"
+                        app:cornerRadius="@dimen/_25sdp" />
+
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="@dimen/_22sdp">
+
+                        <TextView
+                            android:id="@+id/already..."
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentBottom="true"
+                            android:layout_marginTop="@dimen/_22sdp"
+                            android:text="@string/already_have_not_an_account_tv"
+                            android:textColor="#1C2340"
+                            android:textSize="@dimen/_12ssp"></TextView>
+
+                        <TextView
+                            android:id="@+id/sign_in"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentBottom="true"
+                            android:layout_marginStart="@dimen/_3sdp"
+                            android:layout_toEndOf="@+id/already..."
+                            android:text="@string/sign_in"
+                            android:textColor="#00B588"
+                            android:textSize="@dimen/_12ssp"></TextView>
+
+
+                    </RelativeLayout>
+
+                </LinearLayout>
+
+            </ScrollView>
+        </androidx.cardview.widget.CardView>
+
+        <com.google.android.material.appbar.CollapsingToolbarLayout
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white">
+
+            <androidx.appcompat.widget.Toolbar
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                android:backgroundTint="#00FFFFFF"
+                android:theme="@style/ThemeOverlay.MaterialComponents.Toolbar.Primary">
                 >
 
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/_21sdp"
-                    >
-
-                    <ImageView
-                        android:id="@+id/imageView3"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:src="@drawable/place_your_image"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
-
-                    <ImageView
-                        android:id="@+id/imageView4"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:src="@drawable/icon"
-                        app:layout_constraintBottom_toBottomOf="@+id/imageView3"
-                        app:layout_constraintEnd_toEndOf="@+id/imageView3"
-                        app:layout_constraintStart_toStartOf="@+id/imageView3"
-                        app:layout_constraintTop_toTopOf="@+id/imageView3" />
-
-
-                </androidx.constraintlayout.widget.ConstraintLayout>
-
-
-                <EditText
-                    android:id="@+id/et_fullName"
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/_50sdp"
-                    android:layout_marginStart="@dimen/_20sdp"
-                    android:layout_marginTop="@dimen/_20sdp"
-                    android:layout_marginEnd="@dimen/_20sdp"
-                    android:background="@drawable/et_shape"
-                    android:hint="@string/fullname_hint"
-                    android:inputType="textPersonName"
-                    android:padding="@dimen/_16sdp"
-                    android:textColor="#1C2340"
-                    android:textColorHint="#1C2340"
-                    android:textSize="@dimen/_12sdp"
-                    ></EditText>
-
-                <EditText
-                    android:id="@+id/et_phoneNumber"
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/_50sdp"
-                    android:layout_marginStart="@dimen/_20sdp"
-                    android:layout_marginTop="@dimen/_15sdp"
-                    android:layout_marginEnd="@dimen/_20sdp"
-                    android:background="@drawable/et_shape"
-                    android:hint="@string/phoneNumber_hint"
-                    android:inputType="phone"
-                    android:padding="@dimen/_16sdp"
-                    android:textColor="#1C2340"
-                    android:textColorHint="#1C2340"
-                    android:textSize="@dimen/_12sdp"
-                    ></EditText>
-
-                <EditText
-                    android:id="@+id/et_address"
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/_50sdp"
-                    android:layout_marginStart="@dimen/_20sdp"
-                    android:layout_marginTop="@dimen/_15sdp"
-                    android:layout_marginEnd="@dimen/_20sdp"
-                    android:background="@drawable/et_shape"
-                    android:hint="@string/address_hint"
-                    android:inputType="textPostalAddress"
-                    android:padding="@dimen/_16sdp"
-                    android:textColor="#1C2340"
-                    android:textColorHint="#1C2340"
-                    android:textSize="@dimen/_12sdp"
-                    ></EditText>
-
-                <EditText
-                    android:id="@+id/et_email"
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/_50sdp"
-                    android:layout_marginStart="@dimen/_20sdp"
-                    android:layout_marginTop="@dimen/_15sdp"
-                    android:layout_marginEnd="@dimen/_20sdp"
-                    android:background="@drawable/et_shape"
-                    android:hint="@string/email_hint"
-                    android:inputType="textEmailAddress"
-                    android:padding="@dimen/_16sdp"
-                    android:textColor="#1C2340"
-                    android:textColorHint="#1C2340"
-                    android:textSize="@dimen/_12sdp"
-                    ></EditText>
-
-                <EditText
-                    android:id="@+id/et_password"
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/_50sdp"
-                    android:layout_marginStart="@dimen/_20sdp"
-                    android:layout_marginTop="@dimen/_15sdp"
-                    android:layout_marginEnd="@dimen/_20sdp"
-                    android:background="@drawable/et_shape"
-                    android:hint="@string/password_hint"
-                    android:inputType="textPassword"
-                    android:padding="@dimen/_16sdp"
-                    android:textColor="#1C2340"
-                    android:textColorHint="#1C2340"
-                    android:textSize="@dimen/_12sdp"
-                    ></EditText>
-
-                <EditText
-                    android:id="@+id/et_confirmPassword"
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/_50sdp"
-                    android:layout_marginStart="@dimen/_20sdp"
-                    android:layout_marginTop="@dimen/_15sdp"
-                    android:layout_marginEnd="@dimen/_20sdp"
-                    android:background="@drawable/et_shape"
-                    android:hint="@string/confirmPassword_hint"
-                    android:inputType="textPassword"
-                    android:padding="@dimen/_16sdp"
-                    android:textColor="#1C2340"
-                    android:textColorHint="#1C2340"
-                    android:textSize="@dimen/_12sdp"
-                    ></EditText>
-
-                <com.google.android.material.button.MaterialButton
-                    android:id="@+id/btn_signUp"
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/_50sdp"
-                    android:layout_below="@+id/remember_me_cb"
-                    android:layout_marginStart="@dimen/_20sdp"
-                    android:layout_marginTop="@dimen/_17sdp"
-                    android:layout_marginEnd="@dimen/_20sdp"
-                    android:gravity="center"
-                    android:text="@string/sign_up_tv"
-                    android:textAllCaps="false"
-                    android:textColor="@color/white"
-                    android:textSize="@dimen/_12sdp"
-                    app:backgroundTint="#00B588"
-                    app:cornerRadius="@dimen/_25sdp" />
-
                 <RelativeLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="@dimen/_22sdp"
-                    >
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:backgroundTint="#00FFFFFF">
 
                     <TextView
-                        android:id="@+id/already..."
+                        android:id="@+id/tv_title"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_alignParentBottom="true"
-                        android:layout_marginTop="@dimen/_22sdp"
-                        android:text="@string/already_have_not_an_account_tv"
-                        android:textColor="#1C2340"
-                        android:textSize="@dimen/_12ssp"></TextView>
+                        android:layout_centerInParent="true"
+                        android:text="@string/sign_un_tv"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_18sdp"
+                        android:textStyle="bold" />
 
-                    <TextView
-                        android:id="@+id/sign_in"
+                    <ImageView
+                        android:id="@+id/ic_back"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_alignParentBottom="true"
-                        android:layout_marginStart="@dimen/_3sdp"
-                        android:layout_toEndOf="@+id/already..."
-                        android:text="@string/sign_in"
-                        android:textColor="#00B588"
-                        android:textSize="@dimen/_12ssp"></TextView>
+                        android:layout_alignParentStart="true"
+                        android:layout_centerVertical="true"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/_14sdp"
+                        app:srcCompat="@drawable/icon_ionic_ios_arrow_back" />
 
                 </RelativeLayout>
 
-            </LinearLayout>
+            </androidx.appcompat.widget.Toolbar>
 
-        </ScrollView>
-    </androidx.cardview.widget.CardView>
 
-    <com.google.android.material.appbar.CollapsingToolbarLayout
-        android:id="@+id/toolbar"
-        android:layout_width="match_parent"
+        </com.google.android.material.appbar.CollapsingToolbarLayout>
+
+
+    </RelativeLayout>
+
+    <com.github.ybq.android.spinkit.SpinKitView
+        android:id="@+id/spin_kit"
+        style="@style/SpinKitView.Large.DoubleBounce"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@color/white"
-        >
+        android:layout_centerInParent="true"
+        android:visibility="gone"
+        app:SpinKit_Color="#00B588"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        />
 
-        <androidx.appcompat.widget.Toolbar
-            android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            android:backgroundTint="#00FFFFFF"
-            android:theme="@style/ThemeOverlay.MaterialComponents.Toolbar.Primary">
-            >
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:backgroundTint="#00FFFFFF">
-
-                <TextView
-                    android:id="@+id/tv_title"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerInParent="true"
-                    android:text="@string/sign_un_tv"
-                    android:textColor="@color/black"
-                    android:textSize="@dimen/_18sdp"
-                    android:textStyle="bold" />
-
-                <ImageView
-                    android:id="@+id/ic_back"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentStart="true"
-                    android:layout_centerVertical="true"
-                    android:textColor="@color/white"
-                    android:textSize="@dimen/_14sdp"
-                    app:srcCompat="@drawable/icon_ionic_ios_arrow_back" />
-
-            </RelativeLayout>
-
-        </androidx.appcompat.widget.Toolbar>
-
-    </com.google.android.material.appbar.CollapsingToolbarLayout>
-
-</RelativeLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

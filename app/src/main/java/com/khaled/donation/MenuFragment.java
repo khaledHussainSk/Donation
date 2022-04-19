@@ -1,10 +1,12 @@
 package com.khaled.donation;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
+import android.preference.PreferenceManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,6 +19,8 @@ import com.khaled.donation.databinding.FragmentMenuBinding;
  * create an instance of this fragment.
  */
 public class MenuFragment extends Fragment {
+    SharedPreferences sp;
+    SharedPreferences.Editor editt;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -64,6 +68,8 @@ public class MenuFragment extends Fragment {
         FragmentMenuBinding binding;
         // Inflate the layout for this fragment
         binding = FragmentMenuBinding.inflate(getLayoutInflater(), container, false);
+        sp = PreferenceManager.getDefaultSharedPreferences(getActivity());
+        editt = sp.edit();
 
         binding.constraintLayoutProfile.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -84,6 +90,8 @@ public class MenuFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getActivity(),LoginActivity.class);
+                editt.putString(LoginActivity.ISCHECKED_KEY,null);
+                editt.apply();
                 startActivity(intent);
                 MainActivity.context.finishAffinity();
             }

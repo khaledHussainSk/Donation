@@ -14,13 +14,18 @@ public class SearchActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding = ActivitySearchBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+        fixed();
 
+
+    }
+
+    private void fixed(){
         binding.icBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 finish();
             }
         });
-
     }
+
 }

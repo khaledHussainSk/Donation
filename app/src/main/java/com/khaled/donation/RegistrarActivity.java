@@ -15,7 +15,18 @@ public class RegistrarActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding = ActivityRegistrarBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+        fixed();
 
+
+    }
+
+    private void fixed(){
+        binding.icBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
         binding.btnUser.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -23,7 +34,6 @@ public class RegistrarActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
         binding.btnCompany.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -31,13 +41,6 @@ public class RegistrarActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
-        binding.icBack.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                finish();
-            }
-        });
-
     }
+
 }

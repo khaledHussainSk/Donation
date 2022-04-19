@@ -20,17 +20,22 @@ public class AddPhotoActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding = ActivityAddPhotoBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+        fixed();
 
         Intent intent = getIntent();
         imageString = intent.getStringExtra(AddPostFragment.IMAGE_STRING_KEY);
         Glide.with(this).load(imageString).into(binding.ivPost);
 
+
+    }
+
+    private void fixed() {
         binding.icBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 finish();
             }
         });
-
     }
+
 }

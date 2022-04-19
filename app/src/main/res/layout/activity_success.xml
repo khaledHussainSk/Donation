@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F9F9FF"
+    tools:context=".SuccessActivity">
+
+
+    <ImageView
+        android:id="@+id/iv_done"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/_135sdp"
+        app:srcCompat="@drawable/done" />
+
+    <androidx.cardview.widget.CardView
+        android:layout_marginTop="@dimen/_70sdp"
+        android:layout_marginStart="@dimen/_16sdp"
+        android:layout_marginEnd="@dimen/_16sdp"
+        android:layout_marginBottom="@dimen/_30sdp"
+        android:layout_below="@+id/iv_done"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:cardCornerRadius="@dimen/_5sdp"
+        >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Account Created!"
+                android:textSize="@dimen/_18ssp"
+                android:textStyle="bold"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="@dimen/_36sdp"
+                android:textColor="#1C2340"
+                ></TextView>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Your account had been created"
+                android:textSize="@dimen/_12ssp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="@dimen/_14sdp"
+                android:textColor="#8A8D9F"
+                ></TextView>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="successfully."
+                android:textSize="@dimen/_12ssp"
+                android:layout_gravity="center_horizontal"
+                android:textColor="#8A8D9F"
+                ></TextView>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Please sign in to use your account"
+                android:textSize="@dimen/_12ssp"
+                android:layout_gravity="center_horizontal"
+                android:textColor="#8A8D9F"
+                ></TextView>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="and enjoy"
+                android:textSize="@dimen/_12ssp"
+                android:layout_gravity="center_horizontal"
+                android:textColor="#8A8D9F"
+                ></TextView>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn_signIn"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_50sdp"
+                android:layout_below="@+id/remember_me_cb"
+                android:layout_marginStart="@dimen/_16sdp"
+                android:layout_marginTop="@dimen/_24sdp"
+                android:layout_marginEnd="@dimen/_16sdp"
+                android:layout_marginBottom="@dimen/_30sdp"
+                android:gravity="center"
+                android:text="Take me to sign in"
+                android:textStyle="bold"
+                android:textAllCaps="false"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_12sdp"
+                app:backgroundTint="#00B588"
+                app:cornerRadius="@dimen/_25sdp" />
+
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+
+</RelativeLayout>

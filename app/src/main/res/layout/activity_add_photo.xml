@@ -72,8 +72,8 @@
                     android:text="@string/addMore"
                     android:textAllCaps="false"
                     android:textColor="#00B588"
-                    android:textSize="@dimen/_12sdp"
                     app:backgroundTint="#F9F9FF"
+                    android:textSize="@dimen/_12sdp"
                     app:cornerRadius="@dimen/_25sdp" />
 
                 <com.google.android.material.button.MaterialButton
