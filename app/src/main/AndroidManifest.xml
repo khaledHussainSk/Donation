@@ -3,8 +3,6 @@
     package="com.khaled.donation">
 
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
         android:allowBackup="true"
@@ -14,67 +12,17 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Donation">
         <activity
-            android:name=".SuccessActivity"
-            android:exported="false" />
-        <activity
-            android:name=".WelcomeLoginActivity"
-            android:exported="false" />
-        <activity
-            android:name=".OnBoardingActivity02"
-            android:exported="false" />
-        <activity
-            android:name=".OnBoardingActivity01"
-            android:exported="false" />
-        <activity
-            android:name=".WelcomeScreenActivity"
-            android:exported="false" />
-        <activity
             android:name=".AppReviewActivity"
-            android:exported="false"
-            android:theme="@style/FullScreen" />
+            android:exported="false" />
         <activity
             android:name=".ProfileDetailsActivity"
-            android:exported="false"
-            android:theme="@style/FullScreen" />
-        <activity
-            android:name=".OtherProfileActivity"
-            android:exported="false"
-            android:theme="@style/FullScreen" />
-        <activity
-            android:name=".AddPhotoActivity"
             android:exported="false" />
         <activity
-            android:name=".FavoriteActivity"
-            android:exported="false"
-            android:theme="@style/FullScreen" />
-        <activity
-            android:name=".ChangePasswordActivity"
-            android:exported="false"
-            android:theme="@style/FullScreen" />
+            android:name=".NotificationsActivity"
+            android:exported="false" />
         <activity
             android:name=".SearchActivity"
-            android:exported="false"
-            android:theme="@style/FullScreen" />
-        <activity
-            android:name=".RegistrarActivity"
-            android:exported="false"
-            android:theme="@style/FullScreen" />
-        <activity
-            android:name=".SignUpCompanyActivity"
-            android:exported="false"
-            android:theme="@style/FullScreen" />
-        <activity
-            android:name=".SignUpActivity"
-            android:exported="false"
-            android:theme="@style/FullScreen" />
-        <activity
-            android:name=".LoginActivity"
-            android:exported="false"
-            android:theme="@style/FullScreen" />
-        <activity
-            android:name=".SplashScreenActivity"
-            android:exported="true"
-            android:theme="@style/FullScreen">
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -82,11 +30,17 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".MainActivity"
+            android:name=".SignUpActivity"
+            android:exported="false" />
+        <activity
+            android:name=".LoginActivity"
+            android:exported="false" />
+        <activity
+            android:name=".SplashScreenActivity"
             android:exported="true" />
         <activity
-            android:name="com.theartofdev.edmodo.cropper.CropImageActivity"
-            android:theme="@style/Base.Theme.AppCompat" />
+            android:name=".MainActivity"
+            android:exported="true" />
     </application>
 
 </manifest>

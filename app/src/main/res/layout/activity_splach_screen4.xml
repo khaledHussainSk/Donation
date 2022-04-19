@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F9F9FF"
+    tools:context=".SplachScreen4">
+
+    <ImageView
+        android:id="@+id/imageView11"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/_15sdp"
+        app:srcCompat="@drawable/_9__send_money_instantly" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/splach_shape"
+        android:layout_alignParentBottom="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Welcome to RDX Found"
+                android:textSize="@dimen/_20sdp"
+                android:textStyle="bold"
+                android:layout_marginTop="@dimen/_35sdp"
+                android:layout_gravity="center"
+                android:textColor="@color/white"/>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn_email"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_50sdp"
+                android:layout_marginStart="@dimen/_25sdp"
+                android:layout_marginTop="@dimen/_35sdp"
+                android:layout_marginEnd="@dimen/_25sdp"
+                android:gravity="center"
+                android:text="Continue with Email"
+                android:textAllCaps="false"
+                android:textColor="#00B588"
+                android:textSize="@dimen/_16sdp"
+                app:backgroundTint="@color/white"
+                app:cornerRadius="@dimen/_25sdp" />
+
+<!--            <com.google.android.material.button.MaterialButton-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="@dimen/_50sdp"-->
+<!--                android:layout_marginStart="@dimen/_25sdp"-->
+<!--                android:layout_marginTop="@dimen/_20sdp"-->
+<!--                android:layout_marginEnd="@dimen/_25sdp"-->
+<!--                android:gravity="center"-->
+<!--                android:text="Get Started"-->
+<!--                android:textAllCaps="false"-->
+<!--                android:textColor="#00B588"-->
+<!--                android:textSize="@dimen/_16sdp"-->
+<!--                app:backgroundTint="@color/white"-->
+<!--                app:cornerRadius="@dimen/_25sdp" />-->
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_25sdp"
+                android:layout_marginBottom="@dimen/_30sdp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/already..."
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Don’t have an account?"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/_14ssp"></TextView>
+
+                <TextView
+                    android:id="@+id/btn_re"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Register"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/_14ssp"></TextView>
+
+            </LinearLayout>
+
+
+
+        </LinearLayout>
+
+
+
+    </LinearLayout>
+
+</RelativeLayout>

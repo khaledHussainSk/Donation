@@ -91,6 +91,8 @@
                 android:layout_marginTop="@dimen/_5sdp"
                 android:layout_marginStart="@dimen/_21sdp"
                 android:layout_marginEnd="@dimen/_19sdp"
+                android:gravity="center"
+                android:backgroundTint="#00B588"
                 android:layout_marginBottom="@dimen/_20sdp"
                 app:cornerRadius="@dimen/_25sdp"
                 android:textColor="@color/white"
