@@ -121,6 +121,14 @@ public class MenuFragment extends Fragment {
             }
         });
 
+        binding.constraintLayoutContactUs.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity(),ContentUsActivity.class);
+                startActivity(intent);
+            }
+        });
+
         return binding.getRoot();
 
     }

@@ -245,6 +245,7 @@
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:id="@+id/constraint_layout_contactUs"
                 android:paddingStart="@dimen/_16sdp"
                 android:paddingTop="@dimen/_16sdp"
                 android:paddingBottom="@dimen/_16sdp"

@@ -43,10 +43,31 @@
     <string name="or_tv">Or</string>
     <string name="addMore">Add more</string>
     <string name="post">Post</string>
+    <string name="favorite">Favorite</string>
+    <string name="follow">Follow</string>
+    <string name="chat">Chat</string>
+    <string name="Post">Post</string>
+    <string name="followers">Followers</string>
+    <string name="following">Following</string>
+    <string name="editProfile">Edit profile</string>
     <string name="app_review">App Review</string>
     <string name="introduction_review">Please rate the quality of service for the App</string>
     <string name="desc_review">Your comments and suggestions help us improve the service quality better!</string>
     <string name="note_review">Enter your note here</string>
     <string name="btn_submit_reivew">Submit</string>
+    <string name="toast_nullName">please enter your name</string>
+    <string name="toast_nullCompanyName">please enter the company name</string>
+    <string name="toast_nullPhoneNumber">please enter your phone number</string>
+    <string name="toast_nullAddress">please enter your address</string>
+    <string name="toast_nullEmail">please enter an email</string>
+    <string name="toast_nullEmail_login">please enter the email</string>
+    <string name="toast_nullPassword_login">please enter the password</string>
+    <string name="toast_nullPassword">please enter a password</string>
+    <string name="toast_nullConfirmPassword">please confirm the password</string>
+    <string name="toast_passwordDoesNotMatch">Password does not match !</string>
+    <string name="contact_us_help">Tell us how we can help you</string>
+    <string name="contact_us_enter_your_email">Enter Your Email</string>
+    <string name="contact_us_enter_your_message">Enter Your Message</string>
+    <string name="contact_us_send_message">Send Message</string>
 
 </resources>
