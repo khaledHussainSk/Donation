@@ -41,9 +41,11 @@
                         android:orientation="vertical">
 
                         <de.hdodenhof.circleimageview.CircleImageView
-                            android:id="@+id/iv"
+                            android:id="@+id/iv_profile"
                             android:layout_width="@dimen/_75sdp"
                             android:layout_height="@dimen/_75sdp"
+                            android:elevation="@dimen/_15sdp"
+                            android:padding="@dimen/_1sdp"
                             android:layout_centerHorizontal="true"
                             android:layout_gravity="center"
                             android:layout_marginTop="@dimen/_15sdp"
@@ -61,23 +63,23 @@
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center_horizontal"
                                 android:gravity="center"
-                                android:text="khaled skaik"
                                 android:textColor="#1C2340"
+                                android:layout_marginTop="@dimen/_4sdp"
                                 android:textSize="@dimen/_16ssp"
                                 android:textStyle="bold" />
 
                             <TextView
-                                android:id="@+id/shortDescription"
+                                android:id="@+id/shortBio"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_marginStart="@dimen/_11sdp"
-                                android:layout_marginTop="@dimen/_2sdp"
+                                android:layout_marginTop="@dimen/_5sdp"
                                 android:layout_marginEnd="@dimen/_11sdp"
                                 android:layout_marginBottom="@dimen/_10sdp"
                                 android:gravity="center"
                                 android:text="An organization that deals with casualties and prevents warfare"
                                 android:textColor="#8A8D9F"
-                                android:textSize="14sp"
+                                android:textSize="@dimen/_12ssp"
                                 android:textStyle="normal" />
 
                             <View

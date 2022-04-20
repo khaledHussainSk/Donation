@@ -101,7 +101,8 @@ public class LoginActivity extends AppCompatActivity {
                         if (task.isSuccessful()){
                             binding.spinKit.setVisibility(View.GONE);
                             Intent intent = new Intent(getBaseContext(),MainActivity.class);
-                            intent.putExtra("email",email);
+                            editt.putString(EMAIL,email);
+                            editt.apply();
                             startActivity(intent);
                             finish();
                         }

@@ -183,7 +183,7 @@ public class SignUpCompanyActivity extends AppCompatActivity {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()){
                             user = new User(companyName,phoneNumber,address,email,password
-                                    ,image,calendar.getTime(),0,0,0,2);
+                                    ,image,"Edit Bio",calendar.getTime(),0,0,0,2);
                             DocumentReference documentReference =
                                     FirebaseFirestore
                                             .getInstance()
