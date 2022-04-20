@@ -59,30 +59,34 @@ public class SearchActivity extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                FirebaseFirestore.getInstance().collection("Users").orderBy("fullName").startAt(charSequence.toString().trim()).endAt(charSequence.toString().trim()+"\uf8ff").get()
-                        .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                            @Override
-                            public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                                userArrayList = new ArrayList<>();
+                if (!charSequence.toString().trim().isEmpty()){
+                    FirebaseFirestore.getInstance().collection("Users").orderBy("fullName").startAt(charSequence.toString().trim()).endAt(charSequence.toString().trim()+"\uf8ff").get()
+                            .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                                @Override
+                                public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                                    userArrayList = new ArrayList<>();
 
-                                for (QueryDocumentSnapshot queryDocumentSnapshot : task.getResult()) {
-                                    User user = queryDocumentSnapshot.toObject(User.class);
-                                    userArrayList.add(user);
-                                    Toast.makeText(getApplicationContext(), "gg" + user.getFullName(), Toast.LENGTH_SHORT).show();
+                                    for (QueryDocumentSnapshot queryDocumentSnapshot : task.getResult()) {
+                                        User user = queryDocumentSnapshot.toObject(User.class);
+                                        userArrayList.add(user);
+                                        Toast.makeText(getApplicationContext(), "gg" + user.getFullName(), Toast.LENGTH_SHORT).show();
+                                    }
+
+                                    adapter = new RecyclerSearchAdapter(userArrayList);
+                                    binding.rvSearch.setAdapter(adapter);
+                                    binding.rvSearch.setHasFixedSize(true);
+                                    binding.rvSearch.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
                                 }
+                            });
 
-                                adapter = new RecyclerSearchAdapter(userArrayList);
-                                adapter.notifyDataSetChanged();
-                                binding.rvSearch.setAdapter(adapter);
-                                binding.rvSearch.setHasFixedSize(true);
-                                binding.rvSearch.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
-                            }
-                        });
+                }else if (charSequence.toString().trim().length() == 0){
+                    userArrayList.clear();
+                }
+
             }
 
             @Override
             public void afterTextChanged(Editable editable) {
-
             }
         });
     }
