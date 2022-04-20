@@ -4,6 +4,10 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 
+import androidx.activity.result.ActivityResult;
+import androidx.activity.result.ActivityResultCallback;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
@@ -27,6 +31,7 @@ public class ProfileFragment extends Fragment {
     SharedPreferences sp;
     String currentUserId;
     User currentUser;
+    ActivityResultLauncher<Intent> arl;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -35,11 +40,20 @@ public class ProfileFragment extends Fragment {
         binding = FragmentProfileBinding.inflate(getLayoutInflater(),container,false);
         fixed();
         getUser();
+        
+        arl = registerForActivityResult(new ActivityResultContracts.StartActivityForResult()
+                , new ActivityResultCallback<ActivityResult>() {
+                    @Override
+                    public void onActivityResult(ActivityResult result) {
+                        getUser();
+                    }
+                });
+        
         binding.btnProfileDetails.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getActivity(),ProfileDetailsActivity.class);
-                startActivity(intent);
+                arl.launch(intent);
             }
         });
         return binding.getRoot();
@@ -58,6 +72,7 @@ public class ProfileFragment extends Fragment {
     }
 
     private void getUser(){
+        disableField();
         FirebaseFirestore.getInstance().collection("Users").document(currentUserId).get()
                 .addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
                     @Override
@@ -73,6 +88,7 @@ public class ProfileFragment extends Fragment {
                                 binding.tvFollowing.setText(String.valueOf(currentUser.getFollowing()));
                                 binding.tvPosts.setText(String.valueOf(currentUser.getPosts()));
                                 binding.shortBio.setText(currentUser.getShortBio());
+                                enableField();
                             }
                         }
 
@@ -83,6 +99,15 @@ public class ProfileFragment extends Fragment {
                 Toast.makeText(getActivity(), ""+e, Toast.LENGTH_SHORT).show();
             }
         });
+    }
+
+    private void disableField(){
+        binding.btnProfileDetails.setEnabled(false);
+        binding.shortBio.setEnabled(false);
+    }
+    private void enableField(){
+        binding.btnProfileDetails.setEnabled(true);
+        binding.shortBio.setEnabled(true);
     }
 
 }
