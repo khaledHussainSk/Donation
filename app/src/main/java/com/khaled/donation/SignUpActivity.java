@@ -188,7 +188,7 @@ public class SignUpActivity extends AppCompatActivity {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()){
                             user = new User(fullName,phoneNumber,address,email,password
-                            ,image,calendar.getTime(),0,0,0,1);
+                            ,image,"Edit Bio",calendar.getTime(),0,0,0,1);
                             DocumentReference documentReference =
                                     FirebaseFirestore
                                             .getInstance()

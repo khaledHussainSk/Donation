@@ -14,12 +14,16 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Donation">
         <activity
+            android:name=".ShortBioActivity"
+            android:theme="@style/FullScreen"
+            android:exported="false" />
+        <activity
             android:name=".SuccessActivity"
             android:exported="false" />
-        <activity android:name=".ContentUsActivity"
+        <activity
+            android:name=".ContentUsActivity"
             android:exported="false"
-            android:theme="@style/FullScreen">
-        </activity>
+            android:theme="@style/FullScreen"></activity>
         <activity
             android:name=".WelcomeLoginActivity"
             android:exported="false" />
@@ -46,6 +50,7 @@
             android:theme="@style/FullScreen" />
         <activity
             android:name=".AddPhotoActivity"
+            android:theme="@style/FullScreen"
             android:exported="false" />
         <activity
             android:name=".FavoriteActivity"

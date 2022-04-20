@@ -92,7 +92,7 @@
                 android:gravity="top"
                 android:inputType="textPersonName"
                 android:padding="@dimen/_8sdp"
-                android:text="@string/contact_us_enter_your_email"
+                android:hint="@string/contact_us_enter_your_email"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/appbar" />
@@ -105,9 +105,9 @@
                 android:background="@drawable/shape_note"
                 android:backgroundTint="#F0F1F5"
                 android:gravity="top"
-                android:inputType="textPersonName"
+                android:inputType="textMultiLine"
                 android:padding="@dimen/_8sdp"
-                android:text="@string/contact_us_enter_your_message"
+                android:hint="@string/contact_us_enter_your_message"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName2" />

@@ -64,10 +64,15 @@
     <string name="toast_nullPassword_login">please enter the password</string>
     <string name="toast_nullPassword">please enter a password</string>
     <string name="toast_nullConfirmPassword">please confirm the password</string>
+    <string name="toast_nullShortBio">please enter a short bio</string>
+    <string name="toast_allowNumOfCahr">The number of characters allowed is 100!</string>
     <string name="toast_passwordDoesNotMatch">Password does not match !</string>
     <string name="contact_us_help">Tell us how we can help you</string>
     <string name="contact_us_enter_your_email">Enter Your Email</string>
     <string name="contact_us_enter_your_message">Enter Your Message</string>
     <string name="contact_us_send_message">Send Message</string>
+    <string name="short_bio">You can add a short bio to tell people maore about yourself.</string>
+    <string name="edit_bio">Edit Bio</string>
+    <string name="save">Save</string>
 
 </resources>

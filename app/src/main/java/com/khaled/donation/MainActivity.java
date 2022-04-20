@@ -3,6 +3,7 @@ package com.khaled.donation;
 import androidx.activity.result.ActivityResultCallback;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.PopupMenu;
@@ -12,28 +13,40 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.view.MenuItem;
 import android.widget.Toast;
 
 import com.etebarian.meowbottomnavigation.MeowBottomNavigation;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
+import com.khaled.donation.Models.User;
 import com.khaled.donation.databinding.ActivityMainBinding;
 
 public class MainActivity extends AppCompatActivity {
+    public static final String USER_ID_KEY = "USER_ID_KEY";
     ActivityMainBinding binding;
     public static MeowBottomNavigation bottomNavigation;
     public static Activity context;
-    ActivityResultLauncher<String> arl;
     Fragment fragment;
+    String email;
+    User currentUser;
+    SharedPreferences sp;
+    SharedPreferences.Editor editt;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-
-        context = this;
+        fixed();
+        getInfo();
         bottomNavigation = binding.bottomNavigation;
         binding.bottomNavigation.add(new MeowBottomNavigation.Model(1,R.drawable.ic_home));
         binding.bottomNavigation.add(new MeowBottomNavigation.Model(2,R.drawable.ic_notifications));
@@ -85,18 +98,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        arl = registerForActivityResult(
-                new ActivityResultContracts.GetContent(),
-                new ActivityResultCallback<Uri>() {
-                    @Override
-                    public void onActivityResult(Uri result) {
-                        if (result != null){
-                            String imagePost = String.valueOf(result);
-
-                            binding.bottomNavigation.show(3,true);
-                        }
-                    }
-                });
 
     }
 
@@ -106,6 +107,29 @@ public class MainActivity extends AppCompatActivity {
                 .beginTransaction()
                 .replace(R.id.frame_layout,fragment)
                 .commit();
+    }
+
+    private void fixed(){
+        context = this;
+        sp = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
+        editt = sp.edit();
+        email = sp.getString(LoginActivity.EMAIL,null);
+    }
+
+    private void getInfo(){
+        FirebaseFirestore.getInstance().collection("Users").get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        for (QueryDocumentSnapshot queryDocumentSnapshot : task.getResult()){
+                            currentUser = queryDocumentSnapshot.toObject(User.class);
+                            if (currentUser.getEmail().equals(email)){
+                                editt.putString(USER_ID_KEY,currentUser.getIdUser());
+                                editt.apply();
+                            }
+                        }
+                    }
+                });
     }
 
 }

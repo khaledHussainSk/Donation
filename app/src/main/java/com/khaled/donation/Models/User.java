@@ -4,20 +4,21 @@ import java.util.Date;
 
 public class User {
 
-    private String idUser,fullName,phoneNumber,address,email,password,imageProfile;
+    private String idUser,fullName,phoneNumber,address,email,password,imageProfile,shortBio;
     private Date joined;
     private int followers,following,posts,validity;
 
     public User() {
     }
 
-    public User(String fullName, String phoneNumber, String address, String email, String password,String imageProfile, Date joined, int followers, int following, int posts,int validity) {
+    public User(String fullName, String phoneNumber, String address, String email, String password,String imageProfile,String shortBio, Date joined, int followers, int following, int posts,int validity) {
         this.fullName = fullName;
         this.phoneNumber = phoneNumber;
         this.address = address;
         this.email = email;
         this.password = password;
         this.imageProfile = imageProfile;
+        this.shortBio = shortBio;
         this.joined = joined;
         this.followers = followers;
         this.following = following;
@@ -39,6 +40,14 @@ public class User {
 
     public void setIdUser(String idUser) {
         this.idUser = idUser;
+    }
+
+    public String getShortBio() {
+        return shortBio;
+    }
+
+    public void setShortBio(String shortBio) {
+        this.shortBio = shortBio;
     }
 
     public int getValidity() {
