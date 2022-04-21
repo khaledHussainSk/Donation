@@ -45,6 +45,7 @@
                         android:textStyle="bold" />
 
                     <ImageView
+                        android:id="@+id/ic_back"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentLeft="true"
@@ -85,13 +86,14 @@
                         android:orientation="vertical">
 
                         <de.hdodenhof.circleimageview.CircleImageView
-                            android:id="@+id/iv"
-                            android:layout_width="@dimen/_90sdp"
-                            android:layout_height="@dimen/_90sdp"
+                            android:id="@+id/iv_profile"
+                            android:layout_width="@dimen/_75sdp"
+                            android:layout_height="@dimen/_75sdp"
+                            android:elevation="@dimen/_15sdp"
+                            android:padding="@dimen/_1sdp"
                             android:layout_centerHorizontal="true"
                             android:layout_gravity="center"
                             android:layout_marginTop="@dimen/_15sdp"
-                            android:padding="5dp"
                             android:src="@drawable/ic_baseline_account_circle_24"
                             app:civ_border_color="#FF000000" />
 
@@ -108,9 +110,9 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:gravity="center"
-                                android:text="khaled skaik"
                                 android:textColor="#1C2340"
-                                android:textSize="20sp"
+                                android:layout_marginTop="@dimen/_4sdp"
+                                android:textSize="@dimen/_16ssp"
                                 android:textStyle="bold" />
 
                         </LinearLayout>
@@ -118,17 +120,15 @@
 
 
                         <TextView
-                            android:id="@+id/shortDescription"
+                            android:id="@+id/shortBio"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="@dimen/_11sdp"
                             android:layout_marginTop="2dp"
                             android:layout_marginEnd="@dimen/_11sdp"
-                            android:layout_marginBottom="10dp"
                             android:gravity="center"
-                            android:text="An organization that deals with casualties and prevents warfare"
                             android:textColor="#8A8D9F"
-                            android:textSize="14sp"
+                            android:textSize="@dimen/_12ssp"
                             android:textStyle="normal" />
 
                         <!--                    <View-->
@@ -197,6 +197,7 @@
                     android:orientation="vertical">
 
                     <TextView
+                        android:id="@+id/tv_posts"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:gravity="center"
@@ -229,6 +230,7 @@
                     android:orientation="vertical">
 
                     <TextView
+                        android:id="@+id/tv_followers"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:gravity="center"
@@ -261,6 +263,7 @@
                     android:orientation="vertical">
 
                     <TextView
+                        android:id="@+id/tv_following"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:gravity="center"

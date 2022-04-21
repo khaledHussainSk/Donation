@@ -1,9 +1,5 @@
 package com.khaled.donation;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
@@ -12,6 +8,10 @@ import android.preference.PreferenceManager;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.bumptech.glide.Glide;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -33,7 +33,7 @@ public class ProfileDetailsActivity extends AppCompatActivity {
     String currentUserId;
     User currentUser;
     Uri imageUri;
-    String fullName,email,phoneNumber,address,image;
+    String fullName,phoneNumber,address,image;
     FirebaseStorage storage;
 
     @Override
@@ -82,7 +82,6 @@ public class ProfileDetailsActivity extends AppCompatActivity {
                                 binding.etFullName.setText(currentUser.getFullName());
                                 binding.etPhoneNumber.setText(currentUser.getPhoneNumber());
                                 binding.etAddress.setText(currentUser.getAddress());
-                                binding.etEmail.setText(currentUser.getEmail());
                                 image = currentUser.getImageProfile();
                                 enableField();
                             }
@@ -102,7 +101,6 @@ public class ProfileDetailsActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 fullName = binding.etFullName.getText().toString();
-                email = binding.etEmail.getText().toString();
                 phoneNumber = binding.etPhoneNumber.getText().toString();
                 address = binding.etAddress.getText().toString();
 
@@ -120,12 +118,6 @@ public class ProfileDetailsActivity extends AppCompatActivity {
                 if (TextUtils.isEmpty(address)){
                     Toast.makeText(getBaseContext()
                             , R.string.toast_nullAddress, Toast.LENGTH_SHORT).show();
-                    return;
-                }
-
-                if (TextUtils.isEmpty(email)){
-                    Toast.makeText(getBaseContext()
-                            , R.string.toast_nullEmail, Toast.LENGTH_SHORT).show();
                     return;
                 }
 
@@ -150,7 +142,6 @@ public class ProfileDetailsActivity extends AppCompatActivity {
         binding.etFullName.setEnabled(false);
         binding.etPhoneNumber.setEnabled(false);
         binding.etAddress.setEnabled(false);
-        binding.etEmail.setEnabled(false);
         binding.btnSave.setEnabled(false);
     }
     private void enableField(){
@@ -158,7 +149,6 @@ public class ProfileDetailsActivity extends AppCompatActivity {
         binding.etFullName.setEnabled(true);
         binding.etPhoneNumber.setEnabled(true);
         binding.etAddress.setEnabled(true);
-        binding.etEmail.setEnabled(true);
         binding.btnSave.setEnabled(true);
     }
 

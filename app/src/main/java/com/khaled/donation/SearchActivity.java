@@ -1,10 +1,12 @@
 package com.khaled.donation;
 
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -13,20 +15,24 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
+import com.khaled.donation.Adapters.RecyclerSearchAdapter;
+import com.khaled.donation.Listeners.OnClickItemSearchListener;
 import com.khaled.donation.Models.User;
 import com.khaled.donation.databinding.ActivitySearchBinding;
 
 import java.util.ArrayList;
-import java.util.Locale;
 
 public class SearchActivity extends AppCompatActivity {
     ActivitySearchBinding binding;
     RecyclerSearchAdapter adapter;
     ArrayList<User> userArrayList;
     String search;
+    public final static String USER_KEY = "USER_KEY";
+    String currentUserId;
+    SharedPreferences sp;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,6 +45,8 @@ public class SearchActivity extends AppCompatActivity {
 
 
     private void fixed(){
+        sp = PreferenceManager.getDefaultSharedPreferences(this);
+        currentUserId = sp.getString(MainActivity.USER_ID_KEY,null);
         binding.icBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -54,13 +62,16 @@ public class SearchActivity extends AppCompatActivity {
         binding.etSearch.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
             }
 
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
                 if (!charSequence.toString().trim().isEmpty()){
-                    FirebaseFirestore.getInstance().collection("Users").orderBy("fullName").startAt(charSequence.toString().trim()).endAt(charSequence.toString().trim()+"\uf8ff").get()
+                    FirebaseFirestore.getInstance()
+                            .collection("Users")
+                            .orderBy("fullName")
+                            .startAt(charSequence.toString().trim())
+                            .endAt(charSequence.toString().trim()+"\uf8ff").get()
                             .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                                 @Override
                                 public void onComplete(@NonNull Task<QuerySnapshot> task) {
@@ -68,18 +79,29 @@ public class SearchActivity extends AppCompatActivity {
 
                                     for (QueryDocumentSnapshot queryDocumentSnapshot : task.getResult()) {
                                         User user = queryDocumentSnapshot.toObject(User.class);
-                                        userArrayList.add(user);
-                                        Toast.makeText(getApplicationContext(), "gg" + user.getFullName(), Toast.LENGTH_SHORT).show();
+                                        if (!user.getIdUser().equals(currentUserId)){
+                                            userArrayList.add(user);
+                                        }
                                     }
 
-                                    adapter = new RecyclerSearchAdapter(userArrayList);
+                                    adapter = new RecyclerSearchAdapter(userArrayList
+                                            , new OnClickItemSearchListener() {
+                                        @Override
+                                        public void OnClickListener(User user) {
+                                            Intent intent = new Intent(SearchActivity.this,
+                                                    OtherProfileActivity.class);
+                                            intent.putExtra(USER_KEY,user);
+                                            startActivity(intent);
+                                        }
+                                    });
                                     binding.rvSearch.setAdapter(adapter);
                                     binding.rvSearch.setHasFixedSize(true);
-                                    binding.rvSearch.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
+                                    binding.rvSearch
+                                            .setLayoutManager(new LinearLayoutManager(getApplicationContext()));
                                 }
                             });
 
-                }else if (charSequence.toString().trim().length() == 0){
+                }else{
                     userArrayList.clear();
                 }
 

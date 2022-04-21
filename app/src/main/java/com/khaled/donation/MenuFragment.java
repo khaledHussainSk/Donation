@@ -1,10 +1,12 @@
 package com.khaled.donation;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 
 import android.preference.PreferenceManager;
@@ -73,11 +75,26 @@ public class MenuFragment extends Fragment {
         binding.constraintLayoutSignOut.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getActivity(),LoginActivity.class);
-                editt.putString(LoginActivity.ISCHECKED_KEY,null);
-                editt.apply();
-                startActivity(intent);
-                MainActivity.context.finishAffinity();
+                AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+                builder.setMessage(R.string.confirmSignOut);
+                builder.setCancelable(false);
+                builder.setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        dialogInterface.dismiss();
+                    }
+                });
+                builder.setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        Intent intent = new Intent(getActivity(),LoginActivity.class);
+                        editt.putString(LoginActivity.ISCHECKED_KEY,null);
+                        editt.apply();
+                        startActivity(intent);
+                        MainActivity.context.finishAffinity();
+                    }
+                });
+                builder.show();
             }
         });
         binding.constraintLayoutAllFavorites.setOnClickListener(new View.OnClickListener() {

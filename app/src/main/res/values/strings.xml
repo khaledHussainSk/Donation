@@ -42,6 +42,7 @@
     <string name="addPost_tv">Add Post</string>
     <string name="or_tv">Or</string>
     <string name="addMore">Add more</string>
+    <string name="noBio">has not put in Bio yet</string>
     <string name="post">Post</string>
     <string name="favorite">Favorite</string>
     <string name="follow">Follow</string>
@@ -74,5 +75,13 @@
     <string name="short_bio">You can add a short bio to tell people maore about yourself.</string>
     <string name="edit_bio">Edit Bio</string>
     <string name="save">Save</string>
+    <string name="confirmSignOut">Are you sure you want to log out?</string>
+    <string name="ok">OK</string>
+    <string name="cancel">CANCEL</string>
+    <string name="toast_oldPassword">Please enter the old password</string>
+    <string name="toast_newPassword">Please enter a new password</string>
+    <string name="toast_notIdentical">The password is not identical</string>
+    <string name="toast_incorrect">The old password is incorrect</string>
+    <string name="toast_passwordChangedSuccessfully">Password changed successfully</string>
 
 </resources>

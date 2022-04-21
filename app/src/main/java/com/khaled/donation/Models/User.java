@@ -1,8 +1,9 @@
 package com.khaled.donation.Models;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class User {
+public class User implements Serializable {
 
     private String idUser,fullName,phoneNumber,address,email,password,imageProfile,shortBio;
     private Date joined;
