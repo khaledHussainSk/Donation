@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:backgroundTint="@color/white"
+    android:layout_gravity="center"
+    app:cardCornerRadius="@dimen/_16sdp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".Dialogs.DialogSignOutFragment">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            >
+            <TextView
+                android:id="@+id/tv_message1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/areYouSure"
+                android:textColor="#15294B"
+                android:textSize="@dimen/_12ssp"
+                android:textStyle="bold"
+                android:layout_marginTop="@dimen/_29sdp"
+                android:layout_gravity="center_horizontal"
+                />
+
+            <TextView
+                android:id="@+id/tv_message2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/youWantToSignOut"
+                android:textColor="#15294B"
+                android:layout_marginTop="@dimen/_2sdp"
+                android:textSize="@dimen/_12ssp"
+                android:textStyle="bold"
+                android:layout_gravity="center_horizontal"
+                />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                >
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btn_cancel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/_50sdp"
+                    android:layout_marginStart="@dimen/_20sdp"
+                    android:layout_marginTop="@dimen/_17sdp"
+                    android:layout_marginEnd="@dimen/_20sdp"
+                    android:gravity="center"
+                    android:text="@string/cancel"
+                    android:textAllCaps="false"
+                    android:textColor="#00B588"
+                    android:textSize="@dimen/_12sdp"
+                    android:layout_weight="1"
+                    android:backgroundTint="#F9F9FF"
+                    app:cornerRadius="@dimen/_25sdp"
+                    />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btn_sure"
+                    android:layout_width="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_height="@dimen/_50sdp"
+                    android:layout_marginStart="@dimen/_20sdp"
+                    android:layout_marginTop="@dimen/_17sdp"
+                    android:layout_marginEnd="@dimen/_20sdp"
+                    android:gravity="center"
+                    android:text="@string/sure"
+                    android:textAllCaps="false"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/_12sdp"
+                    app:backgroundTint="#00B588"
+                    app:cornerRadius="@dimen/_25sdp" />
+
+            </LinearLayout>
+        </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

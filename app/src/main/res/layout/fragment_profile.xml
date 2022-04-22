@@ -226,17 +226,24 @@
 
         </RelativeLayout>
 
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rv"
+        <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_below="@+id/r"
             android:layout_marginStart="@dimen/_16sdp"
-            android:layout_marginTop="@dimen/_16sdp"
             android:layout_marginEnd="@dimen/_16sdp"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:layout_editor_absoluteX="6dp" />
+            app:cardCornerRadius="@dimen/_6sdp"
+            android:layout_below="@+id/r"
+            app:cardUseCompatPadding="true">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:layout_constraintTop_toTopOf="parent"
+                />
+
+        </androidx.cardview.widget.CardView>
+
 
 
     </RelativeLayout>

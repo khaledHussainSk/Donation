@@ -1,21 +1,25 @@
 package com.khaled.donation;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.Toast;
 
 import androidx.activity.result.ActivityResult;
 import androidx.activity.result.ActivityResultCallback;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
-
-import android.preference.PreferenceManager;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.Toast;
+import androidx.recyclerview.widget.GridLayoutManager;
 
 import com.bumptech.glide.Glide;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -23,8 +27,14 @@ import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
+import com.khaled.donation.Adapters.RvPostsProfileAdapter;
+import com.khaled.donation.Models.Post;
 import com.khaled.donation.Models.User;
 import com.khaled.donation.databinding.FragmentProfileBinding;
+
+import java.util.ArrayList;
 
 public class ProfileFragment extends Fragment {
     FragmentProfileBinding binding;
@@ -32,6 +42,9 @@ public class ProfileFragment extends Fragment {
     String currentUserId;
     User currentUser;
     ActivityResultLauncher<Intent> arl;
+    NetworkInfo netInfo;
+    ArrayList<String> images;
+    RvPostsProfileAdapter adapter;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -40,6 +53,7 @@ public class ProfileFragment extends Fragment {
         binding = FragmentProfileBinding.inflate(getLayoutInflater(),container,false);
         fixed();
         getUser();
+        getPosts();
         
         arl = registerForActivityResult(new ActivityResultContracts.StartActivityForResult()
                 , new ActivityResultCallback<ActivityResult>() {
@@ -52,21 +66,33 @@ public class ProfileFragment extends Fragment {
         binding.btnProfileDetails.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getActivity(),ProfileDetailsActivity.class);
-                arl.launch(intent);
+                if (netInfo == null){
+                    dialogInternet_error();
+                }else{
+                    Intent intent = new Intent(getActivity(),ProfileDetailsActivity.class);
+                    arl.launch(intent);
+                }
             }
         });
         return binding.getRoot();
     }
 
     private void fixed(){
+        images = new ArrayList<>();
+        ConnectivityManager conMgr =  (ConnectivityManager)getContext()
+                .getSystemService(Context.CONNECTIVITY_SERVICE);
+        netInfo = conMgr.getActiveNetworkInfo();
         sp = PreferenceManager.getDefaultSharedPreferences(getActivity());
         currentUserId = sp.getString(MainActivity.USER_ID_KEY,null);
         binding.shortBio.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getActivity(),ShortBioActivity.class);
-                startActivity(intent);
+                if (netInfo == null){
+                    dialogInternet_error();
+                }else{
+                    Intent intent = new Intent(getActivity(),ShortBioActivity.class);
+                    startActivity(intent);
+                }
             }
         });
     }
@@ -108,6 +134,33 @@ public class ProfileFragment extends Fragment {
     private void enableField(){
         binding.btnProfileDetails.setEnabled(true);
         binding.shortBio.setEnabled(true);
+    }
+
+    private void dialogInternet_error() {
+        new AlertDialog.Builder(getActivity())
+                .setCancelable(false)
+                .setMessage(getResources().getString(R.string.internet_error))
+                .setPositiveButton(R.string.ok, null).show();
+    }
+
+    private void getPosts(){
+//        binding.spinKit.setVisibility(View.VISIBLE);
+        FirebaseFirestore.getInstance().collection("Posts")
+                .get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                images.clear();
+                for (QueryDocumentSnapshot queryDocumentSnapshot : task.getResult()) {
+                    Post post = queryDocumentSnapshot.toObject(Post.class);
+                    images.add(post.getImages().get(0));
+                }
+                adapter = new RvPostsProfileAdapter(images);
+                binding.rv.setHasFixedSize(true);
+                binding.rv.setLayoutManager(new GridLayoutManager(getActivity(),3));
+                binding.rv.setAdapter(adapter);
+//                binding.spinKit.setVisibility(View.GONE);
+            }
+        });
     }
 
 }

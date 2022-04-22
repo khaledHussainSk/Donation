@@ -165,5 +165,6 @@
     <orderEntry type="library" name="Gradle: io.grpc:grpc-android:1.44.1@aar" level="project" />
     <orderEntry type="library" name="Gradle: com.github.ybq:Android-SpinKit:1.4.0@aar" level="project" />
     <orderEntry type="library" name="Gradle: com.github.GrenderG:Toasty:1.5.2@aar" level="project" />
+    <orderEntry type="library" name="Gradle: com.novoda:merlin:1.2.0@aar" level="project" />
   </component>
 </module>

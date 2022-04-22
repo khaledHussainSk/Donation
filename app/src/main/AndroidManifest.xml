@@ -3,6 +3,7 @@
     package="com.khaled.donation">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
@@ -14,16 +15,32 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Donation">
         <activity
-            android:name=".ShortBioActivity"
+            android:name=".CommentsActivity"
             android:theme="@style/FullScreen"
             android:exported="false" />
+        <activity
+            android:name=".DisplayAllImagesPostActivity"
+            android:exported="false"
+            android:theme="@style/FullScreen" />
+        <activity
+            android:name=".DisplayImageActivity"
+            android:exported="false"
+            android:theme="@style/FullScreen" />
+        <activity
+            android:name=".AddCharityCampaignActivity"
+            android:exported="false"
+            android:theme="@style/FullScreen" />
+        <activity
+            android:name=".ShortBioActivity"
+            android:exported="false"
+            android:theme="@style/FullScreen" />
         <activity
             android:name=".SuccessActivity"
             android:exported="false" />
         <activity
             android:name=".ContentUsActivity"
             android:exported="false"
-            android:theme="@style/FullScreen"></activity>
+            android:theme="@style/FullScreen" />
         <activity
             android:name=".WelcomeLoginActivity"
             android:exported="false" />
@@ -50,8 +67,8 @@
             android:theme="@style/FullScreen" />
         <activity
             android:name=".AddPhotoActivity"
-            android:theme="@style/FullScreen"
-            android:exported="false" />
+            android:exported="false"
+            android:theme="@style/FullScreen" />
         <activity
             android:name=".FavoriteActivity"
             android:exported="false"
@@ -63,8 +80,7 @@
         <activity
             android:name=".SearchActivity"
             android:exported="true"
-            android:theme="@style/FullScreen" >
-        </activity>
+            android:theme="@style/FullScreen" />
         <activity
             android:name=".RegistrarActivity"
             android:exported="false"

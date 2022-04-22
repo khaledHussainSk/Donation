@@ -16,6 +16,14 @@
 
     <style name="FullScreen" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <item name="android:windowFullscreen">true</item>
+        <item name="colorPrimary">#00B588</item>
+        <item name="colorPrimaryVariant">#00B588</item>
+        <item name="colorOnPrimary">#00B588</item>
+        <!-- Secondary brand color. -->
+        <item name="colorSecondary">#00B588</item>
+        <item name="colorSecondaryVariant">#00B588</item>
+        <item name="colorOnSecondary">#00B588</item>
+        <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
     </style>
 
 </resources>

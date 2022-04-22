@@ -97,7 +97,9 @@ public class SearchActivity extends AppCompatActivity {
                                     binding.rvSearch.setAdapter(adapter);
                                     binding.rvSearch.setHasFixedSize(true);
                                     binding.rvSearch
-                                            .setLayoutManager(new LinearLayoutManager(getApplicationContext()));
+                                            .setLayoutManager
+                                                    (new LinearLayoutManager
+                                                            (getApplicationContext()));
                                 }
                             });
 

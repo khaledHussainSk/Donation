@@ -3,9 +3,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
     android:background="#F9F9FF"
-    tools:context=".AddPhotoActivity">
+    android:layout_height="match_parent"
+    tools:context=".AddCharityCampaignActivity">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -24,6 +24,38 @@
                 android:orientation="vertical">
 
                 <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/et_donation"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColorHint="@color/black"
+                    app:errorTextColor="@color/black"
+                    app:hintTextColor="@color/black"
+                    app:suffixTextColor="@color/black">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/et_description"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_16sdp"
+                    android:layout_marginTop="@dimen/_16sdp"
+                    android:layout_marginEnd="@dimen/_16sdp"
+                    android:layout_marginBottom="@dimen/_16sdp"
+                    android:layout_weight="1"
+                    android:background="@color/white"
+                    android:backgroundTint="#00FFFFFF"
+                    android:gravity="start"
+                    android:hint="@string/writeACaption"
+                    android:inputType="textMultiLine"
+                    android:outlineAmbientShadowColor="@color/white"
+                    android:outlineSpotShadowColor="@color/white"
+                    android:shadowColor="@color/black"
+                    android:textColor="@color/black"
+                    android:textColorHint="@color/black"
+                    android:tooltipText="Name" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/et"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -33,7 +65,7 @@
                     app:suffixTextColor="@color/black">
 
                     <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/et_description"
+                        android:id="@+id/et_donationLink"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="@dimen/_16sdp"
@@ -44,8 +76,8 @@
                         android:background="@color/white"
                         android:backgroundTint="#00FFFFFF"
                         android:gravity="start"
-                        android:hint="@string/writeACaption"
-                        android:inputType="textMultiLine"
+                        android:hint="@string/EnterDonationLink"
+                        android:inputType="text"
                         android:outlineAmbientShadowColor="@color/white"
                         android:outlineSpotShadowColor="@color/white"
                         android:shadowColor="@color/black"
@@ -55,45 +87,13 @@
 
                 </com.google.android.material.textfield.TextInputLayout>
 
-                    <androidx.recyclerview.widget.RecyclerView
-                        android:id="@+id/rv"
-                        android:orientation="horizontal"
-                        android:layout_width="match_parent"
-                        android:layout_height="@dimen/_150sdp"
-                        tools:listitem="@layout/custom_display_images_rv"
-                        />
-
-                <LinearLayout
-                    android:id="@+id/move"
-                    android:layout_marginTop="@dimen/_11sdp"
-                    android:visibility="gone"
+                <ImageView
+                    android:id="@+id/iv_post"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:orientation="horizontal"
-                    >
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/move"
-                        android:textStyle="bold"
-                        android:textSize="@dimen/_12ssp"
-                        android:textColor="@color/black"
-                        android:layout_marginEnd="@dimen/_6sdp"
-                        ></TextView>
-
-                    <ImageView
-                        android:id="@+id/imageView13"
-                        android:layout_width="@dimen/_24sdp"
-                        android:layout_height="@dimen/_24sdp"
-                        app:srcCompat="@drawable/ic_transfer" />
-
-
-                </LinearLayout>
+                    android:layout_height="wrap_content"></ImageView>
 
                 <com.google.android.material.button.MaterialButton
-                    android:id="@+id/btn_add_more"
+                    android:id="@+id/btn_add_photo"
                     android:layout_width="@dimen/_130sdp"
                     android:layout_height="@dimen/_50sdp"
                     android:layout_gravity="center_horizontal"
@@ -101,7 +101,7 @@
                     android:layout_marginTop="@dimen/_11sdp"
                     android:layout_marginEnd="@dimen/_20sdp"
                     android:gravity="center"
-                    android:text="@string/addMore"
+                    android:text="@string/addPhoto"
                     android:textAllCaps="false"
                     android:textColor="#00B588"
                     app:backgroundTint="#F9F9FF"
@@ -155,7 +155,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerInParent="true"
-                    android:text="@string/addPhoto"
+                    android:text="@string/addCharityCampaign"
                     android:textColor="@color/black"
                     android:textSize="@dimen/_18sdp"
                     android:textStyle="bold" />
@@ -175,5 +175,6 @@
         </androidx.appcompat.widget.Toolbar>
 
     </com.google.android.material.appbar.CollapsingToolbarLayout>
+
 
 </RelativeLayout>

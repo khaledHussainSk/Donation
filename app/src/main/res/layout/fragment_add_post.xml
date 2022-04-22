@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -30,6 +31,38 @@
                 android:text="@string/addPost_tv"
                 android:layout_gravity="center_horizontal"
                 ></TextView>
+
+            <com.google.android.material.button.MaterialButton
+                android:visibility="gone"
+                android:id="@+id/btn_add_charity_campaign"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_50sdp"
+                android:layout_marginStart="@dimen/_20sdp"
+                android:layout_marginTop="@dimen/_17sdp"
+                android:layout_marginEnd="@dimen/_20sdp"
+                android:gravity="center"
+                android:text="@string/addCharityCompagin"
+                android:textAllCaps="false"
+                android:textColor="#00B588"
+                android:textSize="@dimen/_12sdp"
+                app:backgroundTint="#F9F9FF"
+                app:cornerRadius="@dimen/_25sdp" />
+
+            <TextView
+                android:id="@+id/tv_or"
+                android:layout_marginTop="@dimen/_17sdp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                android:textSize="@dimen/_12sdp"
+                android:textColor="@color/black"
+                android:textStyle="bold"
+                android:text="@string/or_tv"
+                android:layout_gravity="center_horizontal"
+                ></TextView>
+
+
+
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btn_add_photo"
@@ -64,14 +97,15 @@
                 android:layout_marginStart="@dimen/_20sdp"
                 android:layout_marginTop="@dimen/_17sdp"
                 android:layout_marginEnd="@dimen/_20sdp"
-                android:layout_marginBottom="@dimen/_86sdp"
                 android:gravity="center"
+                android:layout_marginBottom="@dimen/_86sdp"
                 android:text="@string/addVideo"
                 android:textAllCaps="false"
                 android:textColor="#00B588"
                 android:textSize="@dimen/_12sdp"
                 app:backgroundTint="#F9F9FF"
                 app:cornerRadius="@dimen/_25sdp" />
+
 
         </LinearLayout>
 

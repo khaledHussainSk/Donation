@@ -1,19 +1,21 @@
 package com.khaled.donation;
 
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AlertDialog;
-import androidx.fragment.app.Fragment;
-
 import android.preference.PreferenceManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
+import androidx.fragment.app.Fragment;
 
 import com.bumptech.glide.Glide;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -30,6 +32,7 @@ public class MenuFragment extends Fragment {
     FragmentMenuBinding binding;
     String currentUserId;
     User currentUser;
+    NetworkInfo netInfo;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -42,6 +45,9 @@ public class MenuFragment extends Fragment {
     }
 
     private void fixed(){
+        ConnectivityManager conMgr =  (ConnectivityManager)getContext()
+                .getSystemService(Context.CONNECTIVITY_SERVICE);
+        netInfo = conMgr.getActiveNetworkInfo();
         sp = PreferenceManager.getDefaultSharedPreferences(getActivity());
         editt = sp.edit();
         currentUserId = sp.getString(MainActivity.USER_ID_KEY,null);
@@ -54,22 +60,36 @@ public class MenuFragment extends Fragment {
         binding.constraintLayoutContactUs.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getActivity(),ContentUsActivity.class);
-                startActivity(intent);
+                if (netInfo == null){
+                    dialogInternet_error();
+                }else {
+                    Intent intent = new Intent(getActivity(),ContentUsActivity.class);
+                    startActivity(intent);
+                }
+
             }
         });
         binding.constraintLayoutAppReview.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getActivity(),AppReviewActivity.class);
-                startActivity(intent);
+                if (netInfo == null){
+                    dialogInternet_error();
+                }else {
+                    Intent intent = new Intent(getActivity(),AppReviewActivity.class);
+                    startActivity(intent);
+                }
             }
         });
         binding.constraintLayoutChangePassword.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getActivity(),ChangePasswordActivity.class);
-                startActivity(intent);
+                if (netInfo == null){
+                    dialogInternet_error();
+                }else {
+                    Intent intent = new Intent(getActivity(),ChangePasswordActivity.class);
+                    startActivity(intent);
+                }
+
             }
         });
         binding.constraintLayoutSignOut.setOnClickListener(new View.OnClickListener() {
@@ -135,6 +155,13 @@ public class MenuFragment extends Fragment {
                 Toast.makeText(getActivity(), ""+e, Toast.LENGTH_SHORT).show();
             }
         });
+    }
+
+    private void dialogInternet_error() {
+        new AlertDialog.Builder(getActivity())
+                .setCancelable(false)
+                .setMessage(getResources().getString(R.string.internet_error))
+                .setPositiveButton(R.string.ok, null).show();
     }
 
 }

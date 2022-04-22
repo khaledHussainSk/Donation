@@ -12,11 +12,15 @@
         <entry key="..\:/Users/hp/AndroidStudioProjects/Donation/app/src/main/res/drawable/ic_favorite.xml" value="0.2203125" />
         <entry key="..\:/Users/hp/AndroidStudioProjects/Donation/app/src/main/res/drawable/ic_save.xml" value="0.2203125" />
         <entry key="..\:/Users/hp/AndroidStudioProjects/Donation/app/src/main/res/drawable/shape_note.xml" value="0.2203125" />
+        <entry key="..\:/Users/hp/AndroidStudioProjects/Donation/app/src/main/res/layout/activity_add_charity_campaign.xml" value="0.19010416666666666" />
         <entry key="..\:/Users/hp/AndroidStudioProjects/Donation/app/src/main/res/layout/activity_add_photo.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/hp/AndroidStudioProjects/Donation/app/src/main/res/layout/activity_add_post.xml" value="0.15" />
         <entry key="..\:/Users/hp/AndroidStudioProjects/Donation/app/src/main/res/layout/activity_app_review.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/hp/AndroidStudioProjects/Donation/app/src/main/res/layout/activity_change_password.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/hp/AndroidStudioProjects/Donation/app/src/main/res/layout/activity_comments.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/hp/AndroidStudioProjects/Donation/app/src/main/res/layout/activity_content_us.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/hp/AndroidStudioProjects/Donation/app/src/main/res/layout/activity_display_all_images_post.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/hp/AndroidStudioProjects/Donation/app/src/main/res/layout/activity_display_image.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/hp/AndroidStudioProjects/Donation/app/src/main/res/layout/activity_favorite.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/hp/AndroidStudioProjects/Donation/app/src/main/res/layout/activity_login.xml" value="0.22" />
         <entry key="..\:/Users/hp/AndroidStudioProjects/Donation/app/src/main/res/layout/activity_main.xml" value="0.20416666666666666" />
@@ -36,12 +40,18 @@
         <entry key="..\:/Users/hp/AndroidStudioProjects/Donation/app/src/main/res/layout/activity_success.xml" value="0.22" />
         <entry key="..\:/Users/hp/AndroidStudioProjects/Donation/app/src/main/res/layout/activity_welcome_login.xml" value="0.19010416666666666" />
         <entry key="..\:/Users/hp/AndroidStudioProjects/Donation/app/src/main/res/layout/activity_welcome_screen.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/hp/AndroidStudioProjects/Donation/app/src/main/res/layout/custom_display_images_post_rv.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/hp/AndroidStudioProjects/Donation/app/src/main/res/layout/custom_display_images_rv.xml" value="0.2" />
         <entry key="..\:/Users/hp/AndroidStudioProjects/Donation/app/src/main/res/layout/custom_favorite.xml" value="0.2" />
+        <entry key="..\:/Users/hp/AndroidStudioProjects/Donation/app/src/main/res/layout/custom_just_display_images_post_rv.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/hp/AndroidStudioProjects/Donation/app/src/main/res/layout/custom_layout_search.xml" value="0.25" />
         <entry key="..\:/Users/hp/AndroidStudioProjects/Donation/app/src/main/res/layout/custom_notifications.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/hp/AndroidStudioProjects/Donation/app/src/main/res/layout/custom_photo_post.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/hp/AndroidStudioProjects/Donation/app/src/main/res/layout/custom_profile_image.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/hp/AndroidStudioProjects/Donation/app/src/main/res/layout/custom_profile_video.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/hp/AndroidStudioProjects/Donation/app/src/main/res/layout/custom_sign_out_dialog.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/hp/AndroidStudioProjects/Donation/app/src/main/res/layout/fragment_add_post.xml" value="0.2" />
+        <entry key="..\:/Users/hp/AndroidStudioProjects/Donation/app/src/main/res/layout/fragment_dialog_sign_out.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/hp/AndroidStudioProjects/Donation/app/src/main/res/layout/fragment_home.xml" value="0.19010416666666666" />
         <entry key="..\:/Users/hp/AndroidStudioProjects/Donation/app/src/main/res/layout/fragment_menu.xml" value="0.2" />
         <entry key="..\:/Users/hp/AndroidStudioProjects/Donation/app/src/main/res/layout/fragment_notifications.xml" value="0.20416666666666666" />

@@ -152,7 +152,7 @@ public class ProfileDetailsActivity extends AppCompatActivity {
         binding.btnSave.setEnabled(true);
     }
 
-    void editUser(){
+    private void editUser(){
 
         FirebaseFirestore.getInstance().collection("Users")
                 .document(currentUserId)
@@ -170,16 +170,11 @@ public class ProfileDetailsActivity extends AppCompatActivity {
                 .document(currentUserId)
                 .update("address",address);
 
-//        FirebaseFirestore.getInstance().collection("users")
-//                .document(currentUserId)
-//                .update("email",email);
-
         enableField();
         binding.spinKit.setVisibility(View.GONE);
         finish();
 
     }
-
     private void uploadImage(){
         storage.getReference().child("profilesImages/"+currentUser.getJoined())
                 .putFile(imageUri)
