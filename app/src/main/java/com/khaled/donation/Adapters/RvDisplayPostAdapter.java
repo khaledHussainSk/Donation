@@ -11,10 +11,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
 import com.bumptech.glide.Glide;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -23,6 +25,7 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
+import com.khaled.donation.CommentsActivity;
 import com.khaled.donation.DisplayAllImagesPostActivity;
 import com.khaled.donation.Listeners.GetPost;
 import com.khaled.donation.Listeners.OnClickItemImagePostListener;
@@ -33,8 +36,11 @@ import com.khaled.donation.Models.User;
 import com.khaled.donation.R;
 import com.khaled.donation.databinding.CustomPhotoPostBinding;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
+import java.util.Locale;
 
 public class RvDisplayPostAdapter
         extends RecyclerView.Adapter<RvDisplayPostAdapter.RvDisplayPostAdapterHolder> {
@@ -49,6 +55,7 @@ public class RvDisplayPostAdapter
     CustomPhotoPostBinding binding;
     int sum;
     NetworkInfo netInfo;
+    public static final String POST_KEY = "POST_KEY";
 
     public RvDisplayPostAdapter(Context context, ArrayList<Post> posts) {
         this.context = context;
@@ -105,10 +112,23 @@ public class RvDisplayPostAdapter
             TextView likes = binding.likes;
             ImageView comments = binding.comment;
             TextView tv_comments = binding.tvComments;
+            TextView tv_date = binding.tvDate;
+            TextView date = binding.date;
             ImageView iv_profile = binding.ivProfile;
             TextView tv_username = binding.tvUsername;
             TextView tv_publisher = binding.tvPublisher;
             RecyclerView rv = binding.rv;
+
+            getDate(post,tv_date,date);
+
+            comments.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent intent = new Intent(context, CommentsActivity.class);
+                    intent.putExtra(POST_KEY,post);
+                    context.startActivity(intent);
+                }
+            });
 
             tv_comments.setText("View All "+post.getComments()+" Comments");
             sum = post.getLikes();
@@ -339,6 +359,127 @@ public class RvDisplayPostAdapter
                 .setCancelable(false)
                 .setMessage(context.getResources().getString(R.string.internet_error))
                 .setPositiveButton(R.string.ok, null).show();
+    }
+
+    private String formatDate(Date date){
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("MMM dd hh:mm aa", Locale.ENGLISH);
+        String dateString = simpleDateFormat.format(date);
+        return dateString;
+    }
+
+    private String previousYears(Date date){
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yy", Locale.ENGLISH);
+        String dateString = simpleDateFormat.format(date);
+        return dateString;
+    }
+
+    private String year(Date date){
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy", Locale.ENGLISH);
+        String currentYear = simpleDateFormat.format(date);
+        return currentYear;
+    }
+
+    private String month(Date date){
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("MMM", Locale.ENGLISH);
+        String dateString = simpleDateFormat.format(date);
+        return dateString;
+    }
+
+    private String day(Date date){
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("EEE", Locale.ENGLISH);
+        String currentDay = simpleDateFormat.format(date);
+        return currentDay;
+    }
+
+    private String hour(Date date){
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("h", Locale.ENGLISH);
+        String dateString = simpleDateFormat.format(date);
+        return dateString;
+    }
+
+    private String minute(Date date){
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("m", Locale.ENGLISH);
+        String dateString = simpleDateFormat.format(date);
+        return dateString;
+    }
+
+    private String second(Date date){
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("s", Locale.ENGLISH);
+        String dateString = simpleDateFormat.format(date);
+        return dateString;
+    }
+
+    private void getDate(Post post, TextView tv_date, TextView date){
+        Date currentDate = Calendar.getInstance().getTime();
+        //currentYear
+        String currentYear = year(currentDate);
+        //PostYear
+        String postYear = year(post.getDatenews());
+
+        //currentMonth
+        String currentMonth = month(currentDate);
+        //PostMonth
+        String postMonth = month(post.getDatenews());
+
+        //currentDay
+        String currentDay = day(currentDate);
+        //PostDay
+        String postDay = day(post.getDatenews());
+
+        //currentHour
+        String currentHour = hour(currentDate);
+        //PostHour
+        String postHour = hour(post.getDatenews());
+
+        //currentMinute
+        String currentMinute = minute(currentDate);
+        //postMinute
+        String postMinute = minute(post.getDatenews());
+
+        //currentSecond
+        String currentSecond = second(currentDate);
+        //postSecond
+        String postSecond = second(post.getDatenews());
+
+        if (currentYear.equals(postYear)){
+            if (currentMonth.equals(postMonth)){
+                if (currentDay.equals(postDay)){
+                    if (currentHour.equals(postHour)){
+                        if (currentMinute.equals(postMinute)){
+                            int res = Integer.parseInt(currentSecond) - Integer.parseInt(postSecond);
+                            if (res == 1){
+                                date.setText(R.string.second_ago);
+                            }else {
+                                date.setText(R.string.seconds_ago);
+                            }
+                            tv_date.setText(String.valueOf(res));
+                        }else {
+                            int res = Integer.parseInt(currentMinute) - Integer.parseInt(postMinute);
+                            if (res == 1){
+                                date.setText(R.string.minute_ago);
+                            }else {
+                                date.setText(R.string.minutes_ago);
+                            }
+                            tv_date.setText(String.valueOf(res));
+                        }
+                    }else {
+                        int res = Integer.parseInt(currentHour) - Integer.parseInt(postHour);
+                        if (res == 1){
+                            date.setText(R.string.hour_ago);
+                        }else {
+                            date.setText(R.string.hourss_ago);
+                        }
+                        tv_date.setText(String.valueOf(res));
+                    }
+                }else {
+                    tv_date.setText(formatDate(post.getDatenews()));
+                }
+            }else {
+                tv_date.setText(formatDate(post.getDatenews()));
+            }
+        }else {
+            tv_date.setText(previousYears(post.getDatenews()));
+        }
     }
 
 }

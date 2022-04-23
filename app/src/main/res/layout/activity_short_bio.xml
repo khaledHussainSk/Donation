@@ -51,7 +51,6 @@
                     android:layout_gravity="center_horizontal"
                     android:layout_marginStart="10dp"
                     android:gravity="center"
-                    android:text="kha;ed skak"
                     android:textColor="#1C2340"
                     android:textSize="@dimen/_14ssp"
                     android:textStyle="bold"

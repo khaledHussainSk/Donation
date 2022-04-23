@@ -15,9 +15,13 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Donation">
         <activity
-            android:name=".CommentsActivity"
+            android:name=".EditCommentActivity"
             android:theme="@style/FullScreen"
             android:exported="false" />
+        <activity
+            android:name=".CommentsActivity"
+            android:exported="false"
+            android:theme="@style/FullScreen" />
         <activity
             android:name=".DisplayAllImagesPostActivity"
             android:exported="false"

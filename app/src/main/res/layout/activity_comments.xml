@@ -155,7 +155,7 @@
                 android:layout_centerVertical="true"
                 android:layout_marginEnd="@dimen/_10sdp"
                 android:text="@string/tv_post"
-                android:textColor="#3F51B5"></TextView>
+                android:textColor="#00B588"></TextView>
 
         </RelativeLayout>
 
