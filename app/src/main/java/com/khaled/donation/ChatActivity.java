@@ -53,9 +53,9 @@ public class ChatActivity extends AppCompatActivity {
 
 
 
-        senderRoom = senderUid + receiverUid + "مرسل";
+        senderRoom = senderUid + receiverUid ;
 //        senderRoom = receiverUid;
-        receiverRoom = receiverUid + senderUid + "مستقبل";
+        receiverRoom = receiverUid + senderUid ;
 
 
         database.getReference().child("chats")

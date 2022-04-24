@@ -51,7 +51,7 @@ public class MessagesAdapter extends RecyclerView.Adapter {
     @Override
     public int getItemViewType(int position) {
         Message message = messages.get(position);
-        if(FirebaseAuth.getInstance().getUid().equals("مرسل")) {
+        if(FirebaseAuth.getInstance().getUid().equals(message.getSenderId())) {
 //        if(messages.get(position).getSenderId().equals(FirebaseAuth.getInstance().getUid())) {
             return ITEM_SENT;
         } else {
