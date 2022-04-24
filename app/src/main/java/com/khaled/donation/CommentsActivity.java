@@ -83,7 +83,7 @@ public class CommentsActivity extends AppCompatActivity {
                 String comment = binding.etComment.getText().toString();
 
                 if (TextUtils.isEmpty(comment) || comment.equals("")){
-//                    Toast.makeText(getBaseContext(), R.string.toast_empty_comment, Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getBaseContext(), R.string.toast_empty_comment, Toast.LENGTH_SHORT).show();
                     return;
                 }
 

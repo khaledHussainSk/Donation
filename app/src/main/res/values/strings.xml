@@ -114,6 +114,7 @@
     <string name="minute_ago">"Minute ago"</string>
     <string name="second_ago">"Second ago"</string>
     <string name="hour_ago">"Hour"</string>
+    <string name="toast_post_delete">Post Delete</string>
 
 
 </resources>

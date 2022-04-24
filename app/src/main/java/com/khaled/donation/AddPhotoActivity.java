@@ -250,7 +250,7 @@ public class AddPhotoActivity extends AppCompatActivity {
         documentReference.set(post).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
-//                Toasty.success(getBaseContext(), R.string.toast_post_published, Toast.LENGTH_SHORT).show();
+                Toasty.success(getBaseContext(), R.string.toast_post_published, Toast.LENGTH_SHORT).show();
                 posts = posts + 1;
                 FirebaseFirestore.getInstance().collection("Users")
                         .document(currentUserID).update("posts",posts);
@@ -260,7 +260,7 @@ public class AddPhotoActivity extends AppCompatActivity {
         }).addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
-//                Toasty.error(getBaseContext(), R.string.toast_post_failed, Toast.LENGTH_SHORT).show();
+                Toasty.error(getBaseContext(), R.string.toast_post_failed, Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -294,7 +294,7 @@ public class AddPhotoActivity extends AppCompatActivity {
                     }).addOnFailureListener(new OnFailureListener() {
                 @Override
                 public void onFailure(@NonNull Exception e) {
-//                    Toasty.error(getBaseContext(), R.string.toast_post_failed, Toast.LENGTH_SHORT).show();
+                    Toasty.error(getBaseContext(), R.string.toast_post_failed, Toast.LENGTH_SHORT).show();
                 }
             });
         }
