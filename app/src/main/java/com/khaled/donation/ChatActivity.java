@@ -59,7 +59,7 @@ public class ChatActivity extends AppCompatActivity {
 
 
         database.getReference().child("chats")
-//                .child(senderRoom)
+                .child(senderRoom)
                 .child("messages")
                 .addValueEventListener(new ValueEventListener() {
                     @Override

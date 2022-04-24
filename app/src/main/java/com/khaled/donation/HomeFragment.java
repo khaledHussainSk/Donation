@@ -102,7 +102,7 @@ public class HomeFragment extends Fragment {
                                                 intent.putExtra(RvDisplayPostAdapter.POST_KEY, post);
                                                 startActivity(intent);
                                             }else {
-                                                Toasty.info(getActivity(),R.string.toast_moment
+                                                Toasty.info(getActivity(), R.string.toast_moment
                                                         ,Toast.LENGTH_SHORT).show();
                                             }
                                         }
