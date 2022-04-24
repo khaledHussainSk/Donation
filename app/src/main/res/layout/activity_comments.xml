@@ -91,8 +91,20 @@
                 android:layout_marginTop="@dimen/_5sdp"
                 android:layout_marginBottom="@dimen/_12sdp"
                 android:layout_toEndOf="@+id/iv_publisher"
-                android:text="2d"
-                android:textColor="@color/divider"></TextView>
+                android:textSize="@dimen/_8ssp"
+                ></TextView>
+
+            <TextView
+                android:id="@+id/date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tv_description"
+                android:layout_marginStart="@dimen/_3sdp"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:layout_marginBottom="@dimen/_12sdp"
+                android:layout_toEndOf="@+id/tv_date"
+                android:textSize="@dimen/_8ssp"
+                ></TextView>
 
             <TextView
                 android:id="@+id/line1"

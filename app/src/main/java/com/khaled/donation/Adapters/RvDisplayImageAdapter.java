@@ -1,6 +1,5 @@
 package com.khaled.donation.Adapters;
 
-import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,22 +19,22 @@ import java.util.ArrayList;
 public class RvDisplayImageAdapter extends
         RecyclerView.Adapter<RvDisplayImageAdapter.RvDisplayImageAdapterHolder>{
 
-    ArrayList<Uri> images;
+    ArrayList<String> images;
     OnClickItemImageListener listener;
     OnClickNoListener listenerNo;
 
-    public RvDisplayImageAdapter(ArrayList<Uri> images, OnClickItemImageListener listener, OnClickNoListener listenerNo) {
+    public RvDisplayImageAdapter(ArrayList<String> images
+            , OnClickItemImageListener listener, OnClickNoListener listenerNo) {
         this.images = images;
         this.listener = listener;
         this.listenerNo = listenerNo;
     }
 
-    public ArrayList<Uri> getImages() {
+    public ArrayList<String> getImages() {
         return images;
     }
 
-    public void setImages(ArrayList<Uri> images) {
-        notifyDataSetChanged();
+    public void setImages(ArrayList<String> images) {
         this.images = images;
     }
 
@@ -48,7 +47,7 @@ public class RvDisplayImageAdapter extends
 
     @Override
     public void onBindViewHolder(@NonNull RvDisplayImageAdapterHolder holder, int position) {
-        Uri image = images.get(position);
+        String image = images.get(position);
         holder.bind(image);
     }
 
@@ -59,7 +58,7 @@ public class RvDisplayImageAdapter extends
 
     class RvDisplayImageAdapterHolder extends RecyclerView.ViewHolder{
         CustomDisplayImagesRvBinding binding;
-        Uri image;
+        String image;
         View v;
         public RvDisplayImageAdapterHolder(@NonNull View itemView) {
             super(itemView);
@@ -82,7 +81,7 @@ public class RvDisplayImageAdapter extends
 
         }
 
-        void bind(Uri image){
+        void bind(String image){
             this.image = image;
 
             CardView card = binding.card;
