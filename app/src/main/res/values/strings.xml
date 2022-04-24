@@ -114,6 +114,9 @@
     <string name="minute_ago">"Minute ago"</string>
     <string name="second_ago">"Second ago"</string>
     <string name="hour_ago">"Hour"</string>
+    <string name="delete_post">Are you sure you want to delete the post?</string>
+    <string name="toast_post_delete">Your post has been deleted</string>
+    <string name="toast_moment">Please Wait..</string>
 
 
 </resources>

@@ -9,6 +9,7 @@ import android.view.ContextMenu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.activity.result.ActivityResult;
@@ -35,8 +36,11 @@ import com.khaled.donation.Models.Post;
 import com.khaled.donation.Models.User;
 import com.khaled.donation.databinding.ActivityCommentsBinding;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
+import java.util.Locale;
 
 public class CommentsActivity extends AppCompatActivity {
     ActivityCommentsBinding binding;
@@ -115,6 +119,7 @@ public class CommentsActivity extends AppCompatActivity {
                             .placeholder(R.drawable.ic_user4).into(binding.ivPublisher);
                     binding.tvPublisher.setText(user.getFullName());
                     binding.tvDescription.setText(post.getDescription());
+                    getDate(post,binding.tvDate,binding.date);
                 }
             }
         });
@@ -275,4 +280,126 @@ public class CommentsActivity extends AppCompatActivity {
         }
         return false;
     }
+
+    private String formatDate(Date date){
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("MMM dd hh:mm aa", Locale.ENGLISH);
+        String dateString = simpleDateFormat.format(date);
+        return dateString;
+    }
+
+    private String previousYears(Date date){
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yy", Locale.ENGLISH);
+        String dateString = simpleDateFormat.format(date);
+        return dateString;
+    }
+
+    private String year(Date date){
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy", Locale.ENGLISH);
+        String currentYear = simpleDateFormat.format(date);
+        return currentYear;
+    }
+
+    private String month(Date date){
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("MMM", Locale.ENGLISH);
+        String dateString = simpleDateFormat.format(date);
+        return dateString;
+    }
+
+    private String day(Date date){
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("EEE", Locale.ENGLISH);
+        String currentDay = simpleDateFormat.format(date);
+        return currentDay;
+    }
+
+    private String hour(Date date){
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("h", Locale.ENGLISH);
+        String dateString = simpleDateFormat.format(date);
+        return dateString;
+    }
+
+    private String minute(Date date){
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("m", Locale.ENGLISH);
+        String dateString = simpleDateFormat.format(date);
+        return dateString;
+    }
+
+    private String second(Date date){
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("s", Locale.ENGLISH);
+        String dateString = simpleDateFormat.format(date);
+        return dateString;
+    }
+
+    private void getDate(Post post, TextView tv_date, TextView date){
+        Date currentDate = Calendar.getInstance().getTime();
+        //currentYear
+        String currentYear = year(currentDate);
+        //PostYear
+        String postYear = year(post.getDatenews());
+
+        //currentMonth
+        String currentMonth = month(currentDate);
+        //PostMonth
+        String postMonth = month(post.getDatenews());
+
+        //currentDay
+        String currentDay = day(currentDate);
+        //PostDay
+        String postDay = day(post.getDatenews());
+
+        //currentHour
+        String currentHour = hour(currentDate);
+        //PostHour
+        String postHour = hour(post.getDatenews());
+
+        //currentMinute
+        String currentMinute = minute(currentDate);
+        //postMinute
+        String postMinute = minute(post.getDatenews());
+
+        //currentSecond
+        String currentSecond = second(currentDate);
+        //postSecond
+        String postSecond = second(post.getDatenews());
+
+        if (currentYear.equals(postYear)){
+            if (currentMonth.equals(postMonth)){
+                if (currentDay.equals(postDay)){
+                    if (currentHour.equals(postHour)){
+                        if (currentMinute.equals(postMinute)){
+                            int res = Integer.parseInt(currentSecond) - Integer.parseInt(postSecond);
+                            if (res == 1){
+                                date.setText(R.string.second_ago);
+                            }else {
+                                date.setText(R.string.seconds_ago);
+                            }
+                            tv_date.setText(String.valueOf(res));
+                        }else {
+                            int res = Integer.parseInt(currentMinute) - Integer.parseInt(postMinute);
+                            if (res == 1){
+                                date.setText(R.string.minute_ago);
+                            }else {
+                                date.setText(R.string.minutes_ago);
+                            }
+                            tv_date.setText(String.valueOf(res));
+                        }
+                    }else {
+                        int res = Integer.parseInt(currentHour) - Integer.parseInt(postHour);
+                        if (res == 1){
+                            date.setText(R.string.hour_ago);
+                        }else {
+                            date.setText(R.string.hourss_ago);
+                        }
+                        tv_date.setText(String.valueOf(res));
+                    }
+                }else {
+                    tv_date.setText(formatDate(post.getDatenews()));
+                }
+            }else {
+                tv_date.setText(formatDate(post.getDatenews()));
+            }
+        }else {
+            tv_date.setText(previousYears(post.getDatenews()));
+        }
+    }
+
 }

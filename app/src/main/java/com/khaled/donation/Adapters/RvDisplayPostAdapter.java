@@ -11,12 +11,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.bumptech.glide.Glide;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -29,6 +27,7 @@ import com.khaled.donation.CommentsActivity;
 import com.khaled.donation.DisplayAllImagesPostActivity;
 import com.khaled.donation.Listeners.GetPost;
 import com.khaled.donation.Listeners.OnClickItemImagePostListener;
+import com.khaled.donation.Listeners.OnClickMenuPostListener;
 import com.khaled.donation.MainActivity;
 import com.khaled.donation.Models.Like;
 import com.khaled.donation.Models.Post;
@@ -47,6 +46,7 @@ public class RvDisplayPostAdapter
     public static final String IMAGES_POST_KEY = "IMAGES_POST_KEY";
     Context context;
     ArrayList<Post> posts;
+    OnClickMenuPostListener listener;
 
     String currntUserID;
     SharedPreferences sp;
@@ -57,9 +57,10 @@ public class RvDisplayPostAdapter
     NetworkInfo netInfo;
     public static final String POST_KEY = "POST_KEY";
 
-    public RvDisplayPostAdapter(Context context, ArrayList<Post> posts) {
+    public RvDisplayPostAdapter(Context context, ArrayList<Post> posts, OnClickMenuPostListener listener) {
         this.context = context;
         this.posts = posts;
+        this.listener = listener;
     }
 
     public ArrayList<Post> getPosts() {
@@ -120,6 +121,19 @@ public class RvDisplayPostAdapter
             RecyclerView rv = binding.rv;
 
             getDate(post,tv_date,date);
+
+            iv_menuPost.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    listener.OnClickMenuPostListener(post,iv_menuPost);
+                }
+            });
+
+            if (post.getPublisher().equals(currntUserID)){
+                binding.ivMenuPost.setVisibility(View.VISIBLE);
+            }else{
+                binding.ivMenuPost.setVisibility(View.GONE);
+            }
 
             comments.setOnClickListener(new View.OnClickListener() {
                 @Override

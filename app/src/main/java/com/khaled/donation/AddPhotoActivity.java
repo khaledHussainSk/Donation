@@ -24,6 +24,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.UploadTask;
 import com.khaled.donation.Adapters.RvDisplayImageAdapter;
+import com.khaled.donation.Adapters.RvDisplayPostAdapter;
 import com.khaled.donation.Listeners.OnClickItemImageListener;
 import com.khaled.donation.Listeners.OnClickNoListener;
 import com.khaled.donation.Models.Post;
@@ -41,8 +42,7 @@ public class AddPhotoActivity extends AppCompatActivity {
     public static final String IMAGE_KEY = "IMAGE_KEY";
     ActivityAddPhotoBinding binding;
     String imageString;
-    Uri imageUri;
-    ArrayList<Uri> images;
+    ArrayList<String> images;
     ArrayList<String> copyOfimages;
     RvDisplayImageAdapter adapter;
     FirebaseStorage storage;
@@ -52,6 +52,7 @@ public class AddPhotoActivity extends AppCompatActivity {
     User currentUser;
     int posts;
     Post post;
+    Uri imageUri = null;
     int sizeOfImage = 0;
 
     @Override
@@ -60,7 +61,6 @@ public class AddPhotoActivity extends AppCompatActivity {
         binding = ActivityAddPhotoBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         fixed();
-        getUser();
         addMore();
         addPost();
     }
@@ -73,18 +73,14 @@ public class AddPhotoActivity extends AppCompatActivity {
         copyOfimages = new ArrayList<>();
         adapter = new RvDisplayImageAdapter(images, new OnClickItemImageListener() {
             @Override
-            public void OnClickListener(Uri image) {
-                Intent intent = new Intent(getBaseContext(), DisplayImageActivity.class);
-                String imageString = String.valueOf(image);
-                intent.putExtra(IMAGE_KEY, imageString);
-                startActivity(intent);
+            public void OnClickListener(String image) {
+                showImage(image);
             }
-        }, new OnClickNoListener() {
+        }
+        , new OnClickNoListener() {
             @Override
-            public void OnClickListener(Uri image) {
-                images.remove(image);
-                numbersOfPhotos();
-                adapter.notifyDataSetChanged();
+            public void OnClickListener(String image) {
+                cancel(image);
             }
         });
         LinearLayoutManager horizontalLayoutManagaer =
@@ -92,9 +88,30 @@ public class AddPhotoActivity extends AppCompatActivity {
                         , LinearLayoutManager.HORIZONTAL, false);
         binding.rv.setLayoutManager(horizontalLayoutManagaer);
         Intent intent = getIntent();
-        imageString = intent.getStringExtra(AddPostFragment.IMAGE_STRING_KEY);
-        imageUri = Uri.parse(imageString);
-        images.add(imageUri);
+        post = (Post) intent.getSerializableExtra(RvDisplayPostAdapter.POST_KEY);
+
+        if (post == null){
+            //عملية اضافة
+            getUser();
+            imageString = intent.getStringExtra(AddPostFragment.IMAGE_STRING_KEY);
+            images.add(imageString);
+        }else {
+            //عملية تعديل
+            binding.btnPost.setText(R.string.update);
+            images = post.getImages();
+            adapter = new RvDisplayImageAdapter(images, new OnClickItemImageListener() {
+                @Override
+                public void OnClickListener(String image) {
+                    showImage(image);
+                }
+            }, new OnClickNoListener() {
+                @Override
+                public void OnClickListener(String image) {
+                    cancel(image);
+                }
+            });
+            binding.etDescription.setText(post.getDescription());
+        }
         binding.rv.setHasFixedSize(true);
         binding.rv.setAdapter(adapter);
         binding.icBack.setOnClickListener(new View.OnClickListener() {
@@ -116,24 +133,13 @@ public class AddPhotoActivity extends AppCompatActivity {
         });
     }
 
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        CropImage.ActivityResult result = CropImage.getActivityResult(data);
-        if (result != null){
-            binding.move.setVisibility(View.VISIBLE);
-            images.add(result.getUri());
-            adapter.setImages(images);
-            numbersOfPhotos();
-        }
-    }
-
     private void numbersOfPhotos(){
         if (images.size() > 1){
             binding.move.setVisibility(View.VISIBLE);
             binding.btnPost.setEnabled(true);
             binding.btnAddMore.setText(R.string.addMore);
         }else if (images.size() == 0){
+            binding.move.setVisibility(View.GONE);
             binding.btnPost.setEnabled(false);
             binding.btnAddMore.setText(R.string.addPhoto);
         }else {
@@ -144,6 +150,7 @@ public class AddPhotoActivity extends AppCompatActivity {
     }
 
     private void addPost(){
+
         binding.btnPost.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -153,10 +160,85 @@ public class AddPhotoActivity extends AppCompatActivity {
                     description = "";
                 }
 
-                uploadImages();
+                if (post == null){
+                    //عملية اضافة
+                    uploadImages();
+                }else {
+                    //عملية تعديل
+//                    updateImage();
+                }
 
             }
         });
+    }
+
+    private void updateImage() {
+        finish();
+        FirebaseFirestore.getInstance().collection("Posts")
+                .document(post.getPostId())
+                .update("description",description);
+
+        copyOfimages.clear();
+        sizeOfImage = images.size() - 1;
+        for (int i=0; i < images.size();i++){
+            int finalI = i;
+            FirebaseStorage
+                    .getInstance()
+                    .getReference()
+                    .child("PostsImages/"+i+Calendar.getInstance().getTime())
+                    .putFile(Uri.parse(images.get(i)))
+                    .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                        @Override
+                        public void onSuccess(@NonNull UploadTask.TaskSnapshot taskSnapshot) {
+                            taskSnapshot.getStorage().getDownloadUrl()
+                                    .addOnSuccessListener(new OnSuccessListener<Uri>() {
+                                        @Override
+                                        public void onSuccess(@NonNull Uri uri) {
+                                            String image = String.valueOf(uri);
+                                            copyOfimages.add(image);
+                                            if (sizeOfImage == finalI){
+                                                Toast.makeText(getBaseContext(), "ok", Toast.LENGTH_SHORT).show();
+                                            }
+                                        }
+                                    });
+                        }
+                    }).addOnFailureListener(new OnFailureListener() {
+                @Override
+                public void onFailure(@NonNull Exception e) {
+                    Toasty.error(getBaseContext(), R.string.toast_post_failed, Toast.LENGTH_SHORT).show();
+                }
+            });
+
+//            storage.getReference().child("PostsImages/"+i+post.getDatenews())
+//                    .putFile(Uri.parse(images.get(i)))
+//                    .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+//                        @Override
+//                        public void onSuccess(@NonNull UploadTask.TaskSnapshot taskSnapshot) {
+//                            taskSnapshot.getStorage().getDownloadUrl()
+//                                    .addOnSuccessListener(new OnSuccessListener<Uri>() {
+//                                        @Override
+//                                        public void onSuccess(@NonNull Uri uri) {
+//                                            HomeFragment.isUploaded = true;
+//                                            String image = String.valueOf(uri);
+//                                            copyOfimages.add(image);
+//                                            if (sizeOfImage == finalI){
+//                                                FirebaseFirestore
+//                                                        .getInstance().collection("Posts")
+//                                                        .document(post.getPostId())
+//                                                        .update("images",copyOfimages);
+//                                                HomeFragment.isUploaded = false;
+//                                            }
+//                                        }
+//                                    });
+//                        }
+//                    }).addOnFailureListener(new OnFailureListener() {
+//                @Override
+//                public void onFailure(@NonNull Exception e) {
+////                    Toasty.error(getBaseContext(), R.string.toast_post_failed, Toast.LENGTH_SHORT).show();
+//                }
+//            });
+        }
+
     }
 
     private void createPost(){
@@ -172,7 +254,7 @@ public class AddPhotoActivity extends AppCompatActivity {
                 posts = posts + 1;
                 FirebaseFirestore.getInstance().collection("Users")
                         .document(currentUserID).update("posts",posts);
-                AddPostFragment.isUploaded = false;
+                HomeFragment.isUploaded = false;
                 enableField();
             }
         }).addOnFailureListener(new OnFailureListener() {
@@ -185,7 +267,7 @@ public class AddPhotoActivity extends AppCompatActivity {
     }
 
     private void uploadImages(){
-        AddPostFragment.isUploaded = true;
+        HomeFragment.isUploaded = true;
         disableField();
         finish();
         copyOfimages.clear();
@@ -193,7 +275,7 @@ public class AddPhotoActivity extends AppCompatActivity {
         for (int i=0; i < images.size();i++){
             int finalI = i;
             storage.getReference().child("PostsImages/"+i+Calendar.getInstance().getTime())
-                    .putFile(images.get(i))
+                    .putFile(Uri.parse(images.get(i)))
                     .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                         @Override
                         public void onSuccess(@NonNull UploadTask.TaskSnapshot taskSnapshot) {
@@ -234,7 +316,8 @@ public class AddPhotoActivity extends AppCompatActivity {
                         }
 
                     }
-                }).addOnFailureListener(new OnFailureListener() {
+                })
+                .addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
                 Toast.makeText(getBaseContext(), ""+e, Toast.LENGTH_SHORT).show();
@@ -253,6 +336,29 @@ public class AddPhotoActivity extends AppCompatActivity {
         binding.et.setEnabled(true);
         binding.btnPost.setEnabled(true);
         binding.btnAddMore.setEnabled(true);
+    }
+    private void cancel(String image){
+        images.remove(image);
+        numbersOfPhotos();
+        adapter.notifyDataSetChanged();
+    }
+    private void showImage(String image){
+        Intent intent = new Intent(getBaseContext(), DisplayImageActivity.class);
+        intent.putExtra(IMAGE_KEY, image);
+        startActivity(intent);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        CropImage.ActivityResult result = CropImage.getActivityResult(data);
+        if (result != null){
+            binding.move.setVisibility(View.VISIBLE);
+            images.add(String.valueOf(result.getUri()));
+            adapter.setImages(images);
+            adapter.notifyDataSetChanged();
+            numbersOfPhotos();
+        }
     }
 
 }
