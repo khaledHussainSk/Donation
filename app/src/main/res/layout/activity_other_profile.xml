@@ -166,6 +166,7 @@
                     app:backgroundTint="#FFBC00" />
 
                 <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btn_chat"
                     android:layout_width="@dimen/_130sdp"
                     android:layout_height="@dimen/_40sdp"
                     android:layout_marginStart="@dimen/_10sdp"

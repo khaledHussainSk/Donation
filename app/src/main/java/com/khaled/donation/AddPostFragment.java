@@ -56,7 +56,7 @@ public class AddPostFragment extends Fragment {
     private void dialogInternet_error() {
         new AlertDialog.Builder(getActivity())
                 .setCancelable(false)
-                .setMessage(getResources().getString(R.string.internet_error))
+//                .setMessage(getResources().getString(R.string.internet_error))
                 .setPositiveButton(R.string.ok, null).show();
     }
 
@@ -92,10 +92,10 @@ public class AddPostFragment extends Fragment {
                         if (isUploaded == false){
                             arlPhoto.launch("image/*");
                         }else {
-                            Toasty.info(getActivity(),R.string.toast_waitUploaded,Toast.LENGTH_SHORT).show();
+//                            Toasty.info(getActivity(),R.string.toast_waitUploaded,Toast.LENGTH_SHORT).show();
                         }
                     }else{
-                        Toasty.info(getActivity(),R.string.toast_notAllwoed,Toast.LENGTH_SHORT).show();
+//                        Toasty.info(getActivity(),R.string.toast_notAllwoed,Toast.LENGTH_SHORT).show();
                     }
                 }
             }
@@ -111,7 +111,7 @@ public class AddPostFragment extends Fragment {
                         Intent intent = new Intent(getActivity(),AddCharityCampaignActivity.class);
                         startActivity(intent);
                     }else {
-                        Toasty.info(getActivity(),R.string.toast_notAllwoed,Toast.LENGTH_SHORT).show();
+//                        Toasty.info(getActivity(),R.string.toast_notAllwoed,Toast.LENGTH_SHORT).show();
                     }
                 }
             }

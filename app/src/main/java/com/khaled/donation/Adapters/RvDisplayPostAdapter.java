@@ -241,7 +241,7 @@ public class RvDisplayPostAdapter
     private void islike(Post post,ImageView ic_like
             ,ImageView ic_liked,TextView tv_likes,TextView likes){
         tv_likes.setText(String.valueOf(post.getLikes()));
-        likes.setText(R.string.tv_likes);
+//        likes.setText(R.string.tv_likes);
         if (post.getLikes() > 0){
             FirebaseFirestore.getInstance().collection("Likes")
                     .get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
@@ -357,7 +357,7 @@ public class RvDisplayPostAdapter
     private void dialogInternet_error() {
         new AlertDialog.Builder(context)
                 .setCancelable(false)
-                .setMessage(context.getResources().getString(R.string.internet_error))
+//                .setMessage(context.getResources().getString(R.string.internet_error))
                 .setPositiveButton(R.string.ok, null).show();
     }
 
@@ -448,26 +448,26 @@ public class RvDisplayPostAdapter
                         if (currentMinute.equals(postMinute)){
                             int res = Integer.parseInt(currentSecond) - Integer.parseInt(postSecond);
                             if (res == 1){
-                                date.setText(R.string.second_ago);
+//                                date.setText(R.string.second_ago);
                             }else {
-                                date.setText(R.string.seconds_ago);
+//                                date.setText(R.string.seconds_ago);
                             }
                             tv_date.setText(String.valueOf(res));
                         }else {
                             int res = Integer.parseInt(currentMinute) - Integer.parseInt(postMinute);
                             if (res == 1){
-                                date.setText(R.string.minute_ago);
+//                                date.setText(R.string.minute_ago);
                             }else {
-                                date.setText(R.string.minutes_ago);
+//                                date.setText(R.string.minutes_ago);
                             }
                             tv_date.setText(String.valueOf(res));
                         }
                     }else {
                         int res = Integer.parseInt(currentHour) - Integer.parseInt(postHour);
                         if (res == 1){
-                            date.setText(R.string.hour_ago);
+//                            date.setText(R.string.hour_ago);
                         }else {
-                            date.setText(R.string.hourss_ago);
+//                            date.setText(R.string.hourss_ago);
                         }
                         tv_date.setText(String.valueOf(res));
                     }

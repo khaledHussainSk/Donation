@@ -214,26 +214,26 @@ public class RvDisplayCommentsAdapter
                         if (currentMinute.equals(commentMinute)){
                             int res = Integer.parseInt(currentSecond) - Integer.parseInt(commentSecond);
                             if (res == 1){
-                                date.setText(R.string.second_ago);
+//                                date.setText(R.string.second_ago);
                             }else {
-                                date.setText(R.string.seconds_ago);
+//                                date.setText(R.string.seconds_ago);
                             }
                             tv_date.setText(String.valueOf(res));
                         }else {
                             int res = Integer.parseInt(currentMinute) - Integer.parseInt(commentMinute);
                             if (res == 1){
-                                date.setText(R.string.minute_ago);
+//                                date.setText(R.string.minute_ago);
                             }else {
-                                date.setText(R.string.minutes_ago);
+//                                date.setText(R.string.minutes_ago);
                             }
                             tv_date.setText(String.valueOf(res));
                         }
                     }else {
                         int res = Integer.parseInt(currentHour) - Integer.parseInt(commentHour);
                         if (res == 1){
-                            date.setText(R.string.hour_ago);
+//                            date.setText(R.string.hour_ago);
                         }else {
-                            date.setText(R.string.hourss_ago);
+//                            date.setText(R.string.hourss_ago);
                         }
                         tv_date.setText(String.valueOf(res));
                     }

@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#00B588"
+    tools:context=".MessangerActivity">
+
+    <TextView
+        android:id="@+id/text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Messanger"
+        android:textSize="@dimen/_20ssp"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        android:layout_marginTop="@dimen/_20sdp"
+        android:layout_centerHorizontal="true"/>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/splach_shape"
+        android:backgroundTint="#F9F9FF"
+        android:layout_marginTop="@dimen/_25sdp"
+        android:layout_below="@id/text">
+
+        <EditText
+            android:id="@+id/et_search"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_40sdp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginStart="@dimen/_20sdp"
+            android:layout_marginTop="@dimen/_24sdp"
+            android:layout_marginEnd="@dimen/_20sdp"
+            android:background="@drawable/et_shape"
+            android:backgroundTint="@color/white"
+            android:drawableLeft="@drawable/icon___search"
+            android:drawablePadding="@dimen/_5sdp"
+            android:hint="@string/hint_search"
+            android:inputType="textPersonName"
+            android:padding="@dimen/_12sdp"
+            android:textColor="@color/black"
+            android:textSize="@dimen/_12ssp" />
+
+        <com.cooltechworks.views.shimmer.ShimmerRecyclerView
+            android:id="@+id/rv_chat"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/et_search"
+            android:layout_marginTop="@dimen/_15sdp"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:shimmer_demo_angle="20"
+            app:shimmer_demo_child_count="10"
+            app:shimmer_demo_grid_child_count="2"
+            app:shimmer_demo_layout="@layout/demo_layout"
+            app:shimmer_demo_layout_manager_type="linear_vertical"
+            tools:listitem="@layout/custom_chat" />
+
+
+    </RelativeLayout>
+
+</RelativeLayout>

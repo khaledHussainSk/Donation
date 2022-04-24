@@ -30,6 +30,14 @@ public class OtherProfileActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
         fixed();
 
+        binding.btnChat.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(),MessangerActivity.class);
+                startActivity(intent);
+            }
+        });
+
     }
 
     private void fixed() {
