@@ -7,6 +7,17 @@
     android:layout_height="wrap_content"
     android:layout_marginTop="5dp">
 
+    <TextView
+        android:id="@+id/senderTime"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_marginTop="@dimen/_5sdp"
+        android:text="12:45"
+        android:textColor="@color/black"
+        android:textSize="@dimen/_7ssp"
+        app:layout_constraintEnd_toEndOf="@+id/linearLayout"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
+
     <LinearLayout
         android:id="@+id/linearLayout"
         android:layout_width="wrap_content"
@@ -43,20 +54,8 @@
             android:paddingRight="10dp"
             android:paddingBottom="5dp"
             android:text="TextView"
-            android:textSize="13sp" />
+            android:textSize="@dimen/_13ssp" />
 
-        <TextView
-            android:id="@+id/senderTime"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="15dp"
-            android:layout_marginBottom="4dp"
-            android:text="12:45"
-            android:textColor="@color/white"
-            android:textSize="10sp"
-            android:layout_gravity="end"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" />
     </LinearLayout>
 
     <ImageView

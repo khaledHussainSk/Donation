@@ -14,6 +14,11 @@ public class Message {
         this.timestamp = timestamp;
     }
 
+    public Message(String message, String senderId) {
+        this.message = message;
+        this.senderId = senderId;
+    }
+
     public String getMessageId() {
         return messageId;
     }

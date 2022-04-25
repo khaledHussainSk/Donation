@@ -8,25 +8,26 @@
     android:layout_marginEnd="7dp"
     android:layout_marginTop="2dp"
     android:layout_marginBottom="2dp"
-    android:background="@drawable/bg_reciever"
     android:maxWidth="310dp"
     android:maxHeight="400dp">
 
 
     <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/circleImageView"
         android:layout_width="@dimen/_25sdp"
         android:layout_height="@dimen/_25sdp"
         android:layout_marginEnd="@dimen/_10sdp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toBottomOf="@+id/linearLayout2"
         app:layout_constraintEnd_toStartOf="@+id/linearLayout2"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="@+id/linearLayout2" />
 
     <LinearLayout
         android:id="@+id/linearLayout2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
+        android:background="@drawable/bg_reciever"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
@@ -47,21 +48,28 @@
             android:paddingTop="5dp"
             android:paddingRight="10dp"
             android:paddingBottom="5dp"
+            android:textColor="@color/black"
             android:text="TextView"
-            android:textSize="13sp" />
+            android:textSize="@dimen/_13ssp" />
 
-        <TextView
-            android:id="@+id/senderTime"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="end"
-            android:layout_marginEnd="8dp"
-            android:layout_marginBottom="4dp"
-            android:text="12:45"
-            android:textSize="10sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" />
+
     </LinearLayout>
+
+    <TextView
+        android:id="@+id/senderTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="@dimen/_5sdp"
+        android:layout_marginBottom="4dp"
+        android:text="12:45"
+        android:textSize="@dimen/_7ssp"
+        android:textColor="@color/black"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/circleImageView"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout2"
+        app:layout_constraintVertical_bias="1.0" />
 
     <ImageView
         android:id="@+id/feeling"

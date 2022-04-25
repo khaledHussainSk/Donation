@@ -13,7 +13,7 @@
         android:padding="10dp"
         android:text="Delete for Everyone"
         android:textColor="@color/black"
-        android:textSize="16sp" />
+        android:textSize="@dimen/_16ssp" />
 
     <TextView
         android:id="@+id/cancel"

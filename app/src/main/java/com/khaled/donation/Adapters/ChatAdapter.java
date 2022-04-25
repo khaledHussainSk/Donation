@@ -47,22 +47,17 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.ChatViewHolder
 
         String senderId = FirebaseAuth.getInstance().getUid();
 
-        String senderRoom = senderId + user.getIdUser();
-
-        FirebaseDatabase.getInstance().getReference()
-                .child("chats")
-                .child(senderRoom)
-                .addValueEventListener(new ValueEventListener() {
+        FirebaseDatabase.getInstance().getReference().child("chats")
+                .child(FirebaseAuth.getInstance().getUid() + user.getIdUser())
+                .orderByChild("timestamp")
+                .limitToLast(1)
+                .addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
-                        if(snapshot.exists()) {
-                            String lastMsg = snapshot.child("lastMsg").getValue(String.class);
-                            long time = snapshot.child("lastMsgTime").getValue(Long.class);
-                            SimpleDateFormat dateFormat = new SimpleDateFormat("hh:mm a");
-                            holder.binding.msgTime.setText(dateFormat.format(new Date(time)));
-                            holder.binding.lastMsg.setText(lastMsg);
-                        } else {
-                            holder.binding.lastMsg.setText("Tap to chat");
+                        if (snapshot.hasChildren()){
+                            for (DataSnapshot snapshot1 : snapshot.getChildren()){
+                                holder.binding.lastMsg.setText(snapshot1.child("message").getValue().toString());
+                            }
                         }
                     }
 
@@ -86,7 +81,6 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.ChatViewHolder
                 intent.putExtra("name", user.getFullName());
                 intent.putExtra("image", user.getImageProfile());
                 intent.putExtra("uid", user.getIdUser());
-//                intent.putExtra("token", user.getToken());
                 context.startActivity(intent);
             }
         });

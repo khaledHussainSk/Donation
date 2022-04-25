@@ -81,7 +81,7 @@
 
 
             <EditText
-                android:id="@+id/editTextTextPersonName2"
+                android:id="@+id/ed_your_email"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_40sdp"
                 android:layout_marginStart="@dimen/_15sdp"
@@ -90,7 +90,7 @@
                 android:background="@drawable/shape_note"
                 android:backgroundTint="#F0F1F5"
                 android:gravity="top"
-                android:inputType="textPersonName"
+                android:inputType="textEmailAddress"
                 android:padding="@dimen/_8sdp"
                 android:hint="@string/contact_us_enter_your_email"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -98,7 +98,24 @@
                 app:layout_constraintTop_toBottomOf="@+id/appbar" />
 
             <EditText
-                android:id="@+id/editTextTextPersonName3"
+                android:id="@+id/et_sub"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_40sdp"
+                android:layout_marginStart="@dimen/_15sdp"
+                android:layout_marginTop="@dimen/_15sdp"
+                android:layout_marginEnd="@dimen/_15sdp"
+                android:background="@drawable/shape_note"
+                android:backgroundTint="#F0F1F5"
+                android:gravity="top"
+                android:inputType="textEmailAddress"
+                android:padding="@dimen/_8sdp"
+                android:hint="@string/your_subject"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/appbar" />
+
+            <EditText
+                android:id="@+id/et_desc"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_80sdp"
                 android:layout_margin="@dimen/_15sdp"
@@ -113,7 +130,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName2" />
 
             <com.google.android.material.button.MaterialButton
-                android:id="@+id/button"
+                android:id="@+id/btn_send"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_50sdp"
                 android:layout_marginStart="@dimen/_21sdp"

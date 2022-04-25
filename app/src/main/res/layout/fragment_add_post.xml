@@ -41,7 +41,7 @@
                 android:layout_marginTop="@dimen/_17sdp"
                 android:layout_marginEnd="@dimen/_20sdp"
                 android:gravity="center"
-                android:text="@string/addcharitycompagin"
+                android:text="addcharitycompagin"
                 android:textAllCaps="false"
                 android:textColor="#00B588"
                 android:textSize="@dimen/_12sdp"
