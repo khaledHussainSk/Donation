@@ -139,12 +139,12 @@ public class ProfileFragment extends Fragment {
     private void dialogInternet_error() {
         new AlertDialog.Builder(getActivity())
                 .setCancelable(false)
-//                .setMessage(getResources().getString(R.string.internet_error))
+                .setMessage(getResources().getString(R.string.internet_error))
                 .setPositiveButton(R.string.ok, null).show();
     }
 
     private void getPosts(){
-//        binding.spinKit.setVisibility(View.VISIBLE);
+        binding.progressBar.setVisibility(View.VISIBLE);
         FirebaseFirestore.getInstance().collection("Posts")
                 .get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
             @Override
@@ -152,13 +152,15 @@ public class ProfileFragment extends Fragment {
                 images.clear();
                 for (QueryDocumentSnapshot queryDocumentSnapshot : task.getResult()) {
                     Post post = queryDocumentSnapshot.toObject(Post.class);
-                    images.add(post.getImages().get(0));
+                    if (post.getPublisher().equals(currentUserId)){
+                        images.add(post.getImages().get(0));
+                    }
                 }
-                adapter = new RvPostsProfileAdapter(images);
+                adapter = new RvPostsProfileAdapter(getActivity(),images);
                 binding.rv.setHasFixedSize(true);
                 binding.rv.setLayoutManager(new GridLayoutManager(getActivity(),3));
                 binding.rv.setAdapter(adapter);
-//                binding.spinKit.setVisibility(View.GONE);
+                binding.progressBar.setVisibility(View.GONE);
             }
         });
     }

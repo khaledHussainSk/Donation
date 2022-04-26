@@ -40,7 +40,6 @@ public class AddPostFragment extends Fragment {
     String currentUserID;
     int validity;
     NetworkInfo netInfo;
-    public static boolean isUploaded;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -89,13 +88,15 @@ public class AddPostFragment extends Fragment {
                     dialogInternet_error();
                 }else{
                     if (validity == 1 || validity == 3 /* demo */ || validity == 2){
-                        if (isUploaded == false){
+                        if (HomeFragment.isUploaded == false){
                             arlPhoto.launch("image/*");
                         }else {
-                            Toasty.info(getActivity(),R.string.toast_waitUploaded,Toast.LENGTH_SHORT).show();
+                            Toasty.info(getActivity(),R.string.toast_waitUploaded
+                                    ,Toast.LENGTH_SHORT).show();
                         }
                     }else{
-                        Toasty.info(getActivity(),R.string.toast_notAllwoed,Toast.LENGTH_SHORT).show();
+                        Toasty.info(getActivity(),R.string.toast_notAllwoed
+                                ,Toast.LENGTH_SHORT).show();
                     }
                 }
             }
@@ -111,14 +112,14 @@ public class AddPostFragment extends Fragment {
                         Intent intent = new Intent(getActivity(),AddCharityCampaignActivity.class);
                         startActivity(intent);
                     }else {
-                        Toasty.info(getActivity(),R.string.toast_notAllwoed,Toast.LENGTH_SHORT).show();
+                        Toasty.info(getActivity(),R.string.toast_notAllwoed
+                                ,Toast.LENGTH_SHORT).show();
                     }
                 }
             }
         });
 
     }
-
 
     private void getUser(){
         disableField();

@@ -11,10 +11,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
 import com.bumptech.glide.Glide;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -25,10 +28,12 @@ import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.khaled.donation.CommentsActivity;
 import com.khaled.donation.DisplayAllImagesPostActivity;
+import com.khaled.donation.LikesActivity;
 import com.khaled.donation.Listeners.GetPost;
 import com.khaled.donation.Listeners.OnClickItemImagePostListener;
 import com.khaled.donation.Listeners.OnClickMenuPostListener;
 import com.khaled.donation.MainActivity;
+import com.khaled.donation.Models.Favorite;
 import com.khaled.donation.Models.Like;
 import com.khaled.donation.Models.Post;
 import com.khaled.donation.Models.User;
@@ -98,6 +103,9 @@ public class RvDisplayPostAdapter
             v = itemView;
             sp = PreferenceManager.getDefaultSharedPreferences(context);
             currntUserID = sp.getString(MainActivity.USER_ID_KEY,null);
+            ConnectivityManager conMgr =  (ConnectivityManager)context
+                    .getSystemService(Context.CONNECTIVITY_SERVICE);
+            netInfo = conMgr.getActiveNetworkInfo();
 
         }
 
@@ -107,6 +115,8 @@ public class RvDisplayPostAdapter
             fixed(post);
 
             ImageView iv_menuPost = binding.ivMenuPost;
+            ImageView save = binding.save;
+            ImageView unsave = binding.unsave;
             ImageView ic_like = binding.icLike;
             ImageView ic_liked = binding.icLiked;
             TextView tv_likes = binding.tvLikes;
@@ -120,6 +130,29 @@ public class RvDisplayPostAdapter
             TextView tv_publisher = binding.tvPublisher;
             RecyclerView rv = binding.rv;
 
+            isFav(save,unsave,post);
+            save.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if (netInfo == null){
+                        dialogInternet_error();
+                    }else{
+                        createFav(post,save,unsave);
+                    }
+                }
+            });
+            unsave.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if (netInfo == null){
+                        dialogInternet_error();
+                    }else{
+                        unFav(post,save,unsave);
+                    }
+                }
+            });
+
+            transfers(post,tv_comments,tv_likes,likes);
             getDate(post,tv_date,date);
 
             iv_menuPost.setOnClickListener(new View.OnClickListener() {
@@ -140,6 +173,7 @@ public class RvDisplayPostAdapter
                 public void onClick(View view) {
                     Intent intent = new Intent(context, CommentsActivity.class);
                     intent.putExtra(POST_KEY,post);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                     context.startActivity(intent);
                 }
             });
@@ -154,9 +188,7 @@ public class RvDisplayPostAdapter
                     if (netInfo == null){
                         dialogInternet_error();
                     }else{
-                        ic_liked.setVisibility(View.VISIBLE);
-                        ic_like.setVisibility(View.GONE);
-                        giveLike(post,tv_likes);
+                        giveLike(post,tv_likes,ic_like,ic_liked);
                     }
                 }
             });
@@ -166,9 +198,7 @@ public class RvDisplayPostAdapter
                     if (netInfo == null){
                         dialogInternet_error();
                     }else{
-                        ic_liked.setVisibility(View.GONE);
-                        ic_like.setVisibility(View.VISIBLE);
-                        cancelLike(post,tv_likes);
+                        cancelLike(post,tv_likes,ic_like,ic_liked);
                     }
                 }
             });
@@ -196,6 +226,8 @@ public class RvDisplayPostAdapter
                             , LinearLayoutManager.HORIZONTAL, false);
             rv.setLayoutManager(horizontalLayoutManagaer);
             rv.setAdapter(adapter);
+
+
 
         }
 
@@ -226,7 +258,30 @@ public class RvDisplayPostAdapter
                     }
                 });
     }
-    private void giveLike(Post post,TextView tv_likes){
+
+    private void createFav(Post post,ImageView save,ImageView unsave){
+        save.setEnabled(false);
+        unsave.setEnabled(false);
+        save.setVisibility(View.GONE);
+        unsave.setVisibility(View.VISIBLE);
+        Favorite favorite = new Favorite(currntUserID
+                ,post.getPostId()
+                ,Calendar.getInstance().getTime());
+        DocumentReference documentReference =
+                FirebaseFirestore.getInstance().collection("Favorite").document();
+        favorite.setId(documentReference.getId());
+        documentReference.set(favorite);
+        save.setEnabled(true);
+        unsave.setEnabled(true);
+        Toast.makeText(context, R.string.saved, Toast.LENGTH_SHORT).show();
+
+    }
+
+    private void giveLike(Post post,TextView tv_likes,ImageView ic_like,ImageView ic_liked){
+        ic_liked.setEnabled(false);
+        ic_like.setEnabled(false);
+        ic_liked.setVisibility(View.VISIBLE);
+        ic_like.setVisibility(View.GONE);
         Like like = new Like(post.getPostId(),currntUserID,post.getPublisher()
                 , Calendar.getInstance().getTime());
         DocumentReference documentReference =
@@ -246,16 +301,43 @@ public class RvDisplayPostAdapter
                 getPost1(post1, new GetPost() {
                     @Override
                     public void getPostListener(Post post) {
+                        ic_liked.setEnabled(true);
+                        ic_like.setEnabled(true);
                         tv_likes.setText(String.valueOf(post.getLikes()));
                     }
                 });
             }
         });
     }
+
+    private void isFav(ImageView save,ImageView unsave,Post post){
+        FirebaseFirestore
+                .getInstance()
+                .collection("Favorite")
+                .get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                if (task.isSuccessful()){
+                    for (QueryDocumentSnapshot queryDocumentSnapshot : task.getResult()){
+                        Favorite favorite = queryDocumentSnapshot.toObject(Favorite.class);
+                        if (favorite.getId_user().equals(currntUserID)
+                                && favorite.getId_post().equals(post.getPostId())){
+                            unsave.setVisibility(View.VISIBLE);
+                            save.setVisibility(View.GONE);
+                        }else {
+                            unsave.setVisibility(View.GONE);
+                            save.setVisibility(View.VISIBLE);
+                        }
+                    }
+                }
+            }
+        });
+    }
+
     private void islike(Post post,ImageView ic_like
             ,ImageView ic_liked,TextView tv_likes,TextView likes){
         tv_likes.setText(String.valueOf(post.getLikes()));
-//        likes.setText(R.string.tv_likes);
+        likes.setText(R.string.tv_likes);
         if (post.getLikes() > 0){
             FirebaseFirestore.getInstance().collection("Likes")
                     .get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
@@ -276,7 +358,41 @@ public class RvDisplayPostAdapter
             });
         }
     }
-    private void cancelLike(Post post,TextView tv_likes){
+
+    private void unFav(Post post,ImageView save,ImageView unsave){
+        save.setEnabled(false);
+        unsave.setEnabled(false);
+        unsave.setVisibility(View.GONE);
+        save.setVisibility(View.VISIBLE);
+        FirebaseFirestore.getInstance().collection("Favorite")
+                .get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                if (task.isSuccessful()){
+                    for (QueryDocumentSnapshot queryDocumentSnapshot : task.getResult()){
+                        Favorite favorite = queryDocumentSnapshot.toObject(Favorite.class);
+                        if (favorite.getId_post().equals(post.getPostId())
+                        && currntUserID.equals(favorite.getId_user())){
+                            FirebaseFirestore.getInstance().collection("Favorite")
+                                    .document(favorite.getId()).delete();
+                            save.setEnabled(true);
+                            unsave.setEnabled(true);
+                            save.setVisibility(View.VISIBLE);
+                            unsave.setVisibility(View.GONE);
+                            Toast.makeText(context, R.string.unsave, Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                }
+            }
+        });
+
+    }
+
+    private void cancelLike(Post post,TextView tv_likes,ImageView ic_like,ImageView ic_liked){
+        ic_liked.setEnabled(false);
+        ic_like.setEnabled(false);
+        ic_liked.setVisibility(View.GONE);
+        ic_like.setVisibility(View.VISIBLE);
         FirebaseFirestore.getInstance().collection("Likes")
                 .get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
             @Override
@@ -299,6 +415,8 @@ public class RvDisplayPostAdapter
                                                 getPost2(post1,like, new GetPost() {
                                                     @Override
                                                     public void getPostListener(Post post) {
+                                                        ic_liked.setEnabled(true);
+                                                        ic_like.setEnabled(true);
                                                         tv_likes.setText(String.valueOf(post.getLikes()));
                                                     }
                                                 });
@@ -339,44 +457,44 @@ public class RvDisplayPostAdapter
                 });
     }
 
-    private void transfers(){
-//        comments.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Intent intent = new Intent(context, CommentsActivity.class);
-//                intent.putExtra(POST_KEY,post);
-//                context.startActivity(intent);
-//            }
-//        });
+    private void transfers(Post post,TextView tv_comments, TextView tv_likes, TextView likes){
 
-//            tv_likes.setOnClickListener(new View.OnClickListener() {
-//                @Override
-//                public void onClick(View view) {
-//                    Intent intent = new Intent(context, LikesActivity.class);
-//                    intent.putExtra(POST_KEY,post);
-//                    context.startActivity(intent);
-//                }
-//            });
-//
-//            likes.setOnClickListener(new View.OnClickListener() {
-//                @Override
-//                public void onClick(View view) {
-//                    Intent intent = new Intent(context, LikesActivity.class);
-//                    intent.putExtra(POST_KEY,post);
-//                    context.startActivity(intent);
-//                }
-//            });
+        tv_comments.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(context, CommentsActivity.class);
+                intent.putExtra(POST_KEY,post);
+                context.startActivity(intent);
+            }
+        });
+
+            tv_likes.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent intent = new Intent(context, LikesActivity.class);
+                    intent.putExtra(POST_KEY,post);
+                    context.startActivity(intent);
+                }
+            });
+            likes.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent intent = new Intent(context, LikesActivity.class);
+                    intent.putExtra(POST_KEY,post);
+                    context.startActivity(intent);
+                }
+            });
     }
 
     private void dialogInternet_error() {
         new AlertDialog.Builder(context)
                 .setCancelable(false)
-//                .setMessage(context.getResources().getString(R.string.internet_error))
+                .setMessage(context.getResources().getString(R.string.internet_error))
                 .setPositiveButton(R.string.ok, null).show();
     }
 
     private String formatDate(Date date){
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("MMM dd hh:mm aa", Locale.ENGLISH);
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("MMM dd / hh:mm aa", Locale.ENGLISH);
         String dateString = simpleDateFormat.format(date);
         return dateString;
     }
@@ -462,26 +580,26 @@ public class RvDisplayPostAdapter
                         if (currentMinute.equals(postMinute)){
                             int res = Integer.parseInt(currentSecond) - Integer.parseInt(postSecond);
                             if (res == 1){
-//                                date.setText(R.string.second_ago);
+                                date.setText(R.string.second_ago);
                             }else {
-//                                date.setText(R.string.seconds_ago);
+                                date.setText(R.string.seconds_ago);
                             }
                             tv_date.setText(String.valueOf(res));
                         }else {
                             int res = Integer.parseInt(currentMinute) - Integer.parseInt(postMinute);
                             if (res == 1){
-//                                date.setText(R.string.minute_ago);
+                                date.setText(R.string.minute_ago);
                             }else {
-//                                date.setText(R.string.minutes_ago);
+                                date.setText(R.string.minutes_ago);
                             }
                             tv_date.setText(String.valueOf(res));
                         }
                     }else {
                         int res = Integer.parseInt(currentHour) - Integer.parseInt(postHour);
                         if (res == 1){
-//                            date.setText(R.string.hour_ago);
+                            date.setText(R.string.hour_ago);
                         }else {
-//                            date.setText(R.string.hourss_ago);
+                            date.setText(R.string.hourss_ago);
                         }
                         tv_date.setText(String.valueOf(res));
                     }

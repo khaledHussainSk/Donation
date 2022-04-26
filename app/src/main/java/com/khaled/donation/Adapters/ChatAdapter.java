@@ -20,9 +20,7 @@ import com.khaled.donation.Models.User;
 import com.khaled.donation.R;
 import com.khaled.donation.databinding.CustomChatBinding;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 
 public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.ChatViewHolder> {
 
@@ -56,7 +54,8 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.ChatViewHolder
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
                         if (snapshot.hasChildren()){
                             for (DataSnapshot snapshot1 : snapshot.getChildren()){
-                                holder.binding.lastMsg.setText(snapshot1.child("message").getValue().toString());
+                                holder.binding.lastMsg.setText(snapshot1.child("message")
+                                        .getValue().toString());
                             }
                         }
                     }

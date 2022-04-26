@@ -54,7 +54,7 @@ public class MenuFragment extends Fragment {
         binding.constraintLayoutProfile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                MainActivity.bottomNavigation.show(4,true);
+                MainActivity.bottomNavigation.show(5,true);
             }
         });
         binding.constraintLayoutContactUs.setOnClickListener(new View.OnClickListener() {

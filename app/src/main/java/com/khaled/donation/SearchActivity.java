@@ -29,7 +29,6 @@ public class SearchActivity extends AppCompatActivity {
     RecyclerSearchAdapter adapter;
     ArrayList<User> userArrayList;
     String search;
-    public final static String USER_KEY = "USER_KEY";
     String currentUserId;
     SharedPreferences sp;
 
@@ -90,7 +89,7 @@ public class SearchActivity extends AppCompatActivity {
                                         public void OnClickListener(User user) {
                                             Intent intent = new Intent(SearchActivity.this,
                                                     OtherProfileActivity.class);
-                                            intent.putExtra(USER_KEY,user);
+                                            intent.putExtra(MainActivity.USER_KEY,user);
                                             startActivity(intent);
                                         }
                                     });

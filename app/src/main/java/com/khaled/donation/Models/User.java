@@ -12,7 +12,10 @@ public class User implements Serializable {
     public User() {
     }
 
-    public User(String fullName, String phoneNumber, String address, String email, String password,String imageProfile,String shortBio, Date joined, int followers, int following, int posts,int validity) {
+    public User(String fullName, String phoneNumber
+            , String address, String email, String password,String imageProfile
+            ,String shortBio, Date joined, int followers, int following
+            , int posts,int validity) {
         this.fullName = fullName;
         this.phoneNumber = phoneNumber;
         this.address = address;

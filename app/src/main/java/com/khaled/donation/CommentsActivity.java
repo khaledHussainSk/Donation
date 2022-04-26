@@ -83,7 +83,8 @@ public class CommentsActivity extends AppCompatActivity {
                 String comment = binding.etComment.getText().toString();
 
                 if (TextUtils.isEmpty(comment) || comment.equals("")){
-                    Toast.makeText(getBaseContext(), R.string.toast_empty_comment, Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getBaseContext(), R.string.toast_empty_comment
+                            , Toast.LENGTH_SHORT).show();
                     return;
                 }
 
@@ -115,7 +116,7 @@ public class CommentsActivity extends AppCompatActivity {
                 if (task.isSuccessful()){
                     DocumentSnapshot documentSnapshot = task.getResult();
                     User user = documentSnapshot.toObject(User.class);
-                    Glide.with(getBaseContext()).load(user.getImageProfile())
+                    Glide.with(CommentsActivity.this).load(user.getImageProfile())
                             .placeholder(R.drawable.ic_user4).into(binding.ivPublisher);
                     binding.tvPublisher.setText(user.getFullName());
                     binding.tvDescription.setText(post.getDescription());
@@ -133,7 +134,7 @@ public class CommentsActivity extends AppCompatActivity {
                         if (task.isSuccessful()){
                             DocumentSnapshot documentSnapshot = task.getResult();
                             current_user = documentSnapshot.toObject(User.class);
-                            Glide.with(getBaseContext()).load(current_user.getImageProfile())
+                            Glide.with(CommentsActivity.this).load(current_user.getImageProfile())
                                     .placeholder(R.drawable.ic_user4).into(binding.ivProfile);
                         }
                     }
@@ -192,7 +193,8 @@ public class CommentsActivity extends AppCompatActivity {
                                 }
                             });
                             binding.rv.setHasFixedSize(true);
-                            binding.rv.setLayoutManager(new LinearLayoutManager(getBaseContext()));
+                            binding.rv.setLayoutManager(new LinearLayoutManager
+                                    (CommentsActivity.this));
                             binding.progressBar.setVisibility(View.GONE);
                             binding.rv.setAdapter(adapter);
                             store.collection("Posts").document(post.getPostId()).get()
@@ -273,7 +275,8 @@ public class CommentsActivity extends AppCompatActivity {
                 deleteComment(comment_,post);
                 return true;
             case R.id.edit_comment:
-                Intent intent = new Intent(getBaseContext(),EditCommentActivity.class);
+                Intent intent = new Intent(CommentsActivity.this
+                        ,EditCommentActivity.class);
                 intent.putExtra(COMENT_KEY,comment_);
                 arl.launch(intent);
                 return true;

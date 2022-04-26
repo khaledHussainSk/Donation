@@ -1,12 +1,16 @@
 package com.khaled.donation;
 
+import android.content.Context;
 import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.bumptech.glide.Glide;
@@ -23,6 +27,7 @@ public class EditCommentActivity extends AppCompatActivity {
     Comment comment;
     FirebaseFirestore store;
     String commentString;
+    NetworkInfo netInfo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,6 +42,9 @@ public class EditCommentActivity extends AppCompatActivity {
     }
 
     private void fixed() {
+        ConnectivityManager conMgr =  (ConnectivityManager)getBaseContext()
+                .getSystemService(Context.CONNECTIVITY_SERVICE);
+        netInfo = conMgr.getActiveNetworkInfo();
         Intent intent = getIntent();
         comment = (Comment) intent.getSerializableExtra(CommentsActivity.COMENT_KEY);
         store = FirebaseFirestore.getInstance();
@@ -77,18 +85,29 @@ public class EditCommentActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                commentString = binding.etComment.getText().toString();
+                if (netInfo == null){
+                    dialogInternet_error();
+                }else{
+                    commentString = binding.etComment.getText().toString();
 
-                if (TextUtils.isEmpty(commentString) || commentString.equals("")){
-                    Toast.makeText(getBaseContext(), R.string.toast_empty_comment, Toast.LENGTH_SHORT).show();
-                    return;
+                    if (TextUtils.isEmpty(commentString) || commentString.equals("")){
+                        Toast.makeText(getBaseContext(), R.string.toast_empty_comment, Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+
+                    store.collection("Comments").document(comment.getId_comment())
+                            .update("comment",commentString);
+                    finish();
                 }
-
-                store.collection("Comments").document(comment.getId_comment())
-                        .update("comment",commentString);
-                finish();
             }
         });
+    }
+
+    private void dialogInternet_error() {
+        new AlertDialog.Builder(this)
+                .setCancelable(false)
+                .setMessage(getResources().getString(R.string.internet_error))
+                .setPositiveButton(R.string.ok, null).show();
     }
 
 }
