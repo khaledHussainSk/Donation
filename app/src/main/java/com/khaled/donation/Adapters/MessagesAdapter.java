@@ -37,41 +37,39 @@ public class MessagesAdapter extends RecyclerView.Adapter {
     final int ITEM_SENT = 1;
     final int ITEM_RECEIVE = 2;
     String recId;
-    String senderRoom;
-    String receiverRoom;
     String imagee;
     FirebaseRemoteConfig remoteConfig;
 
-    public MessagesAdapter(Context context, ArrayList<Message> messages, String senderRoom, String receiverRoom,String imagee,String recId) {
+    public MessagesAdapter( ArrayList<Message> messages,String imagee,String recId) {
         remoteConfig = FirebaseRemoteConfig.getInstance();
-        this.context = context;
         this.messages = messages;
-        this.senderRoom = senderRoom;
-        this.receiverRoom = receiverRoom;
         this.imagee = imagee;
         this.recId = recId;
     }
 
     @Override
     public int getItemViewType(int position) {
-        if (messages.get(position).getSenderId() != null){
+//        if (messages.get(position).getSenderId() != null){
             if(messages.get(position).getSenderId().equals(FirebaseAuth.getInstance().getUid())) {
                 return ITEM_SENT;
             } else {
                 return ITEM_RECEIVE;
             }
-        }
-        return 0;
+//        }
+//        return 0;
     }
 
     @NonNull
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        context = parent.getContext();
+
         if(viewType == ITEM_SENT) {
+            context = parent.getContext();
             View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_sent, parent, false);
             return new SentViewHolder(view);
-        } else {
+        }
+        else {
+            context = parent.getContext();
             View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_receive, parent, false);
             return new ReceiverViewHolder(view);
         }

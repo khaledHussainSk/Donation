@@ -31,9 +31,7 @@ public class ChatActivity extends AppCompatActivity {
     ActivityChatBinding binding;
     FirebaseDatabase database;
     MessagesAdapter adapter;
-    ArrayList<Message> messages;
     Message message;
-    String senderId;
     FirebaseAuth auth;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,16 +47,17 @@ public class ChatActivity extends AppCompatActivity {
 
         String profile = getIntent().getStringExtra("image");
         String revID = getIntent().getStringExtra("uid");
+        Toast.makeText(getApplicationContext(), "bbbb"+revID, Toast.LENGTH_SHORT).show();
 
-        messages = new ArrayList<>();
+        final ArrayList<Message> messages = new ArrayList<>();
 
         auth = FirebaseAuth.getInstance();
 
-        senderId = auth.getUid();
-        String recieverId = getIntent().getStringExtra("uid");
+        final String senderId = auth.getUid();
+//        String recieverId = getIntent().getStringExtra("uid");
 
-        final String senderRoom = senderId + recieverId;
-        final String receiverRoom = recieverId + senderId;
+        final String senderRoom = senderId + revID;
+        final String receiverRoom = revID + senderId;
 
 
         database.getReference().child("chats")
@@ -72,8 +71,8 @@ public class ChatActivity extends AppCompatActivity {
                             message.setMessageId(snapshot1.getKey());
 
                             messages.add(message);
-                            Toast.makeText(getApplicationContext(), "ss : "+messages.size(), Toast.LENGTH_SHORT).show();
-                            adapter = new MessagesAdapter(getApplicationContext(), messages, senderRoom, receiverRoom,profile,revID);
+//                            Toast.makeText(getApplicationContext(), "ss : "+messages.size(), Toast.LENGTH_SHORT).show();
+                            adapter = new MessagesAdapter(messages,profile,revID);
                             binding.recyclerView.setAdapter(adapter);
                             binding.recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
 
