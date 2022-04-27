@@ -8,17 +8,15 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
-import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.PopupMenu;
-import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -31,20 +29,19 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.khaled.donation.Adapters.RvDisplayPostAdapter;
 import com.khaled.donation.Listeners.OnClickMenuPostListener;
 import com.khaled.donation.Models.Comment;
-import com.khaled.donation.Models.Favorite;
 import com.khaled.donation.Models.Like;
 import com.khaled.donation.Models.Post;
 import com.khaled.donation.Models.User;
-import com.khaled.donation.databinding.FragmentHomeBinding;
+import com.khaled.donation.databinding.ActivityPostsBinding;
 
 import java.util.ArrayList;
 
 import es.dmoral.toasty.Toasty;
 
-public class HomeFragment extends Fragment {
-    FragmentHomeBinding binding;
-    RvDisplayPostAdapter adapter;
+public class PostsActivity extends AppCompatActivity {
+    ActivityPostsBinding binding;
     ArrayList<Post> posts;
+    RvDisplayPostAdapter adapter;
     SharedPreferences sp;
     String currentUserID;
     User currentUser;
@@ -53,28 +50,34 @@ public class HomeFragment extends Fragment {
     public static boolean isUploaded;
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        binding = FragmentHomeBinding.inflate(getLayoutInflater(),container,false);
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        binding = ActivityPostsBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
 
         fixed();
         getPosts();
         getCountPosts();
 
-        return binding.getRoot();
     }
 
     private void fixed() {
-        sp = PreferenceManager.getDefaultSharedPreferences(getActivity());
+        sp = PreferenceManager.getDefaultSharedPreferences(this);
         currentUserID = sp.getString(MainActivity.USER_ID_KEY,null);
-        ConnectivityManager conMgr =  (ConnectivityManager)getContext()
+        posts = new ArrayList<>();
+        ConnectivityManager conMgr =  (ConnectivityManager)getBaseContext()
                 .getSystemService(Context.CONNECTIVITY_SERVICE);
         netInfo = conMgr.getActiveNetworkInfo();
-        posts = new ArrayList<>();
+        binding.icBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
     }
 
     private void getPosts(){
-        binding.spinKit.setVisibility(View.VISIBLE);
+        binding.progressBar.setVisibility(View.VISIBLE);
         FirebaseFirestore.getInstance().collection("Posts")
                 .get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
             @Override
@@ -82,12 +85,15 @@ public class HomeFragment extends Fragment {
                 posts.clear();
                 for (QueryDocumentSnapshot queryDocumentSnapshot : task.getResult()) {
                     Post post = queryDocumentSnapshot.toObject(Post.class);
-                    posts.add(post);
+                    if (post.getPublisher().equals(currentUserID)){
+                        posts.add(post);
+                    }
                 }
-                adapter = new RvDisplayPostAdapter(getActivity(), posts, new OnClickMenuPostListener() {
+                adapter = new RvDisplayPostAdapter(PostsActivity.this
+                        , posts, new OnClickMenuPostListener() {
                     @Override
                     public void OnClickMenuPostListener(Post post, ImageView iv_menuPost) {
-                        PopupMenu popupMenu = new PopupMenu(getActivity(), iv_menuPost);
+                        PopupMenu popupMenu = new PopupMenu(PostsActivity.this, iv_menuPost);
                         popupMenu.inflate(R.menu.menu_post);
                         popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
                             @Override
@@ -98,13 +104,13 @@ public class HomeFragment extends Fragment {
                                             dialogInternet_error();
                                         }else{
                                             if (isUploaded == false){
-                                                Intent intent = new Intent(getActivity()
+                                                Intent intent = new Intent(getBaseContext()
                                                         ,AddPhotoActivity.class);
                                                 intent.putExtra(RvDisplayPostAdapter.POST_KEY, post);
                                                 startActivity(intent);
                                             }else {
-                                                Toasty.info(getActivity(),R.string.toast_moment
-                                                        ,Toast.LENGTH_SHORT).show();
+                                                Toasty.info(getBaseContext(),R.string.toast_moment
+                                                        , Toast.LENGTH_SHORT).show();
                                             }
                                         }
                                         return true;
@@ -112,40 +118,39 @@ public class HomeFragment extends Fragment {
                                         if (netInfo == null){
                                             dialogInternet_error();
                                         }else{
-                    androidx.appcompat.app.AlertDialog.Builder builder
-                            = new AlertDialog.Builder(getActivity());
-                    builder.setTitle(R.string.delete);
-                    builder.setMessage(R.string.delete_post);
-                    builder.setPositiveButton(R.string.ok
-                            , new DialogInterface.OnClickListener() {
-                                @Override
-                                public void onClick(DialogInterface dialogInterface, int i) {
-                                    count_posts = count_posts - 1;
-                                    for (int a=0 ;a<post.getImages().size();a++){
-                                        FirebaseStorage
-                                                .getInstance()
-                                                .getReferenceFromUrl(post.getImages().get(a))
-                                                .delete();
-                                    }
-                                    deleteLikes(post);
-                                    deleteComments(post);
-                                    deleteFav(post);
-                                    FirebaseFirestore
-                                            .getInstance()
-                                            .collection("Posts")
-                                            .document(post.getPostId()).delete();
-                                    FirebaseFirestore
-                                            .getInstance()
-                                            .collection("Users")
-                                            .document(post.getPublisher())
-                                            .update("posts", count_posts);
-                                    Toast.makeText(getActivity()
-                                            , R.string.toast_post_delete
-                                            , Toast.LENGTH_SHORT).show();
+                                            androidx.appcompat.app.AlertDialog.Builder builder
+                                                    = new AlertDialog.Builder(PostsActivity.this);
+                                            builder.setTitle(R.string.delete);
+                                            builder.setMessage(R.string.delete_post);
+                                            builder.setPositiveButton(R.string.ok
+                                                    , new DialogInterface.OnClickListener() {
+                                                        @Override
+                                                        public void onClick(DialogInterface dialogInterface, int i) {
+                                                            count_posts = count_posts - 1;
+                                                            for (int a=0 ;a<post.getImages().size();a++){
+                                                                FirebaseStorage
+                                                                        .getInstance()
+                                                                        .getReferenceFromUrl(post.getImages().get(a))
+                                                                        .delete();
+                                                            }
+                                                            deleteLikes(post);
+                                                            deleteComments(post);
+                                                            FirebaseFirestore
+                                                                    .getInstance()
+                                                                    .collection("Posts")
+                                                                    .document(post.getPostId()).delete();
+                                                            FirebaseFirestore
+                                                                    .getInstance()
+                                                                    .collection("Users")
+                                                                    .document(post.getPublisher())
+                                                                    .update("posts", count_posts);
+                                                            Toast.makeText(getBaseContext()
+                                                                    , R.string.toast_post_delete
+                                                                    , Toast.LENGTH_SHORT).show();
 
-                                }
-                            });
-                    builder.show();
+                                                        }
+                                                    });
+                                            builder.show();
                                         }
                                         return true;
                                 }
@@ -157,9 +162,9 @@ public class HomeFragment extends Fragment {
                     }
                 });
                 binding.rv.setHasFixedSize(true);
-                binding.rv.setLayoutManager(new LinearLayoutManager(getActivity()));
+                binding.rv.setLayoutManager(new LinearLayoutManager(PostsActivity.this));
                 binding.rv.setAdapter(adapter);
-                binding.spinKit.setVisibility(View.GONE);
+                binding.progressBar.setVisibility(View.GONE);
             }
         });
     }
@@ -216,32 +221,10 @@ public class HomeFragment extends Fragment {
     }
 
     private void dialogInternet_error() {
-        new AlertDialog.Builder(getActivity())
+        new AlertDialog.Builder(getBaseContext())
                 .setCancelable(false)
                 .setMessage(getResources().getString(R.string.internet_error))
                 .setPositiveButton(R.string.ok, null).show();
-    }
-
-    private void deleteFav(Post post){
-        FirebaseFirestore
-                .getInstance()
-                .collection("Favorite")
-                .get()
-                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                    @Override
-                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                        if (task.isSuccessful()){
-                            for (QueryDocumentSnapshot queryDocumentSnapshot : task.getResult()){
-                                Favorite favorite = queryDocumentSnapshot.toObject(Favorite.class);
-                                if (post.getPostId().equals(favorite.getId_post())){
-                                    FirebaseFirestore.getInstance().collection("Favorite")
-                                            .document(favorite.getId()).delete();
-                                }
-                            }
-
-                        }
-                    }
-                });
     }
 
 }

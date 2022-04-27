@@ -52,7 +52,6 @@ public class AddPhotoActivity extends AppCompatActivity {
     User currentUser;
     int posts;
     Post post;
-    Uri imageUri = null;
     int sizeOfImage = 0;
 
     @Override
@@ -165,7 +164,7 @@ public class AddPhotoActivity extends AppCompatActivity {
                     uploadImages();
                 }else {
                     //عملية تعديل
-//                    updateImage();
+                    updateImage();
                 }
 
             }
@@ -174,69 +173,46 @@ public class AddPhotoActivity extends AppCompatActivity {
 
     private void updateImage() {
         finish();
-        FirebaseFirestore.getInstance().collection("Posts")
-                .document(post.getPostId())
-                .update("description",description);
-
         copyOfimages.clear();
         sizeOfImage = images.size() - 1;
         for (int i=0; i < images.size();i++){
             int finalI = i;
-            FirebaseStorage
-                    .getInstance()
-                    .getReference()
-                    .child("PostsImages/"+i+Calendar.getInstance().getTime())
-                    .putFile(Uri.parse(images.get(i)))
-                    .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-                        @Override
-                        public void onSuccess(@NonNull UploadTask.TaskSnapshot taskSnapshot) {
-                            taskSnapshot.getStorage().getDownloadUrl()
-                                    .addOnSuccessListener(new OnSuccessListener<Uri>() {
-                                        @Override
-                                        public void onSuccess(@NonNull Uri uri) {
-                                            String image = String.valueOf(uri);
-                                            copyOfimages.add(image);
-                                            if (sizeOfImage == finalI){
-                                                Toast.makeText(getBaseContext(), "ok", Toast.LENGTH_SHORT).show();
-                                            }
-                                        }
-                                    });
-                        }
-                    }).addOnFailureListener(new OnFailureListener() {
-                @Override
-                public void onFailure(@NonNull Exception e) {
-                    Toasty.error(getBaseContext(), R.string.toast_post_failed, Toast.LENGTH_SHORT).show();
+            if (images.get(i).contains("https://firebasestorage.googleapis.com")){
+                copyOfimages.add(images.get(i));
+                if (sizeOfImage == finalI){
+                    update();
                 }
-            });
-
-//            storage.getReference().child("PostsImages/"+i+post.getDatenews())
-//                    .putFile(Uri.parse(images.get(i)))
-//                    .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-//                        @Override
-//                        public void onSuccess(@NonNull UploadTask.TaskSnapshot taskSnapshot) {
-//                            taskSnapshot.getStorage().getDownloadUrl()
-//                                    .addOnSuccessListener(new OnSuccessListener<Uri>() {
-//                                        @Override
-//                                        public void onSuccess(@NonNull Uri uri) {
-//                                            HomeFragment.isUploaded = true;
-//                                            String image = String.valueOf(uri);
-//                                            copyOfimages.add(image);
-//                                            if (sizeOfImage == finalI){
-//                                                FirebaseFirestore
-//                                                        .getInstance().collection("Posts")
-//                                                        .document(post.getPostId())
-//                                                        .update("images",copyOfimages);
-//                                                HomeFragment.isUploaded = false;
-//                                            }
-//                                        }
-//                                    });
-//                        }
-//                    }).addOnFailureListener(new OnFailureListener() {
-//                @Override
-//                public void onFailure(@NonNull Exception e) {
-////                    Toasty.error(getBaseContext(), R.string.toast_post_failed, Toast.LENGTH_SHORT).show();
-//                }
-//            });
+            }else {
+                FirebaseStorage
+                        .getInstance()
+                        .getReference()
+                        .child("PostsImages/"+i+post.getDatenews())
+                        .putFile(Uri.parse(images.get(i)))
+                        .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                            @Override
+                            public void onSuccess(@NonNull UploadTask.TaskSnapshot taskSnapshot) {
+                                taskSnapshot.getStorage().getDownloadUrl()
+                                        .addOnSuccessListener(new OnSuccessListener<Uri>() {
+                                            @Override
+                                            public void onSuccess(@NonNull Uri uri) {
+                                                String image = String.valueOf(uri);
+                                                copyOfimages.add(image);
+                                                if (sizeOfImage == finalI){
+                                                 update();
+                                                }
+                                            }
+                                        });
+                            }
+                        })
+                        .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Toasty.error(getBaseContext()
+                                , R.string.toast_post_failed+e.getMessage()
+                                , Toast.LENGTH_SHORT).show();
+                    }
+                });
+            }
         }
 
     }
@@ -250,7 +226,8 @@ public class AddPhotoActivity extends AppCompatActivity {
         documentReference.set(post).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
-                Toasty.success(getBaseContext(), R.string.toast_post_published, Toast.LENGTH_SHORT).show();
+                Toast.makeText(getBaseContext()
+                        , R.string.toast_post_published, Toast.LENGTH_SHORT).show();
                 posts = posts + 1;
                 FirebaseFirestore.getInstance().collection("Users")
                         .document(currentUserID).update("posts",posts);
@@ -294,7 +271,8 @@ public class AddPhotoActivity extends AppCompatActivity {
                     }).addOnFailureListener(new OnFailureListener() {
                 @Override
                 public void onFailure(@NonNull Exception e) {
-                    Toasty.error(getBaseContext(), R.string.toast_post_failed, Toast.LENGTH_SHORT).show();
+                    Toasty.error(getBaseContext(), R.string.toast_post_failed
+                            , Toast.LENGTH_SHORT).show();
                 }
             });
         }
@@ -359,6 +337,22 @@ public class AddPhotoActivity extends AppCompatActivity {
             adapter.notifyDataSetChanged();
             numbersOfPhotos();
         }
+    }
+
+    private void update(){
+        FirebaseFirestore
+                .getInstance()
+                .collection("Posts")
+                .document(post.getPostId())
+                .update("description",description);
+        FirebaseFirestore
+                .getInstance()
+                .collection("Posts")
+                .document(post.getPostId())
+                .update("images",copyOfimages);
+        Toast.makeText(AddPhotoActivity.this
+                , R.string.post_has_been_modified
+                , Toast.LENGTH_SHORT).show();
     }
 
 }

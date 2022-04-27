@@ -1,21 +1,10 @@
 package com.khaled.donation;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
 import android.view.View;
-import android.widget.Toast;
-
+import androidx.appcompat.app.AppCompatActivity;
 import com.bumptech.glide.Glide;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.firestore.DocumentSnapshot;
-import com.google.firebase.firestore.FirebaseFirestore;
 import com.khaled.donation.Models.User;
 import com.khaled.donation.databinding.ActivityOtherProfileBinding;
 
@@ -42,7 +31,7 @@ public class OtherProfileActivity extends AppCompatActivity {
 
     private void fixed() {
         Intent intent = getIntent();
-        user = (User) intent.getSerializableExtra(SearchActivity.USER_KEY);
+        user = (User) intent.getSerializableExtra(MainActivity.USER_KEY);
         binding.icBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

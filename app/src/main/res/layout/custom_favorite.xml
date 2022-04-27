@@ -16,6 +16,7 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:padding="@dimen/_6sdp"
             >
 
 
@@ -23,8 +24,8 @@
                 android:id="@+id/iv_post"
                 android:layout_width="@dimen/_100sdp"
                 android:layout_height="@dimen/_100sdp"
-                android:layout_marginStart="@dimen/_11sdp"
-                android:layout_marginTop="@dimen/_11sdp"
+                android:scaleType="centerCrop"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:srcCompat="@tools:sample/avatars" />
@@ -34,52 +35,42 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="21dp"
-                android:text="khaled"
                 android:textSize="@dimen/_13ssp"
+                android:textColor="@color/black"
                 android:textStyle="bold"
                 app:layout_constraintStart_toEndOf="@+id/iv_post"
                 app:layout_constraintTop_toTopOf="@+id/iv_post"></TextView>
 
 
             <TextView
-                android:id="@+id/text"
-                android:layout_width="@dimen/_170sdp"
+                android:id="@+id/description"
+                android:layout_width="@dimen/_155sdp"
                 android:layout_height="@dimen/_39sdp"
-                android:layout_marginStart="20dp"
-                android:text="lets make our earth green and healthy"
                 android:textSize="@dimen/_14ssp"
-                android:textStyle="bold"
+                android:textColor="@color/black"
+                android:gravity="center_vertical"
                 app:layout_constraintBottom_toTopOf="@+id/tv_date"
-                app:layout_constraintStart_toEndOf="@+id/iv_post"
-                app:layout_constraintTop_toBottomOf="@+id/username"></TextView>
+                app:layout_constraintEnd_toStartOf="@+id/iv_unsave"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@+id/username"
+                app:layout_constraintTop_toBottomOf="@+id/username"
+                app:layout_constraintVertical_bias="0.527"></TextView>
 
             <TextView
                 android:id="@+id/tv_date"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
-                android:text="20"
                 android:textColor="#05B589"
-                android:textSize="@dimen/_14ssp"
+                android:textSize="@dimen/_8ssp"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="@+id/iv_post"
                 app:layout_constraintStart_toEndOf="@+id/iv_post"></TextView>
 
-            <TextView
-                android:id="@+id/date"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Days Left"
-                android:layout_marginStart="@dimen/_3sdp"
-                android:textSize="@dimen/_14ssp"
-                app:layout_constraintBottom_toBottomOf="@+id/tv_date"
-                app:layout_constraintStart_toEndOf="@+id/tv_date"></TextView>
-
             <ImageView
-                android:id="@+id/imageView11"
+                android:id="@+id/iv_unsave"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="@dimen/_15sdp"
                 android:tint="#FE2121"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="@+id/username"

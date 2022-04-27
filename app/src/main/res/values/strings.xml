@@ -117,8 +117,15 @@
     <string name="delete_post">Are you sure you want to delete the post?</string>
     <string name="toast_post_delete">Your post has been deleted</string>
     <string name="toast_moment">Please Wait..</string>
-    <string name="send_message_chat">send message</string>
+    <string name="send_message_chat">Send message</string>
+    <string name="addcharitycompagin">Add charity compagin</string>
+    <string name="likes">Likes</string>
     <string name="your_subject">Your subject</string>
+    <string name="posts">Posts</string>
+    <string name="post_has_been_modified">Post has been modified</string>
+    <string name="saved">Saved</string>
+    <string name="unsave">Unsave</string>
+    <string name="noDescription">No description</string>
 
 
 </resources>

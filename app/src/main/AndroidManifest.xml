@@ -3,6 +3,7 @@
     package="com.khaled.donation">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
@@ -14,33 +15,53 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Donation">
         <activity
-            android:name=".ShortBioActivity"
+            android:name=".PostsActivity"
             android:theme="@style/FullScreen"
             android:exported="false" />
+        <activity
+            android:name=".LikesActivity"
+            android:exported="false"
+            android:theme="@style/FullScreen" />
+        <activity
+            android:name=".MessangerActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ChatActivity"
+            android:exported="false" />
+        <activity
+            android:name=".EditCommentActivity"
+            android:exported="false"
+            android:theme="@style/FullScreen" />
+        <activity
+            android:name=".CommentsActivity"
+            android:exported="false"
+            android:theme="@style/FullScreen" />
+        <activity
+            android:name=".DisplayAllImagesPostActivity"
+            android:exported="false"
+            android:theme="@style/FullScreen" />
+        <activity
+            android:name=".DisplayImageActivity"
+            android:exported="false"
+            android:theme="@style/FullScreen" />
+        <activity
+            android:name=".AddCharityCampaignActivity"
+            android:exported="false"
+            android:theme="@style/FullScreen" />
+        <activity
+            android:name=".ShortBioActivity"
+            android:exported="false"
+            android:theme="@style/FullScreen" />
         <activity
             android:name=".SuccessActivity"
             android:exported="false" />
         <activity
             android:name=".ContentUsActivity"
             android:exported="false"
-            android:theme="@style/FullScreen"></activity>
-        <activity
-            android:name=".MessangerActivity"
-            android:exported="false"
-            android:theme="@style/FullScreen"></activity>
-        <activity
-            android:name=".ChatActivity"
-            android:exported="false"
-            android:theme="@style/FullScreen"></activity>
+            android:theme="@style/FullScreen" />
         <activity
             android:name=".WelcomeLoginActivity"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+            android:exported="false" />
         <activity
             android:name=".OnBoardingActivity02"
             android:exported="false" />
@@ -64,8 +85,8 @@
             android:theme="@style/FullScreen" />
         <activity
             android:name=".AddPhotoActivity"
-            android:theme="@style/FullScreen"
-            android:exported="false" />
+            android:exported="false"
+            android:theme="@style/FullScreen" />
         <activity
             android:name=".FavoriteActivity"
             android:exported="false"
@@ -77,8 +98,7 @@
         <activity
             android:name=".SearchActivity"
             android:exported="true"
-            android:theme="@style/FullScreen" >
-        </activity>
+            android:theme="@style/FullScreen" />
         <activity
             android:name=".RegistrarActivity"
             android:exported="false"
@@ -99,7 +119,11 @@
             android:name=".SplashScreenActivity"
             android:exported="true"
             android:theme="@style/FullScreen">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
         <activity
             android:name=".MainActivity"

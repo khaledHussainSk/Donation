@@ -1,24 +1,14 @@
 package com.khaled.donation;
 
-import androidx.activity.result.ActivityResultCallback;
-import androidx.activity.result.ActivityResultLauncher;
-import androidx.activity.result.contract.ActivityResultContracts;
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.PopupMenu;
-import androidx.fragment.app.Fragment;
-
 import android.app.Activity;
-import android.content.Context;
-import android.content.DialogInterface;
-import android.content.Intent;
 import android.content.SharedPreferences;
-import android.net.Uri;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
-import android.view.MenuItem;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
 
 import com.etebarian.meowbottomnavigation.MeowBottomNavigation;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -31,6 +21,7 @@ import com.khaled.donation.databinding.ActivityMainBinding;
 
 public class MainActivity extends AppCompatActivity {
     public static final String USER_ID_KEY = "USER_ID_KEY";
+    public final static String USER_KEY = "USER_KEY";
     ActivityMainBinding binding;
     public static MeowBottomNavigation bottomNavigation;
     public static Activity context;
@@ -51,8 +42,8 @@ public class MainActivity extends AppCompatActivity {
         binding.bottomNavigation.add(new MeowBottomNavigation.Model(1,R.drawable.ic_home));
         binding.bottomNavigation.add(new MeowBottomNavigation.Model(2,R.drawable.ic_notifications));
         binding.bottomNavigation.add(new MeowBottomNavigation.Model(3,R.drawable.ic_add));
-        binding.bottomNavigation.add(new MeowBottomNavigation.Model(4,R.drawable.ic_person));
-        binding.bottomNavigation.add(new MeowBottomNavigation.Model(5,R.drawable.ic_menu));
+        binding.bottomNavigation.add(new MeowBottomNavigation.Model(4,R.drawable.ic_menu));
+        binding.bottomNavigation.add(new MeowBottomNavigation.Model(5,R.drawable.ic_person));
 
         binding.bottomNavigation.setOnShowListener(new MeowBottomNavigation.ShowListener() {
             @Override
@@ -69,10 +60,10 @@ public class MainActivity extends AppCompatActivity {
                         fragment = new AddPostFragment();
                         break;
                     case 4:
-                        fragment = new ProfileFragment();
+                        fragment = new MenuFragment();
                         break;
                     case 5:
-                        fragment = new MenuFragment();
+                        fragment = new ProfileFragment();
                         break;
                 }
                 //Load fragment
@@ -131,5 +122,4 @@ public class MainActivity extends AppCompatActivity {
                     }
                 });
     }
-
 }

@@ -98,6 +98,16 @@
                     android:layout_alignParentEnd="true"
                     android:src="@drawable/ic_bookmark"></ImageView>
 
+                <ImageView
+                    android:id="@+id/unsave"
+                    android:layout_width="@dimen/_22sdp"
+                    android:layout_height="@dimen/_22sdp"
+                    android:layout_alignParentEnd="true"
+                    android:src="@drawable/ic_bookmark_black"
+                    android:visibility="gone"
+                    ></ImageView>
+
+
             </RelativeLayout>
 
         </LinearLayout>

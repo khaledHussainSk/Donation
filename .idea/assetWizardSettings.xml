@@ -18,7 +18,7 @@
                                 <PersistentState>
                                   <option name="values">
                                     <map>
-                                      <entry key="url" value="file:/D:/Sdk/icons/material/materialicons/chat_bubble_outline/baseline_chat_bubble_outline_24.xml" />
+                                      <entry key="url" value="file:/D:/Sdk/icons/material/materialicons/bookmark/baseline_bookmark_24.xml" />
                                     </map>
                                   </option>
                                 </PersistentState>
@@ -28,7 +28,7 @@
                         </option>
                         <option name="values">
                           <map>
-                            <entry key="outputName" value="ic_chat" />
+                            <entry key="outputName" value="ic_bookmark_black" />
                             <entry key="sourceFile" value="C:\Users\hp\AndroidStudioProjects\Donation" />
                           </map>
                         </option>

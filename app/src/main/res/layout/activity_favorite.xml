@@ -12,8 +12,7 @@
       android:layout_width="match_parent"
       android:layout_height="match_parent"
       android:layout_below="@+id/toolbar"
-      tools:listitem="@layout/custom_favorite"
-      />
+      tools:listitem="@layout/custom_favorite" />
 
   <com.google.android.material.appbar.CollapsingToolbarLayout
       android:id="@+id/toolbar"
@@ -34,15 +33,48 @@
           android:layout_height="match_parent"
           android:backgroundTint="#00FFFFFF">
 
-        <TextView
-            android:id="@+id/tv_title"
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+          android:orientation="horizontal"
             android:layout_centerInParent="true"
-            android:text="@string/favorite"
-            android:textColor="@color/black"
-            android:textSize="@dimen/_18sdp"
-            android:textStyle="bold" />
+          >
+
+          <TextView
+              android:id="@+id/tv_title"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:layout_marginEnd="@dimen/_3sdp"
+              android:text="@string/favorite"
+              android:textColor="@color/black"
+              android:textSize="@dimen/_18sdp"
+              android:textStyle="bold" />
+
+          <TextView
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:text="("
+              android:textColor="@color/black"
+              android:textSize="@dimen/_18sdp"
+              android:textStyle="bold" />
+
+          <TextView
+              android:id="@+id/tv_allFavorite"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:textColor="@color/black"
+              android:textSize="@dimen/_18sdp"
+              android:textStyle="bold" />
+
+          <TextView
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:text=")"
+              android:textColor="@color/black"
+              android:textSize="@dimen/_18sdp"
+              android:textStyle="bold" />
+
+        </LinearLayout>
 
         <ImageView
             android:id="@+id/ic_back"
