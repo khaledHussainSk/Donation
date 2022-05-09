@@ -102,6 +102,13 @@ public class AddPostFragment extends Fragment {
             }
         });
 
+        binding.btnAddVideo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
+
         binding.btnAddCharityCampaign.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

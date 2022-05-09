@@ -212,7 +212,8 @@ public class RvDisplayPostAdapter
 
             publisherInfo(post.getPublisher(),iv_profile,tv_username,tv_publisher);
 
-            adapter = new RvDisplayPhotosPostAdapter(post.getImages(), new OnClickItemImagePostListener() {
+            adapter = new RvDisplayPhotosPostAdapter(post.getImages()
+                    , new OnClickItemImagePostListener() {
                 @Override
                 public void OnClickListener(ArrayList<String> images) {
                     Intent intent = new Intent(context, DisplayAllImagesPostActivity.class);

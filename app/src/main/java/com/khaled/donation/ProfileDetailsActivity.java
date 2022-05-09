@@ -123,7 +123,7 @@ public class ProfileDetailsActivity extends AppCompatActivity {
 
                 binding.spinKit.setVisibility(View.VISIBLE);
 
-                if (image != null){
+                if (image == null){
                     if (imageUri == null){
                         editUser();
                     }else {

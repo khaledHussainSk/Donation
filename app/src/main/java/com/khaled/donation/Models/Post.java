@@ -8,7 +8,7 @@ public class Post implements Serializable {
 
     private String postId,description,publisher;
     private ArrayList<String> images;
-//    private ArrayList<MediaStore.Video> videos;
+//    private ArrayList<String> videos;
     private Date datenews;
     private int likes,comments;
 
