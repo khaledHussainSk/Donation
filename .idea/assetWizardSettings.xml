@@ -3,6 +3,11 @@
   <component name="WizardSettings">
     <option name="children">
       <map>
+        <entry key="imageWizard">
+          <value>
+            <PersistentState />
+          </value>
+        </entry>
         <entry key="vectorWizard">
           <value>
             <PersistentState>
@@ -11,25 +16,11 @@
                   <entry key="vectorAssetStep">
                     <value>
                       <PersistentState>
-                        <option name="children">
-                          <map>
-                            <entry key="clipartAsset">
-                              <value>
-                                <PersistentState>
-                                  <option name="values">
-                                    <map>
-                                      <entry key="url" value="file:/D:/Sdk/icons/material/materialicons/bookmark/baseline_bookmark_24.xml" />
-                                    </map>
-                                  </option>
-                                </PersistentState>
-                              </value>
-                            </entry>
-                          </map>
-                        </option>
                         <option name="values">
                           <map>
-                            <entry key="outputName" value="ic_bookmark_black" />
-                            <entry key="sourceFile" value="C:\Users\hp\AndroidStudioProjects\Donation" />
+                            <entry key="assetSourceType" value="FILE" />
+                            <entry key="outputName" value="ic__chat" />
+                            <entry key="sourceFile" value="C:\Users\pc world\Downloads\7245647701588529850.svg" />
                           </map>
                         </option>
                       </PersistentState>

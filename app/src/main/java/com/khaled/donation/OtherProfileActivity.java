@@ -56,13 +56,7 @@ public class OtherProfileActivity extends AppCompatActivity {
         unFollow();
         getPosts();
 
-        binding.btnChat.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(),MessangerActivity.class);
-                startActivity(intent);
-            }
-        });
+
     }
 
     private void fixed() {
@@ -91,6 +85,15 @@ public class OtherProfileActivity extends AppCompatActivity {
         binding.tvPosts.setText(String.valueOf(user.getPosts()));
         binding.tvFollowers.setText(String.valueOf(user.getFollowers()));
         binding.tvFollowing.setText(String.valueOf(user.getFollowing()));
+        binding.btnChat.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(getApplicationContext(),ChatActivity.class);
+                i.putExtra("name",user.getFullName());
+                i.putExtra("uid",user.getIdUser());
+                startActivity(i);
+            }
+        });
     }
 
     private void follow(){

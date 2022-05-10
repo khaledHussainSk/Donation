@@ -3,6 +3,8 @@ package com.khaled.donation.Adapters;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 import android.text.format.DateFormat;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -20,7 +22,9 @@ import com.github.pgreze.reactions.ReactionsConfigBuilder;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.remoteconfig.FirebaseRemoteConfig;
+import com.khaled.donation.MainActivity;
 import com.khaled.donation.Models.Message;
+import com.khaled.donation.Models.MessageModel;
 import com.khaled.donation.R;
 import com.khaled.donation.databinding.DeleteDialogBinding;
 import com.khaled.donation.databinding.ItemReceiveBinding;
@@ -39,18 +43,24 @@ public class MessagesAdapter extends RecyclerView.Adapter {
     String recId;
     String imagee;
     FirebaseRemoteConfig remoteConfig;
+    SharedPreferences sp;
+    String currentUserId;
 
-    public MessagesAdapter( ArrayList<Message> messages,String imagee,String recId) {
+    public MessagesAdapter( ArrayList<Message> messages,Context context,String imagee,String recId) {
         remoteConfig = FirebaseRemoteConfig.getInstance();
         this.messages = messages;
         this.imagee = imagee;
         this.recId = recId;
+        this.context = context;
     }
 
     @Override
     public int getItemViewType(int position) {
+         sp = PreferenceManager.getDefaultSharedPreferences(context);
+        currentUserId = sp.getString(MainActivity.USER_ID_KEY,null);
 //        if (messages.get(position).getSenderId() != null){
-            if(messages.get(position).getSenderId().equals(FirebaseAuth.getInstance().getUid())) {
+//            if(messages.get(position).getSenderId().equals(FirebaseAuth.getInstance().getUid())) {
+            if(messages.get(position).getSenderId().equals(currentUserId)) {
                 return ITEM_SENT;
             } else {
                 return ITEM_RECEIVE;
@@ -64,12 +74,12 @@ public class MessagesAdapter extends RecyclerView.Adapter {
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 
         if(viewType == ITEM_SENT) {
-            context = parent.getContext();
+//            context = parent.getContext();
             View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_sent, parent, false);
             return new SentViewHolder(view);
         }
         else {
-            context = parent.getContext();
+//            context = parent.getContext();
             View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_receive, parent, false);
             return new ReceiverViewHolder(view);
         }

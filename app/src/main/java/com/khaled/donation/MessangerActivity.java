@@ -4,13 +4,11 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.view.View;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -19,9 +17,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
-import com.khaled.donation.Adapters.ChatAdapter;
-import com.khaled.donation.Adapters.RecyclerSearchAdapter;
-import com.khaled.donation.Listeners.OnClickItemSearchListener;
+import com.khaled.donation.Adapters.UserAdapter;
 import com.khaled.donation.Models.User;
 import com.khaled.donation.databinding.ActivityMessangerBinding;
 
@@ -33,7 +29,7 @@ public class MessangerActivity extends AppCompatActivity {
     FirebaseDatabase database;
     ArrayList<User> userArrayList;
     String search;
-    ChatAdapter adapter;
+    UserAdapter adapter;
     String currentUserId;
     SharedPreferences sp;
     User user;
@@ -74,7 +70,7 @@ public class MessangerActivity extends AppCompatActivity {
                             binding.rvChat.hideShimmerAdapter();
                         }
 
-                        adapter = new ChatAdapter(userArrayList);
+                        adapter = new UserAdapter(userArrayList);
                         binding.rvChat.showShimmerAdapter();
                         binding.rvChat.setAdapter(adapter);
                         binding.rvChat.setHasFixedSize(true);
@@ -109,7 +105,7 @@ public class MessangerActivity extends AppCompatActivity {
                                     binding.rvChat.hideShimmerAdapter();
                                 }
 
-                                adapter = new ChatAdapter(userArrayList);
+                                adapter = new UserAdapter(userArrayList);
                                 binding.rvChat.showShimmerAdapter();
                                 binding.rvChat.setAdapter(adapter);
                                 binding.rvChat.setHasFixedSize(true);

@@ -165,18 +165,16 @@ public class HomeFragment extends Fragment {
     }
 
     private void getCountPosts(){
-        if (currentUserID != null){
-            FirebaseFirestore.getInstance().collection("Users")
-            .document(currentUserID).get()
-            .addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-                @Override
-                public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                    DocumentSnapshot documentSnapshot = task.getResult();
-                    currentUser = documentSnapshot.toObject(User.class);
-                    count_posts = currentUser.getPosts();
-                }
-            });
-        }
+        FirebaseFirestore.getInstance().collection("Users")
+                .document(currentUserID).get()
+                .addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                        DocumentSnapshot documentSnapshot = task.getResult();
+                        currentUser = documentSnapshot.toObject(User.class);
+                        count_posts = currentUser.getPosts();
+                    }
+                });
     }
 
     private void deleteLikes(Post post){

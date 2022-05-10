@@ -4,8 +4,10 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
+import android.preference.PreferenceManager;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
@@ -20,6 +22,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.khaled.donation.Adapters.MessagesAdapter;
 import com.khaled.donation.Models.Message;
+import com.khaled.donation.Models.MessageModel;
 import com.khaled.donation.databinding.ActivityChatBinding;
 
 import java.util.ArrayList;
@@ -33,6 +36,8 @@ public class ChatActivity extends AppCompatActivity {
     MessagesAdapter adapter;
     Message message;
     FirebaseAuth auth;
+    SharedPreferences sp ;
+    String currentUserId;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,14 +51,20 @@ public class ChatActivity extends AppCompatActivity {
         database = FirebaseDatabase.getInstance();
 
         String profile = getIntent().getStringExtra("image");
+        String name = getIntent().getStringExtra("name");
         String revID = getIntent().getStringExtra("uid");
         Toast.makeText(getApplicationContext(), "bbbb"+revID, Toast.LENGTH_SHORT).show();
 
+        binding.tvName.setText(name);
+
         final ArrayList<Message> messages = new ArrayList<>();
 
-        auth = FirebaseAuth.getInstance();
+        sp = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+        currentUserId = sp.getString(MainActivity.USER_ID_KEY,null);
 
-        final String senderId = auth.getUid();
+//        auth = FirebaseAuth.getInstance();
+
+        final String senderId = currentUserId;
 //        String recieverId = getIntent().getStringExtra("uid");
 
         final String senderRoom = senderId + revID;
@@ -72,9 +83,12 @@ public class ChatActivity extends AppCompatActivity {
 
                             messages.add(message);
 //                            Toast.makeText(getApplicationContext(), "ss : "+messages.size(), Toast.LENGTH_SHORT).show();
-                            adapter = new MessagesAdapter(messages,profile,revID);
-                            binding.recyclerView.setAdapter(adapter);
-                            binding.recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
+                            if (!message.getMessageId().isEmpty()){
+                                adapter = new MessagesAdapter(messages,getApplicationContext(),profile,revID);
+                                binding.recyclerView.setAdapter(adapter);
+                                binding.recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
+                            }
+
 
                         }
                     }
