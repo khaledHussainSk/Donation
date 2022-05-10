@@ -153,6 +153,7 @@
                 android:orientation="horizontal">
 
                 <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btn_follow"
                     android:layout_width="@dimen/_130sdp"
                     android:layout_height="@dimen/_40sdp"
                     android:layout_marginStart="@dimen/_20sdp"
@@ -164,6 +165,21 @@
                     android:textColor="@color/white"
                     android:textSize="@dimen/_10ssp"
                     app:backgroundTint="#FFBC00" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btn_unfollow"
+                    android:visibility="gone"
+                    android:layout_width="@dimen/_130sdp"
+                    android:layout_height="@dimen/_40sdp"
+                    android:layout_marginStart="@dimen/_20sdp"
+                    android:layout_marginEnd="@dimen/_10sdp"
+                    android:layout_weight="1"
+                    app:cornerRadius="@dimen/_20sdp"
+                    android:text="@string/unfollow"
+                    android:textAllCaps="false"
+                    android:textSize="@dimen/_10ssp"
+                    android:textColor="#00B588"
+                    app:backgroundTint="#F9F9FF"                    />
 
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/btn_chat"
@@ -288,6 +304,13 @@
 
         </RelativeLayout>
 
+        <ProgressBar
+            android:id="@+id/progressBar"
+            style="?android:attr/progressBarStyle"
+            android:layout_centerInParent="true"
+            android:visibility="gone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv"

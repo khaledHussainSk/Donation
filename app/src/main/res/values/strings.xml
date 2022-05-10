@@ -126,6 +126,7 @@
     <string name="saved">Saved</string>
     <string name="unsave">Unsave</string>
     <string name="noDescription">No description</string>
+    <string name="unfollow">Following</string>
 
 
 </resources>

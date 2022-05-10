@@ -34,6 +34,7 @@ public class LikesActivity extends AppCompatActivity {
     SharedPreferences sp;
     String currentUserID;
     ArrayList<User> users;
+    ArrayList<Like> likes;
     RvLikesAdapter adapter;
     Post post;
     public static Activity context;
@@ -46,11 +47,14 @@ public class LikesActivity extends AppCompatActivity {
         
         fixed();
         getLikes();
+
+
     }
 
     private void fixed() {
         context = this;
         users = new ArrayList<>();
+        likes = new ArrayList<>();
         sp = PreferenceManager.getDefaultSharedPreferences(this);
         currentUserID = sp.getString(MainActivity.USER_ID_KEY,null);
         Intent intent = getIntent();
@@ -76,9 +80,10 @@ public class LikesActivity extends AppCompatActivity {
                                 User user = queryDocumentSnapshot.toObject(User.class);
                                 if (user.getIdUser().equals(like.getId_who_gave_like())){
                                     users.add(user);
+                                    likes.add(like);
                                 }
                             }
-                            adapter = new RvLikesAdapter(LikesActivity.this,users);
+                            adapter = new RvLikesAdapter(LikesActivity.this,users,likes);
                             binding.rv.setHasFixedSize(true);
                             binding.rv.setLayoutManager(new LinearLayoutManager(getBaseContext()));
                             binding.progressBar.setVisibility(View.GONE);

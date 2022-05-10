@@ -75,8 +75,8 @@ without hesitation"
                 android:text="Register"
                 android:textAllCaps="false"
                 android:textColor="#00B588"
-                android:textSize="@dimen/_16sdp"
                 app:backgroundTint="#F9F9FF"
+                android:textSize="@dimen/_16sdp"
                 app:cornerRadius="@dimen/_28sdp" />
 
 

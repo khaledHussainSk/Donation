@@ -1,5 +1,6 @@
 package com.khaled.donation.Adapters;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -7,38 +8,44 @@ import android.preference.PreferenceManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.khaled.donation.MainActivity;
+import com.khaled.donation.Models.Like;
 import com.khaled.donation.Models.User;
 import com.khaled.donation.OtherProfileActivity;
 import com.khaled.donation.R;
 import com.khaled.donation.databinding.CustomLikesRvBinding;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.Locale;
 
 public class RvLikesAdapter extends RecyclerView.Adapter<RvLikesAdapter.RvLikesAdapterHolder> {
 
     Context context;
     ArrayList<User> users;
+    ArrayList<Like> likes;
     CustomLikesRvBinding binding;
     View v;
     SharedPreferences sp;
     String currentUserID;
 
-    public RvLikesAdapter(Context context,ArrayList<User> users) {
+    public RvLikesAdapter(Context context,ArrayList<User> users,ArrayList<Like> likes) {
         this.context = context;
         this.users = users;
+        this.likes = likes;
     }
 
     public ArrayList<User> getUsers() {
         return users;
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     public void setUsers(ArrayList<User> users) {
         notifyDataSetChanged();
         this.users = users;
@@ -55,7 +62,8 @@ public class RvLikesAdapter extends RecyclerView.Adapter<RvLikesAdapter.RvLikesA
     public void onBindViewHolder(@NonNull RvLikesAdapterHolder holder, int position) {
 
         User user = users.get(position);
-        holder.bind(user);
+        Like like = likes.get(position);
+        holder.bind(user,like);
 
     }
 
@@ -66,6 +74,7 @@ public class RvLikesAdapter extends RecyclerView.Adapter<RvLikesAdapter.RvLikesA
 
     class RvLikesAdapterHolder extends RecyclerView.ViewHolder{
         User user;
+        Like like;
         public RvLikesAdapterHolder(@NonNull View itemView) {
             super(itemView);
             binding = CustomLikesRvBinding.bind(itemView);
@@ -75,13 +84,9 @@ public class RvLikesAdapter extends RecyclerView.Adapter<RvLikesAdapter.RvLikesA
 
         }
 
-        private void bind(User user){
+        private void bind(User user,Like like){
             this.user = user;
-
-            Button btn_follow = binding.btnFollow;
-            if (!currentUserID.equals(user.getIdUser())){
-                btn_follow.setVisibility(View.VISIBLE);
-            }
+            this.like = like;
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -103,8 +108,15 @@ public class RvLikesAdapter extends RecyclerView.Adapter<RvLikesAdapter.RvLikesA
                     .placeholder(R.drawable.ic_user4)
                     .into(binding.profileImage);
             binding.tvNameUser.setText(user.getFullName());
+            binding.tvDate.setText(formatDate(like.getDate()));
 
         }
 
+    }
+
+    private String formatDate(Date date){
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("MMM dd / hh:mm aa", Locale.ENGLISH);
+        String dateString = simpleDateFormat.format(date);
+        return dateString;
     }
 }

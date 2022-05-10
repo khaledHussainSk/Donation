@@ -30,20 +30,15 @@ android:layout_height="wrap_content">
     android:textStyle="bold" />
 
 
-<com.google.android.material.button.MaterialButton
-    android:id="@+id/btn_follow"
-    android:layout_width="wrap_content"
-    android:layout_height="@dimen/_40sdp"
-    android:layout_alignParentEnd="true"
-    android:layout_centerVertical="true"
-    android:layout_marginStart="@dimen/_20sdp"
-    android:layout_marginEnd="@dimen/_10sdp"
-    android:text="@string/follow"
-    android:textAllCaps="false"
-    android:textColor="@color/white"
-    android:textSize="@dimen/_10ssp"
-    android:visibility="gone"
-    app:backgroundTint="#FFBC00"
-    app:cornerRadius="@dimen/_20sdp" />
+    <TextView
+        android:id="@+id/tv_date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tv_name_user"
+        android:layout_marginTop="@dimen/_3sdp"
+        android:layout_toEndOf="@+id/profile_image"
+        android:layout_marginEnd="@dimen/_10sdp"
+        android:textSize="@dimen/_8ssp"
+        />
 
 =</RelativeLayout>

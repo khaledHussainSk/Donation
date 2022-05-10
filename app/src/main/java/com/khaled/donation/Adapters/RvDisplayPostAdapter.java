@@ -37,6 +37,7 @@ import com.khaled.donation.Models.Favorite;
 import com.khaled.donation.Models.Like;
 import com.khaled.donation.Models.Post;
 import com.khaled.donation.Models.User;
+import com.khaled.donation.OtherProfileActivity;
 import com.khaled.donation.R;
 import com.khaled.donation.databinding.CustomPhotoPostBinding;
 
@@ -52,7 +53,6 @@ public class RvDisplayPostAdapter
     Context context;
     ArrayList<Post> posts;
     OnClickMenuPostListener listener;
-
     String currntUserID;
     SharedPreferences sp;
     View v;
@@ -227,6 +227,34 @@ public class RvDisplayPostAdapter
                             , LinearLayoutManager.HORIZONTAL, false);
             rv.setLayoutManager(horizontalLayoutManagaer);
             rv.setAdapter(adapter);
+
+
+            FirebaseFirestore.getInstance().collection("Users")
+                    .document(post.getPublisher()).get()
+                    .addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                        @Override
+                        public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                            DocumentSnapshot documentSnapshot = task.getResult();
+                            User user = documentSnapshot.toObject(User.class);
+                            iv_profile.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View view) {
+                                    Intent intent = new Intent(context,OtherProfileActivity.class);
+                                    intent.putExtra(MainActivity.USER_KEY,user);
+                                    context.startActivity(intent);
+                                }
+                            });
+
+                            tv_username.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View view) {
+                                    Intent intent = new Intent(context,OtherProfileActivity.class);
+                                    intent.putExtra(MainActivity.USER_KEY,user);
+                                    context.startActivity(intent);
+                                }
+                            });
+                        }
+                    });
 
 
 

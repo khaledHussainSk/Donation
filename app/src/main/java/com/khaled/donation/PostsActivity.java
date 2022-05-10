@@ -27,6 +27,7 @@ import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.google.firebase.storage.FirebaseStorage;
 import com.khaled.donation.Adapters.RvDisplayPostAdapter;
+import com.khaled.donation.Adapters.RvPostsProfileAdapter;
 import com.khaled.donation.Listeners.OnClickMenuPostListener;
 import com.khaled.donation.Models.Comment;
 import com.khaled.donation.Models.Like;
@@ -48,6 +49,7 @@ public class PostsActivity extends AppCompatActivity {
     int count_posts;
     NetworkInfo netInfo;
     public static boolean isUploaded;
+    String id_user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,6 +66,11 @@ public class PostsActivity extends AppCompatActivity {
     private void fixed() {
         sp = PreferenceManager.getDefaultSharedPreferences(this);
         currentUserID = sp.getString(MainActivity.USER_ID_KEY,null);
+        Intent intent = getIntent();
+        id_user = intent.getStringExtra(RvPostsProfileAdapter.ID_USER_KEY);
+        if (id_user != null){
+            currentUserID = id_user;
+        }
         posts = new ArrayList<>();
         ConnectivityManager conMgr =  (ConnectivityManager)getBaseContext()
                 .getSystemService(Context.CONNECTIVITY_SERVICE);
