@@ -55,7 +55,7 @@
         <entry key="..\:/Users/hp/AndroidStudioProjects/Donation/app/src/main/res/layout/custom_favorite.xml" value="0.25" />
         <entry key="..\:/Users/hp/AndroidStudioProjects/Donation/app/src/main/res/layout/custom_just_display_images_post_rv.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/hp/AndroidStudioProjects/Donation/app/src/main/res/layout/custom_layout_search.xml" value="0.2" />
-        <entry key="..\:/Users/hp/AndroidStudioProjects/Donation/app/src/main/res/layout/custom_likes_rv.xml" value="0.25" />
+        <entry key="..\:/Users/hp/AndroidStudioProjects/Donation/app/src/main/res/layout/custom_likes_rv.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/hp/AndroidStudioProjects/Donation/app/src/main/res/layout/custom_notifications.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/hp/AndroidStudioProjects/Donation/app/src/main/res/layout/custom_photo_post.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/hp/AndroidStudioProjects/Donation/app/src/main/res/layout/custom_profile_image.xml" value="0.20416666666666666" />
@@ -74,6 +74,28 @@
         <entry key="..\:/Users/hp/AndroidStudioProjects/Donation/app/src/main/res/menu/add_post_menu.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/hp/AndroidStudioProjects/Donation/app/src/main/res/menu/menu_comment.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/hp/AndroidStudioProjects/Donation/app/src/main/res/menu/menu_post.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/pc world/AndroidStudioProjects/Donation2/app/src/main/res/drawable/ic__chat.xml" value="0.2203125" />
+        <entry key="..\:/Users/pc world/AndroidStudioProjects/Donation2/app/src/main/res/drawable/ic_chat.xml" value="0.2203125" />
+        <entry key="..\:/Users/pc world/AndroidStudioProjects/Donation2/app/src/main/res/layout-ar/fragment_menu.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/pc world/AndroidStudioProjects/Donation2/app/src/main/res/layout/activity_add_charity_campaign.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/pc world/AndroidStudioProjects/Donation2/app/src/main/res/layout/activity_add_photo.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/pc world/AndroidStudioProjects/Donation2/app/src/main/res/layout/activity_add_video.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/pc world/AndroidStudioProjects/Donation2/app/src/main/res/layout/activity_app_review.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/pc world/AndroidStudioProjects/Donation2/app/src/main/res/layout/activity_chat.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/pc world/AndroidStudioProjects/Donation2/app/src/main/res/layout/activity_display_all_images_post.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/pc world/AndroidStudioProjects/Donation2/app/src/main/res/layout/activity_main.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/pc world/AndroidStudioProjects/Donation2/app/src/main/res/layout/activity_messanger.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/pc world/AndroidStudioProjects/Donation2/app/src/main/res/layout/activity_other_profile.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/pc world/AndroidStudioProjects/Donation2/app/src/main/res/layout/activity_posts.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/pc world/AndroidStudioProjects/Donation2/app/src/main/res/layout/custom_display_images_rv.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/pc world/AndroidStudioProjects/Donation2/app/src/main/res/layout/custom_display_video_rv.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/pc world/AndroidStudioProjects/Donation2/app/src/main/res/layout/custom_just_display_images_post_rv.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/pc world/AndroidStudioProjects/Donation2/app/src/main/res/layout/custom_photo_post.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/pc world/AndroidStudioProjects/Donation2/app/src/main/res/layout/fragment_add_post.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/pc world/AndroidStudioProjects/Donation2/app/src/main/res/layout/fragment_menu.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/pc world/AndroidStudioProjects/Donation2/app/src/main/res/layout/fragment_profile.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/pc world/AndroidStudioProjects/Donation2/app/src/main/res/layout/item_receive.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/pc world/AndroidStudioProjects/Donation2/app/src/main/res/layout/item_sent.xml" value="0.20416666666666666" />
       </map>
     </option>
   </component>

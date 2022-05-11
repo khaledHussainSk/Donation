@@ -1,102 +1,125 @@
 package com.khaled.donation.Adapters;
 
+import android.app.AlertDialog;
 import android.content.Context;
-import android.content.Intent;
+import android.content.DialogInterface;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.bumptech.glide.Glide;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
-import com.khaled.donation.ChatActivity;
-import com.khaled.donation.Models.User;
+import com.khaled.donation.Models.MessageModel;
 import com.khaled.donation.R;
-import com.khaled.donation.databinding.CustomChatBinding;
+import com.khaled.donation.databinding.ItemReceiveBinding;
+import com.khaled.donation.databinding.ItemSentBinding;
 
 import java.util.ArrayList;
 
-public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.ChatViewHolder> {
-
-    ArrayList<User> userArrayList;
+public class ChatAdapter extends RecyclerView.Adapter{
+    ArrayList<MessageModel> messageModels;
     Context context;
+    String recId;
 
-    public ChatAdapter(ArrayList<User> userArrayList) {
-        this.userArrayList = userArrayList;
+    public ChatAdapter(ArrayList<MessageModel> messageModels, Context context, String recId) {
+        this.messageModels = messageModels;
+        this.context = context;
+        this.recId = recId;
+    }
+
+    int SENDER_VIEW_TYPE = 1;
+    int RECIEVER_VIEW_TYPE = 2;
+
+    public ChatAdapter(ArrayList<MessageModel> messageModels, Context context) {
+        this.messageModels = messageModels;
+        this.context = context;
     }
 
     @NonNull
     @Override
-    public ChatViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.custom_chat, parent, false);
-        context = parent.getContext();
-        return new ChatViewHolder(view);
+    public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        if (viewType==SENDER_VIEW_TYPE){
+            View view = LayoutInflater.from(context).inflate(R.layout.item_sent,parent, false);
+            return new SentViewHolder(view);
+        }else {
+            View view = LayoutInflater.from(context).inflate(R.layout.item_receive,parent, false);
+            return new ReceiverViewHolder(view);
+        }
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ChatViewHolder holder, int position) {
-        User user = userArrayList.get(position);
+    public int getItemViewType(int position) {
+        if (messageModels.get(position).getuId().equals(FirebaseAuth.getInstance().getUid())){
+            return SENDER_VIEW_TYPE;
+        }else {
+            return RECIEVER_VIEW_TYPE;
+        }
 
-        String senderId = FirebaseAuth.getInstance().getUid();
+    }
 
-        FirebaseDatabase.getInstance().getReference().child("chats")
-                .child(FirebaseAuth.getInstance().getUid() + user.getIdUser())
-                .orderByChild("timestamp")
-                .limitToLast(1)
-                .addListenerForSingleValueEvent(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot snapshot) {
-                        if (snapshot.hasChildren()){
-                            for (DataSnapshot snapshot1 : snapshot.getChildren()){
-                                holder.binding.lastMsg.setText(snapshot1.child("message")
-                                        .getValue().toString());
-                            }
-                        }
-                    }
+    @Override
+    public void onBindViewHolder(@NonNull  RecyclerView.ViewHolder holder, int position) {
+        MessageModel messageModel = messageModels.get(position);
 
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError error) {
-
-                    }
-                });
-
-
-        holder.binding.username.setText(user.getFullName());
-
-        Glide.with(context).load(user.getImageProfile())
-                .placeholder(R.drawable.ic_user4)
-                .into(holder.binding.profile);
-
-        holder.itemView.setOnClickListener(new View.OnClickListener() {
+        holder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(context, ChatActivity.class);
-                intent.putExtra("name", user.getFullName());
-                intent.putExtra("image", user.getImageProfile());
-                intent.putExtra("uid", user.getIdUser());
-                context.startActivity(intent);
+            public boolean onLongClick(View view) {
+                new AlertDialog.Builder(context)
+                        .setTitle("Delete")
+                        .setMessage("Are you sure you want to delete this message")
+                        .setPositiveButton("yes", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                FirebaseDatabase database = FirebaseDatabase.getInstance();
+                                String senderRoom = FirebaseAuth.getInstance().getUid() + recId;
+                                database.getReference().child("chats").child(senderRoom)
+                                        .child(messageModel.getMessageId())
+                                        .setValue(null);
+                            }
+                        }).setNegativeButton("No", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        dialogInterface.dismiss();
+                    }
+                }).show();
+
+                return false;
             }
         });
+
+        if (holder.getClass()==SentViewHolder.class){
+            ((SentViewHolder)holder).binding.message.setText(messageModel.getMessage());
+        }else {
+            ((ReceiverViewHolder)holder).binding.message.setText(messageModel.getMessage());
+        }
     }
 
     @Override
     public int getItemCount() {
-        return userArrayList.size();
+        return messageModels.size();
     }
 
-    public class ChatViewHolder extends RecyclerView.ViewHolder {
+    public class SentViewHolder extends RecyclerView.ViewHolder {
 
-        CustomChatBinding binding;
-
-        public ChatViewHolder(@NonNull View itemView) {
+        ItemSentBinding binding;
+        public SentViewHolder(@NonNull View itemView) {
             super(itemView);
-            binding = CustomChatBinding.bind(itemView);
+            binding = ItemSentBinding.bind(itemView);
+        }
+    }
+
+    public class ReceiverViewHolder extends RecyclerView.ViewHolder {
+
+        ItemReceiveBinding binding;
+
+        public ReceiverViewHolder(@NonNull View itemView) {
+            super(itemView);
+            binding = ItemReceiveBinding.bind(itemView);
         }
     }
 }
+

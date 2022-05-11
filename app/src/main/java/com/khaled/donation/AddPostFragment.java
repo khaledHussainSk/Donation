@@ -33,7 +33,9 @@ import es.dmoral.toasty.Toasty;
 public class AddPostFragment extends Fragment {
 
     public static final String IMAGE_STRING_KEY = "IMAGE_STRING_KEY";
+    public static final String VIDEO_STRING_KEY = "VIDEO_STRING_KEY";
     String imageString;
+    String videoString;
     SharedPreferences sp;
     FragmentAddPostBinding binding;
     User currentUser;
@@ -106,6 +108,40 @@ public class AddPostFragment extends Fragment {
             @Override
             public void onClick(View view) {
 
+            }
+        });
+
+        ActivityResultLauncher<String> arlVideo = registerForActivityResult(
+                new ActivityResultContracts.GetContent(),
+                new ActivityResultCallback<Uri>() {
+                    @Override
+                    public void onActivityResult(Uri result) {
+                       videoString = String.valueOf(result);
+                       Intent intent = new Intent(getActivity(),ActivityAddVideo.class);
+                       intent.putExtra(VIDEO_STRING_KEY,videoString);
+                       startActivity(intent);
+                    }
+                }
+        );
+
+        binding.btnAddVideo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (netInfo == null){
+                    dialogInternet_error();
+                }else{
+                    if (validity == 1 || validity == 3 /* demo */ || validity == 2){
+                        if (HomeFragment.isUploaded == false){
+                            arlVideo.launch("video/*");
+                        }else {
+                            Toasty.info(getActivity(),R.string.toast_waitUploaded
+                                    ,Toast.LENGTH_SHORT).show();
+                        }
+                    }else{
+                        Toasty.info(getActivity(),R.string.toast_notAllwoed
+                                ,Toast.LENGTH_SHORT).show();
+                    }
+                }
             }
         });
 

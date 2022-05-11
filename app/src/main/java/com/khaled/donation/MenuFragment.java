@@ -137,6 +137,13 @@ public class MenuFragment extends Fragment {
                 startActivity(intent);
             }
         });
+        binding.icChat.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity(),MessangerActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
     private void getUser(){
