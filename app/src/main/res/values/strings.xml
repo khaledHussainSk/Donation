@@ -127,6 +127,9 @@
     <string name="unsave">Unsave</string>
     <string name="noDescription">No description</string>
     <string name="unfollow">Following</string>
+    <string name="all">All</string>
+    <string name="description">Description</string>
+    <string name="chooseLanguage">Choose language...</string>
 
 
 </resources>

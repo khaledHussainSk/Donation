@@ -11,17 +11,28 @@ public class Post implements Serializable {
 //    private ArrayList<String> videos;
     private Date datenews;
     private int likes,comments;
+    private String category;
 
-    public Post(String description, String publisher, ArrayList<String> images, Date datenews, int likes, int comments) {
+    public Post(String description, String publisher, ArrayList<String> images
+            , Date datenews, int likes, int comments,String category) {
         this.description = description;
         this.publisher = publisher;
         this.images = images;
         this.datenews = datenews;
         this.likes = likes;
         this.comments = comments;
+        this.category = category;
     }
 
     public Post() {
+    }
+
+    public String getCategory() {
+        return category;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
     }
 
     public String getPostId() {

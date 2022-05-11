@@ -44,7 +44,7 @@
                         android:background="@color/white"
                         android:backgroundTint="#00FFFFFF"
                         android:gravity="start"
-                        android:hint="@string/writeACaption"
+                        android:hint="@string/description"
                         android:inputType="textMultiLine"
                         android:outlineAmbientShadowColor="@color/white"
                         android:outlineSpotShadowColor="@color/white"
@@ -168,7 +168,8 @@
                     android:layout_centerVertical="true"
                     android:textColor="@color/white"
                     android:textSize="@dimen/_14sdp"
-                    app:srcCompat="@drawable/icon_ionic_ios_arrow_back" />
+                    android:tint="@color/black"
+                    app:srcCompat="@drawable/ic_arrow" />
 
             </RelativeLayout>
 

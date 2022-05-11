@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.Configuration;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
@@ -26,22 +27,26 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.khaled.donation.Models.User;
 import com.khaled.donation.databinding.FragmentMenuBinding;
 
+import java.util.Locale;
+
 public class MenuFragment extends Fragment {
     SharedPreferences sp;
-    SharedPreferences.Editor editt;
     FragmentMenuBinding binding;
     String currentUserId;
     User currentUser;
     NetworkInfo netInfo;
+    SharedPreferences.Editor edit;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         binding = FragmentMenuBinding.inflate(getLayoutInflater(), container, false);
+
         fixed();
         getUser();
-        return binding.getRoot();
+        language();
 
+        return binding.getRoot();
     }
 
     private void fixed(){
@@ -49,7 +54,7 @@ public class MenuFragment extends Fragment {
                 .getSystemService(Context.CONNECTIVITY_SERVICE);
         netInfo = conMgr.getActiveNetworkInfo();
         sp = PreferenceManager.getDefaultSharedPreferences(getActivity());
-        editt = sp.edit();
+        edit = sp.edit();
         currentUserId = sp.getString(MainActivity.USER_ID_KEY,null);
         binding.constraintLayoutProfile.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -57,6 +62,7 @@ public class MenuFragment extends Fragment {
                 MainActivity.bottomNavigation.show(5,true);
             }
         });
+
         binding.constraintLayoutContactUs.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -108,8 +114,8 @@ public class MenuFragment extends Fragment {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         Intent intent = new Intent(getActivity(),LoginActivity.class);
-                        editt.putString(LoginActivity.ISCHECKED_KEY,null);
-                        editt.apply();
+                        edit.putString(LoginActivity.ISCHECKED_KEY,null);
+                        edit.apply();
                         startActivity(intent);
                         MainActivity.context.finishAffinity();
                     }
@@ -162,6 +168,54 @@ public class MenuFragment extends Fragment {
                 .setCancelable(false)
                 .setMessage(getResources().getString(R.string.internet_error))
                 .setPositiveButton(R.string.ok, null).show();
+    }
+
+    private void language(){
+        binding.constraintLayoutLanguage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                showChangeLanguageDialog();
+            }
+        });
+    }
+
+    private void showChangeLanguageDialog(){
+        final String[] listItem = {"العربية","English"};
+        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+        builder.setTitle(R.string.chooseLanguage);
+        builder.setSingleChoiceItems(listItem, -1, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                if (i == 0){
+                    setLocal("ar");
+                    getActivity().recreate();
+                }else if (i == 1){
+                    setLocal("en");
+                    getActivity().recreate();
+                }
+
+                dialogInterface.dismiss();
+            }
+        });
+
+        AlertDialog dialog = builder.create();
+        dialog.show();
+
+    }
+
+    private void setLocal(String lang) {
+        Locale locale = new Locale(lang);
+        locale.setDefault(locale);
+        Configuration configuration = new Configuration();
+        configuration.locale = locale;
+        getActivity().getResources().updateConfiguration(configuration,getActivity()
+                .getResources().getDisplayMetrics());
+        if (lang.equals("ar")){
+            edit.putString("My_lang","ar");
+        }else if (lang.equals("en")){
+            edit.putString("My_lang",null);
+        }
+        edit.apply();
     }
 
 }

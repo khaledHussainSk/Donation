@@ -220,7 +220,7 @@ public class AddPhotoActivity extends AppCompatActivity {
     private void createPost(){
         post = new Post(description,currentUserID,copyOfimages
                 ,Calendar.getInstance().getTime()
-                ,0,0);
+                ,0,0,"");
         DocumentReference documentReference = FirebaseFirestore
                 .getInstance().collection("Posts")
                 .document();
