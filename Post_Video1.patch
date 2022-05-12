@@ -1,0 +1,1543 @@
+Index: .idea/libraries/Gradle__androidx_lifecycle_lifecycle_runtime_2_3_1_aar.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/libraries/Gradle__androidx_lifecycle_lifecycle_runtime_2_3_1_aar.xml b/.idea/libraries/Gradle__androidx_lifecycle_lifecycle_runtime_2_3_1_aar.xml
+deleted file mode 100644
+--- a/.idea/libraries/Gradle__androidx_lifecycle_lifecycle_runtime_2_3_1_aar.xml	(revision 4f8f5b87ee0ff1897056629ecb15d93f33f35f63)
++++ /dev/null	(revision 4f8f5b87ee0ff1897056629ecb15d93f33f35f63)
+@@ -1,13 +0,0 @@
+-<component name="libraryTable">
+-  <library name="Gradle: androidx.lifecycle:lifecycle-runtime:2.3.1@aar">
+-    <CLASSES>
+-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/582c336ceec203a2fbf12ba507b058bd/transformed/lifecycle-runtime-2.3.1/jars/classes.jar!/" />
+-      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/582c336ceec203a2fbf12ba507b058bd/transformed/lifecycle-runtime-2.3.1/res" />
+-      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/582c336ceec203a2fbf12ba507b058bd/transformed/lifecycle-runtime-2.3.1/AndroidManifest.xml" />
+-    </CLASSES>
+-    <JAVADOC />
+-    <SOURCES>
+-      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/androidx.lifecycle/lifecycle-runtime/2.3.1/ae7040cf314de81d20ac69f28f5ab6c9a2c0d1ab/lifecycle-runtime-2.3.1-sources.jar!/" />
+-    </SOURCES>
+-  </library>
+-</component>
+\ No newline at end of file
+Index: .idea/libraries/Gradle__androidx_lifecycle_lifecycle_runtime_ktx_2_4_0_aar.xml
+===================================================================
+diff --git a/.idea/libraries/Gradle__androidx_lifecycle_lifecycle_runtime_ktx_2_4_0_aar.xml b/.idea/libraries/Gradle__androidx_lifecycle_lifecycle_runtime_ktx_2_4_0_aar.xml
+new file mode 100644
+--- /dev/null	(revision 32f6d9ace9009b5f3da8e81f6eb1515988e1add8)
++++ b/.idea/libraries/Gradle__androidx_lifecycle_lifecycle_runtime_ktx_2_4_0_aar.xml	(revision 32f6d9ace9009b5f3da8e81f6eb1515988e1add8)
+@@ -0,0 +1,13 @@
++<component name="libraryTable">
++  <library name="Gradle: androidx.lifecycle:lifecycle-runtime-ktx:2.4.0@aar">
++    <CLASSES>
++      <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/9c209478e2aa3ab7fd70275cae0a5557/transformed/jetified-lifecycle-runtime-ktx-2.4.0/jars/classes.jar!/" />
++      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/9c209478e2aa3ab7fd70275cae0a5557/transformed/jetified-lifecycle-runtime-ktx-2.4.0/res" />
++      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/9c209478e2aa3ab7fd70275cae0a5557/transformed/jetified-lifecycle-runtime-ktx-2.4.0/AndroidManifest.xml" />
++    </CLASSES>
++    <JAVADOC />
++    <SOURCES>
++      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/androidx.lifecycle/lifecycle-runtime-ktx/2.4.0/6d338022f8fa82c24121d5d249fe5daeeb297742/lifecycle-runtime-ktx-2.4.0-sources.jar!/" />
++    </SOURCES>
++  </library>
++</component>
+\ No newline at end of file
+Index: .idea/libraries/Gradle__androidx_recyclerview_recyclerview_1_2_1_aar.xml
+===================================================================
+diff --git a/.idea/libraries/Gradle__androidx_recyclerview_recyclerview_1_2_1_aar.xml b/.idea/libraries/Gradle__androidx_recyclerview_recyclerview_1_2_1_aar.xml
+new file mode 100644
+--- /dev/null	(revision 32f6d9ace9009b5f3da8e81f6eb1515988e1add8)
++++ b/.idea/libraries/Gradle__androidx_recyclerview_recyclerview_1_2_1_aar.xml	(revision 32f6d9ace9009b5f3da8e81f6eb1515988e1add8)
+@@ -0,0 +1,16 @@
++<component name="libraryTable">
++  <library name="Gradle: androidx.recyclerview:recyclerview:1.2.1@aar">
++    <ANNOTATIONS>
++      <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/ba10df269ed9bcf10de5800766d5577a/transformed/recyclerview-1.2.1/annotations.zip!/" />
++    </ANNOTATIONS>
++    <CLASSES>
++      <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/ba10df269ed9bcf10de5800766d5577a/transformed/recyclerview-1.2.1/jars/classes.jar!/" />
++      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/ba10df269ed9bcf10de5800766d5577a/transformed/recyclerview-1.2.1/res" />
++      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/ba10df269ed9bcf10de5800766d5577a/transformed/recyclerview-1.2.1/AndroidManifest.xml" />
++    </CLASSES>
++    <JAVADOC />
++    <SOURCES>
++      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/androidx.recyclerview/recyclerview/1.2.1/f0f93e67af3f7417bdd560d5142f6dec4fe629c3/recyclerview-1.2.1-sources.jar!/" />
++    </SOURCES>
++  </library>
++</component>
+\ No newline at end of file
+Index: .idea/libraries/Gradle__com_pierfrancescosoffritti_androidyoutubeplayer_core_11_0_1_aar.xml
+===================================================================
+diff --git a/.idea/libraries/Gradle__com_pierfrancescosoffritti_androidyoutubeplayer_core_11_0_1_aar.xml b/.idea/libraries/Gradle__com_pierfrancescosoffritti_androidyoutubeplayer_core_11_0_1_aar.xml
+new file mode 100644
+--- /dev/null	(revision 32f6d9ace9009b5f3da8e81f6eb1515988e1add8)
++++ b/.idea/libraries/Gradle__com_pierfrancescosoffritti_androidyoutubeplayer_core_11_0_1_aar.xml	(revision 32f6d9ace9009b5f3da8e81f6eb1515988e1add8)
+@@ -0,0 +1,15 @@
++<component name="libraryTable">
++  <library name="Gradle: com.pierfrancescosoffritti.androidyoutubeplayer:core:11.0.1@aar">
++    <CLASSES>
++      <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/a8ee87700bd1262486f4395d98d9a959/transformed/jetified-core-11.0.1/jars/classes.jar!/" />
++      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/a8ee87700bd1262486f4395d98d9a959/transformed/jetified-core-11.0.1/res" />
++      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/a8ee87700bd1262486f4395d98d9a959/transformed/jetified-core-11.0.1/AndroidManifest.xml" />
++    </CLASSES>
++    <JAVADOC>
++      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.pierfrancescosoffritti.androidyoutubeplayer/core/11.0.1/6dde3f62ac5351e1c1c46c09b06c50854085e3be/core-11.0.1-javadoc.jar!/" />
++    </JAVADOC>
++    <SOURCES>
++      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.pierfrancescosoffritti.androidyoutubeplayer/core/11.0.1/a335335491de514ea0247bfa1d0565af2566c582/core-11.0.1-sources.jar!/" />
++    </SOURCES>
++  </library>
++</component>
+\ No newline at end of file
+Index: .idea/libraries/Gradle__com_theartofdev_edmodo_android_image_cropper_2_8_0_aar.xml
+===================================================================
+diff --git a/.idea/libraries/Gradle__com_theartofdev_edmodo_android_image_cropper_2_8_0_aar.xml b/.idea/libraries/Gradle__com_theartofdev_edmodo_android_image_cropper_2_8_0_aar.xml
+new file mode 100644
+--- /dev/null	(revision 32f6d9ace9009b5f3da8e81f6eb1515988e1add8)
++++ b/.idea/libraries/Gradle__com_theartofdev_edmodo_android_image_cropper_2_8_0_aar.xml	(revision 32f6d9ace9009b5f3da8e81f6eb1515988e1add8)
+@@ -0,0 +1,15 @@
++<component name="libraryTable">
++  <library name="Gradle: com.theartofdev.edmodo:android-image-cropper:2.8.0@aar">
++    <CLASSES>
++      <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/b6b2006c204b307b8fb953586a34cd3b/transformed/jetified-android-image-cropper-2.8.0/jars/classes.jar!/" />
++      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/b6b2006c204b307b8fb953586a34cd3b/transformed/jetified-android-image-cropper-2.8.0/res" />
++      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/b6b2006c204b307b8fb953586a34cd3b/transformed/jetified-android-image-cropper-2.8.0/AndroidManifest.xml" />
++    </CLASSES>
++    <JAVADOC>
++      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.theartofdev.edmodo/android-image-cropper/2.8.0/40cb681adc5857ef916275f6c3f45b662967e1c9/android-image-cropper-2.8.0-javadoc.jar!/" />
++    </JAVADOC>
++    <SOURCES>
++      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.theartofdev.edmodo/android-image-cropper/2.8.0/e5160ab4f90a729c19db7841cb2d480ea6f5fe3/android-image-cropper-2.8.0-sources.jar!/" />
++    </SOURCES>
++  </library>
++</component>
+\ No newline at end of file
+Index: .idea/libraries/Gradle__junit_junit_4_13_2.xml
+===================================================================
+diff --git a/.idea/libraries/Gradle__junit_junit_4_13_2.xml b/.idea/libraries/Gradle__junit_junit_4_13_2.xml
+new file mode 100644
+--- /dev/null	(revision 32f6d9ace9009b5f3da8e81f6eb1515988e1add8)
++++ b/.idea/libraries/Gradle__junit_junit_4_13_2.xml	(revision 32f6d9ace9009b5f3da8e81f6eb1515988e1add8)
+@@ -0,0 +1,13 @@
++<component name="libraryTable">
++  <library name="Gradle: junit:junit:4.13.2">
++    <CLASSES>
++      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/junit/junit/4.13.2/8ac9e16d933b6fb43bc7f576336b8f4d7eb5ba12/junit-4.13.2.jar!/" />
++    </CLASSES>
++    <JAVADOC>
++      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/junit/junit/4.13.2/f2f3f384dacd2ade2ddf7aa7e0f4360dfee38672/junit-4.13.2-javadoc.jar!/" />
++    </JAVADOC>
++    <SOURCES>
++      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/junit/junit/4.13.2/33987872a811fe4d4001ed494b07854822257f42/junit-4.13.2-sources.jar!/" />
++    </SOURCES>
++  </library>
++</component>
+\ No newline at end of file
+Index: .idea/libraries/Gradle__org_jetbrains_kotlin_kotlin_stdlib_1_4_10.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/libraries/Gradle__org_jetbrains_kotlin_kotlin_stdlib_1_4_10.xml b/.idea/libraries/Gradle__org_jetbrains_kotlin_kotlin_stdlib_1_4_10.xml
+deleted file mode 100644
+--- a/.idea/libraries/Gradle__org_jetbrains_kotlin_kotlin_stdlib_1_4_10.xml	(revision 4f8f5b87ee0ff1897056629ecb15d93f33f35f63)
++++ /dev/null	(revision 4f8f5b87ee0ff1897056629ecb15d93f33f35f63)
+@@ -1,13 +0,0 @@
+-<component name="libraryTable">
+-  <library name="Gradle: org.jetbrains.kotlin:kotlin-stdlib:1.4.10">
+-    <CLASSES>
+-      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlin/kotlin-stdlib/1.4.10/ea29e063d2bbe695be13e9d044dcfb0c7add398e/kotlin-stdlib-1.4.10.jar!/" />
+-    </CLASSES>
+-    <JAVADOC>
+-      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlin/kotlin-stdlib/1.4.10/5b8f86fea035328fc9e8c660773037a3401ce25f/kotlin-stdlib-1.4.10-javadoc.jar!/" />
+-    </JAVADOC>
+-    <SOURCES>
+-      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlin/kotlin-stdlib/1.4.10/4a5e4f984e6c3e380f100857f04aba4f3e5fbda8/kotlin-stdlib-1.4.10-sources.jar!/" />
+-    </SOURCES>
+-  </library>
+-</component>
+\ No newline at end of file
+Index: .idea/libraries/Gradle__org_jetbrains_kotlin_kotlin_stdlib_1_6_0.xml
+===================================================================
+diff --git a/.idea/libraries/Gradle__org_jetbrains_kotlin_kotlin_stdlib_1_6_0.xml b/.idea/libraries/Gradle__org_jetbrains_kotlin_kotlin_stdlib_1_6_0.xml
+new file mode 100644
+--- /dev/null	(revision 32f6d9ace9009b5f3da8e81f6eb1515988e1add8)
++++ b/.idea/libraries/Gradle__org_jetbrains_kotlin_kotlin_stdlib_1_6_0.xml	(revision 32f6d9ace9009b5f3da8e81f6eb1515988e1add8)
+@@ -0,0 +1,13 @@
++<component name="libraryTable">
++  <library name="Gradle: org.jetbrains.kotlin:kotlin-stdlib:1.6.0">
++    <CLASSES>
++      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlin/kotlin-stdlib/1.6.0/a40b8b22529b733892edf4b73468ce598bb17f04/kotlin-stdlib-1.6.0.jar!/" />
++    </CLASSES>
++    <JAVADOC>
++      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlin/kotlin-stdlib/1.6.0/5b8f86fea035328fc9e8c660773037a3401ce25f/kotlin-stdlib-1.6.0-javadoc.jar!/" />
++    </JAVADOC>
++    <SOURCES>
++      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlin/kotlin-stdlib/1.6.0/a6284476c56bd752eb0020e062c78c930abdc168/kotlin-stdlib-1.6.0-sources.jar!/" />
++    </SOURCES>
++  </library>
++</component>
+\ No newline at end of file
+Index: .idea/libraries/Gradle__org_jetbrains_kotlin_kotlin_stdlib_common_1_4_10.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/libraries/Gradle__org_jetbrains_kotlin_kotlin_stdlib_common_1_4_10.xml b/.idea/libraries/Gradle__org_jetbrains_kotlin_kotlin_stdlib_common_1_4_10.xml
+deleted file mode 100644
+--- a/.idea/libraries/Gradle__org_jetbrains_kotlin_kotlin_stdlib_common_1_4_10.xml	(revision 4f8f5b87ee0ff1897056629ecb15d93f33f35f63)
++++ /dev/null	(revision 4f8f5b87ee0ff1897056629ecb15d93f33f35f63)
+@@ -1,13 +0,0 @@
+-<component name="libraryTable">
+-  <library name="Gradle: org.jetbrains.kotlin:kotlin-stdlib-common:1.4.10" type="kotlin.common">
+-    <CLASSES>
+-      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlin/kotlin-stdlib-common/1.4.10/6229be3465805c99db1142ad75e6c6ddeac0b04c/kotlin-stdlib-common-1.4.10.jar!/" />
+-    </CLASSES>
+-    <JAVADOC>
+-      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlin/kotlin-stdlib-common/1.4.10/5b8f86fea035328fc9e8c660773037a3401ce25f/kotlin-stdlib-common-1.4.10-javadoc.jar!/" />
+-    </JAVADOC>
+-    <SOURCES>
+-      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlin/kotlin-stdlib-common/1.4.10/d971e5bb07a7f610eda65e5efc8decbd0548a270/kotlin-stdlib-common-1.4.10-sources.jar!/" />
+-    </SOURCES>
+-  </library>
+-</component>
+\ No newline at end of file
+Index: .idea/libraries/Gradle__org_jetbrains_kotlin_kotlin_stdlib_common_1_6_0.xml
+===================================================================
+diff --git a/.idea/libraries/Gradle__org_jetbrains_kotlin_kotlin_stdlib_common_1_6_0.xml b/.idea/libraries/Gradle__org_jetbrains_kotlin_kotlin_stdlib_common_1_6_0.xml
+new file mode 100644
+--- /dev/null	(revision 32f6d9ace9009b5f3da8e81f6eb1515988e1add8)
++++ b/.idea/libraries/Gradle__org_jetbrains_kotlin_kotlin_stdlib_common_1_6_0.xml	(revision 32f6d9ace9009b5f3da8e81f6eb1515988e1add8)
+@@ -0,0 +1,13 @@
++<component name="libraryTable">
++  <library name="Gradle: org.jetbrains.kotlin:kotlin-stdlib-common:1.6.0" type="kotlin.common">
++    <CLASSES>
++      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlin/kotlin-stdlib-common/1.6.0/7857e365f925cfa060f941c1357cda1f8790502c/kotlin-stdlib-common-1.6.0.jar!/" />
++    </CLASSES>
++    <JAVADOC>
++      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlin/kotlin-stdlib-common/1.6.0/5b8f86fea035328fc9e8c660773037a3401ce25f/kotlin-stdlib-common-1.6.0-javadoc.jar!/" />
++    </JAVADOC>
++    <SOURCES>
++      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlin/kotlin-stdlib-common/1.6.0/241e9056f9415f6970a9d7d43de2a117b94959d0/kotlin-stdlib-common-1.6.0-sources.jar!/" />
++    </SOURCES>
++  </library>
++</component>
+\ No newline at end of file
+Index: .idea/libraries/Gradle__org_jetbrains_kotlin_kotlin_stdlib_jdk7_1_4_10.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/libraries/Gradle__org_jetbrains_kotlin_kotlin_stdlib_jdk7_1_4_10.xml b/.idea/libraries/Gradle__org_jetbrains_kotlin_kotlin_stdlib_jdk7_1_4_10.xml
+deleted file mode 100644
+--- a/.idea/libraries/Gradle__org_jetbrains_kotlin_kotlin_stdlib_jdk7_1_4_10.xml	(revision 4f8f5b87ee0ff1897056629ecb15d93f33f35f63)
++++ /dev/null	(revision 4f8f5b87ee0ff1897056629ecb15d93f33f35f63)
+@@ -1,13 +0,0 @@
+-<component name="libraryTable">
+-  <library name="Gradle: org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.4.10">
+-    <CLASSES>
+-      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlin/kotlin-stdlib-jdk7/1.4.10/30e46450b0bb3dbf43898d2f461be4a942784780/kotlin-stdlib-jdk7-1.4.10.jar!/" />
+-    </CLASSES>
+-    <JAVADOC>
+-      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlin/kotlin-stdlib-jdk7/1.4.10/5b8f86fea035328fc9e8c660773037a3401ce25f/kotlin-stdlib-jdk7-1.4.10-javadoc.jar!/" />
+-    </JAVADOC>
+-    <SOURCES>
+-      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlin/kotlin-stdlib-jdk7/1.4.10/710a0b1d4fa5e809dd4005eff7e334ee38f33ae8/kotlin-stdlib-jdk7-1.4.10-sources.jar!/" />
+-    </SOURCES>
+-  </library>
+-</component>
+\ No newline at end of file
+Index: .idea/libraries/Gradle__org_jetbrains_kotlin_kotlin_stdlib_jdk7_1_6_0.xml
+===================================================================
+diff --git a/.idea/libraries/Gradle__org_jetbrains_kotlin_kotlin_stdlib_jdk7_1_6_0.xml b/.idea/libraries/Gradle__org_jetbrains_kotlin_kotlin_stdlib_jdk7_1_6_0.xml
+new file mode 100644
+--- /dev/null	(revision 32f6d9ace9009b5f3da8e81f6eb1515988e1add8)
++++ b/.idea/libraries/Gradle__org_jetbrains_kotlin_kotlin_stdlib_jdk7_1_6_0.xml	(revision 32f6d9ace9009b5f3da8e81f6eb1515988e1add8)
+@@ -0,0 +1,13 @@
++<component name="libraryTable">
++  <library name="Gradle: org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.6.0">
++    <CLASSES>
++      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlin/kotlin-stdlib-jdk7/1.6.0/da6bdc87391322974a43ccc00a25536ae74dad51/kotlin-stdlib-jdk7-1.6.0.jar!/" />
++    </CLASSES>
++    <JAVADOC>
++      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlin/kotlin-stdlib-jdk7/1.6.0/5b8f86fea035328fc9e8c660773037a3401ce25f/kotlin-stdlib-jdk7-1.6.0-javadoc.jar!/" />
++    </JAVADOC>
++    <SOURCES>
++      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlin/kotlin-stdlib-jdk7/1.6.0/ccdfdab71f0f3ba104191d8f673d0620e7ed2e46/kotlin-stdlib-jdk7-1.6.0-sources.jar!/" />
++    </SOURCES>
++  </library>
++</component>
+\ No newline at end of file
+Index: .idea/libraries/Gradle__org_jetbrains_kotlin_kotlin_stdlib_jdk8_1_6_0.xml
+===================================================================
+diff --git a/.idea/libraries/Gradle__org_jetbrains_kotlin_kotlin_stdlib_jdk8_1_6_0.xml b/.idea/libraries/Gradle__org_jetbrains_kotlin_kotlin_stdlib_jdk8_1_6_0.xml
+new file mode 100644
+--- /dev/null	(revision 32f6d9ace9009b5f3da8e81f6eb1515988e1add8)
++++ b/.idea/libraries/Gradle__org_jetbrains_kotlin_kotlin_stdlib_jdk8_1_6_0.xml	(revision 32f6d9ace9009b5f3da8e81f6eb1515988e1add8)
+@@ -0,0 +1,13 @@
++<component name="libraryTable">
++  <library name="Gradle: org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.6.0">
++    <CLASSES>
++      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlin/kotlin-stdlib-jdk8/1.6.0/baf82c475e9372c25407f3d132439e4aa803b8b8/kotlin-stdlib-jdk8-1.6.0.jar!/" />
++    </CLASSES>
++    <JAVADOC>
++      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlin/kotlin-stdlib-jdk8/1.6.0/5b8f86fea035328fc9e8c660773037a3401ce25f/kotlin-stdlib-jdk8-1.6.0-javadoc.jar!/" />
++    </JAVADOC>
++    <SOURCES>
++      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlin/kotlin-stdlib-jdk8/1.6.0/a61c046a90a08dd30eb105b8b8530fce678ecb46/kotlin-stdlib-jdk8-1.6.0-sources.jar!/" />
++    </SOURCES>
++  </library>
++</component>
+\ No newline at end of file
+Index: .idea/libraries/Gradle__org_jetbrains_kotlinx_kotlinx_coroutines_android_1_5_0.xml
+===================================================================
+diff --git a/.idea/libraries/Gradle__org_jetbrains_kotlinx_kotlinx_coroutines_android_1_5_0.xml b/.idea/libraries/Gradle__org_jetbrains_kotlinx_kotlinx_coroutines_android_1_5_0.xml
+new file mode 100644
+--- /dev/null	(revision 32f6d9ace9009b5f3da8e81f6eb1515988e1add8)
++++ b/.idea/libraries/Gradle__org_jetbrains_kotlinx_kotlinx_coroutines_android_1_5_0.xml	(revision 32f6d9ace9009b5f3da8e81f6eb1515988e1add8)
+@@ -0,0 +1,13 @@
++<component name="libraryTable">
++  <library name="Gradle: org.jetbrains.kotlinx:kotlinx-coroutines-android:1.5.0">
++    <CLASSES>
++      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlinx/kotlinx-coroutines-android/1.5.0/c1df91b076cf9a1af564bb7edd41c49683169e25/kotlinx-coroutines-android-1.5.0.jar!/" />
++    </CLASSES>
++    <JAVADOC>
++      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlinx/kotlinx-coroutines-android/1.5.0/d5d9151a60da017e4305d30984e192dd43bb53c/kotlinx-coroutines-android-1.5.0-javadoc.jar!/" />
++    </JAVADOC>
++    <SOURCES>
++      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlinx/kotlinx-coroutines-android/1.5.0/15efc580aa964183e55fb2eda1b5ad2f67fd4638/kotlinx-coroutines-android-1.5.0-sources.jar!/" />
++    </SOURCES>
++  </library>
++</component>
+\ No newline at end of file
+Index: .idea/libraries/Gradle__org_jetbrains_kotlinx_kotlinx_coroutines_core_jvm_1_5_0.xml
+===================================================================
+diff --git a/.idea/libraries/Gradle__org_jetbrains_kotlinx_kotlinx_coroutines_core_jvm_1_5_0.xml b/.idea/libraries/Gradle__org_jetbrains_kotlinx_kotlinx_coroutines_core_jvm_1_5_0.xml
+new file mode 100644
+--- /dev/null	(revision 32f6d9ace9009b5f3da8e81f6eb1515988e1add8)
++++ b/.idea/libraries/Gradle__org_jetbrains_kotlinx_kotlinx_coroutines_core_jvm_1_5_0.xml	(revision 32f6d9ace9009b5f3da8e81f6eb1515988e1add8)
+@@ -0,0 +1,13 @@
++<component name="libraryTable">
++  <library name="Gradle: org.jetbrains.kotlinx:kotlinx-coroutines-core-jvm:1.5.0">
++    <CLASSES>
++      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlinx/kotlinx-coroutines-core-jvm/1.5.0/d8cebccdcddd029022aa8646a5a953ff88b13ac8/kotlinx-coroutines-core-jvm-1.5.0.jar!/" />
++    </CLASSES>
++    <JAVADOC>
++      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlinx/kotlinx-coroutines-core-jvm/1.5.0/b4e1487bf4cd2a0a1ddc3b0b129bf6047a02303/kotlinx-coroutines-core-jvm-1.5.0-javadoc.jar!/" />
++    </JAVADOC>
++    <SOURCES>
++      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlinx/kotlinx-coroutines-core-jvm/1.5.0/c188f12813668c2fb0f761fbc71ea53cfa83549e/kotlinx-coroutines-core-jvm-1.5.0-sources.jar!/" />
++    </SOURCES>
++  </library>
++</component>
+\ No newline at end of file
+Index: .idea/misc.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/misc.xml b/.idea/misc.xml
+--- a/.idea/misc.xml	(revision 4f8f5b87ee0ff1897056629ecb15d93f33f35f63)
++++ b/.idea/misc.xml	(revision 32f6d9ace9009b5f3da8e81f6eb1515988e1add8)
+@@ -72,6 +72,10 @@
+         <entry key="..\:/Users/hp/AndroidStudioProjects/Donation/app/src/main/res/menu/menu_post.xml" value="0.20416666666666666" />
+         <entry key="..\:/Users/pc world/AndroidStudioProjects/Donation2/app/src/main/res/drawable/ic__chat.xml" value="0.2203125" />
+         <entry key="..\:/Users/pc world/AndroidStudioProjects/Donation2/app/src/main/res/drawable/ic_chat.xml" value="0.2203125" />
++        <entry key="..\:/Users/pc world/AndroidStudioProjects/Donation2/app/src/main/res/drawable/remove_shape.xml" value="0.2203125" />
++        <entry key="..\:/Users/pc world/AndroidStudioProjects/Donation2/app/src/main/res/layout-ar/custom_display_video_rv_post.xml" value="0.20416666666666666" />
++        <entry key="..\:/Users/pc world/AndroidStudioProjects/Donation2/app/src/main/res/layout-ar/custom_display_videos_rv.xml" value="0.20416666666666666" />
++        <entry key="..\:/Users/pc world/AndroidStudioProjects/Donation2/app/src/main/res/layout-ar/custom_layout_followers.xml" value="0.20416666666666666" />
+         <entry key="..\:/Users/pc world/AndroidStudioProjects/Donation2/app/src/main/res/layout-ar/fragment_menu.xml" value="0.20416666666666666" />
+         <entry key="..\:/Users/pc world/AndroidStudioProjects/Donation2/app/src/main/res/layout/activity_add_charity_campaign.xml" value="0.20416666666666666" />
+         <entry key="..\:/Users/pc world/AndroidStudioProjects/Donation2/app/src/main/res/layout/activity_add_photo.xml" value="0.20416666666666666" />
+@@ -79,13 +83,19 @@
+         <entry key="..\:/Users/pc world/AndroidStudioProjects/Donation2/app/src/main/res/layout/activity_app_review.xml" value="0.20416666666666666" />
+         <entry key="..\:/Users/pc world/AndroidStudioProjects/Donation2/app/src/main/res/layout/activity_chat.xml" value="0.20416666666666666" />
+         <entry key="..\:/Users/pc world/AndroidStudioProjects/Donation2/app/src/main/res/layout/activity_display_all_images_post.xml" value="0.20416666666666666" />
++        <entry key="..\:/Users/pc world/AndroidStudioProjects/Donation2/app/src/main/res/layout/activity_display_image.xml" value="0.20416666666666666" />
+         <entry key="..\:/Users/pc world/AndroidStudioProjects/Donation2/app/src/main/res/layout/activity_main.xml" value="0.20416666666666666" />
+         <entry key="..\:/Users/pc world/AndroidStudioProjects/Donation2/app/src/main/res/layout/activity_messanger.xml" value="0.20416666666666666" />
+         <entry key="..\:/Users/pc world/AndroidStudioProjects/Donation2/app/src/main/res/layout/activity_other_profile.xml" value="0.20416666666666666" />
+         <entry key="..\:/Users/pc world/AndroidStudioProjects/Donation2/app/src/main/res/layout/activity_posts.xml" value="0.20416666666666666" />
++        <entry key="..\:/Users/pc world/AndroidStudioProjects/Donation2/app/src/main/res/layout/activity_search.xml" value="0.20416666666666666" />
++        <entry key="..\:/Users/pc world/AndroidStudioProjects/Donation2/app/src/main/res/layout/custom_chat.xml" value="0.20416666666666666" />
+         <entry key="..\:/Users/pc world/AndroidStudioProjects/Donation2/app/src/main/res/layout/custom_display_images_rv.xml" value="0.20416666666666666" />
+-        <entry key="..\:/Users/pc world/AndroidStudioProjects/Donation2/app/src/main/res/layout/custom_display_video_rv.xml" value="0.20416666666666666" />
++        <entry key="..\:/Users/pc world/AndroidStudioProjects/Donation2/app/src/main/res/layout/custom_display_video_rv.xml" value="0.15816326530612246" />
++        <entry key="..\:/Users/pc world/AndroidStudioProjects/Donation2/app/src/main/res/layout/custom_display_video_rv_post.xml" value="0.15816326530612246" />
+         <entry key="..\:/Users/pc world/AndroidStudioProjects/Donation2/app/src/main/res/layout/custom_just_display_images_post_rv.xml" value="0.20416666666666666" />
++        <entry key="..\:/Users/pc world/AndroidStudioProjects/Donation2/app/src/main/res/layout/custom_layout_followers.xml" value="0.20416666666666666" />
++        <entry key="..\:/Users/pc world/AndroidStudioProjects/Donation2/app/src/main/res/layout/custom_layout_search.xml" value="0.20416666666666666" />
+         <entry key="..\:/Users/pc world/AndroidStudioProjects/Donation2/app/src/main/res/layout/custom_photo_post.xml" value="0.20416666666666666" />
+         <entry key="..\:/Users/pc world/AndroidStudioProjects/Donation2/app/src/main/res/layout/fragment_add_post.xml" value="0.20416666666666666" />
+         <entry key="..\:/Users/pc world/AndroidStudioProjects/Donation2/app/src/main/res/layout/fragment_menu.xml" value="0.20416666666666666" />
+Index: .idea/modules/app/Donation.app.iml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/modules/app/Donation.app.iml b/.idea/modules/app/Donation.app.iml
+--- a/.idea/modules/app/Donation.app.iml	(revision 4f8f5b87ee0ff1897056629ecb15d93f33f35f63)
++++ b/.idea/modules/app/Donation.app.iml	(revision 32f6d9ace9009b5f3da8e81f6eb1515988e1add8)
+@@ -44,10 +44,11 @@
+     </content>
+     <orderEntry type="jdk" jdkName="Android API 31 Platform" jdkType="Android SDK" />
+     <orderEntry type="sourceFolder" forTests="false" />
++    <orderEntry type="library" scope="TEST" name="Gradle: junit:junit:4.13.2" level="project" />
++    <orderEntry type="library" scope="TEST" name="Gradle: org.hamcrest:hamcrest-core:1.3" level="project" />
+     <orderEntry type="library" scope="TEST" name="Gradle: junit:junit:4.12" level="project" />
+     <orderEntry type="library" scope="TEST" name="Gradle: org.hamcrest:hamcrest-integration:1.3" level="project" />
+     <orderEntry type="library" scope="TEST" name="Gradle: org.hamcrest:hamcrest-library:1.3" level="project" />
+-    <orderEntry type="library" scope="TEST" name="Gradle: org.hamcrest:hamcrest-core:1.3" level="project" />
+     <orderEntry type="library" scope="TEST" name="Gradle: com.squareup:javawriter:2.1.1" level="project" />
+     <orderEntry type="library" scope="TEST" name="Gradle: javax.inject:javax.inject:1" level="project" />
+     <orderEntry type="library" scope="TEST" name="Gradle: com.squareup.okio:okio:1.6.0" level="project" />
+@@ -58,17 +59,20 @@
+     <orderEntry type="library" scope="TEST" name="Gradle: androidx.test:core:1.4.0@aar" level="project" />
+     <orderEntry type="library" scope="TEST" name="Gradle: androidx.test.services:storage:1.4.0@aar" level="project" />
+     <orderEntry type="library" scope="TEST" name="Gradle: androidx.test:monitor:1.4.0@aar" level="project" />
+-    <orderEntry type="library" scope="TEST" name="Gradle: androidx.lifecycle:lifecycle-runtime:2.3.1@aar" level="project" />
++    <orderEntry type="library" scope="TEST" name="Gradle: androidx.recyclerview:recyclerview:1.1.0@aar" level="project" />
+     <orderEntry type="library" scope="TEST" name="Gradle: androidx.arch.core:core-runtime:2.0.0@aar" level="project" />
+     <orderEntry type="library" scope="TEST" name="Gradle: androidx.test.espresso:espresso-idling-resource:3.4.0@aar" level="project" />
+     <orderEntry type="library" name="Gradle: androidx.collection:collection:1.1.0" level="project" />
+     <orderEntry type="library" name="Gradle: androidx.lifecycle:lifecycle-common:2.4.0" level="project" />
+     <orderEntry type="library" name="Gradle: androidx.arch.core:core-common:2.1.0" level="project" />
+     <orderEntry type="library" name="Gradle: androidx.annotation:annotation:1.3.0" level="project" />
+-    <orderEntry type="library" name="Gradle: org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.4.10" level="project" />
+-    <orderEntry type="library" name="Gradle: org.jetbrains.kotlin:kotlin-stdlib:1.4.10" level="project" />
+-    <orderEntry type="library" name="Gradle: org.jetbrains.kotlin:kotlin-stdlib-common:1.4.10" level="project" />
++    <orderEntry type="library" name="Gradle: org.jetbrains.kotlinx:kotlinx-coroutines-android:1.5.0" level="project" />
++    <orderEntry type="library" name="Gradle: org.jetbrains.kotlinx:kotlinx-coroutines-core-jvm:1.5.0" level="project" />
++    <orderEntry type="library" name="Gradle: org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.6.0" level="project" />
++    <orderEntry type="library" name="Gradle: org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.6.0" level="project" />
++    <orderEntry type="library" name="Gradle: org.jetbrains.kotlin:kotlin-stdlib:1.6.0" level="project" />
+     <orderEntry type="library" name="Gradle: org.jetbrains:annotations:13.0" level="project" />
++    <orderEntry type="library" name="Gradle: org.jetbrains.kotlin:kotlin-stdlib-common:1.6.0" level="project" />
+     <orderEntry type="library" name="Gradle: io.grpc:grpc-stub:1.44.1" level="project" />
+     <orderEntry type="library" name="Gradle: com.google.guava:guava:30.1.1-android" level="project" />
+     <orderEntry type="library" name="Gradle: com.google.guava:listenablefuture:9999.0-empty-to-avoid-conflict-with-guava" level="project" />
+@@ -91,10 +95,12 @@
+     <orderEntry type="library" name="Gradle: androidx.databinding:viewbinding:7.0.4@aar" level="project" />
+     <orderEntry type="library" name="Gradle: com.google.android.material:material:1.5.0@aar" level="project" />
+     <orderEntry type="library" name="Gradle: com.facebook.shimmer:shimmer:0.5.0@aar" level="project" />
++    <orderEntry type="library" name="Gradle: com.theartofdev.edmodo:android-image-cropper:2.8.0@aar" level="project" />
+     <orderEntry type="library" name="Gradle: androidx.appcompat:appcompat:1.4.1@aar" level="project" />
+     <orderEntry type="library" name="Gradle: com.google.firebase:firebase-database:20.0.4@aar" level="project" />
+     <orderEntry type="library" name="Gradle: com.google.firebase:firebase-firestore:24.1.1@aar" level="project" />
+     <orderEntry type="library" name="Gradle: com.google.firebase:firebase-storage:20.0.1@aar" level="project" />
++    <orderEntry type="library" name="Gradle: com.pierfrancescosoffritti.androidyoutubeplayer:core:11.0.1@aar" level="project" />
+     <orderEntry type="library" name="Gradle: androidx.cardview:cardview:1.0.0@aar" level="project" />
+     <orderEntry type="library" name="Gradle: androidx.legacy:legacy-support-v4:1.0.0@aar" level="project" />
+     <orderEntry type="library" name="Gradle: com.google.firebase:firebase-auth:21.0.3@aar" level="project" />
+@@ -129,7 +135,7 @@
+     <orderEntry type="library" name="Gradle: com.google.android.gms:play-services-stats:17.0.2@aar" level="project" />
+     <orderEntry type="library" name="Gradle: com.google.android.gms:play-services-basement:18.0.0@aar" level="project" />
+     <orderEntry type="library" name="Gradle: androidx.fragment:fragment:1.3.6@aar" level="project" />
+-    <orderEntry type="library" name="Gradle: androidx.recyclerview:recyclerview:1.1.0@aar" level="project" />
++    <orderEntry type="library" name="Gradle: androidx.recyclerview:recyclerview:1.2.1@aar" level="project" />
+     <orderEntry type="library" name="Gradle: androidx.transition:transition:1.2.0@aar" level="project" />
+     <orderEntry type="library" name="Gradle: androidx.appcompat:appcompat-resources:1.4.1@aar" level="project" />
+     <orderEntry type="library" name="Gradle: androidx.vectordrawable:vectordrawable-animated:1.1.0@aar" level="project" />
+@@ -146,6 +152,7 @@
+     <orderEntry type="library" name="Gradle: androidx.swiperefreshlayout:swiperefreshlayout:1.0.0@aar" level="project" />
+     <orderEntry type="library" name="Gradle: androidx.asynclayoutinflater:asynclayoutinflater:1.0.0@aar" level="project" />
+     <orderEntry type="library" name="Gradle: androidx.core:core:1.7.0@aar" level="project" />
++    <orderEntry type="library" name="Gradle: androidx.lifecycle:lifecycle-runtime-ktx:2.4.0@aar" level="project" />
+     <orderEntry type="library" name="Gradle: androidx.lifecycle:lifecycle-runtime:2.4.0@aar" level="project" />
+     <orderEntry type="library" name="Gradle: androidx.cursoradapter:cursoradapter:1.0.0@aar" level="project" />
+     <orderEntry type="library" name="Gradle: androidx.lifecycle:lifecycle-viewmodel-savedstate:2.3.1@aar" level="project" />
+Index: app/build.gradle
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/build.gradle b/app/build.gradle
+--- a/app/build.gradle	(revision 4f8f5b87ee0ff1897056629ecb15d93f33f35f63)
++++ b/app/build.gradle	(revision 32f6d9ace9009b5f3da8e81f6eb1515988e1add8)
+@@ -79,4 +79,5 @@
+     //merlin
+     implementation 'com.novoda:merlin:1.2.0'
+ 
++    implementation 'com.pierfrancescosoffritti.androidyoutubeplayer:core:11.0.1'
+ }
+\ No newline at end of file
+Index: app/src/main/AndroidManifest.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/AndroidManifest.xml b/app/src/main/AndroidManifest.xml
+--- a/app/src/main/AndroidManifest.xml	(revision 4f8f5b87ee0ff1897056629ecb15d93f33f35f63)
++++ b/app/src/main/AndroidManifest.xml	(revision 32f6d9ace9009b5f3da8e81f6eb1515988e1add8)
+@@ -15,6 +15,9 @@
+         android:supportsRtl="true"
+         android:theme="@style/Theme.Donation">
+         <activity
++            android:name=".FollowersActivity"
++            android:exported="false" />
++        <activity
+             android:name=".ActivityAddVideo"
+             android:exported="false" />
+         <activity
+@@ -127,7 +130,7 @@
+         <activity
+             android:name=".SplashScreenActivity"
+             android:exported="true"
+-            android:theme="@style/FullScreen"></activity>
++            android:theme="@style/FullScreen" />
+         <activity
+             android:name=".MainActivity"
+             android:exported="true" />
+Index: app/src/main/java/com/khaled/donation/ActivityAddVideo.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/khaled/donation/ActivityAddVideo.java b/app/src/main/java/com/khaled/donation/ActivityAddVideo.java
+--- a/app/src/main/java/com/khaled/donation/ActivityAddVideo.java	(revision 4f8f5b87ee0ff1897056629ecb15d93f33f35f63)
++++ b/app/src/main/java/com/khaled/donation/ActivityAddVideo.java	(revision 32f6d9ace9009b5f3da8e81f6eb1515988e1add8)
+@@ -1,14 +1,373 @@
+ package com.khaled.donation;
+ 
++import androidx.activity.result.ActivityResultCallback;
++import androidx.activity.result.ActivityResultLauncher;
++import androidx.activity.result.contract.ActivityResultContracts;
++import androidx.annotation.NonNull;
++import androidx.annotation.Nullable;
+ import androidx.appcompat.app.AppCompatActivity;
++import androidx.recyclerview.widget.LinearLayoutManager;
+ 
++import android.content.Intent;
++import android.content.SharedPreferences;
++import android.net.Uri;
+ import android.os.Bundle;
++import android.preference.PreferenceManager;
++import android.text.TextUtils;
++import android.view.View;
++import android.widget.Toast;
++
++import com.google.android.gms.tasks.OnCompleteListener;
++import com.google.android.gms.tasks.OnFailureListener;
++import com.google.android.gms.tasks.OnSuccessListener;
++import com.google.android.gms.tasks.Task;
++import com.google.firebase.firestore.DocumentReference;
++import com.google.firebase.firestore.DocumentSnapshot;
++import com.google.firebase.firestore.FirebaseFirestore;
++import com.google.firebase.storage.FirebaseStorage;
++import com.google.firebase.storage.UploadTask;
++import com.khaled.donation.Adapters.RvDisplayPostAdapter;
++import com.khaled.donation.Adapters.RvDisplayVideoAdapter;
++import com.khaled.donation.Listeners.OnClickNoListener;
++import com.khaled.donation.Models.Post;
++import com.khaled.donation.Models.User;
++import com.khaled.donation.databinding.ActivityAddVideoBinding;
++import com.theartofdev.edmodo.cropper.CropImage;
++
++import java.util.ArrayList;
++import java.util.Calendar;
++
++import es.dmoral.toasty.Toasty;
+ 
+ public class ActivityAddVideo extends AppCompatActivity {
+-
++    public static final String VIDEO_KEY = "VIDEO_KEY";
++    public static final String VIDEO_STRING_KEY_INTENT = "VIDEO_STRING_KEY_INTENT";
++    ActivityAddVideoBinding binding;
++    String videoString;
++    String videoIntent;
++    ArrayList<String> Videos;
++    ArrayList<String> copyOfVideos;
++    RvDisplayVideoAdapter adapter;
++    FirebaseStorage storage;
++    SharedPreferences sp;
++    String currentUserID;
++    String description;
++    User currentUser;
++    int posts;
++    Post post;
++    int sizeOfVideo = 0;
+     @Override
+     protected void onCreate(Bundle savedInstanceState) {
+         super.onCreate(savedInstanceState);
+-        setContentView(R.layout.activity_add_video);
++        binding = ActivityAddVideoBinding.inflate(getLayoutInflater());
++        setContentView(binding.getRoot());
++
++        fixed();
++        addMore();
++        addPost();
++
+     }
++    private void fixed() {
++        storage = FirebaseStorage.getInstance();
++        sp = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
++        currentUserID = sp.getString(MainActivity.USER_ID_KEY,null);
++        Videos = new ArrayList<>();
++        copyOfVideos = new ArrayList<>();
++        adapter = new RvDisplayVideoAdapter(Videos,new OnClickNoListener() {
++            @Override
++            public void OnClickListener(String image) {
++                cancel(image);
++            }
++        },this);
++        LinearLayoutManager horizontalLayoutManagaer =
++                new LinearLayoutManager(ActivityAddVideo.this
++                        , LinearLayoutManager.HORIZONTAL, false);
++        binding.rv.setLayoutManager(horizontalLayoutManagaer);
++        Intent intent = getIntent();
++        post = (Post) intent.getSerializableExtra(RvDisplayPostAdapter.POST_KEY);
++
++        if (post == null){
++            //عملية اضافة
++            getUser();
++            videoString = intent.getStringExtra(AddPostFragment.VIDEO_STRING_KEY);
++            Videos.add(videoString);
++        }else {
++            //عملية تعديل
++            binding.btnPost.setText(R.string.update);
++            Videos = post.getImages();
++            adapter = new RvDisplayVideoAdapter(Videos, new OnClickNoListener() {
++                @Override
++                public void OnClickListener(String image) {
++                    cancel(image);
++                }
++            },getApplicationContext());
++            binding.etDescription.setText(post.getDescription());
++        }
++        binding.rv.setHasFixedSize(true);
++        binding.rv.setAdapter(adapter);
++        binding.icBack.setOnClickListener(new View.OnClickListener() {
++            @Override
++            public void onClick(View view) {
++                finish();
++            }
++        });
++    }
++
++    private void addMore(){
++        ActivityResultLauncher<String> arlVideo = registerForActivityResult(
++                new ActivityResultContracts.GetContent(),
++                new ActivityResultCallback<Uri>() {
++                    @Override
++                    public void onActivityResult(Uri result) {
++
++                        binding.move.setVisibility(View.VISIBLE);
++                        Videos.add(String.valueOf(result));
++                        adapter.setVideo(Videos);
++                        adapter.notifyDataSetChanged();
++                        numbersOfVideos();
++
++//                        videoIntent = String.valueOf(result);
++
++//                        Intent intent = new Intent(getApplicationContext(),ActivityAddVideo.class);
++//                        intent.putExtra(VIDEO_STRING_KEY_INTENT,videoIntent);
++//                        startActivity(intent);
++                    }
++                }
++        );
++
++        binding.btnAddMore.setOnClickListener(new View.OnClickListener() {
++            @Override
++            public void onClick(View view) {
++                arlVideo.launch("video/*");
++//                Intent i = new Intent(getApplicationContext(),ActivityAddVideo.class);
++//                startActivity(i);
++            }
++        });
++    }
++
++    private void numbersOfVideos(){
++        if (Videos.size() > 1){
++            binding.move.setVisibility(View.VISIBLE);
++            binding.btnPost.setEnabled(true);
++            binding.btnAddMore.setText(R.string.addMore);
++        }else if (Videos.size() == 0){
++            binding.move.setVisibility(View.GONE);
++            binding.btnPost.setEnabled(false);
++            binding.btnAddMore.setText(R.string.addPhoto);
++        }else {
++            binding.move.setVisibility(View.GONE);
++            binding.btnPost.setEnabled(true);
++            binding.btnAddMore.setText(R.string.addMore);
++        }
++    }
++
++    private void addPost(){
++
++        binding.btnPost.setOnClickListener(new View.OnClickListener() {
++            @Override
++            public void onClick(View view) {
++                description = binding.etDescription.getText().toString();
++
++                if (TextUtils.isEmpty(description)){
++                    description = "";
++                }
++
++                if (post == null){
++                    //عملية اضافة
++                    uploadVideos();
++                }else {
++                    //عملية تعديل
++                    updateImage();
++                }
++
++            }
++        });
++    }
++
++    private void updateImage() {
++        finish();
++        copyOfVideos.clear();
++        sizeOfVideo = Videos.size() - 1;
++        for (int i = 0; i < Videos.size(); i++){
++            int finalI = i;
++            if (Videos.get(i).contains("https://firebasestorage.googleapis.com")){
++                copyOfVideos.add(Videos.get(i));
++                if (sizeOfVideo == finalI){
++                    update();
++                }
++            }else {
++                FirebaseStorage
++                        .getInstance()
++                        .getReference()
++                        .child("PostsVideos/"+i+post.getDatenews())
++                        .putFile(Uri.parse(Videos.get(i)))
++                        .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
++                            @Override
++                            public void onSuccess(@NonNull UploadTask.TaskSnapshot taskSnapshot) {
++                                taskSnapshot.getStorage().getDownloadUrl()
++                                        .addOnSuccessListener(new OnSuccessListener<Uri>() {
++                                            @Override
++                                            public void onSuccess(@NonNull Uri uri) {
++                                                String image = String.valueOf(uri);
++                                                copyOfVideos.add(image);
++                                                if (sizeOfVideo == finalI){
++                                                    update();
++                                                }
++                                            }
++                                        });
++                            }
++                        })
++                        .addOnFailureListener(new OnFailureListener() {
++                            @Override
++                            public void onFailure(@NonNull Exception e) {
++                                Toasty.error(getBaseContext()
++                                        , R.string.toast_post_failed+e.getMessage()
++                                        , Toast.LENGTH_SHORT).show();
++                            }
++                        });
++            }
++        }
++
++    }
++
++    private void createPost(){
++        post = new Post(description,currentUserID, copyOfVideos
++                , Calendar.getInstance().getTime()
++                ,0,0,"video");
++        DocumentReference documentReference = FirebaseFirestore
++                .getInstance().collection("Posts")
++                .document();
++        post.setPostId(documentReference.getId());
++        documentReference.set(post).addOnCompleteListener(new OnCompleteListener<Void>() {
++            @Override
++            public void onComplete(@NonNull Task<Void> task) {
++                Toast.makeText(getBaseContext()
++                        , R.string.toast_post_published, Toast.LENGTH_SHORT).show();
++                posts = posts + 1;
++                FirebaseFirestore.getInstance().collection("Users")
++                        .document(currentUserID).update("posts",posts);
++                HomeFragment.isUploaded = false;
++                enableField();
++            }
++        }).addOnFailureListener(new OnFailureListener() {
++            @Override
++            public void onFailure(@NonNull Exception e) {
++                Toasty.error(getBaseContext(), R.string.toast_post_failed, Toast.LENGTH_SHORT).show();
++            }
++        });
++
++    }
++
++    private void uploadVideos(){
++        HomeFragment.isUploaded = true;
++        disableField();
++        finish();
++        copyOfVideos.clear();
++        sizeOfVideo = Videos.size() - 1;
++        for (int i = 0; i < Videos.size(); i++){
++            int finalI = i;
++            storage.getReference().child("PostsVideos/"+i+Calendar.getInstance().getTime())
++                    .putFile(Uri.parse(Videos.get(i)))
++                    .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
++                        @Override
++                        public void onSuccess(@NonNull UploadTask.TaskSnapshot taskSnapshot) {
++                            taskSnapshot.getStorage().getDownloadUrl()
++                                    .addOnSuccessListener(new OnSuccessListener<Uri>() {
++                                        @Override
++                                        public void onSuccess(@NonNull Uri uri) {
++                                            String image = String.valueOf(uri);
++                                            copyOfVideos.add(image);
++                                            if (sizeOfVideo == finalI){
++                                                createPost();
++                                            }
++                                        }
++                                    });
++                        }
++                    }).addOnFailureListener(new OnFailureListener() {
++                @Override
++                public void onFailure(@NonNull Exception e) {
++                    Toasty.error(getBaseContext(), R.string.toast_post_failed
++                            , Toast.LENGTH_SHORT).show();
++                }
++            });
++        }
++    }
++
++    private void getUser(){
++        disableField();
++        FirebaseFirestore.getInstance().collection("Users").document(currentUserID).get()
++                .addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
++                    @Override
++                    public void onComplete(@NonNull Task<DocumentSnapshot> task) {
++                        if (task.isSuccessful()){
++                            DocumentSnapshot documentSnapshot = task.getResult();
++                            currentUser = documentSnapshot.toObject(User.class);
++                            if (getBaseContext() != null){
++                                posts = currentUser.getPosts();
++                                enableField();
++                            }
++                        }
++
++                    }
++                })
++                .addOnFailureListener(new OnFailureListener() {
++                    @Override
++                    public void onFailure(@NonNull Exception e) {
++                        Toast.makeText(getBaseContext(), ""+e, Toast.LENGTH_SHORT).show();
++                    }
++                });
++    }
++
++    private void disableField(){
++        binding.rv.setEnabled(false);
++        binding.et.setEnabled(false);
++        binding.btnPost.setEnabled(false);
++        binding.btnAddMore.setEnabled(false);
++    }
++    private void enableField(){
++        binding.rv.setEnabled(true);
++        binding.et.setEnabled(true);
++        binding.btnPost.setEnabled(true);
++        binding.btnAddMore.setEnabled(true);
++    }
++    private void cancel(String image){
++        Videos.remove(image);
++        numbersOfVideos();
++        adapter.notifyDataSetChanged();
++    }
++    private void showVideo(String image){
++        Intent intent = new Intent(getBaseContext(), DisplayImageActivity.class);
++        intent.putExtra(VIDEO_KEY, image);
++        startActivity(intent);
++    }
++
++//    @Override
++//    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
++//        super.onActivityResult(requestCode, resultCode, data);
++//        CropImage.ActivityResult result = CropImage.getActivityResult(data);
++//        if (result != null){
++//            binding.move.setVisibility(View.VISIBLE);
++//            Videos.add(String.valueOf(result.getUri()));
++//            adapter.setVideo(Videos);
++//            adapter.notifyDataSetChanged();
++//            numbersOfVideos();
++//        }
++//    }
++
++    private void update(){
++        FirebaseFirestore
++                .getInstance()
++                .collection("Posts")
++                .document(post.getPostId())
++                .update("description",description);
++        FirebaseFirestore
++                .getInstance()
++                .collection("Posts")
++                .document(post.getPostId())
++                .update("videos", copyOfVideos);
++        Toast.makeText(ActivityAddVideo.this
++                , R.string.post_has_been_modified
++                , Toast.LENGTH_SHORT).show();
++    }
++
+ }
+\ No newline at end of file
+Index: app/src/main/java/com/khaled/donation/Adapters/RvDisplayPostAdapter.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/khaled/donation/Adapters/RvDisplayPostAdapter.java b/app/src/main/java/com/khaled/donation/Adapters/RvDisplayPostAdapter.java
+--- a/app/src/main/java/com/khaled/donation/Adapters/RvDisplayPostAdapter.java	(revision 4f8f5b87ee0ff1897056629ecb15d93f33f35f63)
++++ b/app/src/main/java/com/khaled/donation/Adapters/RvDisplayPostAdapter.java	(revision 32f6d9ace9009b5f3da8e81f6eb1515988e1add8)
+@@ -57,6 +57,7 @@
+     SharedPreferences sp;
+     View v;
+     RvDisplayPhotosPostAdapter adapter;
++    RvDisplayVideosPostAdapter adapterVideo;
+     CustomPhotoPostBinding binding;
+     int sum;
+     NetworkInfo netInfo;
+@@ -212,21 +213,33 @@
+ 
+             publisherInfo(post.getPublisher(),iv_profile,tv_username,tv_publisher);
+ 
+-            adapter = new RvDisplayPhotosPostAdapter(post.getImages()
+-                    , new OnClickItemImagePostListener() {
+-                @Override
+-                public void OnClickListener(ArrayList<String> images) {
+-                    Intent intent = new Intent(context, DisplayAllImagesPostActivity.class);
+-                    intent.putExtra(IMAGES_POST_KEY,images);
+-                    context.startActivity(intent);
+-                }
+-            });
+-            rv.setHasFixedSize(true);
+-            LinearLayoutManager horizontalLayoutManagaer =
+-                    new LinearLayoutManager(context
+-                            , LinearLayoutManager.HORIZONTAL, false);
+-            rv.setLayoutManager(horizontalLayoutManagaer);
+-            rv.setAdapter(adapter);
++            if (post.getPostType().equals("image")){
++                adapter = new RvDisplayPhotosPostAdapter(post.getImages()
++                        , new OnClickItemImagePostListener() {
++                    @Override
++                    public void OnClickListener(ArrayList<String> images) {
++                        Intent intent = new Intent(context, DisplayAllImagesPostActivity.class);
++                        intent.putExtra(IMAGES_POST_KEY,images);
++                        context.startActivity(intent);
++                    }
++                });
++                rv.setHasFixedSize(true);
++                LinearLayoutManager horizontalLayoutManagaer =
++                        new LinearLayoutManager(context
++                                , LinearLayoutManager.HORIZONTAL, false);
++                rv.setLayoutManager(horizontalLayoutManagaer);
++                rv.setAdapter(adapter);
++            }else {
++                adapterVideo = new RvDisplayVideosPostAdapter(post.getImages());
++                rv.setHasFixedSize(true);
++                LinearLayoutManager horizontalLayoutManagaer =
++                        new LinearLayoutManager(context
++                                , LinearLayoutManager.HORIZONTAL, false);
++                rv.setLayoutManager(horizontalLayoutManagaer);
++                rv.setAdapter(adapterVideo);
++            }
++
++
+ 
+ 
+             FirebaseFirestore.getInstance().collection("Users")
+Index: app/src/main/java/com/khaled/donation/Adapters/RvDisplayVideoAdapter.java
+===================================================================
+diff --git a/app/src/main/java/com/khaled/donation/Adapters/RvDisplayVideoAdapter.java b/app/src/main/java/com/khaled/donation/Adapters/RvDisplayVideoAdapter.java
+new file mode 100644
+--- /dev/null	(revision 32f6d9ace9009b5f3da8e81f6eb1515988e1add8)
++++ b/app/src/main/java/com/khaled/donation/Adapters/RvDisplayVideoAdapter.java	(revision 32f6d9ace9009b5f3da8e81f6eb1515988e1add8)
+@@ -0,0 +1,110 @@
++package com.khaled.donation.Adapters;
++
++import android.content.Context;
++import android.net.Uri;
++import android.view.LayoutInflater;
++import android.view.View;
++import android.view.ViewGroup;
++import android.widget.MediaController;
++
++import androidx.annotation.NonNull;
++import androidx.cardview.widget.CardView;
++import androidx.recyclerview.widget.RecyclerView;
++
++import com.bumptech.glide.Glide;
++import com.khaled.donation.Listeners.OnClickItemImageListener;
++import com.khaled.donation.Listeners.OnClickNoListener;
++import com.khaled.donation.R;
++import com.khaled.donation.databinding.CustomDisplayImagesRvBinding;
++import com.khaled.donation.databinding.CustomDisplayVideoRvBinding;
++import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.YouTubePlayer;
++import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.AbstractYouTubePlayerListener;
++
++import java.util.ArrayList;
++
++public class RvDisplayVideoAdapter extends
++        RecyclerView.Adapter<RvDisplayVideoAdapter.RvDisplayImageAdapterHolder> {
++
++    ArrayList<String> videos;
++    OnClickItemImageListener listener;
++    OnClickNoListener listenerNo;
++    Context context;
++
++    public RvDisplayVideoAdapter(ArrayList<String> videos
++            , OnClickNoListener listenerNo, Context context) {
++        this.videos = videos;
++        this.listenerNo = listenerNo;
++        this.context = context;
++    }
++
++    public ArrayList<String> getVideo() {
++        return videos;
++    }
++
++    public void setVideo(ArrayList<String> videos) {
++        this.videos = videos;
++    }
++
++    @NonNull
++    @Override
++    public RvDisplayImageAdapterHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
++        context = parent.getContext();
++        return new RvDisplayImageAdapterHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout
++                .custom_display_video_rv, parent, false));
++    }
++
++    @Override
++    public void onBindViewHolder(@NonNull RvDisplayImageAdapterHolder holder, int position) {
++        String video = videos.get(position);
++        holder.bind(video);
++    }
++
++    @Override
++    public int getItemCount() {
++        return videos.size();
++    }
++
++    class RvDisplayImageAdapterHolder extends RecyclerView.ViewHolder {
++        CustomDisplayVideoRvBinding binding;
++        String video;
++        View v;
++
++        public RvDisplayImageAdapterHolder(@NonNull View itemView) {
++            super(itemView);
++            binding = CustomDisplayVideoRvBinding.bind(itemView);
++            v = itemView;
++
++            binding.ivNo.setOnClickListener(new View.OnClickListener() {
++                @Override
++                public void onClick(View view) {
++                    listenerNo.OnClickListener(video);
++                }
++            });
++
++        }
++
++        void bind(String video) {
++            this.video = video;
++
++            CardView card = binding.card;
++            card.setVisibility(View.GONE);
++
++//            binding.videoView.setVideoPath(video);
++//            binding.videoView.start();
++
++//            binding.youtubePlayerView.addYouTubePlayerListener(new AbstractYouTubePlayerListener() {
++//                @Override
++//                public void onReady(@NonNull YouTubePlayer youTubePlayer) {
++//                    youTubePlayer.loadVideo(video,0);
++//                }
++//            });
++            MediaController mediaController = new MediaController(context);
++            mediaController.setAnchorView(binding.videoView);
++            binding.videoView.setMediaController(mediaController);
++            binding.videoView.setVideoPath(video);
++            binding.videoView.requestFocus();
++            binding.videoView.start();
++
++        }
++    }
++}
+Index: app/src/main/java/com/khaled/donation/Adapters/RvDisplayVideosPostAdapter.java
+===================================================================
+diff --git a/app/src/main/java/com/khaled/donation/Adapters/RvDisplayVideosPostAdapter.java b/app/src/main/java/com/khaled/donation/Adapters/RvDisplayVideosPostAdapter.java
+new file mode 100644
+--- /dev/null	(revision 32f6d9ace9009b5f3da8e81f6eb1515988e1add8)
++++ b/app/src/main/java/com/khaled/donation/Adapters/RvDisplayVideosPostAdapter.java	(revision 32f6d9ace9009b5f3da8e81f6eb1515988e1add8)
+@@ -0,0 +1,109 @@
++package com.khaled.donation.Adapters;
++
++import android.content.Context;
++import android.view.LayoutInflater;
++import android.view.View;
++import android.view.ViewGroup;
++import android.widget.ImageView;
++import android.widget.MediaController;
++import android.widget.TextView;
++
++import androidx.annotation.NonNull;
++import androidx.recyclerview.widget.RecyclerView;
++
++import com.bumptech.glide.Glide;
++import com.khaled.donation.Listeners.OnClickItemImagePostListener;
++import com.khaled.donation.R;
++import com.khaled.donation.databinding.CustomDisplayImagesRvBinding;
++import com.khaled.donation.databinding.CustomDisplayVideoRvPostBinding;
++import com.khaled.donation.databinding.CustomJustDisplayImagesPostRvBinding;
++import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.YouTubePlayer;
++import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.AbstractYouTubePlayerListener;
++
++import java.util.ArrayList;
++
++public class RvDisplayVideosPostAdapter
++        extends RecyclerView.Adapter<RvDisplayVideosPostAdapter.RvDisplayPhotosPostAdapterHolder>{
++
++    ArrayList<String> videos;
++    OnClickItemImagePostListener listener;
++    View v;
++    CustomDisplayVideoRvPostBinding binding;
++    Context context;
++
++
++    public RvDisplayVideosPostAdapter(ArrayList<String> videos) {
++        this.videos = videos;
++    }
++
++    public ArrayList<String> getVideos() {
++        return videos;
++    }
++
++    public void setVideos(ArrayList<String> videos) {
++        notifyDataSetChanged();
++        this.videos = videos;
++    }
++
++    @NonNull
++    @Override
++    public RvDisplayPhotosPostAdapterHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
++        context = parent.getContext();
++        return new RvDisplayPhotosPostAdapterHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout
++                .custom_display_video_rv_post,parent,false));
++    }
++
++    @Override
++    public void onBindViewHolder(@NonNull RvDisplayPhotosPostAdapterHolder holder, int position) {
++
++        String image = videos.get(position);
++        holder.bind(image);
++
++    }
++
++    @Override
++    public int getItemCount() {
++        return videos.size();
++    }
++
++    class RvDisplayPhotosPostAdapterHolder extends RecyclerView.ViewHolder{
++        String video;
++        public RvDisplayPhotosPostAdapterHolder(@NonNull View itemView) {
++            super(itemView);
++            binding = CustomDisplayVideoRvPostBinding.bind(itemView);
++            v = itemView;
++
++//            itemView.setOnClickListener(new View.OnClickListener() {
++//                @Override
++//                public void onClick(View view) {
++//                    listener.OnClickListener(videos);
++//                }
++//            });
++
++        }
++
++        private void bind(String video){
++            this.video = video;
++            ImageView iv_no = binding.ivNo;
++            TextView tv_sum = binding.tvSum;
++
++            tv_sum.setText(String.valueOf(videos.size()));
++
++            iv_no.setVisibility(View.GONE);
++//            Glide.with(v).load(image).placeholder(R.drawable.ic_loading).into(binding.iv);
++//            binding.youtubePlayerView.addYouTubePlayerListener(new AbstractYouTubePlayerListener() {
++//                @Override
++//                public void onReady(@NonNull YouTubePlayer youTubePlayer) {
++//                    youTubePlayer.loadVideo(video,0);
++//                }
++//            });
++            MediaController mediaController = new MediaController(context);
++            mediaController.setAnchorView(binding.videoView);
++            binding.videoView.setMediaController(mediaController);
++            binding.videoView.setVideoPath(video);
++            binding.videoView.requestFocus();
++            binding.videoView.start();
++        }
++
++    }
++}
+Index: app/src/main/java/com/khaled/donation/AddPhotoActivity.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/khaled/donation/AddPhotoActivity.java b/app/src/main/java/com/khaled/donation/AddPhotoActivity.java
+--- a/app/src/main/java/com/khaled/donation/AddPhotoActivity.java	(revision 4f8f5b87ee0ff1897056629ecb15d93f33f35f63)
++++ b/app/src/main/java/com/khaled/donation/AddPhotoActivity.java	(revision 32f6d9ace9009b5f3da8e81f6eb1515988e1add8)
+@@ -220,7 +220,7 @@
+     private void createPost(){
+         post = new Post(description,currentUserID,copyOfimages
+                 ,Calendar.getInstance().getTime()
+-                ,0,0);
++                ,0,0,"image");
+         DocumentReference documentReference = FirebaseFirestore
+                 .getInstance().collection("Posts")
+                 .document();
+Index: app/src/main/java/com/khaled/donation/AddPostFragment.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/khaled/donation/AddPostFragment.java b/app/src/main/java/com/khaled/donation/AddPostFragment.java
+--- a/app/src/main/java/com/khaled/donation/AddPostFragment.java	(revision 4f8f5b87ee0ff1897056629ecb15d93f33f35f63)
++++ b/app/src/main/java/com/khaled/donation/AddPostFragment.java	(revision 32f6d9ace9009b5f3da8e81f6eb1515988e1add8)
+@@ -104,13 +104,6 @@
+             }
+         });
+ 
+-        binding.btnAddVideo.setOnClickListener(new View.OnClickListener() {
+-            @Override
+-            public void onClick(View view) {
+-
+-            }
+-        });
+-
+         ActivityResultLauncher<String> arlVideo = registerForActivityResult(
+                 new ActivityResultContracts.GetContent(),
+                 new ActivityResultCallback<Uri>() {
+Index: app/src/main/java/com/khaled/donation/FollowersActivity.java
+===================================================================
+diff --git a/app/src/main/java/com/khaled/donation/FollowersActivity.java b/app/src/main/java/com/khaled/donation/FollowersActivity.java
+new file mode 100644
+--- /dev/null	(revision 32f6d9ace9009b5f3da8e81f6eb1515988e1add8)
++++ b/app/src/main/java/com/khaled/donation/FollowersActivity.java	(revision 32f6d9ace9009b5f3da8e81f6eb1515988e1add8)
+@@ -0,0 +1,14 @@
++package com.khaled.donation;
++
++import androidx.appcompat.app.AppCompatActivity;
++
++import android.os.Bundle;
++
++public class FollowersActivity extends AppCompatActivity {
++
++    @Override
++    protected void onCreate(Bundle savedInstanceState) {
++        super.onCreate(savedInstanceState);
++        setContentView(R.layout.activity_followers);
++    }
++}
+\ No newline at end of file
+Index: app/src/main/java/com/khaled/donation/HomeFragment.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/khaled/donation/HomeFragment.java b/app/src/main/java/com/khaled/donation/HomeFragment.java
+--- a/app/src/main/java/com/khaled/donation/HomeFragment.java	(revision 4f8f5b87ee0ff1897056629ecb15d93f33f35f63)
++++ b/app/src/main/java/com/khaled/donation/HomeFragment.java	(revision 32f6d9ace9009b5f3da8e81f6eb1515988e1add8)
+@@ -59,7 +59,7 @@
+ 
+         fixed();
+         getPosts();
+-        getCountPosts();
++//        getCountPosts();
+ 
+         return binding.getRoot();
+     }
+@@ -164,18 +164,18 @@
+         });
+     }
+ 
+-    private void getCountPosts(){
+-        FirebaseFirestore.getInstance().collection("Users")
+-                .document(currentUserID).get()
+-                .addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+-                    @Override
+-                    public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+-                        DocumentSnapshot documentSnapshot = task.getResult();
+-                        currentUser = documentSnapshot.toObject(User.class);
+-                        count_posts = currentUser.getPosts();
+-                    }
+-                });
+-    }
++//    private void getCountPosts(){
++//        FirebaseFirestore.getInstance().collection("Users")
++//                .document(currentUserID).get()
++//                .addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
++//                    @Override
++//                    public void onComplete(@NonNull Task<DocumentSnapshot> task) {
++//                        DocumentSnapshot documentSnapshot = task.getResult();
++//                        currentUser = documentSnapshot.toObject(User.class);
++//                        count_posts = currentUser.getPosts();
++//                    }
++//                });
++//    }
+ 
+     private void deleteLikes(Post post){
+         FirebaseFirestore.getInstance().collection("Likes")
+Index: app/src/main/java/com/khaled/donation/Models/Post.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/khaled/donation/Models/Post.java b/app/src/main/java/com/khaled/donation/Models/Post.java
+--- a/app/src/main/java/com/khaled/donation/Models/Post.java	(revision 4f8f5b87ee0ff1897056629ecb15d93f33f35f63)
++++ b/app/src/main/java/com/khaled/donation/Models/Post.java	(revision 32f6d9ace9009b5f3da8e81f6eb1515988e1add8)
+@@ -11,19 +11,38 @@
+ //    private ArrayList<String> videos;
+     private Date datenews;
+     private int likes,comments;
++    private String postType;
+ 
+-    public Post(String description, String publisher, ArrayList<String> images, Date datenews, int likes, int comments) {
++//    public Post(String description, String publisher, ArrayList<String> images, Date datenews, int likes, int comments) {
++//        this.description = description;
++//        this.publisher = publisher;
++//        this.images = images;
++//        this.datenews = datenews;
++//        this.likes = likes;
++//        this.comments = comments;
++//    }
++
++    public Post(String description, String publisher, ArrayList<String> images, Date datenews, int likes, int comments, String postType) {
+         this.description = description;
+         this.publisher = publisher;
+         this.images = images;
+         this.datenews = datenews;
+         this.likes = likes;
+         this.comments = comments;
++        this.postType = postType;
+     }
+ 
+     public Post() {
+     }
+ 
++    public String getPostType() {
++        return postType;
++    }
++
++    public void setPostType(String postType) {
++        this.postType = postType;
++    }
++
+     public String getPostId() {
+         return postId;
+     }
+Index: app/src/main/res/drawable/remove_shape.xml
+===================================================================
+diff --git a/app/src/main/res/drawable/remove_shape.xml b/app/src/main/res/drawable/remove_shape.xml
+new file mode 100644
+--- /dev/null	(revision 32f6d9ace9009b5f3da8e81f6eb1515988e1add8)
++++ b/app/src/main/res/drawable/remove_shape.xml	(revision 32f6d9ace9009b5f3da8e81f6eb1515988e1add8)
+@@ -0,0 +1,8 @@
++<?xml version="1.0" encoding="utf-8"?>
++<shape xmlns:android="http://schemas.android.com/apk/res/android">
++
++    <stroke android:color="#C6C5C5" android:width="@dimen/_1sdp"/>
++    <solid android:color="@color/white"/>
++    <corners android:radius="@dimen/_5sdp"/>
++
++</shape>
+\ No newline at end of file
+Index: app/src/main/res/layout/activity_followers.xml
+===================================================================
+diff --git a/app/src/main/res/layout/activity_followers.xml b/app/src/main/res/layout/activity_followers.xml
+new file mode 100644
+--- /dev/null	(revision 32f6d9ace9009b5f3da8e81f6eb1515988e1add8)
++++ b/app/src/main/res/layout/activity_followers.xml	(revision 32f6d9ace9009b5f3da8e81f6eb1515988e1add8)
+@@ -0,0 +1,9 @@
++<?xml version="1.0" encoding="utf-8"?>
++<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
++    xmlns:app="http://schemas.android.com/apk/res-auto"
++    xmlns:tools="http://schemas.android.com/tools"
++    android:layout_width="match_parent"
++    android:layout_height="match_parent"
++    tools:context=".FollowersActivity">
++
++</androidx.constraintlayout.widget.ConstraintLayout>
+\ No newline at end of file
+Index: app/src/main/res/layout/custom_display_video_rv.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/res/layout/custom_display_video_rv.xml b/app/src/main/res/layout/custom_display_video_rv.xml
+--- a/app/src/main/res/layout/custom_display_video_rv.xml	(revision 4f8f5b87ee0ff1897056629ecb15d93f33f35f63)
++++ b/app/src/main/res/layout/custom_display_video_rv.xml	(revision 32f6d9ace9009b5f3da8e81f6eb1515988e1add8)
+@@ -6,12 +6,18 @@
+     xmlns:tools="http://schemas.android.com/tools">
+ 
+     <VideoView
+-        android:id="@+id/iv3"
++        android:id="@+id/videoView"
+         android:layout_width="match_parent"
+         android:layout_height="match_parent" />
+ 
++<!--    <com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView-->
++<!--        android:id="@+id/youtube_player_view"-->
++<!--        android:layout_width="match_parent"-->
++<!--        android:layout_height="match_parent"-->
++<!--        app:autoPlay="true" />-->
++
+     <ImageView
+-        android:id="@+id/iv_no3"
++        android:id="@+id/iv_no"
+         android:layout_width="@dimen/_24sdp"
+         android:layout_height="@dimen/_24sdp"
+         android:layout_alignParentEnd="true"
+Index: app/src/main/res/layout/custom_display_video_rv_post.xml
+===================================================================
+diff --git a/app/src/main/res/layout/custom_display_video_rv_post.xml b/app/src/main/res/layout/custom_display_video_rv_post.xml
+new file mode 100644
+--- /dev/null	(revision 32f6d9ace9009b5f3da8e81f6eb1515988e1add8)
++++ b/app/src/main/res/layout/custom_display_video_rv_post.xml	(revision 32f6d9ace9009b5f3da8e81f6eb1515988e1add8)
+@@ -0,0 +1,51 @@
++<?xml version="1.0" encoding="utf-8"?>
++<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
++    xmlns:app="http://schemas.android.com/apk/res-auto"
++    android:layout_width="match_parent"
++    android:layout_height="match_parent"
++    xmlns:tools="http://schemas.android.com/tools">
++
++    <VideoView
++        android:id="@+id/videoView"
++        android:layout_width="match_parent"
++        android:layout_height="match_parent" />
++
++<!--    <com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView-->
++<!--        android:id="@+id/youtube_player_view"-->
++<!--        android:layout_width="match_parent"-->
++<!--        android:layout_height="match_parent"-->
++<!--         />-->
++
++    <ImageView
++        android:id="@+id/iv_no"
++        android:layout_width="@dimen/_24sdp"
++        android:layout_height="@dimen/_24sdp"
++        android:layout_alignParentEnd="true"
++        android:layout_margin="@dimen/_6sdp"
++        android:backgroundTint="@color/white"
++        app:srcCompat="@drawable/ic_no" />
++
++    <androidx.cardview.widget.CardView
++        android:id="@+id/card"
++        android:layout_width="wrap_content"
++        android:layout_height="wrap_content"
++        android:layout_alignParentEnd="true"
++        android:layout_margin="@dimen/_10sdp"
++        android:layout_marginStart="@dimen/_6sdp"
++        android:layout_marginTop="@dimen/_6sdp"
++        android:layout_marginEnd="@dimen/_6sdp"
++        android:layout_marginBottom="@dimen/_6sdp"
++        android:backgroundTint="#454545"
++        app:cardCornerRadius="@dimen/_16sdp">
++
++        <TextView
++            android:id="@+id/tv_sum"
++            android:layout_width="wrap_content"
++            android:layout_height="wrap_content"
++            android:layout_margin="@dimen/_5sdp"
++            android:text="10"
++            android:textColor="@color/white"
++            android:textSize="@dimen/_9ssp"></TextView>
++
++    </androidx.cardview.widget.CardView>
++</RelativeLayout>
+\ No newline at end of file
+Index: app/src/main/res/layout/custom_layout_followers.xml
+===================================================================
+diff --git a/app/src/main/res/layout/custom_layout_followers.xml b/app/src/main/res/layout/custom_layout_followers.xml
+new file mode 100644
+--- /dev/null	(revision 32f6d9ace9009b5f3da8e81f6eb1515988e1add8)
++++ b/app/src/main/res/layout/custom_layout_followers.xml	(revision 32f6d9ace9009b5f3da8e81f6eb1515988e1add8)
+@@ -0,0 +1,65 @@
++<?xml version="1.0" encoding="utf-8"?>
++<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
++    xmlns:app="http://schemas.android.com/apk/res-auto"
++    xmlns:tools="http://schemas.android.com/tools"
++    android:layout_width="match_parent"
++    android:layout_height="wrap_content">
++
++    <androidx.cardview.widget.CardView
++        android:layout_width="match_parent"
++        android:layout_height="match_parent"
++        app:cardUseCompatPadding="true"
++        app:cardPreventCornerOverlap="true"
++        app:cardElevation="@dimen/_3sdp"
++        app:cardCornerRadius="@dimen/_10sdp"
++        app:layout_constraintBottom_toBottomOf="parent"
++        app:layout_constraintEnd_toEndOf="parent"
++        app:layout_constraintStart_toStartOf="parent"
++        app:layout_constraintTop_toTopOf="parent" >
++
++        <RelativeLayout
++            android:layout_width="match_parent"
++            android:layout_height="match_parent">
++
++            <de.hdodenhof.circleimageview.CircleImageView
++                android:id="@+id/profile_image"
++                android:layout_width="@dimen/_40sdp"
++                android:layout_height="@dimen/_40sdp"
++                android:layout_alignParentStart="true"
++                android:layout_centerInParent="true"
++                android:layout_marginStart="@dimen/_10sdp"
++                android:layout_marginTop="@dimen/_10sdp"
++                android:layout_marginEnd="@dimen/_10sdp"
++                android:layout_marginBottom="@dimen/_10sdp"
++                android:src="@drawable/ic_baseline_account_circle_24" />
++
++            <TextView
++                android:id="@+id/tv_name_user"
++                android:layout_width="wrap_content"
++                android:layout_height="wrap_content"
++                android:layout_centerVertical="true"
++                android:layout_toEndOf="@id/profile_image"
++                android:layout_marginTop="@dimen/_20sdp"
++                android:textColor="@color/black"
++                android:textSize="@dimen/_14ssp"
++                android:textStyle="bold" />
++
++            <com.google.android.material.button.MaterialButton
++                android:layout_width="@dimen/_80sdp"
++                android:layout_height="@dimen/_40sdp"
++                android:layout_gravity="center_horizontal"
++                android:layout_marginStart="@dimen/_20sdp"
++                android:layout_marginTop="@dimen/_11sdp"
++                android:layout_marginEnd="@dimen/_10sdp"
++                android:gravity="center"
++                android:layout_alignParentEnd="true"
++                android:text="@string/remove"
++                android:textAllCaps="false"
++                android:textColor="@color/black"
++                android:textSize="@dimen/_12sdp"
++                android:background="@drawable/remove_shape"
++                app:backgroundTint="@drawable/remove_shape"
++                app:cornerRadius="@dimen/_5sdp" />
++        </RelativeLayout>
++    </androidx.cardview.widget.CardView>
++</androidx.constraintlayout.widget.ConstraintLayout>
+\ No newline at end of file
+Index: app/src/main/res/values/strings.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/res/values/strings.xml b/app/src/main/res/values/strings.xml
+--- a/app/src/main/res/values/strings.xml	(revision 4f8f5b87ee0ff1897056629ecb15d93f33f35f63)
++++ b/app/src/main/res/values/strings.xml	(revision 32f6d9ace9009b5f3da8e81f6eb1515988e1add8)
+@@ -128,6 +128,7 @@
+     <string name="noDescription">No description</string>
+     <string name="add_video">Add Video</string>
+     <string name="unfollow">Unfollow</string>
++    <string name="remove">Remove</string>
+ 
+ 
+ </resources>
+\ No newline at end of file
