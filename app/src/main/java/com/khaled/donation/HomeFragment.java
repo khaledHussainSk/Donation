@@ -59,7 +59,7 @@ public class HomeFragment extends Fragment {
 
         fixed();
         getPosts();
-        getCountPosts();
+//        getCountPosts();
 
         return binding.getRoot();
     }
@@ -164,18 +164,18 @@ public class HomeFragment extends Fragment {
         });
     }
 
-    private void getCountPosts(){
-        FirebaseFirestore.getInstance().collection("Users")
-                .document(currentUserID).get()
-                .addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-                    @Override
-                    public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                        DocumentSnapshot documentSnapshot = task.getResult();
-                        currentUser = documentSnapshot.toObject(User.class);
-                        count_posts = currentUser.getPosts();
-                    }
-                });
-    }
+//    private void getCountPosts(){
+//        FirebaseFirestore.getInstance().collection("Users")
+//                .document(currentUserID).get()
+//                .addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+//                    @Override
+//                    public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+//                        DocumentSnapshot documentSnapshot = task.getResult();
+//                        currentUser = documentSnapshot.toObject(User.class);
+//                        count_posts = currentUser.getPosts();
+//                    }
+//                });
+//    }
 
     private void deleteLikes(Post post){
         FirebaseFirestore.getInstance().collection("Likes")

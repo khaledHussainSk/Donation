@@ -57,6 +57,7 @@ public class RvDisplayPostAdapter
     SharedPreferences sp;
     View v;
     RvDisplayPhotosPostAdapter adapter;
+    RvDisplayVideosPostAdapter adapterVideo;
     CustomPhotoPostBinding binding;
     int sum;
     NetworkInfo netInfo;
@@ -212,21 +213,33 @@ public class RvDisplayPostAdapter
 
             publisherInfo(post.getPublisher(),iv_profile,tv_username,tv_publisher);
 
-            adapter = new RvDisplayPhotosPostAdapter(post.getImages()
-                    , new OnClickItemImagePostListener() {
-                @Override
-                public void OnClickListener(ArrayList<String> images) {
-                    Intent intent = new Intent(context, DisplayAllImagesPostActivity.class);
-                    intent.putExtra(IMAGES_POST_KEY,images);
-                    context.startActivity(intent);
-                }
-            });
-            rv.setHasFixedSize(true);
-            LinearLayoutManager horizontalLayoutManagaer =
-                    new LinearLayoutManager(context
-                            , LinearLayoutManager.HORIZONTAL, false);
-            rv.setLayoutManager(horizontalLayoutManagaer);
-            rv.setAdapter(adapter);
+            if (post.getPostType().equals("image")){
+                adapter = new RvDisplayPhotosPostAdapter(post.getImages()
+                        , new OnClickItemImagePostListener() {
+                    @Override
+                    public void OnClickListener(ArrayList<String> images) {
+                        Intent intent = new Intent(context, DisplayAllImagesPostActivity.class);
+                        intent.putExtra(IMAGES_POST_KEY,images);
+                        context.startActivity(intent);
+                    }
+                });
+                rv.setHasFixedSize(true);
+                LinearLayoutManager horizontalLayoutManagaer =
+                        new LinearLayoutManager(context
+                                , LinearLayoutManager.HORIZONTAL, false);
+                rv.setLayoutManager(horizontalLayoutManagaer);
+                rv.setAdapter(adapter);
+            }else {
+                adapterVideo = new RvDisplayVideosPostAdapter(post.getImages());
+                rv.setHasFixedSize(true);
+                LinearLayoutManager horizontalLayoutManagaer =
+                        new LinearLayoutManager(context
+                                , LinearLayoutManager.HORIZONTAL, false);
+                rv.setLayoutManager(horizontalLayoutManagaer);
+                rv.setAdapter(adapterVideo);
+            }
+
+
 
 
             FirebaseFirestore.getInstance().collection("Users")
