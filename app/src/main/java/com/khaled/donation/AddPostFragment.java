@@ -104,6 +104,13 @@ public class AddPostFragment extends Fragment {
             }
         });
 
+        binding.btnAddVideo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
+
         ActivityResultLauncher<String> arlVideo = registerForActivityResult(
                 new ActivityResultContracts.GetContent(),
                 new ActivityResultCallback<Uri>() {
