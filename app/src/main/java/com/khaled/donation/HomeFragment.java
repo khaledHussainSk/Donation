@@ -17,24 +17,20 @@ import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;
 import com.khaled.donation.Adapters.PagerAdapter;
 import com.khaled.donation.Models.Post;
-import com.khaled.donation.Models.User;
 import com.khaled.donation.databinding.FragmentHomeBinding;
 
 import java.util.ArrayList;
 
 public class HomeFragment extends Fragment {
     FragmentHomeBinding binding;
-//    RvDisplayPostAdapter adapter;
     ArrayList<Post> posts;
     SharedPreferences sp;
     String currentUserID;
-    User currentUser;
-    int count_posts;
     NetworkInfo netInfo;
     public static boolean isUploaded;
-    ArrayList<String> titles;
     public static ArrayList<Fragment> fragments;
-    String[] category = {"الكل","ملابس وأزياء","أجهزة والكترونيات"};
+    String[] category = {"الكل","ملابس وأزياء","أجهزة والكترونيات","سيارات ومركبات"
+    ,"أثاث وديكور","عقارات وأملاك","كمبيوترات وإنترنت","حيوانات وطيور","أطعمة ومشروبات"};
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -47,6 +43,12 @@ public class HomeFragment extends Fragment {
         fragments.add(AllFragment.newInstance(category[0]));
         fragments.add(AllFragment.newInstance(category[1]));
         fragments.add(AllFragment.newInstance(category[2]));
+        fragments.add(AllFragment.newInstance(category[3]));
+        fragments.add(AllFragment.newInstance(category[4]));
+        fragments.add(AllFragment.newInstance(category[5]));
+        fragments.add(AllFragment.newInstance(category[6]));
+        fragments.add(AllFragment.newInstance(category[7]));
+        fragments.add(AllFragment.newInstance(category[8]));
 
         PagerAdapter adapter = new PagerAdapter(getActivity(),fragments);
         binding.viewPager.setAdapter(adapter);

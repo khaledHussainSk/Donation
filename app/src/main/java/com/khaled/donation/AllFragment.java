@@ -111,11 +111,11 @@ public class AllFragment extends Fragment {
                 posts.clear();
                 for (QueryDocumentSnapshot queryDocumentSnapshot : task.getResult()) {
                     Post post = queryDocumentSnapshot.toObject(Post.class);
-                    if (category.equals("الكل")){
-                        posts.add(post);
-                    }else if (post.getCategory().equals(category)){
-                        posts.add(post);
-                    }
+                        if (category.equals("الكل")){
+                            posts.add(post);
+                        }else if (post.getCategory().equals(category)){
+                            posts.add(post);
+                        }
                 }
                 adapter = new RvDisplayPostAdapter(getActivity(), posts, new OnClickMenuPostListener() {
                     @Override

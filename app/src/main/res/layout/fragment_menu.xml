@@ -34,7 +34,7 @@
             android:layout_height="wrap_content"
             android:rotationY="180"
             android:layout_marginRight="@dimen/_10sdp"
-            android:src="@drawable/ic__chat"
+            android:src="@drawable/chat"
             android:tint="@color/black" />
 
         <ImageView
