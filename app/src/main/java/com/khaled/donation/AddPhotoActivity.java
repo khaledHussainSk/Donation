@@ -7,8 +7,6 @@ import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.text.TextUtils;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -50,10 +48,7 @@ public class AddPhotoActivity extends AppCompatActivity {
     FirebaseStorage storage;
     SharedPreferences sp;
     String currentUserID;
-    String title;
     String description;
-    String category;
-    double price;
     User currentUser;
     int posts;
     Post post;
@@ -67,7 +62,6 @@ public class AddPhotoActivity extends AppCompatActivity {
         fixed();
         addMore();
         addPost();
-        spinner();
     }
 
     private void fixed() {
@@ -127,37 +121,6 @@ public class AddPhotoActivity extends AppCompatActivity {
         });
     }
 
-    private void spinner(){
-        ArrayList<String> categories = new ArrayList<>();
-        categories.add("ملابس وأزياء");
-        categories.add("أجهزة والكترونيات");
-        categories.add("سيارات ومركبات");
-        categories.add("أثاث وديكور");
-        categories.add("عقارات وأملاك");
-        categories.add("كمبيوترات وإنترنت");
-        categories.add("حيوانات وطيور");
-        categories.add("أطعمة ومشروبات");
-
-        ArrayAdapter adapter = new ArrayAdapter(this
-                , android.R.layout.simple_expandable_list_item_1,categories);
-
-        binding.spCategory.setAdapter(adapter);
-
-        binding.spCategory.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                category = adapterView.getItemAtPosition(i).toString();
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> adapterView) {
-
-            }
-        });
-
-
-    }
-
     private void addMore(){
         binding.btnAddMore.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -190,26 +153,11 @@ public class AddPhotoActivity extends AppCompatActivity {
         binding.btnPost.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-                title = binding.etTitle.getText().toString();
                 description = binding.etDescription.getText().toString();
-                String priceSt = binding.etPrice.getText().toString();
-
-                if (TextUtils.isEmpty(title)){
-                    Toast.makeText(getBaseContext(), "Please enter a title", Toast.LENGTH_SHORT).show();
-                    return;
-                }
-
-                if (TextUtils.isEmpty(priceSt)){
-                    Toast.makeText(getBaseContext(), "Please enter a price", Toast.LENGTH_SHORT).show();
-                    return;
-                }
 
                 if (TextUtils.isEmpty(description)){
                     description = "";
                 }
-
-                price = Double.parseDouble(priceSt);
 
                 if (post == null){
                     //عملية اضافة
@@ -270,9 +218,9 @@ public class AddPhotoActivity extends AppCompatActivity {
     }
 
     private void createPost(){
-        post = new Post(title,description,currentUserID,copyOfimages
+        post = new Post(description,currentUserID,copyOfimages
                 ,Calendar.getInstance().getTime()
-                ,0,0,price,category);
+                ,0,0);
         DocumentReference documentReference = FirebaseFirestore
                 .getInstance().collection("Posts")
                 .document();

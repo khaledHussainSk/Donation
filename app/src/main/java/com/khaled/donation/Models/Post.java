@@ -6,52 +6,22 @@ import java.util.Date;
 
 public class Post implements Serializable {
 
-    private String postId,title,description,publisher;
+    private String postId,description,publisher;
     private ArrayList<String> images;
 //    private ArrayList<String> videos;
     private Date datenews;
     private int likes,comments;
-    private double price;
-    private String category;
 
-    public Post(String title,String description, String publisher, ArrayList<String> images
-            , Date datenews, int likes, int comments,double price,String category) {
-        this.title = title;
+    public Post(String description, String publisher, ArrayList<String> images, Date datenews, int likes, int comments) {
         this.description = description;
         this.publisher = publisher;
         this.images = images;
         this.datenews = datenews;
         this.likes = likes;
         this.comments = comments;
-        this.price = price;
-        this.category = category;
     }
 
     public Post() {
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public double getPrice() {
-        return price;
-    }
-
-    public void setPrice(double price) {
-        this.price = price;
-    }
-
-    public String getCategory() {
-        return category;
-    }
-
-    public void setCategory(String category) {
-        this.category = category;
     }
 
     public String getPostId() {

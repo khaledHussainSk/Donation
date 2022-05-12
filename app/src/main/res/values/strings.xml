@@ -126,22 +126,8 @@
     <string name="saved">Saved</string>
     <string name="unsave">Unsave</string>
     <string name="noDescription">No description</string>
-    <string name="unfollow">Following</string>
-    <string name="all">All</string>
-    <string name="description">Description (Optional)</string>
-    <string name="chooseLanguage">Choose language...</string>
     <string name="add_video">Add Video</string>
-    <string name="title">Title</string>
-    <string name="price">Price</string>
-    <string name="in">"in "</string>
-    <string name="sendSellerAMessage">Send seller a message</string>
-    <string name="send">Send</string>
-    <string name="is_this_still_available">Is this still available ?</string>
-    <string name="comment">Comment</string>
-    <string name="share">Share</string>
-    <string name="seller_information">Seller information</string>
-    <string name="see_profile">See profile</string>
-    <string name="tv_description">Description</string>
+    <string name="unfollow">Unfollow</string>
 
 
 </resources>
