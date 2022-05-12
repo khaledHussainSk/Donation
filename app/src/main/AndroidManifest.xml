@@ -15,9 +15,6 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Donation">
         <activity
-            android:name=".FollowersActivity"
-            android:exported="false" />
-        <activity
             android:name=".ActivityAddVideo"
             android:exported="false" />
         <activity
@@ -130,7 +127,7 @@
         <activity
             android:name=".SplashScreenActivity"
             android:exported="true"
-            android:theme="@style/FullScreen" />
+            android:theme="@style/FullScreen"></activity>
         <activity
             android:name=".MainActivity"
             android:exported="true" />

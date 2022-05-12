@@ -35,14 +35,19 @@ import com.khaled.donation.Models.Favorite;
 import com.khaled.donation.Models.Like;
 import com.khaled.donation.Models.Post;
 import com.khaled.donation.Models.User;
-import com.khaled.donation.databinding.FragmentHomeBinding;
+import com.khaled.donation.databinding.FragmentAllBinding;
 
 import java.util.ArrayList;
 
 import es.dmoral.toasty.Toasty;
 
-public class HomeFragment extends Fragment {
-    FragmentHomeBinding binding;
+/**
+ * A simple {@link Fragment} subclass.
+ * Use the {@link AllFragment#newInstance} factory method to
+ * create an instance of this fragment.
+ */
+public class AllFragment extends Fragment {
+    FragmentAllBinding binding;
     RvDisplayPostAdapter adapter;
     ArrayList<Post> posts;
     SharedPreferences sp;
@@ -52,10 +57,34 @@ public class HomeFragment extends Fragment {
     NetworkInfo netInfo;
     public static boolean isUploaded;
 
+    private static final String ARG_CATEGORY = "category";
+
+    private String category;
+
+    public AllFragment() {
+        // Required empty public constructor
+    }
+
+    public static AllFragment newInstance(String category) {
+        AllFragment fragment = new AllFragment();
+        Bundle args = new Bundle();
+        args.putString(ARG_CATEGORY, category);
+        fragment.setArguments(args);
+        return fragment;
+    }
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        if (getArguments() != null) {
+            category = getArguments().getString(ARG_CATEGORY);
+        }
+    }
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        binding = FragmentHomeBinding.inflate(getLayoutInflater(),container,false);
+        binding = FragmentAllBinding.inflate(getLayoutInflater(),container,false);
 
         fixed();
         getPosts();
@@ -82,7 +111,11 @@ public class HomeFragment extends Fragment {
                 posts.clear();
                 for (QueryDocumentSnapshot queryDocumentSnapshot : task.getResult()) {
                     Post post = queryDocumentSnapshot.toObject(Post.class);
-                    posts.add(post);
+                        if (category.equals("الكل")){
+                            posts.add(post);
+                        }else if (post.getCategory().equals(category)){
+                            posts.add(post);
+                        }
                 }
                 adapter = new RvDisplayPostAdapter(getActivity(), posts, new OnClickMenuPostListener() {
                     @Override
@@ -104,7 +137,7 @@ public class HomeFragment extends Fragment {
                                                 startActivity(intent);
                                             }else {
                                                 Toasty.info(getActivity(),R.string.toast_moment
-                                                        ,Toast.LENGTH_SHORT).show();
+                                                        , Toast.LENGTH_SHORT).show();
                                             }
                                         }
                                         return true;
@@ -165,16 +198,18 @@ public class HomeFragment extends Fragment {
     }
 
     private void getCountPosts(){
-        FirebaseFirestore.getInstance().collection("Users")
-                .document(currentUserID).get()
-                .addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-                    @Override
-                    public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                        DocumentSnapshot documentSnapshot = task.getResult();
-                        currentUser = documentSnapshot.toObject(User.class);
-                        count_posts = currentUser.getPosts();
-                    }
-                });
+        if (currentUserID != null){
+            FirebaseFirestore.getInstance().collection("Users")
+            .document(currentUserID).get()
+            .addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                @Override
+                public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                    DocumentSnapshot documentSnapshot = task.getResult();
+                    currentUser = documentSnapshot.toObject(User.class);
+                    count_posts = currentUser.getPosts();
+                }
+            });
+        }
     }
 
     private void deleteLikes(Post post){

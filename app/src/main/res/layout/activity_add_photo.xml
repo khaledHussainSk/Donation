@@ -24,6 +24,79 @@
                 android:orientation="vertical">
 
                 <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/title"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColorHint="@color/black"
+                    app:errorTextColor="@color/black"
+                    app:hintTextColor="@color/black"
+                    app:suffixTextColor="@color/black">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/et_title"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_16sdp"
+                        android:layout_marginTop="@dimen/_16sdp"
+                        android:layout_marginEnd="@dimen/_16sdp"
+                        android:layout_marginBottom="@dimen/_16sdp"
+                        android:layout_weight="1"
+                        android:background="@color/white"
+                        android:backgroundTint="#00FFFFFF"
+                        android:gravity="start"
+                        android:hint="@string/title"
+                        android:inputType="textMultiLine"
+                        android:outlineAmbientShadowColor="@color/white"
+                        android:outlineSpotShadowColor="@color/white"
+                        android:shadowColor="@color/black"
+                        android:textColor="@color/black"
+                        android:textColorHint="@color/black"
+                        android:tooltipText="Name" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/price"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColorHint="@color/black"
+                    app:errorTextColor="@color/black"
+                    app:hintTextColor="@color/black"
+                    app:suffixTextColor="@color/black">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/et_price"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_16sdp"
+                        android:layout_marginTop="@dimen/_16sdp"
+                        android:layout_marginEnd="@dimen/_16sdp"
+                        android:layout_marginBottom="@dimen/_16sdp"
+                        android:layout_weight="1"
+                        android:background="@color/white"
+                        android:backgroundTint="#00FFFFFF"
+                        android:gravity="start"
+                        android:hint="@string/price"
+                        android:inputType="numberDecimal"
+                        android:outlineAmbientShadowColor="@color/white"
+                        android:outlineSpotShadowColor="@color/white"
+                        android:shadowColor="@color/black"
+                        android:textColor="@color/black"
+                        android:textColorHint="@color/black"
+                        android:tooltipText="Name" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <Spinner
+                    android:id="@+id/sp_category"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_16sdp"
+                    android:layout_marginTop="@dimen/_16sdp"
+                    android:layout_marginEnd="@dimen/_16sdp"
+                    />
+
+                <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/et"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -44,7 +117,7 @@
                         android:background="@color/white"
                         android:backgroundTint="#00FFFFFF"
                         android:gravity="start"
-                        android:hint="@string/writeACaption"
+                        android:hint="@string/description"
                         android:inputType="textMultiLine"
                         android:outlineAmbientShadowColor="@color/white"
                         android:outlineSpotShadowColor="@color/white"
@@ -55,7 +128,7 @@
 
                 </com.google.android.material.textfield.TextInputLayout>
 
-                    <androidx.recyclerview.widget.RecyclerView
+                <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/rv"
                         android:orientation="horizontal"
                         android:layout_width="match_parent"
@@ -168,7 +241,8 @@
                     android:layout_centerVertical="true"
                     android:textColor="@color/white"
                     android:textSize="@dimen/_14sdp"
-                    app:srcCompat="@drawable/icon_ionic_ios_arrow_back" />
+                    android:tint="@color/black"
+                    app:srcCompat="@drawable/ic_arrow" />
 
             </RelativeLayout>
 
