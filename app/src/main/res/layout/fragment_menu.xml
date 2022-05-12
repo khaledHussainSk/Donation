@@ -34,7 +34,7 @@
             android:layout_height="wrap_content"
             android:rotationY="180"
             android:layout_marginRight="@dimen/_10sdp"
-            android:src="@drawable/ic__chat"
+            android:src="@drawable/chat"
             android:tint="@color/black" />
 
         <ImageView
@@ -305,6 +305,7 @@
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/constraint_layout_language"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:paddingStart="@dimen/_16sdp"
