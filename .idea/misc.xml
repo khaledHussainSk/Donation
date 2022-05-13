@@ -55,7 +55,7 @@
         <entry key="..\:/Users/hp/AndroidStudioProjects/Donation/app/src/main/res/layout/activity_on_boarding01.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/hp/AndroidStudioProjects/Donation/app/src/main/res/layout/activity_on_boarding02.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/hp/AndroidStudioProjects/Donation/app/src/main/res/layout/activity_other_profile.xml" value="0.22" />
-        <entry key="..\:/Users/hp/AndroidStudioProjects/Donation/app/src/main/res/layout/activity_post_details.xml" value="0.22" />
+        <entry key="..\:/Users/hp/AndroidStudioProjects/Donation/app/src/main/res/layout/activity_post_details.xml" value="0.25" />
         <entry key="..\:/Users/hp/AndroidStudioProjects/Donation/app/src/main/res/layout/activity_posts.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/hp/AndroidStudioProjects/Donation/app/src/main/res/layout/activity_profile.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/hp/AndroidStudioProjects/Donation/app/src/main/res/layout/activity_profile_details.xml" value="0.19010416666666666" />
@@ -91,7 +91,7 @@
         <entry key="..\:/Users/hp/AndroidStudioProjects/Donation/app/src/main/res/layout/fragment_home.xml" value="0.19010416666666666" />
         <entry key="..\:/Users/hp/AndroidStudioProjects/Donation/app/src/main/res/layout/fragment_menu.xml" value="0.22" />
         <entry key="..\:/Users/hp/AndroidStudioProjects/Donation/app/src/main/res/layout/fragment_notifications.xml" value="0.20416666666666666" />
-        <entry key="..\:/Users/hp/AndroidStudioProjects/Donation/app/src/main/res/layout/fragment_profile.xml" value="0.2" />
+        <entry key="..\:/Users/hp/AndroidStudioProjects/Donation/app/src/main/res/layout/fragment_profile.xml" value="0.22" />
         <entry key="..\:/Users/hp/AndroidStudioProjects/Donation/app/src/main/res/layout/item_receive.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/hp/AndroidStudioProjects/Donation/app/src/main/res/layout/item_sent.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/hp/AndroidStudioProjects/Donation/app/src/main/res/menu/add_post_menu.xml" value="0.20416666666666666" />

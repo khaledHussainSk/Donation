@@ -101,7 +101,7 @@
     <string name="delete">حذف</string>
     <string name="edit">تعديل</string>
     <string name="edit_comment">تعديل التعليق</string>
-    <string name="update">نحديث</string>
+    <string name="update">تحديث</string>
     <string name="Cancel">إلغاء</string>
     <string name="seconds_ago">منذ ثواني</string>
     <string name="minutes_ago">دقائق مضت</string>

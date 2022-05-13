@@ -116,7 +116,6 @@ public class RvDisplayPostAdapter
 
             fixed(post);
 
-//            ImageView iv_menuPost = binding.ivMenuPost;
             ImageView ic_like = binding.icLike;
             ImageView ic_liked = binding.icLiked;
             ImageView iv_post = binding.ivPost;
@@ -124,8 +123,6 @@ public class RvDisplayPostAdapter
             TextView tv_address = binding.tvAddress;
             TextView tv_title = binding.tvTitle;
             TextView tv_price = binding.tvPrice;
-//            ImageView comments = binding.comment;
-//            TextView tv_comments = binding.tvComments;
             TextView tv_date = binding.tvDate;
             TextView date = binding.date;
 
@@ -137,21 +134,6 @@ public class RvDisplayPostAdapter
                     .into(iv_post);
             tv_title.setText(post.getTitle());
             tv_price.setText(String.valueOf(post.getPrice()));
-
-//            iv_menuPost.setOnClickListener(new View.OnClickListener() {
-//                @Override
-//                public void onClick(View view) {
-//                    listener.OnClickMenuPostListener(post,iv_menuPost);
-//                }
-//            });
-
-//            if (post.getPublisher().equals(currntUserID)){
-//                binding.ivMenuPost.setVisibility(View.VISIBLE);
-//            }else{
-//                binding.ivMenuPost.setVisibility(View.GONE);
-//            }
-
-
 
             sum = post.getLikes();
 
@@ -177,16 +159,6 @@ public class RvDisplayPostAdapter
                 }
             });
 
-//            if (post.getDescription().equals("")){
-//                binding.tvDescription.setVisibility(View.GONE);
-//            }else {
-//                binding.tvDescription.setVisibility(View.VISIBLE);
-//                binding.tvDescription.setText(post.getDescription());
-//            }
-
-//            publisherInfo(post.getPublisher(),iv_profile,tv_username,tv_publisher);
-
-
             FirebaseFirestore.getInstance().collection("Users")
                     .document(post.getPublisher()).get()
                     .addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
@@ -195,23 +167,6 @@ public class RvDisplayPostAdapter
                             DocumentSnapshot documentSnapshot = task.getResult();
                             User user = documentSnapshot.toObject(User.class);
                             tv_address.setText(user.getAddress());
-//                            iv_profile.setOnClickListener(new View.OnClickListener() {
-//                                @Override
-//                                public void onClick(View view) {
-//                                    Intent intent = new Intent(context,OtherProfileActivity.class);
-//                                    intent.putExtra(MainActivity.USER_KEY,user);
-//                                    context.startActivity(intent);
-//                                }
-//                            });
-
-//                            tv_username.setOnClickListener(new View.OnClickListener() {
-//                                @Override
-//                                public void onClick(View view) {
-//                                    Intent intent = new Intent(context,OtherProfileActivity.class);
-//                                    intent.putExtra(MainActivity.USER_KEY,user);
-//                                    context.startActivity(intent);
-//                                }
-//                            });
                         }
                     });
         }
@@ -351,15 +306,6 @@ public class RvDisplayPostAdapter
     }
 
     private void transfers(Post post, TextView tv_likes){
-
-//        tv_comments.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Intent intent = new Intent(context, CommentsActivity.class);
-//                intent.putExtra(POST_KEY,post);
-//                context.startActivity(intent);
-//            }
-//        });
 
             tv_likes.setOnClickListener(new View.OnClickListener() {
                 @Override

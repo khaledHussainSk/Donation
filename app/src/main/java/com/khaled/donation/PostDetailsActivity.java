@@ -1,15 +1,21 @@
 package com.khaled.donation;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.PopupMenu;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.bumptech.glide.Glide;
@@ -20,10 +26,13 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
+import com.google.firebase.storage.FirebaseStorage;
 import com.khaled.donation.Adapters.RvDisplayPhotosPostAdapter;
 import com.khaled.donation.Adapters.RvDisplayPostAdapter;
 import com.khaled.donation.Listeners.OnClickItemImagePostListener;
+import com.khaled.donation.Models.Comment;
 import com.khaled.donation.Models.Favorite;
+import com.khaled.donation.Models.Like;
 import com.khaled.donation.Models.Post;
 import com.khaled.donation.Models.User;
 import com.khaled.donation.databinding.ActivityPostDetailsBinding;
@@ -34,12 +43,18 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
 
+import es.dmoral.toasty.Toasty;
+
 public class PostDetailsActivity extends AppCompatActivity {
     ActivityPostDetailsBinding binding;
     RvDisplayPhotosPostAdapter adapter;
     String currntUserID;
     SharedPreferences sp;
     Post post;
+    NetworkInfo netInfo;
+    public static boolean isUploaded;
+    int count_posts;
+    User currentUser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,6 +63,7 @@ public class PostDetailsActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
 
         fixed();
+        getCountPosts();
 
         binding.save.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -73,9 +89,19 @@ public class PostDetailsActivity extends AppCompatActivity {
             }
         });
 
+        binding.icMore.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                showPopupMenu();
+            }
+        });
+
     }
 
     private void fixed(){
+        ConnectivityManager conMgr =  (ConnectivityManager)this
+                .getSystemService(CONNECTIVITY_SERVICE);
+        netInfo = conMgr.getActiveNetworkInfo();
         sp = PreferenceManager.getDefaultSharedPreferences(this);
         currntUserID = sp.getString(MainActivity.USER_ID_KEY,null);
         Intent intent = getIntent();
@@ -135,6 +161,11 @@ public class PostDetailsActivity extends AppCompatActivity {
         }
         getDate(post,binding.tvDate,binding.date);
         getPublisherInfo();
+        if (post.getPublisher().equals(currntUserID)){
+            binding.icMore.setVisibility(View.VISIBLE);
+        }else{
+            binding.icMore.setVisibility(View.GONE);
+        }
 
     }
 
@@ -408,6 +439,155 @@ public class PostDetailsActivity extends AppCompatActivity {
         }else {
             tv_date.setText(previousYears(post.getDatenews()));
         }
+    }
+
+    private void dialogInternet_error() {
+        new AlertDialog.Builder(this)
+                .setCancelable(false)
+                .setMessage(getResources().getString(R.string.internet_error))
+                .setPositiveButton(R.string.ok, null).show();
+    }
+
+    private void getCountPosts(){
+        FirebaseFirestore.getInstance().collection("Users")
+                .document(currntUserID).get()
+                .addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                        DocumentSnapshot documentSnapshot = task.getResult();
+                        currentUser = documentSnapshot.toObject(User.class);
+                        count_posts = currentUser.getPosts();
+                    }
+                });
+    }
+
+    private void deleteFav(Post post){
+        FirebaseFirestore
+                .getInstance()
+                .collection("Favorite")
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()){
+                            for (QueryDocumentSnapshot queryDocumentSnapshot : task.getResult()){
+                                Favorite favorite = queryDocumentSnapshot.toObject(Favorite.class);
+                                if (post.getPostId().equals(favorite.getId_post())){
+                                    FirebaseFirestore.getInstance().collection("Favorite")
+                                            .document(favorite.getId()).delete();
+                                }
+                            }
+
+                        }
+                    }
+                });
+    }
+
+    private void deleteComments(Post post) {
+        FirebaseFirestore.getInstance().collection("Comments")
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+                            for (QueryDocumentSnapshot queryDocumentSnapshot : task.getResult()) {
+                                Comment comment = queryDocumentSnapshot.toObject(Comment.class);
+                                if (comment.getId_post_().equals(post.getPostId())) {
+                                    FirebaseFirestore.getInstance().collection("Comments")
+                                            .document(comment.getId_comment()).delete();
+                                }
+                            }
+                        }
+                    }
+                });
+    }
+
+    private void deleteLikes(Post post){
+        FirebaseFirestore.getInstance().collection("Likes")
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()){
+                            for (QueryDocumentSnapshot queryDocumentSnapshot : task.getResult()){
+                                Like like = queryDocumentSnapshot.toObject(Like.class);
+                                if (like.getId_post().equals(post.getPostId())){
+                                    FirebaseFirestore.getInstance().collection("Likes")
+                                            .document(like.getId_like()).delete();
+                                }
+                            }
+                        }
+                    }
+                });
+    }
+
+    private void showPopupMenu(){
+        PopupMenu popupMenu = new PopupMenu(PostDetailsActivity.this,binding.icMore);
+        popupMenu.inflate(R.menu.menu_post);
+        popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem item) {
+                switch (item.getItemId()) {
+                    case R.id.edit:
+                        if (netInfo == null){
+                            dialogInternet_error();
+                        }else{
+                            if (isUploaded == false){
+                                Intent intent = new Intent(PostDetailsActivity.this
+                                        ,AddPhotoActivity.class);
+                                intent.putExtra(RvDisplayPostAdapter.POST_KEY, post);
+                                startActivity(intent);
+                            }else {
+                                Toasty.info(PostDetailsActivity.this,R.string.toast_moment
+                                        ,Toast.LENGTH_SHORT).show();
+                            }
+                        }
+                        return true;
+                    case R.id.delete:
+                        if (netInfo == null){
+                            dialogInternet_error();
+                        }else{
+                            androidx.appcompat.app.AlertDialog.Builder builder
+                                    = new AlertDialog.Builder(PostDetailsActivity.this);
+                            builder.setTitle(R.string.delete);
+                            builder.setMessage(R.string.delete_post);
+                            builder.setPositiveButton(R.string.ok
+                                    , new DialogInterface.OnClickListener() {
+                                        @Override
+                                        public void onClick(DialogInterface dialogInterface, int i) {
+                                            count_posts = count_posts - 1;
+                                            for (int a=0 ;a<post.getImages().size();a++){
+                                                FirebaseStorage
+                                                        .getInstance()
+                                                        .getReferenceFromUrl(post.getImages().get(a))
+                                                        .delete();
+                                            }
+                                            deleteLikes(post);
+                                            deleteComments(post);
+                                            deleteFav(post);
+                                            FirebaseFirestore
+                                                    .getInstance()
+                                                    .collection("Posts")
+                                                    .document(post.getPostId()).delete();
+                                            FirebaseFirestore
+                                                    .getInstance()
+                                                    .collection("Users")
+                                                    .document(post.getPublisher())
+                                                    .update("posts", count_posts);
+                                            Toast.makeText(getBaseContext()
+                                                    , R.string.toast_post_delete
+                                                    , Toast.LENGTH_SHORT).show();
+
+                                        }
+                                    });
+                            builder.show();
+                        }
+                        return true;
+                }
+                return false;
+            }
+        });
+        popupMenu.show();
     }
 
 }

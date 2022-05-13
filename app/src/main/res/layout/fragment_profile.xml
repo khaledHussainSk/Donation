@@ -89,6 +89,7 @@
                             android:weightSum="3">
 
                             <LinearLayout
+                                android:id="@+id/posts_layout"
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
@@ -125,6 +126,7 @@
                                 android:background="#79D6D1D1" />
 
                             <LinearLayout
+                                android:id="@+id/follwers_layout"
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
@@ -162,6 +164,7 @@
 
 
                             <LinearLayout
+                                android:id="@+id/following_layout"
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"

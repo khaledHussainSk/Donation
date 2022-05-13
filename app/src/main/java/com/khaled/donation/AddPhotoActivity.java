@@ -104,6 +104,8 @@ public class AddPhotoActivity extends AppCompatActivity {
             //عملية تعديل
             binding.btnPost.setText(R.string.update);
             images = post.getImages();
+            binding.etTitle.setText(post.getTitle());
+            binding.etPrice.setText(String.valueOf(post.getPrice()));
             adapter = new RvDisplayImageAdapter(images, new OnClickItemImageListener() {
                 @Override
                 public void OnClickListener(String image) {
@@ -398,6 +400,21 @@ public class AddPhotoActivity extends AppCompatActivity {
                 .collection("Posts")
                 .document(post.getPostId())
                 .update("description",description);
+        FirebaseFirestore
+                .getInstance()
+                .collection("Posts")
+                .document(post.getPostId())
+                .update("category",category);
+        FirebaseFirestore
+                .getInstance()
+                .collection("Posts")
+                .document(post.getPostId())
+                .update("price",price);
+        FirebaseFirestore
+                .getInstance()
+                .collection("Posts")
+                .document(post.getPostId())
+                .update("title",title);
         FirebaseFirestore
                 .getInstance()
                 .collection("Posts")

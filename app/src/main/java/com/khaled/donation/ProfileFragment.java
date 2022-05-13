@@ -74,6 +74,16 @@ public class ProfileFragment extends Fragment {
                 }
             }
         });
+
+        binding.postsLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+//                Intent intent = new Intent(getActivity(), PostsActivity.class);
+//                intent.putExtra(RvPostsProfileAdapter.ID_USER_KEY,id_user);
+//                startActivity(intent);
+            }
+        });
+
         return binding.getRoot();
     }
 
