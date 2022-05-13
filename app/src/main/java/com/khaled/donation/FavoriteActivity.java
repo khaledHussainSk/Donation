@@ -1,11 +1,13 @@
 package com.khaled.donation;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.view.View;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
@@ -15,12 +17,14 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.khaled.donation.Adapters.RvFavoriteAdapter;
+import com.khaled.donation.Listeners.GetFavorite;
 import com.khaled.donation.Models.Favorite;
 import com.khaled.donation.databinding.ActivityFavoriteBinding;
 
 import java.util.ArrayList;
 
 public class FavoriteActivity extends AppCompatActivity {
+    public static final String FAV_KEY = "FAV_KEY";
     ActivityFavoriteBinding binding;
     ArrayList<Favorite> favorites;
     public static RvFavoriteAdapter adapter;
@@ -66,7 +70,15 @@ public class FavoriteActivity extends AppCompatActivity {
                                 }
                             }
                             binding.tvAllFavorite.setText(String.valueOf(favorites.size()));
-                            adapter = new RvFavoriteAdapter(FavoriteActivity.this,favorites);
+                            adapter = new RvFavoriteAdapter(FavoriteActivity.this, favorites, new GetFavorite() {
+                                @Override
+                                public void OnClickListener(Favorite favorite) {
+                                    Intent intent = new Intent(FavoriteActivity.this
+                                            ,PostDetailsActivity.class);
+                                    intent.putExtra(FAV_KEY,favorite);
+                                    startActivityForResult(intent,AllFragment.POST_DETAILS_REQ_CODE);
+                                }
+                            });
                             binding.rv.setHasFixedSize(true);
                             binding.rv.setLayoutManager(new LinearLayoutManager(FavoriteActivity.this));
                             binding.rv.setAdapter(adapter);
@@ -75,5 +87,12 @@ public class FavoriteActivity extends AppCompatActivity {
                 });
     }
 
-
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == AllFragment.POST_DETAILS_REQ_CODE){
+            setResult(AllFragment.POST_DETAILS_REQ_CODE);
+            finish();
+        }
+    }
 }

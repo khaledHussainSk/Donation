@@ -102,7 +102,7 @@ public class SignUpCompanyActivity extends AppCompatActivity {
         address = binding.etAddress.getText().toString();
 
         if (TextUtils.isEmpty(companyName)){
-            Toast.makeText(getBaseContext(), R.string.toast_nullCompanyName, Toast.LENGTH_SHORT).show();
+            Toast.makeText(getBaseContext(), R.string.toast_nullCorporationName, Toast.LENGTH_SHORT).show();
             return;
         }
 

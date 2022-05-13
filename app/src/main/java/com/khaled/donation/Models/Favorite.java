@@ -1,8 +1,9 @@
 package com.khaled.donation.Models;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class Favorite {
+public class Favorite implements Serializable {
     String id,id_user,id_post;
     Date date;
 

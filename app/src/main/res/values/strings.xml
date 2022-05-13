@@ -11,7 +11,6 @@
     <string name="sign_in_btn">Sign in</string>
     <string name="already_have_not_an_account_tv">Already have not an account?</string>
     <string name="sing_up_tv">Sing up !</string>
-    <string name="sign_un_tv">Sign Up</string>
     <string name="fullname_hint">Full Name</string>
     <string name="phoneNumber_hint">Phone Number</string>
     <string name="email_hint">Email</string>
@@ -19,11 +18,9 @@
     <string name="confirmPassword_hint">Confirm Password</string>
     <string name="sign_in">Sign in !</string>
     <string name="select_user_tv">Select user</string>
-    <string name="user">As a user</string>
-    <string name="company">As a company</string>
-    <string name="companyName_hint">Company Name</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="user">Private user</string>
+    <string name="corporation">Corporation</string>
+    <string name="corporationName_hint">Corporation Name</string>
     <string name="layotu_notifications">Notifications</string>
     <string name="layout_search">Search</string>
     <string name="hint_search">Enter what you want to search for</string>
@@ -36,7 +33,6 @@
     <string name="oldPassword">Old Password</string>
     <string name="saveNow">Save Now !</string>
     <string name="address_hint">Address</string>
-    <string name="writeACaption">Write a caption...</string>
     <string name="addPhoto">Add Photo</string>
     <string name="addVideo">Add Video</string>
     <string name="addPost_tv">Add Post</string>
@@ -47,7 +43,7 @@
     <string name="favorite">Favorite</string>
     <string name="follow">Follow</string>
     <string name="chat">Chat</string>
-    <string name="Post">Post</string>
+    <string name="Posts">Posts</string>
     <string name="followers">Followers</string>
     <string name="following">Following</string>
     <string name="editProfile">Edit profile</string>
@@ -57,7 +53,7 @@
     <string name="note_review">Enter your note here</string>
     <string name="btn_submit_reivew">Submit</string>
     <string name="toast_nullName">please enter your name</string>
-    <string name="toast_nullCompanyName">please enter the company name</string>
+    <string name="toast_nullCorporationName">please enter the corporation name</string>
     <string name="toast_nullPhoneNumber">please enter your phone number</string>
     <string name="toast_nullAddress">please enter your address</string>
     <string name="toast_nullEmail">please enter an email</string>
@@ -88,7 +84,7 @@
     <string name="areYouSure">Are you sure</string>
     <string name="youWantToSignOut">you want to sign out ?</string>
     <string name="addCharityCompagin">Add charity campaign</string>
-    <string name="toast_notAllwoed">"It is only allowed when the account is confirmed"</string>
+    <string name="toast_notAllwoed">It is only allowed when the account is confirmed</string>
     <string name="toast_waitUploaded">Wait when the post is uploaded</string>
     <string name="addCharityCampaign">Add Charity Campaign</string>
     <string name="EnterDonationLink">Enter the donation link</string>
@@ -96,7 +92,6 @@
     <string name="move">Move</string>
     <string name="toast_post_published">Your post has been published</string>
     <string name="toast_post_failed">Failed to publish your post</string>
-    <string name="tv_likes">likes</string>
     <string name="no_comment">No Comments Yet</string>
     <string name="start_the_conversation">Start the conversation</string>
     <string name="tv_post">Post</string>
@@ -119,15 +114,29 @@
     <string name="toast_moment">Please Wait..</string>
     <string name="send_message_chat">Send message</string>
     <string name="addcharitycompagin">Add charity compagin</string>
-    <string name="likes">Likes</string>
     <string name="your_subject">Your subject</string>
     <string name="posts">Posts</string>
     <string name="post_has_been_modified">Post has been modified</string>
     <string name="saved">Saved</string>
     <string name="unsave">Unsave</string>
+    <string name="unSave">Save has been cancelled</string>
     <string name="noDescription">No description</string>
+    <string name="unfollow">Following</string>
+    <string name="all">All</string>
+    <string name="description">Description (Optional)</string>
+    <string name="chooseLanguage">Choose language...</string>
     <string name="add_video">Add Video</string>
-    <string name="unfollow">Unfollow</string>
+    <string name="title">Title</string>
+    <string name="price">Price</string>
+=    <string name="sendSellerAMessage">Send seller a message</string>
+    <string name="send">Send</string>
+    <string name="is_this_still_available">Is this still available ?</string>
+    <string name="comment">Comment</string>
+    <string name="share">Share</string>
+    <string name="seller_information">Seller information</string>
+    <string name="see_profile">See profile</string>
+    <string name="tv_description">Description</string>
+    <string name="likes">LIkes</string>
 
 
 </resources>

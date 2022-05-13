@@ -16,6 +16,7 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.widget.PopupMenu;
 import androidx.fragment.app.Fragment;
@@ -29,6 +30,7 @@ import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.google.firebase.storage.FirebaseStorage;
 import com.khaled.donation.Adapters.RvDisplayPostAdapter;
+import com.khaled.donation.Listeners.GetPost;
 import com.khaled.donation.Listeners.OnClickMenuPostListener;
 import com.khaled.donation.Models.Comment;
 import com.khaled.donation.Models.Favorite;
@@ -47,6 +49,7 @@ import es.dmoral.toasty.Toasty;
  * create an instance of this fragment.
  */
 public class AllFragment extends Fragment {
+    public static final int POST_DETAILS_REQ_CODE = 1;
     FragmentAllBinding binding;
     RvDisplayPostAdapter adapter;
     ArrayList<Post> posts;
@@ -127,58 +130,58 @@ public class AllFragment extends Fragment {
                             public boolean onMenuItemClick(MenuItem item) {
                                 switch (item.getItemId()) {
                                     case R.id.edit:
-                                        if (netInfo == null){
+                                        if (netInfo == null) {
                                             dialogInternet_error();
-                                        }else{
-                                            if (isUploaded == false){
+                                        } else {
+                                            if (isUploaded == false) {
                                                 Intent intent = new Intent(getActivity()
-                                                        ,AddPhotoActivity.class);
+                                                        , AddPhotoActivity.class);
                                                 intent.putExtra(RvDisplayPostAdapter.POST_KEY, post);
                                                 startActivity(intent);
-                                            }else {
-                                                Toasty.info(getActivity(),R.string.toast_moment
+                                            } else {
+                                                Toasty.info(getActivity(), R.string.toast_moment
                                                         , Toast.LENGTH_SHORT).show();
                                             }
                                         }
                                         return true;
                                     case R.id.delete:
-                                        if (netInfo == null){
+                                        if (netInfo == null) {
                                             dialogInternet_error();
-                                        }else{
-                    androidx.appcompat.app.AlertDialog.Builder builder
-                            = new AlertDialog.Builder(getActivity());
-                    builder.setTitle(R.string.delete);
-                    builder.setMessage(R.string.delete_post);
-                    builder.setPositiveButton(R.string.ok
-                            , new DialogInterface.OnClickListener() {
-                                @Override
-                                public void onClick(DialogInterface dialogInterface, int i) {
-                                    count_posts = count_posts - 1;
-                                    for (int a=0 ;a<post.getImages().size();a++){
-                                        FirebaseStorage
-                                                .getInstance()
-                                                .getReferenceFromUrl(post.getImages().get(a))
-                                                .delete();
-                                    }
-                                    deleteLikes(post);
-                                    deleteComments(post);
-                                    deleteFav(post);
-                                    FirebaseFirestore
-                                            .getInstance()
-                                            .collection("Posts")
-                                            .document(post.getPostId()).delete();
-                                    FirebaseFirestore
-                                            .getInstance()
-                                            .collection("Users")
-                                            .document(post.getPublisher())
-                                            .update("posts", count_posts);
-                                    Toast.makeText(getActivity()
-                                            , R.string.toast_post_delete
-                                            , Toast.LENGTH_SHORT).show();
+                                        } else {
+                                            androidx.appcompat.app.AlertDialog.Builder builder
+                                                    = new AlertDialog.Builder(getActivity());
+                                            builder.setTitle(R.string.delete);
+                                            builder.setMessage(R.string.delete_post);
+                                            builder.setPositiveButton(R.string.ok
+                                                    , new DialogInterface.OnClickListener() {
+                                                        @Override
+                                                        public void onClick(DialogInterface dialogInterface, int i) {
+                                                            count_posts = count_posts - 1;
+                                                            for (int a = 0; a < post.getImages().size(); a++) {
+                                                                FirebaseStorage
+                                                                        .getInstance()
+                                                                        .getReferenceFromUrl(post.getImages().get(a))
+                                                                        .delete();
+                                                            }
+                                                            deleteLikes(post);
+                                                            deleteComments(post);
+                                                            deleteFav(post);
+                                                            FirebaseFirestore
+                                                                    .getInstance()
+                                                                    .collection("Posts")
+                                                                    .document(post.getPostId()).delete();
+                                                            FirebaseFirestore
+                                                                    .getInstance()
+                                                                    .collection("Users")
+                                                                    .document(post.getPublisher())
+                                                                    .update("posts", count_posts);
+                                                            Toast.makeText(getActivity()
+                                                                    , R.string.toast_post_delete
+                                                                    , Toast.LENGTH_SHORT).show();
 
-                                }
-                            });
-                    builder.show();
+                                                        }
+                                                    });
+                                            builder.show();
                                         }
                                         return true;
                                 }
@@ -187,6 +190,13 @@ public class AllFragment extends Fragment {
                         });
                         popupMenu.show();
 
+                    }
+                }, new GetPost() {
+                    @Override
+                    public void getPostListener(Post post) {
+                        Intent intent = new Intent(getActivity(), PostDetailsActivity.class);
+                        intent.putExtra(RvDisplayPostAdapter.POST_KEY,post);
+                        startActivityForResult(intent,POST_DETAILS_REQ_CODE);
                     }
                 });
                 binding.rv.setHasFixedSize(true);
@@ -277,6 +287,14 @@ public class AllFragment extends Fragment {
                         }
                     }
                 });
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode == POST_DETAILS_REQ_CODE){
+            MainActivity.bottomNavigation.show(5,true);
+        }
     }
 
 }

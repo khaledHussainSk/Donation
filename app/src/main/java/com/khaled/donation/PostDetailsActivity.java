@@ -48,10 +48,6 @@ public class PostDetailsActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
 
         fixed();
-        getPost();
-        getUser();
-        isFav();
-
 
         binding.save.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -67,6 +63,16 @@ public class PostDetailsActivity extends AppCompatActivity {
             }
         });
 
+        binding.comment.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(PostDetailsActivity.this, CommentsActivity.class);
+                intent.putExtra(RvDisplayPostAdapter.POST_KEY,post);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                startActivity(intent);
+            }
+        });
+
     }
 
     private void fixed(){
@@ -74,6 +80,31 @@ public class PostDetailsActivity extends AppCompatActivity {
         currntUserID = sp.getString(MainActivity.USER_ID_KEY,null);
         Intent intent = getIntent();
         post = (Post) intent.getSerializableExtra(RvDisplayPostAdapter.POST_KEY);
+        if (post == null){
+            Favorite favorite = (Favorite) intent.getSerializableExtra(FavoriteActivity.FAV_KEY);
+            getPostFromFav(favorite);
+        }else {
+            getPost();
+            getUser();
+            isFav();
+        }
+
+    }
+
+    private void getPostFromFav(Favorite favorite) {
+        FirebaseFirestore.getInstance().collection("Posts")
+                .document(favorite.getId_post()).get()
+                .addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                        DocumentSnapshot documentSnapshot = task.getResult();
+                        Post postFromFav = documentSnapshot.toObject(Post.class);
+                        post = postFromFav;
+                        getPost();
+                        getUser();
+                        isFav();
+                    }
+                });
 
     }
 
@@ -97,7 +128,11 @@ public class PostDetailsActivity extends AppCompatActivity {
 
         binding.tvPrice.setText(String.valueOf(post.getPrice()));
         binding.tvTitle.setText(post.getTitle());
-        binding.tvDescription.setText(post.getDescription());
+        if (post.getDescription().equals("")){
+            binding.tvDescription.setText(R.string.noDescription);
+        }else {
+            binding.tvDescription.setText(post.getDescription());
+        }
         getDate(post,binding.tvDate,binding.date);
         getPublisherInfo();
 
@@ -111,24 +146,34 @@ public class PostDetailsActivity extends AppCompatActivity {
                     public void onComplete(@NonNull Task<DocumentSnapshot> task) {
                         DocumentSnapshot documentSnapshot = task.getResult();
                         User user = documentSnapshot.toObject(User.class);
-                        binding.tvAddress.setText(user.getAddress());
-//                            iv_profile.setOnClickListener(new View.OnClickListener() {
-//                                @Override
-//                                public void onClick(View view) {
-//                                    Intent intent = new Intent(context,OtherProfileActivity.class);
-//                                    intent.putExtra(MainActivity.USER_KEY,user);
-//                                    context.startActivity(intent);
-//                                }
-//                            });
 
-//                            tv_username.setOnClickListener(new View.OnClickListener() {
-//                                @Override
-//                                public void onClick(View view) {
-//                                    Intent intent = new Intent(context,OtherProfileActivity.class);
-//                                    intent.putExtra(MainActivity.USER_KEY,user);
-//                                    context.startActivity(intent);
-//                                }
-//                            });
+                        if (user.getIdUser().equals(currntUserID)){
+                            binding.btnFollow.setVisibility(View.GONE);
+                        }else {
+                            binding.btnFollow.setVisibility(View.VISIBLE);
+                        }
+
+                        binding.tvAddress.setText(user.getAddress());
+                            binding.ivProfile.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View view) {
+                                    openOtherProfile(user);
+                                }
+                            });
+
+                            binding.tvUsername.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View view) {
+                                    openOtherProfile(user);
+                                }
+                            });
+
+                            binding.tvSeeProfile.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View view) {
+                                    openOtherProfile(user);
+                                }
+                            });
                     }
                 });
     }
@@ -150,6 +195,19 @@ public class PostDetailsActivity extends AppCompatActivity {
                     }
                 });
     }
+
+    private void openOtherProfile(User user){
+        if (user.getIdUser().equals(currntUserID)){
+            setResult(AllFragment.POST_DETAILS_REQ_CODE);
+            finish();
+        }else {
+            Intent intent = new Intent(PostDetailsActivity.this
+                    ,OtherProfileActivity.class);
+            intent.putExtra(MainActivity.USER_KEY,user);
+            startActivity(intent);
+        }
+    }
+
 
     private void createFav(){
         binding.save.setEnabled(false);
@@ -222,7 +280,7 @@ public class PostDetailsActivity extends AppCompatActivity {
                             binding.save.setVisibility(View.VISIBLE);
                             binding.unsave.setVisibility(View.GONE);
                             binding.bookmark.setText(R.string.save);
-                            Toast.makeText(getBaseContext(), R.string.unsave, Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getBaseContext(), R.string.unSave, Toast.LENGTH_SHORT).show();
                         }
                     }
                 }

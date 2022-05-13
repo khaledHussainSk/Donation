@@ -14,8 +14,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Donation">
+        <activity android:name=".ActivityAddVideo"
+            android:theme="@style/FullScreen"
+            android:exported="false"
+            ></activity>
         <activity
-            android:name=".ActivityAddVideo"
+            android:name=".PostDetailsActivity"
             android:exported="false" />
         <activity
             android:name=".PostsActivity"
@@ -64,13 +68,7 @@
             android:theme="@style/FullScreen" />
         <activity
             android:name=".WelcomeLoginActivity"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+            android:exported="false" />
         <activity
             android:name=".OnBoardingActivity02"
             android:exported="false" />
@@ -127,7 +125,13 @@
         <activity
             android:name=".SplashScreenActivity"
             android:exported="true"
-            android:theme="@style/FullScreen"></activity>
+            android:theme="@style/FullScreen">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <activity
             android:name=".MainActivity"
             android:exported="true" />

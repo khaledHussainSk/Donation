@@ -14,6 +14,7 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.PopupMenu;
@@ -28,6 +29,7 @@ import com.google.firebase.firestore.QuerySnapshot;
 import com.google.firebase.storage.FirebaseStorage;
 import com.khaled.donation.Adapters.RvDisplayPostAdapter;
 import com.khaled.donation.Adapters.RvPostsProfileAdapter;
+import com.khaled.donation.Listeners.GetPost;
 import com.khaled.donation.Listeners.OnClickMenuPostListener;
 import com.khaled.donation.Models.Comment;
 import com.khaled.donation.Models.Like;
@@ -107,24 +109,24 @@ public class PostsActivity extends AppCompatActivity {
                             public boolean onMenuItemClick(MenuItem item) {
                                 switch (item.getItemId()) {
                                     case R.id.edit:
-                                        if (netInfo == null){
+                                        if (netInfo == null) {
                                             dialogInternet_error();
-                                        }else{
-                                            if (isUploaded == false){
+                                        } else {
+                                            if (isUploaded == false) {
                                                 Intent intent = new Intent(getBaseContext()
-                                                        ,AddPhotoActivity.class);
+                                                        , AddPhotoActivity.class);
                                                 intent.putExtra(RvDisplayPostAdapter.POST_KEY, post);
                                                 startActivity(intent);
-                                            }else {
-                                                Toasty.info(getBaseContext(),R.string.toast_moment
+                                            } else {
+                                                Toasty.info(getBaseContext(), R.string.toast_moment
                                                         , Toast.LENGTH_SHORT).show();
                                             }
                                         }
                                         return true;
                                     case R.id.delete:
-                                        if (netInfo == null){
+                                        if (netInfo == null) {
                                             dialogInternet_error();
-                                        }else{
+                                        } else {
                                             androidx.appcompat.app.AlertDialog.Builder builder
                                                     = new AlertDialog.Builder(PostsActivity.this);
                                             builder.setTitle(R.string.delete);
@@ -134,7 +136,7 @@ public class PostsActivity extends AppCompatActivity {
                                                         @Override
                                                         public void onClick(DialogInterface dialogInterface, int i) {
                                                             count_posts = count_posts - 1;
-                                                            for (int a=0 ;a<post.getImages().size();a++){
+                                                            for (int a = 0; a < post.getImages().size(); a++) {
                                                                 FirebaseStorage
                                                                         .getInstance()
                                                                         .getReferenceFromUrl(post.getImages().get(a))
@@ -166,6 +168,13 @@ public class PostsActivity extends AppCompatActivity {
                         });
                         popupMenu.show();
 
+                    }
+                }, new GetPost() {
+                    @Override
+                    public void getPostListener(Post post) {
+                        Intent intent = new Intent(getBaseContext(), PostDetailsActivity.class);
+                        intent.putExtra(RvDisplayPostAdapter.POST_KEY,post);
+                        startActivityForResult(intent,AllFragment.POST_DETAILS_REQ_CODE);
                     }
                 });
                 binding.rv.setHasFixedSize(true);
@@ -232,6 +241,14 @@ public class PostsActivity extends AppCompatActivity {
                 .setCancelable(false)
                 .setMessage(getResources().getString(R.string.internet_error))
                 .setPositiveButton(R.string.ok, null).show();
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode == AllFragment.POST_DETAILS_REQ_CODE){
+            finish();
+        }
     }
 
 }

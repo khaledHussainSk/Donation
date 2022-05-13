@@ -61,7 +61,7 @@ public class CommentsActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
 
         fixed();
-        getPublisherInfoWithIf();
+        getPublisherInfo(post);
         getCommentsWithIf();
         getUserInfo(id_current_user);
 
@@ -119,7 +119,7 @@ public class CommentsActivity extends AppCompatActivity {
                     Glide.with(CommentsActivity.this).load(user.getImageProfile())
                             .placeholder(R.drawable.ic_user4).into(binding.ivPublisher);
                     binding.tvPublisher.setText(user.getFullName());
-                    binding.tvDescription.setText(post.getDescription());
+                    binding.tvDescription.setText(post.getTitle());
                     getDate(post,binding.tvDate,binding.date);
                 }
             }
@@ -220,6 +220,7 @@ public class CommentsActivity extends AppCompatActivity {
     }
 
     private void deleteComment(Comment comment,Post post){
+        binding.rv.setEnabled(false);
         store.collection("Comments").document(comment.getId_comment()).delete();
         store.collection("Posts").document(post.getPostId())
                 .update("comments",post.getComments() - 1);
@@ -236,6 +237,7 @@ public class CommentsActivity extends AppCompatActivity {
                             DocumentSnapshot documentSnapshot = task.getResult();
                             Post post1 = documentSnapshot.toObject(Post.class);
                             post = post1;
+                            binding.rv.setEnabled(true);
                         }
                     }
                 });
@@ -249,15 +251,6 @@ public class CommentsActivity extends AppCompatActivity {
         }else {
             binding.tvNoCommentsYet.setVisibility(View.VISIBLE);
             binding.tvStartTheConversation.setVisibility(View.VISIBLE);
-        }
-    }
-
-    private void getPublisherInfoWithIf(){
-        if (post.getDescription().equals("")){
-            binding.postLayout.setVisibility(View.GONE);
-        }else {
-            binding.postLayout.setVisibility(View.VISIBLE);
-            getPublisherInfo(post);
         }
     }
 

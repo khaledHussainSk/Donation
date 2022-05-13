@@ -156,7 +156,7 @@
                         android:layout_height="wrap_content"
                         android:layout_centerInParent="true"
                         android:gravity="center"
-                        android:text="Profile Details"
+                        android:text="@string/editProfile"
                         android:textColor="@color/black"
                         android:textSize="@dimen/_18ssp"
                         android:textStyle="bold" />

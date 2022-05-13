@@ -101,7 +101,7 @@
                                     android:layout_height="wrap_content"
                                     android:gravity="center"
                                     android:paddingTop="@dimen/_10sdp"
-                                    android:text="@string/post"
+                                    android:text="@string/posts"
                                     android:textSize="@dimen/_11sdp"
                                     android:textStyle="bold" />
 

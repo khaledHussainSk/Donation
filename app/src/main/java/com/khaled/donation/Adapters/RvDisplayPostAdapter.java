@@ -11,11 +11,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
@@ -26,18 +24,13 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
-import com.khaled.donation.CommentsActivity;
-import com.khaled.donation.DisplayAllImagesPostActivity;
 import com.khaled.donation.LikesActivity;
 import com.khaled.donation.Listeners.GetPost;
-import com.khaled.donation.Listeners.OnClickItemImagePostListener;
 import com.khaled.donation.Listeners.OnClickMenuPostListener;
 import com.khaled.donation.MainActivity;
-import com.khaled.donation.Models.Favorite;
 import com.khaled.donation.Models.Like;
 import com.khaled.donation.Models.Post;
 import com.khaled.donation.Models.User;
-import com.khaled.donation.OtherProfileActivity;
 import com.khaled.donation.R;
 import com.khaled.donation.databinding.CustomPhotoPostBinding;
 
@@ -50,22 +43,24 @@ import java.util.Locale;
 public class RvDisplayPostAdapter
         extends RecyclerView.Adapter<RvDisplayPostAdapter.RvDisplayPostAdapterHolder> {
     public static final String IMAGES_POST_KEY = "IMAGES_POST_KEY";
+    GetPost getPost;
     Context context;
     ArrayList<Post> posts;
     OnClickMenuPostListener listener;
     String currntUserID;
     SharedPreferences sp;
     View v;
-    RvDisplayPhotosPostAdapter adapter;
     CustomPhotoPostBinding binding;
     int sum;
     NetworkInfo netInfo;
     public static final String POST_KEY = "POST_KEY";
 
-    public RvDisplayPostAdapter(Context context, ArrayList<Post> posts, OnClickMenuPostListener listener) {
+    public RvDisplayPostAdapter(Context context, ArrayList<Post> posts, OnClickMenuPostListener listener
+    ,GetPost getPost) {
         this.context = context;
         this.posts = posts;
         this.listener = listener;
+        this.getPost = getPost;
     }
 
     public ArrayList<Post> getPosts() {
@@ -107,6 +102,13 @@ public class RvDisplayPostAdapter
                     .getSystemService(Context.CONNECTIVITY_SERVICE);
             netInfo = conMgr.getActiveNetworkInfo();
 
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    getPost.getPostListener(post);
+                }
+            });
+
         }
 
         private void bind(Post post){
@@ -114,74 +116,46 @@ public class RvDisplayPostAdapter
 
             fixed(post);
 
-            ImageView iv_menuPost = binding.ivMenuPost;
-            ImageView save = binding.save;
-            ImageView unsave = binding.unsave;
+//            ImageView iv_menuPost = binding.ivMenuPost;
             ImageView ic_like = binding.icLike;
             ImageView ic_liked = binding.icLiked;
+            ImageView iv_post = binding.ivPost;
             TextView tv_likes = binding.tvLikes;
-            TextView likes = binding.likes;
-            ImageView comments = binding.comment;
-            TextView tv_comments = binding.tvComments;
+            TextView tv_address = binding.tvAddress;
+            TextView tv_title = binding.tvTitle;
+            TextView tv_price = binding.tvPrice;
+//            ImageView comments = binding.comment;
+//            TextView tv_comments = binding.tvComments;
             TextView tv_date = binding.tvDate;
             TextView date = binding.date;
-            ImageView iv_profile = binding.ivProfile;
-            TextView tv_username = binding.tvUsername;
-            TextView tv_publisher = binding.tvPublisher;
-            RecyclerView rv = binding.rv;
 
-            isFav(save,unsave,post);
-            save.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    if (netInfo == null){
-                        dialogInternet_error();
-                    }else{
-                        createFav(post,save,unsave);
-                    }
-                }
-            });
-            unsave.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    if (netInfo == null){
-                        dialogInternet_error();
-                    }else{
-                        unFav(post,save,unsave);
-                    }
-                }
-            });
 
-            transfers(post,tv_comments,tv_likes,likes);
+            transfers(post,tv_likes);
             getDate(post,tv_date,date);
+            Glide.with(context).load(post.getImages().get(0))
+                    .placeholder(R.drawable.ic_loading)
+                    .into(iv_post);
+            tv_title.setText(post.getTitle());
+            tv_price.setText(String.valueOf(post.getPrice()));
 
-            iv_menuPost.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    listener.OnClickMenuPostListener(post,iv_menuPost);
-                }
-            });
+//            iv_menuPost.setOnClickListener(new View.OnClickListener() {
+//                @Override
+//                public void onClick(View view) {
+//                    listener.OnClickMenuPostListener(post,iv_menuPost);
+//                }
+//            });
 
-            if (post.getPublisher().equals(currntUserID)){
-                binding.ivMenuPost.setVisibility(View.VISIBLE);
-            }else{
-                binding.ivMenuPost.setVisibility(View.GONE);
-            }
+//            if (post.getPublisher().equals(currntUserID)){
+//                binding.ivMenuPost.setVisibility(View.VISIBLE);
+//            }else{
+//                binding.ivMenuPost.setVisibility(View.GONE);
+//            }
 
-            comments.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    Intent intent = new Intent(context, CommentsActivity.class);
-                    intent.putExtra(POST_KEY,post);
-                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                    context.startActivity(intent);
-                }
-            });
 
-            tv_comments.setText("View All "+post.getComments()+" Comments");
+
             sum = post.getLikes();
 
-            islike(post,ic_like,ic_liked,tv_likes,likes);
+            islike(post,ic_like,ic_liked,tv_likes);
             ic_like.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -203,30 +177,14 @@ public class RvDisplayPostAdapter
                 }
             });
 
-            if (post.getDescription().equals("")){
-                binding.tvDescription.setVisibility(View.GONE);
-            }else {
-                binding.tvDescription.setVisibility(View.VISIBLE);
-                binding.tvDescription.setText(post.getDescription());
-            }
+//            if (post.getDescription().equals("")){
+//                binding.tvDescription.setVisibility(View.GONE);
+//            }else {
+//                binding.tvDescription.setVisibility(View.VISIBLE);
+//                binding.tvDescription.setText(post.getDescription());
+//            }
 
-            publisherInfo(post.getPublisher(),iv_profile,tv_username,tv_publisher);
-
-            adapter = new RvDisplayPhotosPostAdapter(post.getImages()
-                    , new OnClickItemImagePostListener() {
-                @Override
-                public void OnClickListener(ArrayList<String> images) {
-                    Intent intent = new Intent(context, DisplayAllImagesPostActivity.class);
-                    intent.putExtra(IMAGES_POST_KEY,images);
-                    context.startActivity(intent);
-                }
-            });
-            rv.setHasFixedSize(true);
-            LinearLayoutManager horizontalLayoutManagaer =
-                    new LinearLayoutManager(context
-                            , LinearLayoutManager.HORIZONTAL, false);
-            rv.setLayoutManager(horizontalLayoutManagaer);
-            rv.setAdapter(adapter);
+//            publisherInfo(post.getPublisher(),iv_profile,tv_username,tv_publisher);
 
 
             FirebaseFirestore.getInstance().collection("Users")
@@ -236,28 +194,26 @@ public class RvDisplayPostAdapter
                         public void onComplete(@NonNull Task<DocumentSnapshot> task) {
                             DocumentSnapshot documentSnapshot = task.getResult();
                             User user = documentSnapshot.toObject(User.class);
-                            iv_profile.setOnClickListener(new View.OnClickListener() {
-                                @Override
-                                public void onClick(View view) {
-                                    Intent intent = new Intent(context,OtherProfileActivity.class);
-                                    intent.putExtra(MainActivity.USER_KEY,user);
-                                    context.startActivity(intent);
-                                }
-                            });
+                            tv_address.setText(user.getAddress());
+//                            iv_profile.setOnClickListener(new View.OnClickListener() {
+//                                @Override
+//                                public void onClick(View view) {
+//                                    Intent intent = new Intent(context,OtherProfileActivity.class);
+//                                    intent.putExtra(MainActivity.USER_KEY,user);
+//                                    context.startActivity(intent);
+//                                }
+//                            });
 
-                            tv_username.setOnClickListener(new View.OnClickListener() {
-                                @Override
-                                public void onClick(View view) {
-                                    Intent intent = new Intent(context,OtherProfileActivity.class);
-                                    intent.putExtra(MainActivity.USER_KEY,user);
-                                    context.startActivity(intent);
-                                }
-                            });
+//                            tv_username.setOnClickListener(new View.OnClickListener() {
+//                                @Override
+//                                public void onClick(View view) {
+//                                    Intent intent = new Intent(context,OtherProfileActivity.class);
+//                                    intent.putExtra(MainActivity.USER_KEY,user);
+//                                    context.startActivity(intent);
+//                                }
+//                            });
                         }
                     });
-
-
-
         }
 
     }
@@ -266,44 +222,6 @@ public class RvDisplayPostAdapter
         ConnectivityManager conMgr =  (ConnectivityManager)context
                 .getSystemService(Context.CONNECTIVITY_SERVICE);
         netInfo = conMgr.getActiveNetworkInfo();
-    }
-
-    private void publisherInfo(String publisher_id,ImageView iv_profile,
-                               TextView tv_username,TextView tv_publisher){
-        FirebaseFirestore.getInstance().collection("Users")
-                .document(publisher_id).get()
-                .addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-                    @Override
-                    public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                        if (task.isSuccessful()){
-                            DocumentSnapshot documentSnapshot = task.getResult();
-                            User user = documentSnapshot.toObject(User.class);
-                            Glide.with(v).load(user.getImageProfile())
-                                    .placeholder(R.drawable.ic_user4)
-                                    .into(iv_profile);
-                            tv_username.setText(user.getFullName());
-                            tv_publisher.setText(user.getFullName());
-                        }
-                    }
-                });
-    }
-
-    private void createFav(Post post,ImageView save,ImageView unsave){
-        save.setEnabled(false);
-        unsave.setEnabled(false);
-        save.setVisibility(View.GONE);
-        unsave.setVisibility(View.VISIBLE);
-        Favorite favorite = new Favorite(currntUserID
-                ,post.getPostId()
-                ,Calendar.getInstance().getTime());
-        DocumentReference documentReference =
-                FirebaseFirestore.getInstance().collection("Favorite").document();
-        favorite.setId(documentReference.getId());
-        documentReference.set(favorite);
-        save.setEnabled(true);
-        unsave.setEnabled(true);
-        Toast.makeText(context, R.string.saved, Toast.LENGTH_SHORT).show();
-
     }
 
     private void giveLike(Post post,TextView tv_likes,ImageView ic_like,ImageView ic_liked){
@@ -339,34 +257,9 @@ public class RvDisplayPostAdapter
         });
     }
 
-    private void isFav(ImageView save,ImageView unsave,Post post){
-        FirebaseFirestore
-                .getInstance()
-                .collection("Favorite")
-                .get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-            @Override
-            public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                if (task.isSuccessful()){
-                    for (QueryDocumentSnapshot queryDocumentSnapshot : task.getResult()){
-                        Favorite favorite = queryDocumentSnapshot.toObject(Favorite.class);
-                        if (favorite.getId_user().equals(currntUserID)
-                                && favorite.getId_post().equals(post.getPostId())){
-                            unsave.setVisibility(View.VISIBLE);
-                            save.setVisibility(View.GONE);
-                        }else {
-                            unsave.setVisibility(View.GONE);
-                            save.setVisibility(View.VISIBLE);
-                        }
-                    }
-                }
-            }
-        });
-    }
-
     private void islike(Post post,ImageView ic_like
-            ,ImageView ic_liked,TextView tv_likes,TextView likes){
+            ,ImageView ic_liked,TextView tv_likes){
         tv_likes.setText(String.valueOf(post.getLikes()));
-        likes.setText(R.string.tv_likes);
         if (post.getLikes() > 0){
             FirebaseFirestore.getInstance().collection("Likes")
                     .get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
@@ -386,35 +279,6 @@ public class RvDisplayPostAdapter
                 }
             });
         }
-    }
-
-    private void unFav(Post post,ImageView save,ImageView unsave){
-        save.setEnabled(false);
-        unsave.setEnabled(false);
-        unsave.setVisibility(View.GONE);
-        save.setVisibility(View.VISIBLE);
-        FirebaseFirestore.getInstance().collection("Favorite")
-                .get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-            @Override
-            public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                if (task.isSuccessful()){
-                    for (QueryDocumentSnapshot queryDocumentSnapshot : task.getResult()){
-                        Favorite favorite = queryDocumentSnapshot.toObject(Favorite.class);
-                        if (favorite.getId_post().equals(post.getPostId())
-                        && currntUserID.equals(favorite.getId_user())){
-                            FirebaseFirestore.getInstance().collection("Favorite")
-                                    .document(favorite.getId()).delete();
-                            save.setEnabled(true);
-                            unsave.setEnabled(true);
-                            save.setVisibility(View.VISIBLE);
-                            unsave.setVisibility(View.GONE);
-                            Toast.makeText(context, R.string.unsave, Toast.LENGTH_SHORT).show();
-                        }
-                    }
-                }
-            }
-        });
-
     }
 
     private void cancelLike(Post post,TextView tv_likes,ImageView ic_like,ImageView ic_liked){
@@ -486,26 +350,18 @@ public class RvDisplayPostAdapter
                 });
     }
 
-    private void transfers(Post post,TextView tv_comments, TextView tv_likes, TextView likes){
+    private void transfers(Post post, TextView tv_likes){
 
-        tv_comments.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(context, CommentsActivity.class);
-                intent.putExtra(POST_KEY,post);
-                context.startActivity(intent);
-            }
-        });
+//        tv_comments.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Intent intent = new Intent(context, CommentsActivity.class);
+//                intent.putExtra(POST_KEY,post);
+//                context.startActivity(intent);
+//            }
+//        });
 
             tv_likes.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    Intent intent = new Intent(context, LikesActivity.class);
-                    intent.putExtra(POST_KEY,post);
-                    context.startActivity(intent);
-                }
-            });
-            likes.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     Intent intent = new Intent(context, LikesActivity.class);

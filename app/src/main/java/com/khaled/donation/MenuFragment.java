@@ -15,6 +15,7 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 
@@ -127,7 +128,7 @@ public class MenuFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getActivity(),FavoriteActivity.class);
-                startActivity(intent);
+                startActivityForResult(intent,AllFragment.POST_DETAILS_REQ_CODE);
             }
         });
         binding.icSearch.setOnClickListener(new View.OnClickListener() {
@@ -225,4 +226,11 @@ public class MenuFragment extends Fragment {
         edit.apply();
     }
 
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == AllFragment.POST_DETAILS_REQ_CODE){
+            MainActivity.bottomNavigation.show(5,true);
+        }
+    }
 }

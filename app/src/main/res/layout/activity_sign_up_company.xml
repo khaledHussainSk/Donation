@@ -74,7 +74,7 @@
                         android:layout_marginTop="@dimen/_20sdp"
                         android:layout_marginEnd="@dimen/_20sdp"
                         android:background="@drawable/et_shape"
-                        android:hint="@string/companyName_hint"
+                        android:hint="@string/corporationName_hint"
                         android:inputType="textPersonName"
                         android:padding="@dimen/_16sdp"
                         android:textColor="#1C2340"
@@ -236,7 +236,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerInParent="true"
-                        android:text="@string/sign_un_tv"
+                        android:text="@string/sign_up_tv"
                         android:textColor="@color/black"
                         android:textSize="@dimen/_18sdp"
                         android:textStyle="bold" />

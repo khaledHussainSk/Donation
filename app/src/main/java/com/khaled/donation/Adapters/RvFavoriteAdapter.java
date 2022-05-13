@@ -1,6 +1,7 @@
 package com.khaled.donation.Adapters;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.view.LayoutInflater;
@@ -19,6 +20,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.khaled.donation.Listeners.GetFavorite;
 import com.khaled.donation.Models.Favorite;
 import com.khaled.donation.Models.Post;
 import com.khaled.donation.Models.User;
@@ -36,10 +38,13 @@ public class RvFavoriteAdapter extends RecyclerView.Adapter<RvFavoriteAdapter.Rv
     ArrayList<Favorite> favorites;
     CustomFavoriteBinding binding;
     NetworkInfo netInfo;
+    GetFavorite getFavorite;
 
-    public RvFavoriteAdapter(Context context, ArrayList<Favorite> favorites) {
+    public RvFavoriteAdapter(Context context, ArrayList<Favorite> favorites,
+    GetFavorite getFavorite) {
         this.context = context;
         this.favorites = favorites;
+        this.getFavorite = getFavorite;
     }
 
     public Context getContext() {
@@ -94,7 +99,12 @@ public class RvFavoriteAdapter extends RecyclerView.Adapter<RvFavoriteAdapter.Rv
             ConnectivityManager conMgr =  (ConnectivityManager)context
                     .getSystemService(Context.CONNECTIVITY_SERVICE);
             netInfo = conMgr.getActiveNetworkInfo();
-
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    getFavorite.OnClickListener(favorite);
+                }
+            });
         }
 
         private void bine(Favorite favorite){
@@ -103,10 +113,10 @@ public class RvFavoriteAdapter extends RecyclerView.Adapter<RvFavoriteAdapter.Rv
             ImageView iv_post = binding.ivPost;
             ImageView unsave = binding.ivUnsave;
             TextView tv_date = binding.tvDate;
-            TextView tv_username = binding.username;
-            TextView tv_description = binding.description;
+            TextView tv_category = binding.tvCategory;
+            TextView tv_title = binding.tvTitle;
 
-            getInfo(favorite,tv_date,iv_post,tv_description,tv_username);
+            getInfo(favorite,tv_date,iv_post,tv_title,tv_category);
 
             unsave.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -129,13 +139,13 @@ public class RvFavoriteAdapter extends RecyclerView.Adapter<RvFavoriteAdapter.Rv
     }
 
     private void getInfo(Favorite favorite
-            ,TextView tv_date,ImageView iv_post,TextView tv_description,TextView tv_username){
+            ,TextView tv_date,ImageView iv_post,TextView tv_title,TextView tv_category){
         tv_date.setText(formatDate(favorite.getDate()));
-        getPost(favorite,iv_post,tv_description,tv_username);
+        getPost(favorite,iv_post,tv_title,tv_category);
     }
 
     private void getPost(Favorite favorite
-            ,ImageView iv_post,TextView tv_description,TextView tv_username){
+            ,ImageView iv_post,TextView tv_title,TextView tv_gategory){
         FirebaseFirestore.getInstance().collection("Posts")
                 .document(favorite.getId_post()).get()
                 .addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
@@ -147,17 +157,51 @@ public class RvFavoriteAdapter extends RecyclerView.Adapter<RvFavoriteAdapter.Rv
                                 .load(post.getImages().get(0))
                                 .placeholder(R.drawable.ic_loading)
                                 .into(iv_post);
-                        if (post.getDescription().equals("")){
-                            tv_description.setText(R.string.noDescription);
-                        }else {
-                            tv_description.setText(post.getDescription());
+                        tv_title.setText(post.getTitle());
+                        if (post.getCategory().equals("أطعمة ومشروبات")){
+                            setCategory(R.drawable.shape_tv_category_foods
+                                    ,"#00B6FF",post,tv_gategory);
+                            return;
+                        }else if (post.getCategory().equals("أجهزة والكترونيات")){
+                            setCategory(R.drawable.shape_tv_category_appliances_and_electronics
+                                    ,"#FFBC00",post,tv_gategory);
+                            return;
+                        }else if (post.getCategory().equals("سيارات ومركبات")){
+                            setCategory(R.drawable.shape_tv_category_cars_and_vehicles
+                                    ,"#009688",post,tv_gategory);
+                            return;
+                        }else if ((post.getCategory().equals("أثاث وديكور"))){
+                            setCategory(R.drawable.shape_tv_category_furniture_and_decoration
+                                    ,"#4CAF50",post,tv_gategory);
+                            return;
+                        }else if (post.getCategory().equals("عقارات وأملاك")){
+                            setCategory(R.drawable.shape_tv_category_real_estate_and_property
+                                    ,"#673AB7",post,tv_gategory);
+                            return;
+                        }else if (post.getCategory().equals("حيوانات وطيور")){
+                            setCategory(R.drawable.shape_tv_category_animals_and_birds
+                                    ,"#9C27B0",post,tv_gategory);
+                            return;
+                        }else if (post.getCategory().equals("أجهزة والكترونيات")){
+                            setCategory(R.drawable.shape_tv_category_computers_and_the_internet
+                                    ,"#009688",post,tv_gategory);
+                            return;
                         }
-                        getPublisher(post,tv_username);
+                        else {
+                            tv_gategory.setText(post.getCategory());
+                            return;
+                        }
                     }
                 });
     }
 
-    private void getPublisher(Post post,TextView tv_username){
+    private void setCategory(int background,String textColor,Post post,TextView tv_category){
+        tv_category.setBackgroundResource(background);
+        tv_category.setTextColor(Color.parseColor(textColor));
+        tv_category.setText(post.getCategory());
+    }
+
+    private void getPublisher(Post post){
         FirebaseFirestore.getInstance().collection("Users")
                 .document(post.getPublisher()).get()
                 .addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
@@ -165,7 +209,6 @@ public class RvFavoriteAdapter extends RecyclerView.Adapter<RvFavoriteAdapter.Rv
                     public void onComplete(@NonNull Task<DocumentSnapshot> task) {
                         DocumentSnapshot documentSnapshot = task.getResult();
                         User user = documentSnapshot.toObject(User.class);
-                        tv_username.setText(user.getFullName());
                     }
                 });
     }

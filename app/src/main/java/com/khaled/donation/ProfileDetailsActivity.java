@@ -129,6 +129,10 @@ public class ProfileDetailsActivity extends AppCompatActivity {
                     }else {
                         uploadImage();
                     }
+                }else if (image.equals(currentUser.getImageProfile())){
+                    if (imageUri == null){
+                        editUser();
+                    }
                 }else {
                     uploadImage();
                 }

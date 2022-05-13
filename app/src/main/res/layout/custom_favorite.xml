@@ -5,7 +5,6 @@
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-
     <androidx.cardview.widget.CardView
         android:layout_margin="@dimen/_8sdp"
         android:layout_width="match_parent"
@@ -31,36 +30,43 @@
                 tools:srcCompat="@tools:sample/avatars" />
 
             <TextView
-                android:id="@+id/username"
+                android:id="@+id/tv_category"
+                android:gravity="center"
+                android:layout_gravity="center"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="21dp"
-                android:textSize="@dimen/_13ssp"
-                android:textColor="@color/black"
+                android:layout_marginStart="@dimen/_10sdp"
+                android:textSize="@dimen/_9ssp"
+                android:textColor="#FE2121"
                 android:textStyle="bold"
+                android:padding="@dimen/_8sdp"
+                android:text="foods"
+                android:background="@drawable/shape_tv_category_all_favorite"
                 app:layout_constraintStart_toEndOf="@+id/iv_post"
-                app:layout_constraintTop_toTopOf="@+id/iv_post"></TextView>
-
+                app:layout_constraintTop_toTopOf="@+id/iv_post"
+                ></TextView>
 
             <TextView
-                android:id="@+id/description"
+                android:id="@+id/tv_title"
+                android:layout_marginTop="@dimen/_10sdp"
                 android:layout_width="@dimen/_155sdp"
-                android:layout_height="@dimen/_39sdp"
-                android:textSize="@dimen/_14ssp"
+                android:layout_height="@dimen/_50sdp"
+                android:layout_marginEnd="@dimen/_8sdp"
+                android:layout_marginBottom="@dimen/_12sdp"
                 android:textColor="@color/black"
-                android:gravity="center_vertical"
+                android:textSize="@dimen/_14ssp"
                 app:layout_constraintBottom_toTopOf="@+id/tv_date"
                 app:layout_constraintEnd_toStartOf="@+id/iv_unsave"
                 app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="@+id/username"
-                app:layout_constraintTop_toBottomOf="@+id/username"
+                app:layout_constraintStart_toStartOf="@+id/tv_category"
+                app:layout_constraintTop_toBottomOf="@+id/tv_category"
                 app:layout_constraintVertical_bias="0.527"></TextView>
 
             <TextView
                 android:id="@+id/tv_date"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
+                android:layout_marginStart="@dimen/_10sdp"
                 android:textColor="#05B589"
                 android:textSize="@dimen/_8ssp"
                 android:textStyle="bold"
@@ -73,7 +79,7 @@
                 android:layout_height="wrap_content"
                 android:tint="#FE2121"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/username"
+                app:layout_constraintTop_toTopOf="@+id/tv_category"
                 app:srcCompat="@drawable/ic_favorite" />
 
 
