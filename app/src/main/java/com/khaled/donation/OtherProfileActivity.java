@@ -55,6 +55,34 @@ public class OtherProfileActivity extends AppCompatActivity {
         follow();
         unFollow();
         getPosts();
+        refreshFollowers();
+
+        binding.postsLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getBaseContext(), PostsActivity.class);
+                intent.putExtra(RvPostsProfileAdapter.ID_USER_KEY,RvPostsProfileAdapter.id_user);
+                startActivity(intent);
+            }
+        });
+
+        binding.followersLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getBaseContext(), FollowersActivity.class);
+                intent.putExtra(RvPostsProfileAdapter.ID_USER_KEY,RvPostsProfileAdapter.id_user);
+                startActivity(intent);
+            }
+        });
+
+        binding.followingLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getBaseContext(), FollowingActivity.class);
+                intent.putExtra(RvPostsProfileAdapter.ID_USER_KEY,RvPostsProfileAdapter.id_user);
+                startActivity(intent);
+            }
+        });
 
 
     }
@@ -123,6 +151,7 @@ public class OtherProfileActivity extends AppCompatActivity {
                                         .document(user.getIdUser())
                                         .update("followers",followers);
 
+                                getCurrentUser();
                                 refreshFollowers();
                                 binding.btnFollow.setVisibility(View.GONE);
                                 binding.btnUnfollow.setVisibility(View.VISIBLE);
@@ -149,8 +178,8 @@ public class OtherProfileActivity extends AppCompatActivity {
                     public void onComplete(@NonNull Task<DocumentSnapshot> task) {
                         DocumentSnapshot documentSnapshot = task.getResult();
                         current_user = documentSnapshot.toObject(User.class);
-                        isFollow();
                         following = current_user.getFollowing();
+                        isFollow();
                     }
                 }).addOnFailureListener(new OnFailureListener() {
             @Override
@@ -232,7 +261,10 @@ public class OtherProfileActivity extends AppCompatActivity {
                     public void onComplete(@NonNull Task<DocumentSnapshot> task) {
                         DocumentSnapshot documentSnapshot = task.getResult();
                         User user = documentSnapshot.toObject(User.class);
+                        followers = user.getFollowers();
                         binding.tvFollowers.setText(String.valueOf(user.getFollowers()));
+                        binding.tvFollowing.setText(String.valueOf(user.getFollowing()));
+                        binding.tvPosts.setText(String.valueOf(user.getPosts()));
                     }
                 }).addOnFailureListener(new OnFailureListener() {
             @Override

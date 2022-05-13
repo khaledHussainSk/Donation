@@ -211,7 +211,9 @@
                     android:layout_centerVertical="true"
                     android:textColor="@color/white"
                     android:textSize="@dimen/_14sdp"
-                    app:srcCompat="@drawable/icon_ionic_ios_arrow_back" />
+                    android:tint="@color/black"
+                    android:src="@drawable/ic_arrow"
+                    />
 
             </RelativeLayout>
 

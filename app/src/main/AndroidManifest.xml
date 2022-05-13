@@ -14,10 +14,18 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Donation">
-        <activity android:name=".ActivityAddVideo"
+        <activity
+            android:name=".FollowingActivity"
             android:theme="@style/FullScreen"
+            android:exported="false" />
+        <activity
+            android:name=".FollowersActivity"
             android:exported="false"
-            ></activity>
+            android:theme="@style/FullScreen" />
+        <activity
+            android:name=".ActivityAddVideo"
+            android:exported="false"
+            android:theme="@style/FullScreen" />
         <activity
             android:name=".PostDetailsActivity"
             android:exported="false" />

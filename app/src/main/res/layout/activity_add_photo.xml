@@ -242,7 +242,8 @@
                     android:textColor="@color/white"
                     android:textSize="@dimen/_14sdp"
                     android:tint="@color/black"
-                    app:srcCompat="@drawable/ic_arrow" />
+                    android:src="@drawable/ic_arrow"
+                    />
 
             </RelativeLayout>
 

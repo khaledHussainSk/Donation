@@ -78,9 +78,25 @@ public class ProfileFragment extends Fragment {
         binding.postsLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                Intent intent = new Intent(getActivity(), PostsActivity.class);
-//                intent.putExtra(RvPostsProfileAdapter.ID_USER_KEY,id_user);
-//                startActivity(intent);
+                Intent intent = new Intent(getActivity(), PostsActivity.class);
+                intent.putExtra(RvPostsProfileAdapter.ID_USER_KEY,RvPostsProfileAdapter.id_user);
+                startActivity(intent);
+            }
+        });
+
+        binding.follwersLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity(), FollowersActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        binding.followingLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity(), FollowingActivity.class);
+                startActivity(intent);
             }
         });
 

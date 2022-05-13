@@ -39,7 +39,7 @@
                         android:layout_height="wrap_content"
                         android:layout_centerInParent="true"
                         android:gravity="center"
-                        android:text="Profile"
+                        android:text="@string/profile"
                         android:textColor="@color/black"
                         android:textSize="@dimen/_18ssp"
                         android:textStyle="bold" />
@@ -48,10 +48,12 @@
                         android:id="@+id/ic_back"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentStart="true"
                         android:layout_centerVertical="true"
                         android:layout_marginLeft="@dimen/_12sdp"
-                        android:src="@drawable/icon_ionic_ios_arrow_back" />
+                        android:tint="@color/black"
+                        android:src="@drawable/ic_arrow"
+                        />
                 </RelativeLayout>
 
             </androidx.appcompat.widget.Toolbar>
@@ -207,6 +209,7 @@
                 android:orientation="horizontal">
 
                 <LinearLayout
+                    android:id="@+id/posts_layout"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -227,7 +230,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:gravity="center"
-                        android:text="@string/post"
+                        android:text="@string/posts"
                         android:textColor="#1C2340"
                         android:textSize="@dimen/_11ssp"
                         />
@@ -240,6 +243,7 @@
                     android:background="#79D6D1D1" />
 
                 <LinearLayout
+                    android:id="@+id/followers_layout"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -273,6 +277,7 @@
                     android:background="#79D6D1D1" />
 
                 <LinearLayout
+                    android:id="@+id/following_layout"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -304,25 +309,35 @@
 
         </RelativeLayout>
 
-        <ProgressBar
-            android:id="@+id/progressBar"
-            style="?android:attr/progressBarStyle"
-            android:layout_centerInParent="true"
-            android:visibility="gone"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rv"
+        <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_below="@+id/r"
             android:layout_marginStart="@dimen/_13sdp"
             android:layout_marginTop="@dimen/_20sdp"
             android:layout_marginEnd="@dimen/_13sdp"
             app:layout_constraintTop_toTopOf="parent"
-            tools:layout_editor_absoluteX="6dp" />
+            tools:layout_editor_absoluteX="6dp"
+            app:cardCornerRadius="@dimen/_6sdp"
+            android:layout_below="@+id/r"
+            android:layout_marginBottom="@dimen/_5sdp"
+            >
 
+            <ProgressBar
+                android:id="@+id/progressBar"
+                style="?android:attr/progressBarStyle"
+                android:layout_centerInParent="true"
+                android:visibility="gone"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@+id/r"
+                />
+
+        </androidx.cardview.widget.CardView>
 
     </RelativeLayout>
 

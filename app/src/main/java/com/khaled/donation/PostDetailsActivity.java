@@ -20,6 +20,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.bumptech.glide.Glide;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
@@ -32,6 +33,7 @@ import com.khaled.donation.Adapters.RvDisplayPostAdapter;
 import com.khaled.donation.Listeners.OnClickItemImagePostListener;
 import com.khaled.donation.Models.Comment;
 import com.khaled.donation.Models.Favorite;
+import com.khaled.donation.Models.Friend;
 import com.khaled.donation.Models.Like;
 import com.khaled.donation.Models.Post;
 import com.khaled.donation.Models.User;
@@ -55,6 +57,8 @@ public class PostDetailsActivity extends AppCompatActivity {
     public static boolean isUploaded;
     int count_posts;
     User currentUser;
+    int following;
+    int followers;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,19 +67,27 @@ public class PostDetailsActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
 
         fixed();
-        getCountPosts();
+        getCurrentUser();
 
         binding.save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                createFav();
+                if (netInfo == null){
+                    dialogInternet_error();
+                }else {
+                    createFav();
+                }
             }
         });
 
         binding.unsave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                unFav();
+                if (netInfo == null){
+                    dialogInternet_error();
+                }else {
+                    unFav();
+                }
             }
         });
 
@@ -92,7 +104,11 @@ public class PostDetailsActivity extends AppCompatActivity {
         binding.icMore.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                showPopupMenu();
+                if (netInfo == null){
+                    dialogInternet_error();
+                }else {
+                    showPopupMenu();
+                }
             }
         });
 
@@ -178,13 +194,28 @@ public class PostDetailsActivity extends AppCompatActivity {
                         DocumentSnapshot documentSnapshot = task.getResult();
                         User user = documentSnapshot.toObject(User.class);
 
+                        followers = user.getFollowers();
+
+                        isFollow(user);
+
+                        binding.btnFollow.setOnClickListener(view -> {
+                            if (netInfo == null){
+                                dialogInternet_error();
+                            }else {
+                                follow(user);
+                            }
+                        });
+
                         if (user.getIdUser().equals(currntUserID)){
                             binding.btnFollow.setVisibility(View.GONE);
+                            binding.cardMessage.setVisibility(View.GONE);
                         }else {
                             binding.btnFollow.setVisibility(View.VISIBLE);
+                            binding.cardMessage.setVisibility(View.VISIBLE);
                         }
 
                         binding.tvAddress.setText(user.getAddress());
+
                             binding.ivProfile.setOnClickListener(new View.OnClickListener() {
                                 @Override
                                 public void onClick(View view) {
@@ -205,6 +236,18 @@ public class PostDetailsActivity extends AppCompatActivity {
                                     openOtherProfile(user);
                                 }
                             });
+
+                            binding.btnSend.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View view) {
+                                    Intent i = new Intent(getApplicationContext(),ChatActivity.class);
+                                    i.putExtra("message",binding.etMessage.getText().toString());
+                                    i.putExtra("name",user.getFullName());
+                                    i.putExtra("uid",user.getIdUser());
+                                    startActivity(i);
+                                }
+                            });
+
                     }
                 });
     }
@@ -236,9 +279,9 @@ public class PostDetailsActivity extends AppCompatActivity {
                     ,OtherProfileActivity.class);
             intent.putExtra(MainActivity.USER_KEY,user);
             startActivity(intent);
+            finish();
         }
     }
-
 
     private void createFav(){
         binding.save.setEnabled(false);
@@ -448,7 +491,7 @@ public class PostDetailsActivity extends AppCompatActivity {
                 .setPositiveButton(R.string.ok, null).show();
     }
 
-    private void getCountPosts(){
+    private void getCurrentUser(){
         FirebaseFirestore.getInstance().collection("Users")
                 .document(currntUserID).get()
                 .addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
@@ -457,6 +500,7 @@ public class PostDetailsActivity extends AppCompatActivity {
                         DocumentSnapshot documentSnapshot = task.getResult();
                         currentUser = documentSnapshot.toObject(User.class);
                         count_posts = currentUser.getPosts();
+                        following = currentUser.getFollowing();
                     }
                 });
     }
@@ -588,6 +632,104 @@ public class PostDetailsActivity extends AppCompatActivity {
             }
         });
         popupMenu.show();
+    }
+
+    void isFollow(User user){
+        FirebaseFirestore.getInstance().collection("Friends").get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        for (QueryDocumentSnapshot queryDocumentSnapshot : task.getResult()){
+                            Friend friend = queryDocumentSnapshot.toObject(Friend.class);
+                            if (friend.getId_follower().equals(user.getIdUser()) && friend
+                                    .getId_following().equals(currntUserID)){
+                                binding.btnFollow.setText(R.string.unfollow);
+                                return;
+                            }else{
+                                binding.btnFollow.setText(R.string.follow);
+                            }
+                        }
+                    }
+                });
+    }
+
+    private void follow(User user){
+        if (netInfo == null){
+            dialogInternet_error();
+        }else{
+            if (binding.btnFollow.getText().toString()
+                    .equals("Following") || binding.btnFollow.getText().toString()
+                    .equals("يتابع")){
+                //الغاء المتابعة
+                binding.btnFollow.setEnabled(false);
+                FirebaseFirestore.getInstance().collection("Friends").get()
+                        .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                            @Override
+                            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                                for (QueryDocumentSnapshot queryDocumentSnapshot : task.getResult()){
+                                    Friend friend = queryDocumentSnapshot.toObject(Friend.class);
+                                    if (friend.getId_follower().equals(user.getIdUser()) && friend
+                                            .getId_following().equals(currntUserID)){
+                                        FirebaseFirestore.getInstance().collection("Friends")
+                                                .document(friend.getId())
+                                                .delete();
+                                        following -= 1;
+                                        followers -= 1;
+                                        FirebaseFirestore.getInstance().collection("Users")
+                                                .document(currntUserID)
+                                                .update("following",following);
+
+                                        FirebaseFirestore.getInstance().collection("Users")
+                                                .document(user.getIdUser())
+                                                .update("followers",followers);
+                                        getCurrentUser();
+                                        getUser();
+                                        binding.btnFollow.setText(R.string.follow);
+                                        binding.btnFollow.setEnabled(true);
+                                        return;
+                                    }
+                                }
+                            }
+                        });
+            }else {
+                //متابعة
+                binding.btnFollow.setEnabled(false);
+                Friend friend = new Friend(currntUserID,user.getIdUser()
+                        ,Calendar.getInstance().getTime());
+                DocumentReference documentReference =
+                        FirebaseFirestore.getInstance().collection("Friends").document();
+                friend.setId(documentReference.getId());
+                documentReference.set(friend).addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        if (task.isSuccessful()){
+                            following += 1;
+                            followers += 1;
+
+                            FirebaseFirestore.getInstance().collection("Users")
+                                    .document(currntUserID)
+                                    .update("following",following);
+
+                            FirebaseFirestore.getInstance().collection("Users")
+                                    .document(user.getIdUser())
+                                    .update("followers",followers);
+
+                            getUser();
+                            getCurrentUser();
+                            binding.btnFollow.setText(R.string.unfollow);
+                            binding.btnFollow.setEnabled(true);
+
+                        }
+                    }
+                }).addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        binding.btnFollow.setEnabled(true);
+                        Toast.makeText(getBaseContext(), ""+e.getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+                });
+            }
+        }
     }
 
 }

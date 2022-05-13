@@ -39,7 +39,7 @@
     <string name="or_tv">أو</string>
     <string name="addMore">أضف المزيد</string>
     <string name="noBio">لم يضع في السيرة الذاتية بعد</string>
-    <string name="post">منشور</string>
+    <string name="post">نشر</string>
     <string name="favorite">المفضلة</string>
     <string name="follow">تابع</string>
     <string name="chat">محادثة</string>
@@ -137,5 +137,7 @@
     <string name="see_profile">انظر الملف الشخصي</string>
     <string name="tv_description">الوصف</string>
     <string name="likes">الإعجابات</string>
+    <string name="hint_email">man2000@hotmail.com</string>
+    <string name="profile">الملف الشخصي</string>
 
 </resources>

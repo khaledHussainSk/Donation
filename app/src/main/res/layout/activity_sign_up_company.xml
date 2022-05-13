@@ -76,11 +76,13 @@
                         android:background="@drawable/et_shape"
                         android:hint="@string/corporationName_hint"
                         android:inputType="textPersonName"
+                        android:gravity="start"
                         android:padding="@dimen/_16sdp"
                         android:textColor="#1C2340"
                         android:textColorHint="#1C2340"
                         android:textSize="@dimen/_12sdp"
                         ></EditText>
+
 
                     <EditText
                         android:id="@+id/et_phoneNumber"
@@ -249,7 +251,9 @@
                         android:layout_centerVertical="true"
                         android:textColor="@color/white"
                         android:textSize="@dimen/_14sdp"
-                        app:srcCompat="@drawable/icon_ionic_ios_arrow_back" />
+                        android:tint="@color/black"
+                        android:src="@drawable/ic_arrow"
+                        />
 
                 </RelativeLayout>
 

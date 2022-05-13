@@ -134,7 +134,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_marginStart="@dimen/_49sdp"
+        android:layout_marginStart="@dimen/_74sdp"
         android:layout_marginBottom="@dimen/_20sdp"
         android:text="@string/already_have_not_an_account_tv"
         android:textColor="#1C2340"

@@ -141,7 +141,9 @@
                     android:layout_alignParentLeft="true"
                     android:layout_centerVertical="true"
                     android:layout_marginLeft="@dimen/_12sdp"
-                    android:src="@drawable/icon_ionic_ios_arrow_back" />
+                    android:tint="@color/black"
+                    android:src="@drawable/ic_arrow"
+                    />
             </RelativeLayout>
 
         </androidx.appcompat.widget.Toolbar>

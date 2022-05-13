@@ -23,7 +23,7 @@ public class RvPostsProfileAdapter extends RecyclerView.Adapter<RvPostsProfileAd
     ArrayList<String> images;
     CustomProfileImageBinding binding;
     View v;
-    String id_user;
+    public static String id_user;
 
     public RvPostsProfileAdapter(Context context, ArrayList<String> images) {
         this.context = context;

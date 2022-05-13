@@ -128,7 +128,8 @@
     <string name="add_video">Add Video</string>
     <string name="title">Title</string>
     <string name="price">Price</string>
-=    <string name="sendSellerAMessage">Send seller a message</string>
+    =
+    <string name="sendSellerAMessage">Send seller a message</string>
     <string name="send">Send</string>
     <string name="is_this_still_available">Is this still available ?</string>
     <string name="comment">Comment</string>
@@ -137,6 +138,9 @@
     <string name="see_profile">See profile</string>
     <string name="tv_description">Description</string>
     <string name="likes">LIkes</string>
+    <string name="hint_email">man2000@hotmail.com</string>
+    <string name="profile">Profile</string>
+    <string name="remove">Remove</string>
 
 
 </resources>

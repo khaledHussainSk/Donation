@@ -4,29 +4,24 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.SharedPreferences;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.preference.PreferenceManager;
 import android.text.format.DateFormat;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
-import com.github.pgreze.reactions.ReactionPopup;
-import com.github.pgreze.reactions.ReactionsConfig;
-import com.github.pgreze.reactions.ReactionsConfigBuilder;
-import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.remoteconfig.FirebaseRemoteConfig;
+import com.khaled.donation.ChatActivity;
 import com.khaled.donation.MainActivity;
 import com.khaled.donation.Models.Message;
-import com.khaled.donation.Models.MessageModel;
 import com.khaled.donation.R;
-import com.khaled.donation.databinding.DeleteDialogBinding;
 import com.khaled.donation.databinding.ItemReceiveBinding;
 import com.khaled.donation.databinding.ItemSentBinding;
 
@@ -45,6 +40,7 @@ public class MessagesAdapter extends RecyclerView.Adapter {
     FirebaseRemoteConfig remoteConfig;
     SharedPreferences sp;
     String currentUserId;
+    NetworkInfo netInfo;
 
     public MessagesAdapter( ArrayList<Message> messages,Context context,String imagee,String recId) {
         remoteConfig = FirebaseRemoteConfig.getInstance();
@@ -92,24 +88,29 @@ public class MessagesAdapter extends RecyclerView.Adapter {
     holder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
         @Override
         public boolean onLongClick(View view) {
-            new AlertDialog.Builder(context)
-                    .setTitle("Delete")
-                    .setMessage("Are you sure you want to delete this message")
-                    .setPositiveButton("yes", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialogInterface, int i) {
-                            FirebaseDatabase database = FirebaseDatabase.getInstance();
-                            String senderRoom = FirebaseAuth.getInstance().getUid() + recId;
-                            database.getReference().child("chats").child(senderRoom)
-                                    .child(message.getMessageId())
-                                    .setValue(null);
-                        }
-                    }).setNegativeButton("No", new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialogInterface, int i) {
-                    dialogInterface.dismiss();
-                }
-            }).show();
+            if (netInfo == null){
+                dialogInternet_error();
+            }else {
+                new AlertDialog.Builder(ChatActivity.context)
+                        .setTitle("Delete")
+                        .setMessage("Are you sure you want to delete this message")
+                        .setPositiveButton("yes", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                FirebaseDatabase database = FirebaseDatabase.getInstance();
+                                String senderRoom = currentUserId + recId;
+                                database.getReference().child("chats").child(senderRoom)
+                                        .child(message.getMessageId())
+                                        .setValue(null);
+                                notifyDataSetChanged();
+                            }
+                        }).setNegativeButton("No", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        dialogInterface.dismiss();
+                    }
+                }).show();
+            }
 
             return false;
         }
@@ -156,7 +157,18 @@ public class MessagesAdapter extends RecyclerView.Adapter {
         public ReceiverViewHolder(@NonNull View itemView) {
             super(itemView);
             binding = ItemReceiveBinding.bind(itemView);
+            ConnectivityManager conMgr =  (ConnectivityManager)context
+                    .getSystemService(Context.CONNECTIVITY_SERVICE);
+            netInfo = conMgr.getActiveNetworkInfo();
+
         }
+    }
+
+    private void dialogInternet_error() {
+        new androidx.appcompat.app.AlertDialog.Builder(context)
+                .setCancelable(false)
+                .setMessage(context.getResources().getString(R.string.internet_error))
+                .setPositiveButton(R.string.ok, null).show();
     }
 
 }
