@@ -196,4 +196,8 @@ public class AddPostFragment extends Fragment {
         binding.btnAddVideo.setEnabled(true);
     }
 
+    private void permision(){
+
+    }
+
 }

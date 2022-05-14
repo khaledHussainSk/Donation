@@ -19,6 +19,7 @@ import java.util.ArrayList;
 public class RvPostsProfileAdapter extends RecyclerView.Adapter<RvPostsProfileAdapter.RvPostsProfileAdapterHolder>{
 
     public static final String ID_USER_KEY = "ID_USER_KEY";
+    public static final String POSITION_KEY = "POSITION_KEY";
     Context context;
     ArrayList<String> images;
     CustomProfileImageBinding binding;
@@ -55,13 +56,18 @@ public class RvPostsProfileAdapter extends RecyclerView.Adapter<RvPostsProfileAd
     public void onBindViewHolder(@NonNull RvPostsProfileAdapterHolder holder, int position) {
 
         String image = images.get(position);
-        holder.bind(image);
+        holder.bind(image,position);
 
     }
 
     @Override
     public int getItemCount() {
         return images.size();
+    }
+
+    @Override
+    public int getItemViewType(int position) {
+        return position;
     }
 
     class RvPostsProfileAdapterHolder extends RecyclerView.ViewHolder{
@@ -72,7 +78,7 @@ public class RvPostsProfileAdapter extends RecyclerView.Adapter<RvPostsProfileAd
             v = itemView;
         }
 
-        private void bind(String image){
+        private void bind(String image,int position){
             this.image = image;
 
             itemView.setOnClickListener(new View.OnClickListener() {
@@ -82,6 +88,7 @@ public class RvPostsProfileAdapter extends RecyclerView.Adapter<RvPostsProfileAd
                     if (id_user != null){
                         intent.putExtra(ID_USER_KEY,id_user);
                     }
+                    intent.putExtra(POSITION_KEY,position);
                     context.startActivity(intent);
                 }
             });

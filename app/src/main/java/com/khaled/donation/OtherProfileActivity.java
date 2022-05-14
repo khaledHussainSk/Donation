@@ -287,7 +287,8 @@ public class OtherProfileActivity extends AppCompatActivity {
                         images.add(post.getImages().get(0));
                     }
                 }
-                adapter = new RvPostsProfileAdapter(OtherProfileActivity.this,images,user.getIdUser());
+                adapter = new RvPostsProfileAdapter(OtherProfileActivity.this,images
+                        ,user.getIdUser());
                 binding.rv.setHasFixedSize(true);
                 binding.rv.setLayoutManager(new GridLayoutManager(OtherProfileActivity.this
                         ,3));

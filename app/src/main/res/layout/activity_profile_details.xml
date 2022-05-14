@@ -165,12 +165,11 @@
                         android:id="@+id/ic_back"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentStart="true"
                         android:layout_centerVertical="true"
-                        android:layout_marginLeft="@dimen/_12sdp"
-                        android:tint="@color/black"
+                        android:layout_marginLeft="24dp"
                         android:src="@drawable/ic_arrow"
-                        />
+                        android:tint="@color/black" />
                 </RelativeLayout>
 
             </androidx.appcompat.widget.Toolbar>

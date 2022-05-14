@@ -90,6 +90,11 @@ public class RvDisplayPostAdapter
         return posts.size();
     }
 
+    @Override
+    public int getItemViewType(int position) {
+        return position;
+    }
+
     class RvDisplayPostAdapterHolder extends RecyclerView.ViewHolder{
         Post post;
         public RvDisplayPostAdapterHolder(@NonNull View itemView) {

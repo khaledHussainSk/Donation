@@ -20,6 +20,7 @@ import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.khaled.donation.Adapters.RvFollowersFollowingAdapter;
 import com.khaled.donation.Adapters.RvPostsProfileAdapter;
+import com.khaled.donation.Listeners.OnClickItemSearchListener;
 import com.khaled.donation.Models.Friend;
 import com.khaled.donation.Models.User;
 import com.khaled.donation.databinding.ActivityFollowingBinding;
@@ -79,7 +80,16 @@ public class FollowingActivity extends AppCompatActivity {
                     }
 
                 }
-                adapter = new RvFollowersFollowingAdapter(getBaseContext(),users);
+                adapter = new RvFollowersFollowingAdapter(getBaseContext(), users
+                        , new OnClickItemSearchListener() {
+                    @Override
+                    public void OnClickListener(User user) {
+                        Intent intent = new Intent(FollowingActivity.this
+                                ,OtherProfileActivity.class);
+                        intent.putExtra(MainActivity.USER_KEY,user);
+                        startActivity(intent);
+                    }
+                });
                 binding.rv.setHasFixedSize(true);
                 binding.rv.setLayoutManager(new LinearLayoutManager(getBaseContext()));
                 binding.rv.setAdapter(adapter);

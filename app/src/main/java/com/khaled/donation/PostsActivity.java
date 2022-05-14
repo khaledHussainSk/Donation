@@ -19,6 +19,8 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.PopupMenu;
 import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.LinearSmoothScroller;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -52,6 +54,7 @@ public class PostsActivity extends AppCompatActivity {
     NetworkInfo netInfo;
     public static boolean isUploaded;
     String id_user;
+    int position;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,6 +72,7 @@ public class PostsActivity extends AppCompatActivity {
         sp = PreferenceManager.getDefaultSharedPreferences(this);
         currentUserID = sp.getString(MainActivity.USER_ID_KEY,null);
         Intent intent = getIntent();
+        position = intent.getIntExtra(RvPostsProfileAdapter.POSITION_KEY,0);
         id_user = intent.getStringExtra(RvPostsProfileAdapter.ID_USER_KEY);
         if (id_user != null){
             currentUserID = id_user;
@@ -177,9 +181,18 @@ public class PostsActivity extends AppCompatActivity {
                         startActivityForResult(intent,AllFragment.POST_DETAILS_REQ_CODE);
                     }
                 });
+                RecyclerView.SmoothScroller smoothScroller = new LinearSmoothScroller(PostsActivity.this){
+                    @Override
+                    protected int getVerticalSnapPreference() {
+                        return LinearSmoothScroller.SNAP_TO_ANY;
+                    }
+                };
+                smoothScroller.setTargetPosition(position);
                 binding.rv.setHasFixedSize(true);
-                binding.rv.setLayoutManager(new LinearLayoutManager(PostsActivity.this));
+                LinearLayoutManager linearLayoutManager = new LinearLayoutManager(PostsActivity.this);
+                binding.rv.setLayoutManager(linearLayoutManager);
                 binding.rv.setAdapter(adapter);
+                linearLayoutManager.startSmoothScroll(smoothScroller);
                 binding.progressBar.setVisibility(View.GONE);
             }
         });

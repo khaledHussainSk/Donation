@@ -13,6 +13,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.khaled.donation.LikesActivity;
 import com.khaled.donation.MainActivity;
 import com.khaled.donation.Models.Like;
 import com.khaled.donation.Models.User;
@@ -72,6 +73,11 @@ public class RvLikesAdapter extends RecyclerView.Adapter<RvLikesAdapter.RvLikesA
         return users.size();
     }
 
+    @Override
+    public int getItemViewType(int position) {
+        return position;
+    }
+
     class RvLikesAdapterHolder extends RecyclerView.ViewHolder{
         User user;
         Like like;
@@ -96,6 +102,7 @@ public class RvLikesAdapter extends RecyclerView.Adapter<RvLikesAdapter.RvLikesA
                         intent.putExtra(MainActivity.USER_KEY,user);
                         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                         context.startActivity(intent);
+                        LikesActivity.context.finish();
                     }else {
 //                        LikesActivity.context.finish();
 //                        MainActivity.bottomNavigation.show(5,true);

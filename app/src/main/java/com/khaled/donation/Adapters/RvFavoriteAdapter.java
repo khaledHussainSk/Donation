@@ -87,6 +87,11 @@ public class RvFavoriteAdapter extends RecyclerView.Adapter<RvFavoriteAdapter.Rv
     }
 
     @Override
+    public int getItemViewType(int position) {
+        return position;
+    }
+
+    @Override
     public int getItemCount() {
         return favorites.size();
     }

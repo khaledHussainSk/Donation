@@ -86,7 +86,6 @@ public class ProfileDetailsActivity extends AppCompatActivity {
                                 enableField();
                             }
                         }
-
                     }
                 }).addOnFailureListener(new OnFailureListener() {
             @Override
@@ -121,8 +120,6 @@ public class ProfileDetailsActivity extends AppCompatActivity {
                     return;
                 }
 
-                binding.spinKit.setVisibility(View.VISIBLE);
-
                 if (image == null){
                     if (imageUri == null){
                         editUser();
@@ -147,6 +144,7 @@ public class ProfileDetailsActivity extends AppCompatActivity {
         binding.etPhoneNumber.setEnabled(false);
         binding.etAddress.setEnabled(false);
         binding.btnSave.setEnabled(false);
+        binding.icBack.setEnabled(false);
     }
     private void enableField(){
         binding.ivProfile.setEnabled(true);
@@ -154,10 +152,11 @@ public class ProfileDetailsActivity extends AppCompatActivity {
         binding.etPhoneNumber.setEnabled(true);
         binding.etAddress.setEnabled(true);
         binding.btnSave.setEnabled(true);
+        binding.icBack.setEnabled(true);
     }
 
     private void editUser(){
-
+        binding.spinKit.setVisibility(View.VISIBLE);
         FirebaseFirestore.getInstance().collection("Users")
                 .document(currentUserId)
                 .update("imageProfile",image);
@@ -180,6 +179,8 @@ public class ProfileDetailsActivity extends AppCompatActivity {
 
     }
     private void uploadImage(){
+        binding.spinKit.setVisibility(View.VISIBLE);
+        disableField();
         storage.getReference().child("profilesImages/"+currentUser.getJoined())
                 .putFile(imageUri)
                 .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
@@ -211,6 +212,7 @@ public class ProfileDetailsActivity extends AppCompatActivity {
         CropImage.ActivityResult result = CropImage.getActivityResult(data);
         if (result != null){
             imageUri = result.getUri();
+            image = String.valueOf(imageUri) ;
             Glide.with(getBaseContext()).load(imageUri)
                     .placeholder(R.drawable.ic_user4).into(binding.ivProfile);
         }

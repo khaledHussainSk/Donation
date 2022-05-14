@@ -37,6 +37,7 @@ import com.khaled.donation.databinding.FragmentProfileBinding;
 import java.util.ArrayList;
 
 public class ProfileFragment extends Fragment {
+    public static final String IMAGE_KEY = "IMAGE_KEY";
     FragmentProfileBinding binding;
     SharedPreferences sp;
     String currentUserId;
@@ -141,6 +142,14 @@ public class ProfileFragment extends Fragment {
                                 binding.tvPosts.setText(String.valueOf(currentUser.getPosts()));
                                 binding.shortBio.setText(currentUser.getShortBio());
                                 enableField();
+                                binding.ivProfile.setOnClickListener(new View.OnClickListener() {
+                                    @Override
+                                    public void onClick(View view) {
+                                        Intent intent = new Intent(getActivity(),DisplayImageActivity.class);
+                                        intent.putExtra(IMAGE_KEY,currentUser.getImageProfile());
+                                        startActivity(intent);
+                                    }
+                                });
                             }
                         }
 
@@ -156,10 +165,18 @@ public class ProfileFragment extends Fragment {
     private void disableField(){
         binding.btnProfileDetails.setEnabled(false);
         binding.shortBio.setEnabled(false);
+        binding.ivProfile.setEnabled(false);
+        binding.followingLayout.setEnabled(false);
+        binding.follwersLayout.setEnabled(false);
+        binding.postsLayout.setEnabled(false);
     }
     private void enableField(){
         binding.btnProfileDetails.setEnabled(true);
         binding.shortBio.setEnabled(true);
+        binding.ivProfile.setEnabled(true);
+        binding.followingLayout.setEnabled(true);
+        binding.follwersLayout.setEnabled(true);
+        binding.postsLayout.setEnabled(true);
     }
 
     private void dialogInternet_error() {
@@ -182,7 +199,7 @@ public class ProfileFragment extends Fragment {
                         images.add(post.getImages().get(0));
                     }
                 }
-                adapter = new RvPostsProfileAdapter(getActivity(),images);
+                adapter = new RvPostsProfileAdapter(getActivity(),images,currentUserId);
                 binding.rv.setHasFixedSize(true);
                 binding.rv.setLayoutManager(new GridLayoutManager(getActivity(),3));
                 binding.rv.setAdapter(adapter);

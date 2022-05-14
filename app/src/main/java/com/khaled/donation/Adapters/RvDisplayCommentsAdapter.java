@@ -70,6 +70,11 @@ public class RvDisplayCommentsAdapter
         return comments.size();
     }
 
+    @Override
+    public int getItemViewType(int position) {
+        return position;
+    }
+
     class RvDisplayCommentsAdapterHolder extends RecyclerView.ViewHolder{
         Comment comment;
         public RvDisplayCommentsAdapterHolder(@NonNull View itemView) {

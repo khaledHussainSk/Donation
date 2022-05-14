@@ -11,6 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.khaled.donation.Listeners.OnClickItemSearchListener;
 import com.khaled.donation.MainActivity;
 import com.khaled.donation.Models.User;
 import com.khaled.donation.R;
@@ -26,10 +27,13 @@ public class RvFollowersFollowingAdapter extends
     CustomFollwersFollowingRvBinding binding;
     SharedPreferences sp;
     String currentUserID;
+    OnClickItemSearchListener listener;
 
-    public RvFollowersFollowingAdapter(Context context, ArrayList<User> users) {
+    public RvFollowersFollowingAdapter(Context context, ArrayList<User> users
+    ,OnClickItemSearchListener listener) {
         this.context = context;
         this.users = users;
+        this.listener = listener;
     }
 
     @NonNull
@@ -48,6 +52,11 @@ public class RvFollowersFollowingAdapter extends
     }
 
     @Override
+    public int getItemViewType(int position) {
+        return position;
+    }
+
+    @Override
     public int getItemCount() {
         return users.size();
     }
@@ -60,6 +69,12 @@ public class RvFollowersFollowingAdapter extends
             sp = PreferenceManager.getDefaultSharedPreferences(context);
             currentUserID = sp.getString(MainActivity.USER_ID_KEY,null);
 
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    listener.OnClickListener(user);
+                }
+            });
 
         }
 

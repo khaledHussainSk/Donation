@@ -35,6 +35,11 @@ public class RvJustDisplayPhotosPostAdapter
         this.images = images;
     }
 
+    @Override
+    public int getItemViewType(int position) {
+        return position;
+    }
+
     @NonNull
     @Override
     public RvJustDisplayPhotosPostAdapterHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
