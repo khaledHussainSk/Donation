@@ -129,6 +129,9 @@
     <string name="add_video">Add Video</string>
     <string name="unfollow">Unfollow</string>
     <string name="remove">Remove</string>
+    <string name="title">Title</string>
+    <string name="price">Price</string>
+    <string name="description">Description</string>
 
 
 </resources>
