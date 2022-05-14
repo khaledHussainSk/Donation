@@ -120,21 +120,21 @@ public class AddPostFragment extends Fragment {
         binding.btnAddVideo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                if (netInfo == null){
-//                    dialogInternet_error();
-//                }else{
-//                    if (validity == 1 || validity == 3 /* demo */ || validity == 2){
-//                        if (HomeFragment.isUploaded == false){
-//                            arlVideo.launch("video/*");
-//                        }else {
-//                            Toasty.info(getActivity(),R.string.toast_waitUploaded
-//                                    ,Toast.LENGTH_SHORT).show();
-//                        }
-//                    }else{
-//                        Toasty.info(getActivity(),R.string.toast_notAllwoed
-//                                ,Toast.LENGTH_SHORT).show();
-//                    }
-//                }
+                if (netInfo == null){
+                    dialogInternet_error();
+                }else{
+                    if (validity == 1 || validity == 3 /* demo */ || validity == 2){
+                        if (HomeFragment.isUploaded == false){
+                            arlVideo.launch("video/*");
+                        }else {
+                            Toasty.info(getActivity(),R.string.toast_waitUploaded
+                                    ,Toast.LENGTH_SHORT).show();
+                        }
+                    }else{
+                        Toasty.info(getActivity(),R.string.toast_notAllwoed
+                                ,Toast.LENGTH_SHORT).show();
+                    }
+                }
             }
         });
 

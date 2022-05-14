@@ -30,6 +30,7 @@ import com.google.firebase.firestore.QuerySnapshot;
 import com.google.firebase.storage.FirebaseStorage;
 import com.khaled.donation.Adapters.RvDisplayPhotosPostAdapter;
 import com.khaled.donation.Adapters.RvDisplayPostAdapter;
+import com.khaled.donation.Adapters.RvDisplayVideosPostAdapter;
 import com.khaled.donation.Listeners.OnClickItemImagePostListener;
 import com.khaled.donation.Models.Comment;
 import com.khaled.donation.Models.Favorite;
@@ -50,6 +51,7 @@ import es.dmoral.toasty.Toasty;
 public class PostDetailsActivity extends AppCompatActivity {
     ActivityPostDetailsBinding binding;
     RvDisplayPhotosPostAdapter adapter;
+    RvDisplayVideosPostAdapter adapterVideo;
     String currntUserID;
     SharedPreferences sp;
     Post post;
@@ -151,22 +153,32 @@ public class PostDetailsActivity extends AppCompatActivity {
     }
 
     private void getPost(){
-        adapter = new RvDisplayPhotosPostAdapter(post.getImages()
-                , new OnClickItemImagePostListener() {
-            @Override
-            public void OnClickListener(ArrayList<String> images) {
-                Intent intent = new Intent(PostDetailsActivity.this
-                        , DisplayAllImagesPostActivity.class);
-                intent.putExtra(RvDisplayPostAdapter.IMAGES_POST_KEY,images);
-                startActivity(intent);
-            }
-        });
-        binding.rv.setHasFixedSize(true);
-        LinearLayoutManager horizontalLayoutManagaer =
-                new LinearLayoutManager(this
-                        , LinearLayoutManager.HORIZONTAL, false);
-        binding.rv.setLayoutManager(horizontalLayoutManagaer);
-        binding.rv.setAdapter(adapter);
+        if (post.getPostType().equals("image")) {
+            adapter = new RvDisplayPhotosPostAdapter(post.getImages()
+                    , new OnClickItemImagePostListener() {
+                @Override
+                public void OnClickListener(ArrayList<String> images) {
+                    Intent intent = new Intent(PostDetailsActivity.this
+                            , DisplayAllImagesPostActivity.class);
+                    intent.putExtra(RvDisplayPostAdapter.IMAGES_POST_KEY, images);
+                    startActivity(intent);
+                }
+            });
+            binding.rv.setHasFixedSize(true);
+            LinearLayoutManager horizontalLayoutManagaer =
+                    new LinearLayoutManager(this
+                            , LinearLayoutManager.HORIZONTAL, false);
+            binding.rv.setLayoutManager(horizontalLayoutManagaer);
+            binding.rv.setAdapter(adapter);
+        }else {
+            adapterVideo = new RvDisplayVideosPostAdapter(post.getImages());
+            binding.rv.setHasFixedSize(true);
+            LinearLayoutManager horizontalLayoutManagaer =
+                    new LinearLayoutManager(this
+                            , LinearLayoutManager.HORIZONTAL, false);
+            binding.rv.setLayoutManager(horizontalLayoutManagaer);
+            binding.rv.setAdapter(adapterVideo);
+        }
 
         binding.tvPrice.setText(String.valueOf(post.getPrice()));
         binding.tvTitle.setText(post.getTitle());

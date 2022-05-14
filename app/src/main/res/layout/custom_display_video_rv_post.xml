@@ -10,8 +10,14 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 
+<!--    <com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView-->
+<!--        android:id="@+id/youtube_player_view"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="match_parent"-->
+<!--         />-->
+
     <ImageView
-        android:id="@+id/iv_no3"
+        android:id="@+id/iv_no"
         android:layout_width="@dimen/_24sdp"
         android:layout_height="@dimen/_24sdp"
         android:layout_alignParentEnd="true"

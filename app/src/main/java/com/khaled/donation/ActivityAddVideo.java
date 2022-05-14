@@ -7,12 +7,15 @@ import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.text.TextUtils;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Toast;
 
 import androidx.activity.result.ActivityResultCallback;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
@@ -26,9 +29,12 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.UploadTask;
 import com.khaled.donation.Adapters.RvDisplayPostAdapter;
+import com.khaled.donation.Adapters.RvDisplayVideoAdapter;
+import com.khaled.donation.Listeners.OnClickNoListener;
 import com.khaled.donation.Models.Post;
 import com.khaled.donation.Models.User;
 import com.khaled.donation.databinding.ActivityAddVideoBinding;
+import com.theartofdev.edmodo.cropper.CropImage;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -45,11 +51,14 @@ public class ActivityAddVideo extends AppCompatActivity {
     String videoIntent;
     ArrayList<String> Videos;
     ArrayList<String> copyOfVideos;
-//    RvDisplayVideoAdapter adapter;
+    RvDisplayVideoAdapter adapter;
     FirebaseStorage storage;
     SharedPreferences sp;
     String currentUserID;
     String description;
+    String category;
+    String title;
+    double price;
     User currentUser;
     int posts;
     Post post;
@@ -63,7 +72,7 @@ public class ActivityAddVideo extends AppCompatActivity {
         fixed();
         addMore();
         addPost();
-
+        spinner();
     }
     private void fixed() {
         storage = FirebaseStorage.getInstance();
@@ -71,12 +80,12 @@ public class ActivityAddVideo extends AppCompatActivity {
         currentUserID = sp.getString(MainActivity.USER_ID_KEY,null);
         Videos = new ArrayList<>();
         copyOfVideos = new ArrayList<>();
-//        adapter = new RvDisplayVideoAdapter(Videos,new OnClickNoListener() {
-//            @Override
-//            public void OnClickListener(String image) {
-//                cancel(image);
-//            }
-//        },this);
+        adapter = new RvDisplayVideoAdapter(Videos,new OnClickNoListener() {
+            @Override
+            public void OnClickListener(String image) {
+                cancel(image);
+            }
+        },this);
         LinearLayoutManager horizontalLayoutManagaer =
                 new LinearLayoutManager(ActivityAddVideo.this
                         , LinearLayoutManager.HORIZONTAL, false);
@@ -93,22 +102,52 @@ public class ActivityAddVideo extends AppCompatActivity {
             //عملية تعديل
             binding.btnPost.setText(R.string.update);
             Videos = post.getImages();
-//            adapter = new RvDisplayVideoAdapter(Videos, new OnClickNoListener() {
-//                @Override
-//                public void OnClickListener(String image) {
-//                    cancel(image);
-//                }
-//            },getApplicationContext());
+            adapter = new RvDisplayVideoAdapter(Videos, new OnClickNoListener() {
+                @Override
+                public void OnClickListener(String image) {
+                    cancel(image);
+                }
+            },getApplicationContext());
             binding.etDescription.setText(post.getDescription());
         }
-//        binding.rv.setHasFixedSize(true);
-//        binding.rv.setAdapter(adapter);
+        binding.rv.setHasFixedSize(true);
+        binding.rv.setAdapter(adapter);
         binding.icBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 finish();
             }
         });
+    }
+
+    private void spinner(){
+        ArrayList<String> categories = new ArrayList<>();
+        categories.add("ملابس وأزياء");
+        categories.add("أجهزة والكترونيات");
+        categories.add("سيارات ومركبات");
+        categories.add("أثاث وديكور");
+        categories.add("عقارات وأملاك");
+        categories.add("حيوانات وطيور");
+        categories.add("أطعمة ومشروبات");
+
+        ArrayAdapter adapter = new ArrayAdapter(this
+                , android.R.layout.simple_expandable_list_item_1,categories);
+
+        binding.spCategory.setAdapter(adapter);
+
+        binding.spCategory.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                category = adapterView.getItemAtPosition(i).toString();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+
+
     }
 
     private void addMore(){
@@ -120,12 +159,12 @@ public class ActivityAddVideo extends AppCompatActivity {
 
                         binding.move.setVisibility(View.VISIBLE);
                         Videos.add(String.valueOf(result));
-//                        adapter.setVideo(Videos);
-//                        adapter.notifyDataSetChanged();
+                        adapter.setVideo(Videos);
+                        adapter.notifyDataSetChanged();
                         numbersOfVideos();
 
 //                        videoIntent = String.valueOf(result);
-
+//
 //                        Intent intent = new Intent(getApplicationContext(),ActivityAddVideo.class);
 //                        intent.putExtra(VIDEO_STRING_KEY_INTENT,videoIntent);
 //                        startActivity(intent);
@@ -164,11 +203,24 @@ public class ActivityAddVideo extends AppCompatActivity {
         binding.btnPost.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                title = binding.etTitle.getText().toString();
                 description = binding.etDescription.getText().toString();
+                String priceSt = binding.etPrice.getText().toString();
+
+                if (TextUtils.isEmpty(title)){
+                    Toast.makeText(getBaseContext(), "Please enter a title", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                if (TextUtils.isEmpty(priceSt)){
+                    Toast.makeText(getBaseContext(), "Please enter a price", Toast.LENGTH_SHORT).show();
+                    return;
+                }
 
                 if (TextUtils.isEmpty(description)){
                     description = "";
                 }
+                price = Double.parseDouble(priceSt);
 
                 if (post == null){
                     //عملية اضافة
@@ -229,9 +281,9 @@ public class ActivityAddVideo extends AppCompatActivity {
     }
 
     private void createPost(){
-//        post = new Post(description,currentUserID, copyOfVideos
-//                , Calendar.getInstance().getTime()
-//                ,0,0,"video");
+        post = new Post(title,description,currentUserID, copyOfVideos
+                , Calendar.getInstance().getTime()
+                ,0,0,price,category,"video");
         DocumentReference documentReference = FirebaseFirestore
                 .getInstance().collection("Posts")
                 .document();
@@ -331,7 +383,7 @@ public class ActivityAddVideo extends AppCompatActivity {
     private void cancel(String image){
         Videos.remove(image);
         numbersOfVideos();
-//        adapter.notifyDataSetChanged();
+        adapter.notifyDataSetChanged();
     }
     private void showVideo(String image){
         Intent intent = new Intent(getBaseContext(), DisplayImageActivity.class);
@@ -339,18 +391,18 @@ public class ActivityAddVideo extends AppCompatActivity {
         startActivity(intent);
     }
 
-//    @Override
-//    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-//        super.onActivityResult(requestCode, resultCode, data);
-//        CropImage.ActivityResult result = CropImage.getActivityResult(data);
-//        if (result != null){
-//            binding.move.setVisibility(View.VISIBLE);
-//            Videos.add(String.valueOf(result.getUri()));
-//            adapter.setVideo(Videos);
-//            adapter.notifyDataSetChanged();
-//            numbersOfVideos();
-//        }
-//    }
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        CropImage.ActivityResult result = CropImage.getActivityResult(data);
+        if (result != null){
+            binding.move.setVisibility(View.VISIBLE);
+            Videos.add(String.valueOf(result.getUri()));
+            adapter.setVideo(Videos);
+            adapter.notifyDataSetChanged();
+            numbersOfVideos();
+        }
+    }
 
     private void update(){
         FirebaseFirestore

@@ -13,9 +13,23 @@ public class Post implements Serializable {
     private int likes,comments;
     private double price;
     private String category;
+    private String postType;
 
-    public Post(String title,String description, String publisher, ArrayList<String> images
-            , Date datenews, int likes, int comments,double price,String category) {
+//    public Post(String title,String description, String publisher, ArrayList<String> images
+//            , Date datenews, int likes, int comments,double price,String category) {
+//        this.title = title;
+//        this.description = description;
+//        this.publisher = publisher;
+//        this.images = images;
+//        this.datenews = datenews;
+//        this.likes = likes;
+//        this.comments = comments;
+//        this.price = price;
+//        this.category = category;
+//    }
+
+
+    public Post(String title, String description, String publisher, ArrayList<String> images, Date datenews, int likes, int comments, double price, String category, String postType) {
         this.title = title;
         this.description = description;
         this.publisher = publisher;
@@ -25,9 +39,18 @@ public class Post implements Serializable {
         this.comments = comments;
         this.price = price;
         this.category = category;
+        this.postType = postType;
     }
 
     public Post() {
+    }
+
+    public String getPostType() {
+        return postType;
+    }
+
+    public void setPostType(String postType) {
+        this.postType = postType;
     }
 
     public String getTitle() {
