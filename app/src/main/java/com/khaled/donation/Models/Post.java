@@ -8,28 +8,14 @@ public class Post implements Serializable {
 
     private String postId,title,description,publisher;
     private ArrayList<String> images;
-//    private ArrayList<String> videos;
     private Date datenews;
     private int likes,comments;
     private double price;
     private String category;
     private String postType;
 
-//    public Post(String title,String description, String publisher, ArrayList<String> images
-//            , Date datenews, int likes, int comments,double price,String category) {
-//        this.title = title;
-//        this.description = description;
-//        this.publisher = publisher;
-//        this.images = images;
-//        this.datenews = datenews;
-//        this.likes = likes;
-//        this.comments = comments;
-//        this.price = price;
-//        this.category = category;
-//    }
-
-
-    public Post(String title, String description, String publisher, ArrayList<String> images, Date datenews, int likes, int comments, double price, String category, String postType) {
+    public Post(String title, String description, String publisher, ArrayList<String> images
+            , Date datenews, int likes, int comments, double price, String category, String postType) {
         this.title = title;
         this.description = description;
         this.publisher = publisher;

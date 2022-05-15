@@ -589,10 +589,18 @@ public class PostDetailsActivity extends AppCompatActivity {
                             dialogInternet_error();
                         }else{
                             if (isUploaded == false){
-                                Intent intent = new Intent(PostDetailsActivity.this
-                                        ,AddPhotoActivity.class);
-                                intent.putExtra(RvDisplayPostAdapter.POST_KEY, post);
-                                startActivity(intent);
+                                if (post.getPostType().equals("image")){
+                                    Intent intent = new Intent(PostDetailsActivity.this
+                                            ,AddPhotoActivity.class);
+                                    intent.putExtra(RvDisplayPostAdapter.POST_KEY, post);
+                                    startActivity(intent);
+                                }else if (post.getPostType().equals("video")){
+                                    Intent intent = new Intent(PostDetailsActivity.this
+                                            ,ActivityAddVideo.class);
+                                    intent.putExtra(RvDisplayPostAdapter.POST_KEY, post);
+                                    startActivity(intent);
+                                }
+
                             }else {
                                 Toasty.info(PostDetailsActivity.this,R.string.toast_moment
                                         ,Toast.LENGTH_SHORT).show();

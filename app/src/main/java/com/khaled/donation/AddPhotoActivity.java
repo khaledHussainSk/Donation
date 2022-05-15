@@ -292,6 +292,7 @@ public class AddPhotoActivity extends AppCompatActivity {
         }).addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
+                HomeFragment.isUploaded = false;
                 Toasty.error(getBaseContext(), R.string.toast_post_failed, Toast.LENGTH_SHORT).show();
             }
         });

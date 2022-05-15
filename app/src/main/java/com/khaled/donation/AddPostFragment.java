@@ -109,10 +109,12 @@ public class AddPostFragment extends Fragment {
                 new ActivityResultCallback<Uri>() {
                     @Override
                     public void onActivityResult(Uri result) {
-                       videoString = String.valueOf(result);
-                       Intent intent = new Intent(getActivity(),ActivityAddVideo.class);
-                       intent.putExtra(VIDEO_STRING_KEY,videoString);
-                       startActivity(intent);
+                        if (result != null){
+                            videoString = String.valueOf(result);
+                            Intent intent = new Intent(getActivity(),ActivityAddVideo.class);
+                            intent.putExtra(VIDEO_STRING_KEY,videoString);
+                            startActivity(intent);
+                        }
                     }
                 }
         );

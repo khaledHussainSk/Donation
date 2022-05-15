@@ -109,6 +109,8 @@ public class ActivityAddVideo extends AppCompatActivity {
                 }
             },getApplicationContext());
             binding.etDescription.setText(post.getDescription());
+            binding.etTitle.setText(post.getTitle());
+            binding.etPrice.setText(String.valueOf(post.getPrice()));
         }
         binding.rv.setHasFixedSize(true);
         binding.rv.setAdapter(adapter);
@@ -190,7 +192,7 @@ public class ActivityAddVideo extends AppCompatActivity {
         }else if (Videos.size() == 0){
             binding.move.setVisibility(View.GONE);
             binding.btnPost.setEnabled(false);
-            binding.btnAddMore.setText(R.string.addPhoto);
+            binding.btnAddMore.setText(R.string.addVideo);
         }else {
             binding.move.setVisibility(View.GONE);
             binding.btnPost.setEnabled(true);
@@ -302,6 +304,7 @@ public class ActivityAddVideo extends AppCompatActivity {
         }).addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
+                HomeFragment.isUploaded = false;
                 Toasty.error(getBaseContext(), R.string.toast_post_failed, Toast.LENGTH_SHORT).show();
             }
         });
@@ -363,6 +366,7 @@ public class ActivityAddVideo extends AppCompatActivity {
                 .addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception e) {
+                        enableField();
                         Toast.makeText(getBaseContext(), ""+e, Toast.LENGTH_SHORT).show();
                     }
                 });
@@ -414,7 +418,23 @@ public class ActivityAddVideo extends AppCompatActivity {
                 .getInstance()
                 .collection("Posts")
                 .document(post.getPostId())
-                .update("videos", copyOfVideos);
+                .update("price",price);
+        FirebaseFirestore
+                .getInstance()
+                .collection("Posts")
+                .document(post.getPostId())
+                .update("title",title);
+        FirebaseFirestore
+                .getInstance()
+                .collection("Posts")
+                .document(post.getPostId())
+                .update("category",category);
+        FirebaseFirestore
+                .getInstance()
+                .collection("Posts")
+                .document(post.getPostId())
+                .update("images", copyOfVideos);
+
         Toast.makeText(ActivityAddVideo.this
                 , R.string.post_has_been_modified
                 , Toast.LENGTH_SHORT).show();
