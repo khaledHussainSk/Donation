@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
@@ -18,6 +19,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
@@ -29,6 +31,7 @@ import com.khaled.donation.Listeners.GetPost;
 import com.khaled.donation.Listeners.OnClickMenuPostListener;
 import com.khaled.donation.MainActivity;
 import com.khaled.donation.Models.Like;
+import com.khaled.donation.Models.Notifications;
 import com.khaled.donation.Models.Post;
 import com.khaled.donation.Models.User;
 import com.khaled.donation.R;
@@ -191,6 +194,7 @@ public class RvDisplayPostAdapter
         ic_like.setVisibility(View.GONE);
         Like like = new Like(post.getPostId(),currntUserID,post.getPublisher()
                 , Calendar.getInstance().getTime());
+
         DocumentReference documentReference =
                 FirebaseFirestore.getInstance().collection("Likes").document();
         like.setId_like(documentReference.getId());
@@ -213,6 +217,34 @@ public class RvDisplayPostAdapter
                         tv_likes.setText(String.valueOf(post.getLikes()));
                     }
                 });
+            }
+        });
+
+        Calendar now = Calendar.getInstance();
+        int year = now.get(Calendar.YEAR);
+        int month = now.get(Calendar.MONTH) + 1; // Note: zero based!
+        int day = now.get(Calendar.DAY_OF_MONTH);
+        String hour = hour(Calendar.getInstance().getTime());
+        int minute = now.get(Calendar.MINUTE);
+        int second = now.get(Calendar.SECOND);
+
+        String date =year +"-"+ month + "-" + day +" " + hour +":" +minute +":"+ second;
+
+        Notifications notifications = new Notifications(post.getPostId(),"Like",post.getPublisher(),currntUserID,date);
+        DocumentReference documentReferenceNOt = FirebaseFirestore.getInstance().collection("Notifications").document();
+        notifications.setId(documentReferenceNOt.getId());
+
+        documentReferenceNOt.set(notifications).addOnCompleteListener(new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull Task<Void> task) {
+                if (task.isSuccessful()){
+                    Toast.makeText(context, "تم إرسال الأشعار", Toast.LENGTH_SHORT).show();
+                }
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                Toast.makeText(context, "فشل إرسال الأشعار", Toast.LENGTH_SHORT).show();
             }
         });
     }

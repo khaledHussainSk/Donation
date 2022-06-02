@@ -22,6 +22,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.bumptech.glide.Glide;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
@@ -32,6 +33,7 @@ import com.khaled.donation.Adapters.RvDisplayCommentsAdapter;
 import com.khaled.donation.Adapters.RvDisplayPostAdapter;
 import com.khaled.donation.Listeners.ContextMenuCommentListener;
 import com.khaled.donation.Models.Comment;
+import com.khaled.donation.Models.Notifications;
 import com.khaled.donation.Models.Post;
 import com.khaled.donation.Models.User;
 import com.khaled.donation.databinding.ActivityCommentsBinding;
@@ -164,6 +166,36 @@ public class CommentsActivity extends AppCompatActivity {
                         }
                     }
                 });
+
+        Calendar now = Calendar.getInstance();
+        int year = now.get(Calendar.YEAR);
+        int month = now.get(Calendar.MONTH) + 1; // Note: zero based!
+        int day = now.get(Calendar.DAY_OF_MONTH);
+//        int hour = now.get(Calendar.HOUR);
+        String hour = hour(Calendar.getInstance().getTime());
+        int minute = now.get(Calendar.MINUTE);
+        int second = now.get(Calendar.SECOND);
+
+        String date =year +"-"+ month + "-" + day +" " + hour +":" +minute +":"+ second;
+//        String date =year +"-"+ month + "-" + day +" " + hour+":"+ second;
+
+        Notifications notifications = new Notifications(post.getPostId(),"Comment",post.getPublisher(),id_current_user,date);
+        DocumentReference documentReferenceNOt = FirebaseFirestore.getInstance().collection("Notifications").document();
+        notifications.setId(documentReferenceNOt.getId());
+
+        documentReferenceNOt.set(notifications).addOnCompleteListener(new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull Task<Void> task) {
+                if (task.isSuccessful()){
+                    Toast.makeText(getApplicationContext(), "تم إرسال الأشعار", Toast.LENGTH_SHORT).show();
+                }
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                Toast.makeText(getApplicationContext(), "فشل إرسال الأشعار", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
     private void getComments(Post post){

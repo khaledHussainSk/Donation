@@ -7,6 +7,9 @@
       <root url="file://$USER_HOME$/.gradle/caches/transforms-3/e1eb91aa05b3fe750db0b23771221237/transformed/jetified-merlin-1.2.0/res" />
       <root url="file://$USER_HOME$/.gradle/caches/transforms-3/e1eb91aa05b3fe750db0b23771221237/transformed/jetified-merlin-1.2.0/AndroidManifest.xml" />
       <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/e1eb91aa05b3fe750db0b23771221237/transformed/jetified-merlin-1.2.0/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/3590ae09fd61164250ea5a51d3d9b2aa/transformed/jetified-merlin-1.2.0/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/3590ae09fd61164250ea5a51d3d9b2aa/transformed/jetified-merlin-1.2.0/AndroidManifest.xml" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/3590ae09fd61164250ea5a51d3d9b2aa/transformed/jetified-merlin-1.2.0/jars/classes.jar!/" />
     </CLASSES>
     <JAVADOC>
       <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.novoda/merlin/1.2.0/390f8c7b38c724507a67659afee7595d50dc84f9/merlin-1.2.0-javadoc.jar!/" />

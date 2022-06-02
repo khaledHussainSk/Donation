@@ -31,6 +31,7 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.khaled.donation.Adapters.RvDisplayPhotosPostAdapter;
 import com.khaled.donation.Adapters.RvDisplayPostAdapter;
 import com.khaled.donation.Adapters.RvDisplayVideosPostAdapter;
+import com.khaled.donation.Adapters.RvNotificationsAdapter;
 import com.khaled.donation.Listeners.OnClickItemImagePostListener;
 import com.khaled.donation.Models.Comment;
 import com.khaled.donation.Models.Favorite;
@@ -61,6 +62,7 @@ public class PostDetailsActivity extends AppCompatActivity {
     User currentUser;
     int following;
     int followers;
+    String id_post;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -126,7 +128,12 @@ public class PostDetailsActivity extends AppCompatActivity {
         post = (Post) intent.getSerializableExtra(RvDisplayPostAdapter.POST_KEY);
         if (post == null){
             Favorite favorite = (Favorite) intent.getSerializableExtra(FavoriteActivity.FAV_KEY);
-            getPostFromFav(favorite);
+            if (favorite == null){
+                id_post = intent.getStringExtra(NotificationsFragment.NOTIFICATION_KEY);
+                getPostNotification();
+            }else {
+                getPostFromFav(favorite);
+            }
         }else {
             getPost();
             getUser();
@@ -149,7 +156,23 @@ public class PostDetailsActivity extends AppCompatActivity {
                         isFav();
                     }
                 });
+    }
 
+    private void getPostNotification() {
+        Toast.makeText(getApplicationContext(), ""+id_post, Toast.LENGTH_SHORT).show();
+        FirebaseFirestore.getInstance().collection("Posts")
+                .document(id_post).get()
+                .addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                        DocumentSnapshot documentSnapshot = task.getResult();
+                        Post postFromNot = documentSnapshot.toObject(Post.class);
+                        post = postFromNot;
+                        getPost();
+                        getUser();
+                        isFav();
+                    }
+                });
     }
 
     private void getPost(){

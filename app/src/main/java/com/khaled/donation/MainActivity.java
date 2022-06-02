@@ -4,10 +4,13 @@ import android.app.Activity;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.view.View;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.etebarian.meowbottomnavigation.MeowBottomNavigation;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -15,8 +18,12 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
+import com.khaled.donation.Adapters.RvNotificationsAdapter;
+import com.khaled.donation.Models.Notifications;
 import com.khaled.donation.Models.User;
 import com.khaled.donation.databinding.ActivityMainBinding;
+
+import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
     public static final String USER_ID_KEY = "USER_ID_KEY";
@@ -29,6 +36,7 @@ public class MainActivity extends AppCompatActivity {
     User currentUser;
     SharedPreferences sp;
     SharedPreferences.Editor editt;
+    ArrayList<Notifications> arrayList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,8 +79,27 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        //Set notification count
-        binding.bottomNavigation.setCount(2,"10");
+        arrayList = new ArrayList<>();
+
+        FirebaseFirestore.getInstance().collection("Notifications").get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        for (QueryDocumentSnapshot queryDocumentSnapshot : task.getResult()){
+                            Notifications notifications = queryDocumentSnapshot.toObject(Notifications.class);
+                            arrayList.add(notifications);
+
+                            if (arrayList.size()>0){
+                                //Set notification count
+                                binding.bottomNavigation.setCount(2, String.valueOf(arrayList.size()));
+                            }
+
+                        }
+                    }
+                });
+
+
+
         //Set home fragment initially selected
         binding.bottomNavigation.show(1,true);
         binding.bottomNavigation.setOnClickMenuListener(new MeowBottomNavigation.ClickListener() {

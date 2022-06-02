@@ -24,6 +24,7 @@ import com.khaled.donation.Models.Message;
 import com.khaled.donation.R;
 import com.khaled.donation.databinding.ItemReceiveBinding;
 import com.khaled.donation.databinding.ItemSentBinding;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -47,7 +48,7 @@ public class MessagesAdapter extends RecyclerView.Adapter {
         this.messages = messages;
         this.imagee = imagee;
         this.recId = recId;
-        this.context = context;
+//        this.context = context;
     }
 
     @Override
@@ -70,12 +71,12 @@ public class MessagesAdapter extends RecyclerView.Adapter {
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 
         if(viewType == ITEM_SENT) {
-//            context = parent.getContext();
+            context = parent.getContext();
             View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_sent, parent, false);
             return new SentViewHolder(view);
         }
         else {
-//            context = parent.getContext();
+            context = parent.getContext();
             View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_receive, parent, false);
             return new ReceiverViewHolder(view);
         }
@@ -126,6 +127,7 @@ public class MessagesAdapter extends RecyclerView.Adapter {
             } else {
                 ((ReceiverViewHolder) holder).binding.message.setText(message.getMessage());
                 Glide.with(context).load(imagee).into(((ReceiverViewHolder) holder).binding.circleImageView);
+                Picasso.get().load(imagee).into(((ReceiverViewHolder) holder).binding.circleImageView);
 
                 String longV = message.getTimestamp() + "";
                 long millisecond = Long.parseLong(longV);
