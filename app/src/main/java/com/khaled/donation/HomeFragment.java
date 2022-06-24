@@ -29,8 +29,8 @@ public class HomeFragment extends Fragment {
     NetworkInfo netInfo;
     public static boolean isUploaded;
     public static ArrayList<Fragment> fragments;
-    String[] category = {"الكل","ملابس وأزياء","أجهزة والكترونيات","سيارات ومركبات"
-    ,"أثاث وديكور","عقارات وأملاك","حيوانات وطيور","أطعمة ومشروبات"};
+    String[] category = {"الكل","حملات","أجهزة والكترونيات","سيارات ومركبات"
+    ,"أثاث وديكور","عقارات وأملاك","حيوانات وطيور","أطعمة ومشروبات","ملابس وأزياء"};
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -48,6 +48,7 @@ public class HomeFragment extends Fragment {
         fragments.add(AllFragment.newInstance(category[5]));
         fragments.add(AllFragment.newInstance(category[6]));
         fragments.add(AllFragment.newInstance(category[7]));
+        fragments.add(AllFragment.newInstance(category[8]));
 
         PagerAdapter adapter = new PagerAdapter(getActivity(),fragments);
         binding.viewPager.setAdapter(adapter);

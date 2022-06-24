@@ -1,7 +1,5 @@
 package com.khaled.donation;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -9,6 +7,8 @@ import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.khaled.donation.databinding.ActivityContentUsBinding;
 
@@ -50,8 +50,6 @@ public class ContentUsActivity extends AppCompatActivity {
 
 
                 + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
-
-
 
 
         Pattern pattern = Pattern.compile(EMAIL_PATTERN);

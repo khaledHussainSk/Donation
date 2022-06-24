@@ -158,10 +158,26 @@ public class RvFavoriteAdapter extends RecyclerView.Adapter<RvFavoriteAdapter.Rv
                     public void onComplete(@NonNull Task<DocumentSnapshot> task) {
                         DocumentSnapshot documentSnapshot = task.getResult();
                         Post post = documentSnapshot.toObject(Post.class);
-                        Glide.with(context)
-                                .load(post.getImages().get(0))
-                                .placeholder(R.drawable.ic_loading)
-                                .into(iv_post);
+                        if (post.getCategory().equals("حملات")){
+                            FirebaseFirestore.getInstance().collection("Users")
+                                    .document(post.getPublisher()).get()
+                                    .addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                                        @Override
+                                        public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                                            DocumentSnapshot documentSnapshot = task.getResult();
+                                            User user = documentSnapshot.toObject(User.class);
+                                            Glide.with(context)
+                                                    .load(user.getImageProfile())
+                                                    .placeholder(R.drawable.ic_loading)
+                                                    .into(iv_post);
+                                        }
+                                    });
+                        }else {
+                            Glide.with(context)
+                                    .load(post.getImages().get(0))
+                                    .placeholder(R.drawable.ic_loading)
+                                    .into(iv_post);
+                        }
                         tv_title.setText(post.getTitle());
                         if (post.getCategory().equals("أطعمة ومشروبات")){
                             setCategory(R.drawable.shape_tv_category_foods

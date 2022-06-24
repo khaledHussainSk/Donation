@@ -137,9 +137,11 @@ public class RvDisplayPostAdapter
 
             transfers(post,tv_likes);
             getDate(post,tv_date,date);
-            Glide.with(context).load(post.getImages().get(0))
-                    .placeholder(R.drawable.ic_loading)
-                    .into(iv_post);
+            if (!post.getCategory().equals("حملات")){
+                Glide.with(context).load(post.getImages().get(0))
+                        .placeholder(R.drawable.ic_loading)
+                        .into(iv_post);
+            }
             tv_title.setText(post.getTitle());
             tv_price.setText(String.valueOf(post.getPrice()));
 
@@ -175,6 +177,12 @@ public class RvDisplayPostAdapter
                             DocumentSnapshot documentSnapshot = task.getResult();
                             User user = documentSnapshot.toObject(User.class);
                             tv_address.setText(user.getAddress());
+                            if (post.getCategory().equals("حملات")){
+                                Glide.with(context).load(user.getImageProfile())
+                                        .placeholder(R.drawable.ic_loading)
+                                        .into(iv_post);
+
+                            }
                         }
                     });
         }

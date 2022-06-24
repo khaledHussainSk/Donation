@@ -31,7 +31,6 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.khaled.donation.Adapters.RvDisplayPhotosPostAdapter;
 import com.khaled.donation.Adapters.RvDisplayPostAdapter;
 import com.khaled.donation.Adapters.RvDisplayVideosPostAdapter;
-import com.khaled.donation.Adapters.RvNotificationsAdapter;
 import com.khaled.donation.Listeners.OnClickItemImagePostListener;
 import com.khaled.donation.Models.Comment;
 import com.khaled.donation.Models.Favorite;
@@ -177,6 +176,12 @@ public class PostDetailsActivity extends AppCompatActivity {
 
     private void getPost(){
         if (post.getPostType().equals("image")) {
+            binding.rv.setVisibility(View.VISIBLE);
+            binding.ivProf.setVisibility(View.GONE);
+            binding.dollar.setVisibility(View.VISIBLE);
+            binding.tvPrice.setVisibility(View.VISIBLE);
+            binding.tvDonationLink.setVisibility(View.GONE);
+            binding.tvLink.setVisibility(View.GONE);
             adapter = new RvDisplayPhotosPostAdapter(post.getImages()
                     , new OnClickItemImagePostListener() {
                 @Override
@@ -193,7 +198,13 @@ public class PostDetailsActivity extends AppCompatActivity {
                             , LinearLayoutManager.HORIZONTAL, false);
             binding.rv.setLayoutManager(horizontalLayoutManagaer);
             binding.rv.setAdapter(adapter);
-        }else {
+        }else if (post.getPostType().equals("video")){
+            binding.rv.setVisibility(View.VISIBLE);
+            binding.ivProf.setVisibility(View.GONE);
+            binding.dollar.setVisibility(View.VISIBLE);
+            binding.tvPrice.setVisibility(View.VISIBLE);
+            binding.tvDonationLink.setVisibility(View.GONE);
+            binding.tvLink.setVisibility(View.GONE);
             adapterVideo = new RvDisplayVideosPostAdapter(post.getImages());
             binding.rv.setHasFixedSize(true);
             LinearLayoutManager horizontalLayoutManagaer =
@@ -201,6 +212,27 @@ public class PostDetailsActivity extends AppCompatActivity {
                             , LinearLayoutManager.HORIZONTAL, false);
             binding.rv.setLayoutManager(horizontalLayoutManagaer);
             binding.rv.setAdapter(adapterVideo);
+        }else {
+            FirebaseFirestore.getInstance().collection("Users")
+                    .document(post.getPublisher()).get()
+                    .addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                        @Override
+                        public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                            DocumentSnapshot documentSnapshot = task.getResult();
+                            User user = documentSnapshot.toObject(User.class);
+                            binding.rv.setVisibility(View.GONE);
+                            binding.ivProf.setVisibility(View.VISIBLE);
+                            Glide.with(PostDetailsActivity.this)
+                                    .load(user.getImageProfile())
+                                    .placeholder(R.drawable.ic_loading)
+                                    .into(binding.ivProf);
+                            binding.dollar.setVisibility(View.GONE);
+                            binding.tvPrice.setVisibility(View.GONE);
+                            binding.tvDonationLink.setVisibility(View.VISIBLE);
+                            binding.tvLink.setVisibility(View.VISIBLE);
+                            binding.tvDonationLink.setText(post.getDonation_link());
+                        }
+                    });
         }
 
         binding.tvPrice.setText(String.valueOf(post.getPrice()));
@@ -294,12 +326,14 @@ public class PostDetailsActivity extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<DocumentSnapshot> task) {
                         if (task.isSuccessful()){
-                            DocumentSnapshot documentSnapshot = task.getResult();
-                            User user = documentSnapshot.toObject(User.class);
-                            Glide.with(PostDetailsActivity.this).load(user.getImageProfile())
-                                    .placeholder(R.drawable.ic_user4)
-                                    .into(binding.ivProfile);
-                            binding.tvUsername.setText(user.getFullName());
+                            if (task.getResult() != null){
+                                DocumentSnapshot documentSnapshot = task.getResult();
+                                User user = documentSnapshot.toObject(User.class);
+                                Glide.with(PostDetailsActivity.this).load(user.getImageProfile())
+                                        .placeholder(R.drawable.ic_user4)
+                                        .into(binding.ivProfile);
+                                binding.tvUsername.setText(user.getFullName());
+                            }
                         }
                     }
                 });
@@ -622,6 +656,11 @@ public class PostDetailsActivity extends AppCompatActivity {
                                             ,ActivityAddVideo.class);
                                     intent.putExtra(RvDisplayPostAdapter.POST_KEY, post);
                                     startActivity(intent);
+                                }else {
+                                    Intent intent = new Intent(PostDetailsActivity.this
+                                            ,AddCharityCampaignActivity.class);
+                                    intent.putExtra(RvDisplayPostAdapter.POST_KEY, post);
+                                    startActivity(intent);
                                 }
 
                             }else {
@@ -643,11 +682,13 @@ public class PostDetailsActivity extends AppCompatActivity {
                                         @Override
                                         public void onClick(DialogInterface dialogInterface, int i) {
                                             count_posts = count_posts - 1;
-                                            for (int a=0 ;a<post.getImages().size();a++){
-                                                FirebaseStorage
-                                                        .getInstance()
-                                                        .getReferenceFromUrl(post.getImages().get(a))
-                                                        .delete();
+                                            if (!post.getCategory().equals("حملات")){
+                                                for (int a=0 ;a<post.getImages().size();a++){
+                                                    FirebaseStorage
+                                                            .getInstance()
+                                                            .getReferenceFromUrl(post.getImages().get(a))
+                                                            .delete();
+                                                }
                                             }
                                             deleteLikes(post);
                                             deleteComments(post);

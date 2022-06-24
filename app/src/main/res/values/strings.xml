@@ -141,7 +141,9 @@
     <string name="hint_email">man2000@hotmail.com</string>
     <string name="profile">Profile</string>
     <string name="remove">Remove</string>
-    <string name="tv_notfcation">لا توجد إشعارات</string>
+    <string name="seeYourProfile">See your profile</string>
+    <string name="tv_notfcation">No notifications</string>
+    <string name="donation_link">Donation link</string>
 
 
 </resources>

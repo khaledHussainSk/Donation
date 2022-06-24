@@ -89,7 +89,7 @@ public class AddPostFragment extends Fragment {
                 if (netInfo == null){
                     dialogInternet_error();
                 }else{
-                    if (validity == 1 || validity == 3 /* demo */ || validity == 2){
+                    if (validity == 1 || validity == 3 /* demo  || validity == 2*/){
                         if (HomeFragment.isUploaded == false){
                             arlPhoto.launch("image/*");
                         }else {
@@ -125,7 +125,7 @@ public class AddPostFragment extends Fragment {
                 if (netInfo == null){
                     dialogInternet_error();
                 }else{
-                    if (validity == 1 || validity == 3 /* demo */ || validity == 2){
+                    if (validity == 1 || validity == 3 /* demo  || validity == 2*/){
                         if (HomeFragment.isUploaded == false){
                             arlVideo.launch("video/*");
                         }else {
@@ -146,7 +146,7 @@ public class AddPostFragment extends Fragment {
                 if (netInfo == null){
                     dialogInternet_error();
                 }else{
-                    if (validity == 3 || /* demo */ validity == 2){
+                    if (validity == 3 /* || validity == 2demo */){
                         Intent intent = new Intent(getActivity(),AddCharityCampaignActivity.class);
                         startActivity(intent);
                     }else {

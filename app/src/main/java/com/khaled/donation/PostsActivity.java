@@ -178,10 +178,12 @@ public class PostsActivity extends AppCompatActivity {
                     public void getPostListener(Post post) {
                         Intent intent = new Intent(getBaseContext(), PostDetailsActivity.class);
                         intent.putExtra(RvDisplayPostAdapter.POST_KEY,post);
+                        finish();
                         startActivityForResult(intent,AllFragment.POST_DETAILS_REQ_CODE);
                     }
                 });
-                RecyclerView.SmoothScroller smoothScroller = new LinearSmoothScroller(PostsActivity.this){
+                RecyclerView.SmoothScroller smoothScroller =
+                        new LinearSmoothScroller(PostsActivity.this){
                     @Override
                     protected int getVerticalSnapPreference() {
                         return LinearSmoothScroller.SNAP_TO_ANY;
@@ -189,7 +191,8 @@ public class PostsActivity extends AppCompatActivity {
                 };
                 smoothScroller.setTargetPosition(position);
                 binding.rv.setHasFixedSize(true);
-                LinearLayoutManager linearLayoutManager = new LinearLayoutManager(PostsActivity.this);
+                LinearLayoutManager linearLayoutManager
+                        = new LinearLayoutManager(PostsActivity.this);
                 binding.rv.setLayoutManager(linearLayoutManager);
                 binding.rv.setAdapter(adapter);
                 linearLayoutManager.startSmoothScroll(smoothScroller);

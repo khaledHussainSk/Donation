@@ -30,7 +30,7 @@ public class SplashScreenActivity extends AppCompatActivity {
             @Override
             public void run() {
                 try {
-                    Thread.sleep(2000);
+                    Thread.sleep(250);
                     if (isDone == null){
                         Intent intent = new Intent(getBaseContext(),WelcomeScreenActivity.class);
                         startActivity(intent);
@@ -44,6 +44,7 @@ public class SplashScreenActivity extends AppCompatActivity {
                             Intent intent = new Intent(getBaseContext(),MainActivity.class);
                             startActivity(intent);
                             finish();
+
                         }
                     }
 
@@ -61,7 +62,9 @@ public class SplashScreenActivity extends AppCompatActivity {
                         locale.setDefault(locale);
                         Configuration configuration = new Configuration();
                         configuration.locale = locale;
-                        getBaseContext().getResources().updateConfiguration(configuration,getBaseContext()
+                        getBaseContext()
+                                .getResources()
+                                .updateConfiguration(configuration,getBaseContext()
                                 .getResources().getDisplayMetrics());
                     }
 

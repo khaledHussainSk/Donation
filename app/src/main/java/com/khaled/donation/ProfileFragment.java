@@ -196,7 +196,21 @@ public class ProfileFragment extends Fragment {
                 for (QueryDocumentSnapshot queryDocumentSnapshot : task.getResult()) {
                     Post post = queryDocumentSnapshot.toObject(Post.class);
                     if (post.getPublisher().equals(currentUserId)){
-                        images.add(post.getImages().get(0));
+                        if (post.getCategory().equals("حملات")){
+                            FirebaseFirestore.getInstance().collection("Users")
+                                    .document(post.getPublisher()).get()
+                                    .addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                                        @Override
+                                        public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                                            DocumentSnapshot documentSnapshot = task.getResult();
+                                            User user = documentSnapshot.toObject(User.class);
+                                            images.add(user.getImageProfile());
+                                        }
+                                    });
+
+                        }else {
+                            images.add(post.getImages().get(0));
+                        }
                     }
                 }
                 adapter = new RvPostsProfileAdapter(getActivity(),images,currentUserId);

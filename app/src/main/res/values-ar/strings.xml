@@ -139,5 +139,10 @@
     <string name="likes">الإعجابات</string>
     <string name="hint_email">man2000@hotmail.com</string>
     <string name="profile">الملف الشخصي</string>
+    <string name="remove">إزالة</string>
+    <string name="seeYourProfile">انظر ملفك الشخصي</string>
+    <string name="tv_notfcation">لا توجد اشعارات</string>
+    <string name="donation_link">رابط التبرع</string>
+
 
 </resources>
