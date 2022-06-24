@@ -20,6 +20,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -28,6 +29,7 @@ import com.google.firebase.firestore.QuerySnapshot;
 import com.khaled.donation.Adapters.RvNotificationsAdapter;
 import com.khaled.donation.Listeners.OnClickNotificationListener;
 import com.khaled.donation.Models.Notifications;
+import com.khaled.donation.Models.User;
 import com.khaled.donation.databinding.FragmentNotificationsBinding;
 
 import java.util.ArrayList;
@@ -66,9 +68,33 @@ public class NotificationsFragment extends Fragment {
                         adapter = new RvNotificationsAdapter(arrayList, new OnClickNotificationListener() {
                             @Override
                             public void OnClickListener(Notifications notifications, View view) {
-                                Intent intent = new Intent(getContext(), PostDetailsActivity.class);
-                                intent.putExtra(NOTIFICATION_KEY, notifications.getPost_id());
-                                startActivity(intent);
+                                if (notifications.getNotifications_type().equals("Follow")){
+
+                                    FirebaseFirestore.getInstance().collection("Users").get()
+                                            .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                                                @Override
+                                                public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                                                    for (QueryDocumentSnapshot queryDocumentSnapshot : task.getResult() ){
+
+                                                        if (queryDocumentSnapshot.toObject(User.class).getIdUser().equals(notifications.getId_notifications_owner())){
+                                                            User user = queryDocumentSnapshot.toObject(User.class);
+                                                            Intent intent = new Intent(getContext(),
+                                                                    OtherProfileActivity.class);
+                                                            intent.putExtra(MainActivity.USER_KEY,user);
+                                                            startActivity(intent);
+                                                        }
+                                                    }
+                                                }
+                                            });
+
+
+
+                                }else {
+                                    Intent intent = new Intent(getContext(), PostDetailsActivity.class);
+                                    intent.putExtra(NOTIFICATION_KEY, notifications.getPost_id());
+                                    startActivity(intent);
+                                }
+
                             }
                         }, new OnClickNotificationListener() {
                             @Override
