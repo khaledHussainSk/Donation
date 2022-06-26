@@ -60,6 +60,7 @@ public class ProfileDetailsActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 CropImage.activity()
+                        .setCropShape(CropImageView.CropShape.OVAL)
                         .setGuidelines(CropImageView.Guidelines.ON)
                         .start(ProfileDetailsActivity.this);
             }

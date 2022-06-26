@@ -1,10 +1,12 @@
 package com.khaled.donation;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.net.Uri;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.view.LayoutInflater;
@@ -33,6 +35,8 @@ import com.khaled.donation.Adapters.RvPostsProfileAdapter;
 import com.khaled.donation.Models.Post;
 import com.khaled.donation.Models.User;
 import com.khaled.donation.databinding.FragmentProfileBinding;
+import com.theartofdev.edmodo.cropper.CropImage;
+import com.theartofdev.edmodo.cropper.CropImageView;
 
 import java.util.ArrayList;
 
@@ -46,6 +50,7 @@ public class ProfileFragment extends Fragment {
     NetworkInfo netInfo;
     ArrayList<String> images;
     RvPostsProfileAdapter adapter;
+    ActivityResultLauncher<String> arlPhoto;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -54,8 +59,9 @@ public class ProfileFragment extends Fragment {
         binding = FragmentProfileBinding.inflate(getLayoutInflater(),container,false);
         fixed();
         getUser();
-        getPosts();
-        
+        certificate_verification();
+        onARL();
+
         arl = registerForActivityResult(new ActivityResultContracts.StartActivityForResult()
                 , new ActivityResultCallback<ActivityResult>() {
                     @Override
@@ -134,6 +140,7 @@ public class ProfileFragment extends Fragment {
                             DocumentSnapshot documentSnapshot = task.getResult();
                             currentUser = documentSnapshot.toObject(User.class);
                             if (getActivity() != null){
+                                getPosts();
                                 Glide.with(getActivity()).load(currentUser.getImageProfile())
                                         .placeholder(R.drawable.ic_user4).into(binding.ivProfile);
                                 binding.tvUsername.setText(currentUser.getFullName());
@@ -152,7 +159,6 @@ public class ProfileFragment extends Fragment {
                                 });
                             }
                         }
-
                     }
                 }).addOnFailureListener(new OnFailureListener() {
             @Override
@@ -197,29 +203,93 @@ public class ProfileFragment extends Fragment {
                     Post post = queryDocumentSnapshot.toObject(Post.class);
                     if (post.getPublisher().equals(currentUserId)){
                         if (post.getCategory().equals("حملات")){
-                            FirebaseFirestore.getInstance().collection("Users")
-                                    .document(post.getPublisher()).get()
-                                    .addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-                                        @Override
-                                        public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                                            DocumentSnapshot documentSnapshot = task.getResult();
-                                            User user = documentSnapshot.toObject(User.class);
-                                            images.add(user.getImageProfile());
-                                        }
-                                    });
-
+                            images.add(currentUser.getImageProfile());
                         }else {
                             images.add(post.getImages().get(0));
                         }
                     }
                 }
-                adapter = new RvPostsProfileAdapter(getActivity(),images,currentUserId);
-                binding.rv.setHasFixedSize(true);
-                binding.rv.setLayoutManager(new GridLayoutManager(getActivity(),3));
-                binding.rv.setAdapter(adapter);
-                binding.progressBar.setVisibility(View.GONE);
+                showRecycler();
             }
         });
     }
 
+    private void showRecycler(){
+        adapter = new RvPostsProfileAdapter(getActivity(),images,currentUserId);
+        binding.rv.setHasFixedSize(true);
+        binding.rv.setLayoutManager(new GridLayoutManager(getActivity(),3));
+        binding.rv.setAdapter(adapter);
+        if (images.size() == 0){
+            if (currentUser.getValidity() == 2){
+                binding.btnCheck.setVisibility(View.VISIBLE);
+                binding.ivVerified.setVisibility(View.VISIBLE);
+            }else{
+                binding.btnCheck.setVisibility(View.GONE);
+                binding.tvNoPosts.setVisibility(View.VISIBLE);
+            }
+        }else {
+            binding.btnCheck.setVisibility(View.GONE);
+            binding.tvNoPosts.setVisibility(View.GONE);
+        }
+        if (currentUser.getValidity() == 3){
+            binding.ivVerified.setVisibility(View.VISIBLE);
+        }else {
+            binding.ivVerified.setVisibility(View.GONE);
+        }
+        binding.progressBar.setVisibility(View.GONE);
+    }
+
+    private void certificate_verification(){
+        binding.btnCheck.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                arlPhoto.launch("image/*");
+            }
+        });
+    }
+
+    private void onARL(){
+        arlPhoto = registerForActivityResult(
+                new ActivityResultContracts.GetContent(),
+                new ActivityResultCallback<Uri>() {
+                    @Override
+                    public void onActivityResult(Uri result) {
+                        if (result != null){
+                            CropImage.activity(result)
+                                    .setGuidelines(CropImageView.Guidelines.OFF)
+                                    .setAutoZoomEnabled(false)
+                                    .start(getContext(), ProfileFragment.this);
+                        }
+                    }
+                });
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode == CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE) {
+
+            AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+            builder.setMessage(R.string.confirmSend);
+            builder.setCancelable(false);
+            builder.setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialogInterface, int i) {
+                    dialogInterface.dismiss();
+                }
+            });
+            builder.setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialogInterface, int i) {
+                    AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+                    builder.setMessage("تم رفع الشهادة بمجاح الرجاء الانتظار 3 ايام على الأقل لاستلام الرد");
+                    builder.show();
+                }
+            });
+            builder.show();
+
+        }
+
+    }
 }

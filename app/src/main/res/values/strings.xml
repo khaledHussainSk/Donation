@@ -144,6 +144,9 @@
     <string name="seeYourProfile">See your profile</string>
     <string name="tv_notfcation">No notifications</string>
     <string name="donation_link">Donation link</string>
+    <string name="no_posts">No posts</string>
+    <string name="certificate_verification">"Certificate Verification"</string>
+    <string name="confirmSend">Are you sure you want to send this picture ?</string>
 
 
 </resources>

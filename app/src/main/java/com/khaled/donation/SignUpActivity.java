@@ -78,6 +78,7 @@ public class SignUpActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 CropImage.activity()
+                        .setCropShape(CropImageView.CropShape.OVAL)
                         .setGuidelines(CropImageView.Guidelines.ON)
                         .start(SignUpActivity.this);
 
@@ -87,6 +88,7 @@ public class SignUpActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 CropImage.activity()
+                        .setCropShape(CropImageView.CropShape.OVAL)
                         .setGuidelines(CropImageView.Guidelines.ON)
                         .start(SignUpActivity.this);
             }
