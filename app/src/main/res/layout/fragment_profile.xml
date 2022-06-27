@@ -284,6 +284,19 @@
                     android:layout_centerInParent="true"
                     ></TextView>
 
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/tv_certificate_progress"
+                    android:text="@string/tv_certificate_progress_please_wait"
+                    android:textSize="@dimen/_14ssp"
+                    android:layout_marginEnd="@dimen/_5sdp"
+                    android:layout_marginStart="@dimen/_5sdp"
+                    android:textColor="@color/black"
+                    android:visibility="gone"
+                    android:layout_centerInParent="true"
+                    ></TextView>
+
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/rv"

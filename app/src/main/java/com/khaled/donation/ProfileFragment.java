@@ -26,12 +26,17 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import com.bumptech.glide.Glide;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.UploadTask;
 import com.khaled.donation.Adapters.RvPostsProfileAdapter;
+import com.khaled.donation.Models.CertificateVerification;
 import com.khaled.donation.Models.Post;
 import com.khaled.donation.Models.User;
 import com.khaled.donation.databinding.FragmentProfileBinding;
@@ -39,6 +44,9 @@ import com.theartofdev.edmodo.cropper.CropImage;
 import com.theartofdev.edmodo.cropper.CropImageView;
 
 import java.util.ArrayList;
+import java.util.Calendar;
+
+import es.dmoral.toasty.Toasty;
 
 public class ProfileFragment extends Fragment {
     public static final String IMAGE_KEY = "IMAGE_KEY";
@@ -51,6 +59,9 @@ public class ProfileFragment extends Fragment {
     ArrayList<String> images;
     RvPostsProfileAdapter adapter;
     ActivityResultLauncher<String> arlPhoto;
+    FirebaseStorage storage;
+    Uri imageUri;
+    String image;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -111,6 +122,7 @@ public class ProfileFragment extends Fragment {
     }
 
     private void fixed(){
+        storage = FirebaseStorage.getInstance();
         images = new ArrayList<>();
         ConnectivityManager conMgr =  (ConnectivityManager)getContext()
                 .getSystemService(Context.CONNECTIVITY_SERVICE);
@@ -221,9 +233,16 @@ public class ProfileFragment extends Fragment {
         binding.rv.setAdapter(adapter);
         if (images.size() == 0){
             if (currentUser.getValidity() == 2){
+                //لم يتم التحقق بعد
                 binding.btnCheck.setVisibility(View.VISIBLE);
                 binding.ivVerified.setVisibility(View.VISIBLE);
-            }else{
+            }else if (currentUser.getValidity() == 4){
+                //قيد التحقق
+                binding.btnCheck.setVisibility(View.GONE);
+                binding.tvNoPosts.setVisibility(View.GONE);
+                binding.tvCertificateProgress.setVisibility(View.VISIBLE);
+            }
+            else{
                 binding.btnCheck.setVisibility(View.GONE);
                 binding.tvNoPosts.setVisibility(View.VISIBLE);
             }
@@ -259,6 +278,7 @@ public class ProfileFragment extends Fragment {
                                     .setGuidelines(CropImageView.Guidelines.OFF)
                                     .setAutoZoomEnabled(false)
                                     .start(getContext(), ProfileFragment.this);
+                            imageUri = result;
                         }
                     }
                 });
@@ -269,7 +289,6 @@ public class ProfileFragment extends Fragment {
         super.onActivityResult(requestCode, resultCode, data);
 
         if (requestCode == CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE) {
-
             AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
             builder.setMessage(R.string.confirmSend);
             builder.setCancelable(false);
@@ -282,9 +301,7 @@ public class ProfileFragment extends Fragment {
             builder.setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialogInterface, int i) {
-                    AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-                    builder.setMessage("تم رفع الشهادة بمجاح الرجاء الانتظار 3 ايام على الأقل لاستلام الرد");
-                    builder.show();
+                    uploadImage();
                 }
             });
             builder.show();
@@ -292,4 +309,67 @@ public class ProfileFragment extends Fragment {
         }
 
     }
+
+    private void uploadImage(){
+        storage.getReference().child("CertificateVerificationImages/"+currentUser.getJoined())
+                .putFile(imageUri)
+                .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                    @Override
+                    public void onSuccess(@NonNull UploadTask.TaskSnapshot taskSnapshot) {
+                        taskSnapshot.getStorage().getDownloadUrl()
+                                .addOnSuccessListener(new OnSuccessListener<Uri>() {
+                                    @Override
+                                    public void onSuccess(@NonNull Uri uri) {
+                                        image = String.valueOf(uri);
+                                        create_certificate_verification();
+                                    }
+                                });
+                    }
+                }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                Toasty.error(getActivity(), R.string.somethingWrong
+                        , Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    private void create_certificate_verification(){
+        CertificateVerification certificateVerification = new CertificateVerification(
+                currentUserId,image,Calendar.getInstance().getTime());
+        DocumentReference documentReference = FirebaseFirestore
+                .getInstance().collection("Certificate_verification")
+                .document();
+        certificateVerification.setId(documentReference.getId());
+        documentReference.set(certificateVerification)
+                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        FirebaseFirestore
+                                .getInstance()
+                                .collection("Users")
+                                .document(currentUser.getIdUser())
+                                .update("validity",4);
+                        binding.btnCheck.setVisibility(View.GONE);
+                        binding.tvCertificateProgress.setVisibility(View.VISIBLE);
+                        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+                        builder.setCancelable(false);
+                        builder.setMessage(R.string.certificate_verification_message);
+                        builder.setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                dialogInterface.dismiss();
+                            }
+                        });
+                        builder.show();
+                    }
+                }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                Toasty.error(getActivity(), R.string.somethingWrong
+                        , Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
 }

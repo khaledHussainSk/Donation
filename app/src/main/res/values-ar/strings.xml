@@ -146,5 +146,9 @@
     <string name="no_posts">لا توجد مشاركات</string>
     <string name="certificate_verification">"التحقق من الشهادة"</string>
     <string name="confirmSend">هل أنت متأكد أنك تريد إرسال هذه الصورة؟</string>
+    <string name="somethingWrong">هناك شيء خاطئ: الرجاء المحاولة مرة أخرى</string>
+    <string name="certificate_verification_message">تم تحميل الشهادة بنجاح ، يرجى الانتظار 3 أيام على الأقل لتلقي الرد</string>
+    <string name="tv_certificate_progress_please_wait">التحقق من الشهادة قيد التقدم الرجاء الانتظار ...</string>
+    <string name="toast_permission_must_be_obtained">يجب الحصول على الإذن</string>
 
 </resources>

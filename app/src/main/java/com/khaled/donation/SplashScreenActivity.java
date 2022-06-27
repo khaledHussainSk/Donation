@@ -1,11 +1,18 @@
 package com.khaled.donation;
 
+import android.Manifest;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.widget.Toast;
+
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 
 import com.khaled.donation.databinding.ActivitySplashScreenBinding;
 
@@ -14,18 +21,56 @@ import java.util.Locale;
 public class SplashScreenActivity extends AppCompatActivity {
     ActivitySplashScreenBinding binding;
     SharedPreferences sp;
+    public static final int PERMISSIONS_REQ_CODE = 1;
+    String isDone;
+    String isChecked;
+    String lang;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = ActivitySplashScreenBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+
+        fixed();
+
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE)
+                != PackageManager.PERMISSION_GRANTED){
+            //الصلاحية لم بتم الحصول عليها
+            String[] permissions =  {Manifest.permission.WRITE_EXTERNAL_STORAGE};
+            ActivityCompat.requestPermissions(this, permissions,PERMISSIONS_REQ_CODE);
+        }else {
+            //الصلاحية تم الحصول عليها
+            check();
+        }
+
+    }
+
+    private void fixed() {
         sp = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
 
-        String isDone = sp.getString(WelcomeLoginActivity.ONBOARDING_KEY,null);
-        String isChecked = sp.getString(LoginActivity.ISCHECKED_KEY,null);
-        String lang = sp.getString("My_lang",null);
+        isDone = sp.getString(WelcomeLoginActivity.ONBOARDING_KEY,null);
+        isChecked = sp.getString(LoginActivity.ISCHECKED_KEY,null);
+        lang = sp.getString("My_lang",null);
+    }
 
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions
+            , @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        switch (requestCode){
+            case PERMISSIONS_REQ_CODE:
+                if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED){
+                    check();
+                }else {
+                    finish();
+                    Toast.makeText(getBaseContext(), R.string.toast_permission_must_be_obtained, Toast.LENGTH_SHORT).show();
+                }
+                return;
+        }
+    }
+
+    private void check(){
         new Thread(new Runnable() {
             @Override
             public void run() {
@@ -65,7 +110,7 @@ public class SplashScreenActivity extends AppCompatActivity {
                         getBaseContext()
                                 .getResources()
                                 .updateConfiguration(configuration,getBaseContext()
-                                .getResources().getDisplayMetrics());
+                                        .getResources().getDisplayMetrics());
                     }
 
                 } catch (InterruptedException e) {
@@ -75,4 +120,5 @@ public class SplashScreenActivity extends AppCompatActivity {
         }).start();
 
     }
+
 }

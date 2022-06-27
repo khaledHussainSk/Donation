@@ -177,7 +177,6 @@ public class ProfileDetailsActivity extends AppCompatActivity {
         enableField();
         binding.spinKit.setVisibility(View.GONE);
         finish();
-
     }
     private void uploadImage(){
         binding.spinKit.setVisibility(View.VISIBLE);
