@@ -201,7 +201,6 @@ public class MenuFragment extends Fragment {
                     setLocal("en");
                     getActivity().recreate();
                 }
-
                 dialogInterface.dismiss();
             }
         });

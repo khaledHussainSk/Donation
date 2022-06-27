@@ -296,14 +296,9 @@ public class PostDetailsActivity extends AppCompatActivity {
                         if (task.isSuccessful()){
                             DocumentSnapshot documentSnapshot = task.getResult();
                             User user = documentSnapshot.toObject(User.class);
-                            try {
-                                Glide.with(PostDetailsActivity.this).load(user.getImageProfile())
-                                        .placeholder(R.drawable.ic_user4)
-                                        .into(binding.ivProfile);
-                            }catch (Exception e){
-
-                            }
-
+                            Glide.with(PostDetailsActivity.this).load(user.getImageProfile())
+                                    .placeholder(R.drawable.ic_user4)
+                                    .into(binding.ivProfile);
                             binding.tvUsername.setText(user.getFullName());
                         }
                     }

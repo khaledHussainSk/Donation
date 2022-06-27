@@ -141,7 +141,15 @@
     <string name="hint_email">man2000@hotmail.com</string>
     <string name="profile">Profile</string>
     <string name="remove">Remove</string>
-    <string name="tv_notfcation">لا توجد إشعارات</string>
-
+    <string name="seeYourProfile">See your profile</string>
+    <string name="tv_notfcation">No notifications</string>
+    <string name="donation_link">Donation link</string>
+    <string name="no_posts">No posts</string>
+    <string name="certificate_verification">"Certificate Verification"</string>
+    <string name="confirmSend">Are you sure you want to send this picture ?</string>
+    <string name="somethingWrong">There is something wrong : please try again</string>
+    <string name="certificate_verification_message">Certificate uploaded successfully, please wait at least 3 days to receive a response</string>
+    <string name="tv_certificate_progress_please_wait">Certificate Verification in progress Please wait...</string>
+    <string name="toast_permission_must_be_obtained">Permission must be obtained</string>
 
 </resources>

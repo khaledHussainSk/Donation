@@ -6,7 +6,7 @@ import java.util.Date;
 
 public class Post implements Serializable {
 
-    private String postId,title,description,publisher;
+    private String postId,title,description,donation_link,publisher;
     private ArrayList<String> images;
     private Date datenews;
     private int likes,comments;
@@ -28,6 +28,20 @@ public class Post implements Serializable {
         this.postType = postType;
     }
 
+    public Post(String title, String description,String donation_link, String publisher
+            , Date datenews, int likes, int comments
+            , String category, String postType) {
+        this.title = title;
+        this.description = description;
+        this.donation_link = donation_link;
+        this.publisher = publisher;
+        this.datenews = datenews;
+        this.likes = likes;
+        this.comments = comments;
+        this.category = category;
+        this.postType = postType;
+    }
+
     public Post() {
     }
 
@@ -37,6 +51,14 @@ public class Post implements Serializable {
 
     public void setPostType(String postType) {
         this.postType = postType;
+    }
+
+    public String getDonation_link() {
+        return donation_link;
+    }
+
+    public void setDonation_link(String donation_link) {
+        this.donation_link = donation_link;
     }
 
     public String getTitle() {

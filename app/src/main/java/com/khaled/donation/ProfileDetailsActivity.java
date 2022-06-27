@@ -60,6 +60,7 @@ public class ProfileDetailsActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 CropImage.activity()
+                        .setCropShape(CropImageView.CropShape.OVAL)
                         .setGuidelines(CropImageView.Guidelines.ON)
                         .start(ProfileDetailsActivity.this);
             }
@@ -176,7 +177,6 @@ public class ProfileDetailsActivity extends AppCompatActivity {
         enableField();
         binding.spinKit.setVisibility(View.GONE);
         finish();
-
     }
     private void uploadImage(){
         binding.spinKit.setVisibility(View.VISIBLE);

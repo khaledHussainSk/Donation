@@ -376,6 +376,7 @@ public class AddPhotoActivity extends AppCompatActivity {
         numbersOfPhotos();
         adapter.notifyDataSetChanged();
     }
+
     private void showImage(String image){
         Intent intent = new Intent(getBaseContext(), DisplayImageActivity.class);
         intent.putExtra(IMAGE_KEY, image);

@@ -136,7 +136,8 @@ public class OtherProfileActivity extends AppCompatActivity {
                 @Override
                 public void onClick(View view) {
                     binding.btnFollow.setEnabled(false);
-                    Friend friend = new Friend(id_current_user,user.getIdUser(),Calendar.getInstance().getTime());
+                    Friend friend = new Friend(id_current_user,user
+                            .getIdUser(),Calendar.getInstance().getTime());
                     DocumentReference documentReference =
                             FirebaseFirestore.getInstance().collection("Friends").document();
                     friend.setId(documentReference.getId());

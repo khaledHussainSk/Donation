@@ -89,7 +89,7 @@ public class AddPostFragment extends Fragment {
                 if (netInfo == null){
                     dialogInternet_error();
                 }else{
-                    if (validity == 1 || validity == 3 /* demo */ || validity == 2){
+                    if (validity == 1 || validity == 3){
                         if (HomeFragment.isUploaded == false){
                             arlPhoto.launch("image/*");
                         }else {
@@ -125,7 +125,7 @@ public class AddPostFragment extends Fragment {
                 if (netInfo == null){
                     dialogInternet_error();
                 }else{
-                    if (validity == 1 || validity == 3 /* demo */ || validity == 2){
+                    if (validity == 1 || validity == 3){
                         if (HomeFragment.isUploaded == false){
                             arlVideo.launch("video/*");
                         }else {
@@ -146,7 +146,7 @@ public class AddPostFragment extends Fragment {
                 if (netInfo == null){
                     dialogInternet_error();
                 }else{
-                    if (validity == 3 || /* demo */ validity == 2){
+                    if (validity == 3){
                         Intent intent = new Intent(getActivity(),AddCharityCampaignActivity.class);
                         startActivity(intent);
                     }else {
@@ -170,7 +170,7 @@ public class AddPostFragment extends Fragment {
                             currentUser = documentSnapshot.toObject(User.class);
                             if (getActivity() != null){
                                 validity = currentUser.getValidity();
-                                if (validity == 2 || validity == 3){
+                                if (validity == 2 || validity == 3 || validity == 4){
                                     binding.btnAddCharityCampaign.setVisibility(View.VISIBLE);
                                     binding.tvOr.setVisibility(View.VISIBLE);
                                 }
@@ -196,10 +196,6 @@ public class AddPostFragment extends Fragment {
         binding.btnAddCharityCampaign.setEnabled(true);
         binding.btnAddPhoto.setEnabled(true);
         binding.btnAddVideo.setEnabled(true);
-    }
-
-    private void permision(){
-
     }
 
 }
