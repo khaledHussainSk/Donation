@@ -46,6 +46,7 @@ public class RvNotificationsAdapter extends RecyclerView.Adapter<RvNotifications
     OnClickNotificationListener listener;
     OnClickNotificationListener listenerDelete;
     Notifications notifications;
+    User user;
 
     public RvNotificationsAdapter(ArrayList<Notifications> arrayList, OnClickNotificationListener listener, OnClickNotificationListener listenerDelete) {
         this.arrayList = arrayList;
@@ -71,13 +72,13 @@ public class RvNotificationsAdapter extends RecyclerView.Adapter<RvNotifications
                     @Override
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
                         for (QueryDocumentSnapshot queryDocumentSnapshot : task.getResult() ){
-                            User user = queryDocumentSnapshot.toObject(User.class);
+                            user = queryDocumentSnapshot.toObject(User.class);
                                 if (user.getIdUser().equals(n.getId_notifications_owner())){
                                     name = user.getFullName();
                                     image = user.getImageProfile();
                                     holder.binding.tvName.setText(name);
                                     Glide.with(context).load(image).placeholder(R.drawable.ic_user4).into(holder.binding.profileImage);
-                                    Toast.makeText(context, "تمت ", Toast.LENGTH_SHORT).show();
+//                                    Toast.makeText(context, "تمت ", Toast.LENGTH_SHORT).show();
                                 }
                         }
                     }

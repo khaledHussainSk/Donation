@@ -37,12 +37,18 @@ public class MainActivity extends AppCompatActivity {
     SharedPreferences sp;
     SharedPreferences.Editor editt;
     ArrayList<Notifications> arrayList;
+    public static int count;
+    String currntUserID;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+
+        sp = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+        currntUserID = sp.getString(MainActivity.USER_ID_KEY, null);
+
         fixed();
         getInfo();
         bottomNavigation = binding.bottomNavigation;
@@ -81,23 +87,32 @@ public class MainActivity extends AppCompatActivity {
 
         arrayList = new ArrayList<>();
 
-        FirebaseFirestore.getInstance().collection("Notifications").get()
-                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                    @Override
-                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                        for (QueryDocumentSnapshot queryDocumentSnapshot : task.getResult()){
-                            Notifications notifications = queryDocumentSnapshot.toObject(Notifications.class);
-                            arrayList.add(notifications);
-
-                            if (arrayList.size()>0){
-                                //Set notification count
-                                binding.bottomNavigation.setCount(2, String.valueOf(arrayList.size()));
-                            }
-
-                        }
-                    }
-                });
-
+//        FirebaseFirestore.getInstance().collection("Notifications").get()
+//                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+//                    @Override
+//                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+//                        for (QueryDocumentSnapshot queryDocumentSnapshot : task.getResult()){
+//                            Notifications notifications = queryDocumentSnapshot.toObject(Notifications.class);
+////                            if (notifications.getId_post_owner().equals(currntUserID)){
+//                                arrayList.add(notifications);
+//
+//
+//
+////                            }
+//                        }
+//                        for (int i = 0 ; i < arrayList.size();i++){
+//                            if (arrayList.size()>0 && arrayList.get(i).getId_post_owner().equals(currntUserID)){
+//                                //Set notification count
+////                                    count = "0";
+////                                        count =  String.valueOf(arrayList.size());
+//                                count = i;
+//                                Toast.makeText(getApplicationContext(), ""+count, Toast.LENGTH_SHORT).show();
+//                                binding.bottomNavigation.setCount(2,count+"");
+//                            }
+//                        }
+//                    }
+//                });
+//
 
 
         //Set home fragment initially selected
