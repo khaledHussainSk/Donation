@@ -28,6 +28,7 @@
                 android:layout_alignParentStart="true"
                 android:layout_centerHorizontal="true"
                 android:layout_centerVertical="true"
+                android:src="@drawable/ic_user4"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -47,26 +48,30 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/_10sdp"
                     android:layout_marginTop="@dimen/_2sdp"
-                    android:textSize="@dimen/_13sdp"
-                    android:textColor="#1B1200"
-                    android:text="" />
+                    android:textSize="@dimen/_14ssp"
+                    android:textColor="@color/black"
+                    android:textStyle="bold"
+                    android:layout_weight="1"
+                    />
                 <TextView
-                    android:id="@+id/tv_like"
+                    android:id="@+id/tv_description"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="#8A959E"
+                    android:textColor="@color/black"
+                    android:layout_weight="1"
                     android:layout_marginStart="@dimen/_10sdp"
-                    android:layout_marginTop="@dimen/_8sdp"
-                    android:textSize="@dimen/_12sdp"
+                    android:textSize="@dimen/_12ssp"
                     android:text="" />
                 <TextView
                     android:id="@+id/tv_date"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="right"
-                    android:textColor="#1C2340"
+                    android:layout_gravity="start"
                     android:layout_marginStart="@dimen/_10sdp"
-                    android:text="" />
+                    android:layout_weight="1"
+                    android:textSize="@dimen/_8ssp"
+                    android:text=""
+                    />
             </LinearLayout>
 
         </androidx.constraintlayout.widget.ConstraintLayout>

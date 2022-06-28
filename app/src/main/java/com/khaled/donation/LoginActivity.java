@@ -1,8 +1,5 @@
 package com.khaled.donation;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -11,6 +8,9 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.CompoundButton;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -36,13 +36,13 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
         fixed();
 
-        binding.btnForget.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent i = new Intent(getApplicationContext(),ActivityNewPassword.class);
-                startActivity(i);
-            }
-        });
+//        binding.btnForget.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Intent i = new Intent(LoginActivity.this,ActivityNewPassword.class);
+//                startActivity(i);
+//            }
+//        });
 
         binding.btnSignIn.setOnClickListener(new View.OnClickListener() {
             @Override

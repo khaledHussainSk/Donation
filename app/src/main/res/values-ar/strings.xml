@@ -150,5 +150,12 @@
     <string name="certificate_verification_message">تم تحميل الشهادة بنجاح ، يرجى الانتظار 3 أيام على الأقل لتلقي الرد</string>
     <string name="tv_certificate_progress_please_wait">التحقق من الشهادة قيد التقدم الرجاء الانتظار ...</string>
     <string name="toast_permission_must_be_obtained">يجب الحصول على الإذن</string>
+    <string name="forget_password">نسيت كلمة المرور</string>
+    <string name="Please_Enter_Your_Confirm_Password">الرجاء تأكيد كلمة المرور</string>
+    <string name="delete_notification">هل أنت متأكد أنك تريد حذف الإشعار؟</string>
+    <string name="toast_notification_delete">تم حذف إشعارك</string>
+    <string name="notification_like">تفاعل مع منشورك</string>
+    <string name="notification_comment">علق على منشورك</string>
+    <string name="notification_follow">بدأ في متابعتك</string>
 
 </resources>

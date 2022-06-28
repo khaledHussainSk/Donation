@@ -15,7 +15,7 @@
         <!-- Customize your theme here. -->
     </style>
 
-    <style name="FullScreen" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+    <style name="FullScreen" parent="Theme.MaterialComponents.Light.NoActionBar">
         <item name="android:forceDarkAllowed" tools:targetApi="q">false</item>
         <item name="android:windowFullscreen">true</item>
         <item name="colorPrimary">#00B588</item>

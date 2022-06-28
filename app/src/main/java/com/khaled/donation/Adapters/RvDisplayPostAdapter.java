@@ -238,21 +238,23 @@ public class RvDisplayPostAdapter
 
         String date =year +"-"+ month + "-" + day +" " + hour +":" +minute +":"+ second;
 
-        Notifications notifications = new Notifications(post.getPostId(),"Like",post.getPublisher(),currntUserID,date);
-        DocumentReference documentReferenceNOt = FirebaseFirestore.getInstance().collection("Notifications").document();
+        Notifications notifications = new Notifications(post.getPostId()
+                ,"Like",post.getPublisher(),currntUserID,date);
+        DocumentReference documentReferenceNOt = FirebaseFirestore.getInstance()
+                .collection("Notifications").document();
         notifications.setId(documentReferenceNOt.getId());
 
         documentReferenceNOt.set(notifications).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
                 if (task.isSuccessful()){
-                    Toast.makeText(context, "تم إرسال الأشعار", Toast.LENGTH_SHORT).show();
+
                 }
             }
         }).addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
-                Toast.makeText(context, "فشل إرسال الأشعار", Toast.LENGTH_SHORT).show();
+                Toast.makeText(context, e.getMessage()+"", Toast.LENGTH_SHORT).show();
             }
         });
     }

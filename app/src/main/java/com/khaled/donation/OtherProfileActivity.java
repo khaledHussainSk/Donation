@@ -183,7 +183,8 @@ public class OtherProfileActivity extends AppCompatActivity {
 
                     String date =year +"-"+ month + "-" + day +" " + hour +":" +minute +":"+ second;
 
-                    Notifications notifications = new Notifications(user.getIdUser(),"Follow",user.getIdUser(),id_current_user,date);
+                    Notifications notifications = new Notifications(user.getIdUser()
+                            ,"Follow",user.getIdUser(),id_current_user,date);
                     DocumentReference documentReferenceNOt = FirebaseFirestore.getInstance().collection("Notifications").document();
                     notifications.setId(documentReferenceNOt.getId());
 

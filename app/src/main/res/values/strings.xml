@@ -153,5 +153,10 @@
     <string name="toast_permission_must_be_obtained">Permission must be obtained</string>
     <string name="forget_password">Forget Password</string>
     <string name="Please_Enter_Your_Confirm_Password">Please Enter Your Confirm Password</string>
+    <string name="delete_notification">Are you sure you want to delete the notification?</string>
+    <string name="toast_notification_delete">Your notification has been deleted</string>
+    <string name="notification_like">reacted to your post</string>
+    <string name="notification_comment">commented on your post</string>
+    <string name="notification_follow">started following you</string>
 
 </resources>
