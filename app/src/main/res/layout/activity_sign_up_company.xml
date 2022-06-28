@@ -32,15 +32,13 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:orientation="vertical"
                     android:gravity="center"
-                    >
+                    android:orientation="vertical">
 
                     <androidx.constraintlayout.widget.ConstraintLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/_21sdp"
-                        >
+                        android:layout_marginTop="@dimen/_21sdp">
 
                         <ImageView
                             android:id="@+id/iv_circle"
@@ -74,14 +72,13 @@
                         android:layout_marginTop="@dimen/_20sdp"
                         android:layout_marginEnd="@dimen/_20sdp"
                         android:background="@drawable/et_shape"
+                        android:gravity="start"
                         android:hint="@string/corporationName_hint"
                         android:inputType="textPersonName"
-                        android:gravity="start"
                         android:padding="@dimen/_16sdp"
                         android:textColor="#1C2340"
                         android:textColorHint="#1C2340"
-                        android:textSize="@dimen/_12sdp"
-                        ></EditText>
+                        android:textSize="@dimen/_12sdp"></EditText>
 
 
                     <EditText
@@ -97,8 +94,7 @@
                         android:padding="@dimen/_16sdp"
                         android:textColor="#1C2340"
                         android:textColorHint="#1C2340"
-                        android:textSize="@dimen/_12sdp"
-                        ></EditText>
+                        android:textSize="@dimen/_12sdp"></EditText>
 
                     <EditText
                         android:id="@+id/et_address"
@@ -113,8 +109,7 @@
                         android:padding="@dimen/_16sdp"
                         android:textColor="#1C2340"
                         android:textColorHint="#1C2340"
-                        android:textSize="@dimen/_12sdp"
-                        ></EditText>
+                        android:textSize="@dimen/_12sdp"></EditText>
 
                     <EditText
                         android:id="@+id/et_email"
@@ -129,8 +124,7 @@
                         android:padding="@dimen/_16sdp"
                         android:textColor="#1C2340"
                         android:textColorHint="#1C2340"
-                        android:textSize="@dimen/_12sdp"
-                        ></EditText>
+                        android:textSize="@dimen/_12sdp"></EditText>
 
                     <EditText
                         android:id="@+id/et_password"
@@ -145,8 +139,7 @@
                         android:padding="@dimen/_16sdp"
                         android:textColor="#1C2340"
                         android:textColorHint="#1C2340"
-                        android:textSize="@dimen/_12sdp"
-                        ></EditText>
+                        android:textSize="@dimen/_12sdp"></EditText>
 
                     <EditText
                         android:id="@+id/et_confirmPassword"
@@ -161,8 +154,7 @@
                         android:padding="@dimen/_16sdp"
                         android:textColor="#1C2340"
                         android:textColorHint="#1C2340"
-                        android:textSize="@dimen/_12sdp"
-                        ></EditText>
+                        android:textSize="@dimen/_12sdp"></EditText>
 
                     <com.google.android.material.button.MaterialButton
                         android:id="@+id/btn_signUp"
@@ -183,8 +175,7 @@
                     <RelativeLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginBottom="@dimen/_22sdp"
-                        >
+                        android:layout_marginBottom="@dimen/_22sdp">
 
                         <TextView
                             android:id="@+id/already..."

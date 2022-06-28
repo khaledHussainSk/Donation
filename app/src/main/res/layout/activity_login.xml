@@ -95,6 +95,7 @@
                     android:textSize="@dimen/_10ssp"></CheckBox>
 
                 <TextView
+                    android:id="@+id/btn_forget"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/et_password"

@@ -151,5 +151,7 @@
     <string name="certificate_verification_message">Certificate uploaded successfully, please wait at least 3 days to receive a response</string>
     <string name="tv_certificate_progress_please_wait">Certificate Verification in progress Please wait...</string>
     <string name="toast_permission_must_be_obtained">Permission must be obtained</string>
+    <string name="forget_password">Forget Password</string>
+    <string name="Please_Enter_Your_Confirm_Password">Please Enter Your Confirm Password</string>
 
 </resources>
