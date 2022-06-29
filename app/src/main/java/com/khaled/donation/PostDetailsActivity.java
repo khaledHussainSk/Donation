@@ -37,6 +37,7 @@ import com.khaled.donation.Models.Comment;
 import com.khaled.donation.Models.Favorite;
 import com.khaled.donation.Models.Friend;
 import com.khaled.donation.Models.Like;
+import com.khaled.donation.Models.Notifications;
 import com.khaled.donation.Models.Post;
 import com.khaled.donation.Models.User;
 import com.khaled.donation.databinding.ActivityPostDetailsBinding;
@@ -761,6 +762,37 @@ public class PostDetailsActivity extends AppCompatActivity {
                             getCurrentUser();
                             binding.btnFollow.setText(R.string.unfollow);
                             binding.btnFollow.setEnabled(true);
+
+                            //إرسال إشعار المتابعة
+
+                            Calendar now = Calendar.getInstance();
+                            int year = now.get(Calendar.YEAR);
+                            int month = now.get(Calendar.MONTH) + 1; // Note: zero based!
+                            int day = now.get(Calendar.DAY_OF_MONTH);
+                            String hour = hour(Calendar.getInstance().getTime());
+                            int minute = now.get(Calendar.MINUTE);
+                            int second = now.get(Calendar.SECOND);
+
+                            String date =year +"-"+ month + "-" + day +" " + hour +":" +minute +":"+ second;
+
+                            Notifications notifications = new Notifications(user.getIdUser()
+                                    ,"Follow",user.getIdUser(),currntUserID,date);
+                            DocumentReference documentReferenceNOt = FirebaseFirestore.getInstance().collection("Notifications").document();
+                            notifications.setId(documentReferenceNOt.getId());
+
+                            documentReferenceNOt.set(notifications).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                @Override
+                                public void onComplete(@NonNull Task<Void> task) {
+                                    if (task.isSuccessful()){
+                                        Toast.makeText(getApplicationContext(), "تم إرسال الأشعار", Toast.LENGTH_SHORT).show();
+                                    }
+                                }
+                            }).addOnFailureListener(new OnFailureListener() {
+                                @Override
+                                public void onFailure(@NonNull Exception e) {
+                                    Toast.makeText(getApplicationContext(), "فشل إرسال الأشعار", Toast.LENGTH_SHORT).show();
+                                }
+                            });
 
                         }
                     }

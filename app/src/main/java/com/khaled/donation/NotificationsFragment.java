@@ -21,6 +21,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.khaled.donation.Adapters.RvNotificationsAdapter;
@@ -51,7 +52,7 @@ public class NotificationsFragment extends Fragment {
         sp = PreferenceManager.getDefaultSharedPreferences(getActivity());
         currntUserID = sp.getString(MainActivity.USER_ID_KEY, null);
 
-        FirebaseFirestore.getInstance().collection("Notifications").get()
+        FirebaseFirestore.getInstance().collection("Notifications").orderBy("date_notifications", Query.Direction.DESCENDING).get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
