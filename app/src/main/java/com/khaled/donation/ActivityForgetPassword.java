@@ -64,5 +64,12 @@ public class ActivityForgetPassword extends AppCompatActivity {
             }
         });
 
+        binding.icBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
+
     }
 }
