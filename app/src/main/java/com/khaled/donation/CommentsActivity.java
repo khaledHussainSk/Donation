@@ -179,8 +179,10 @@ public class CommentsActivity extends AppCompatActivity {
         String date =year +"-"+ month + "-" + day +" " + hour +":" +minute +":"+ second;
 //        String date =year +"-"+ month + "-" + day +" " + hour+":"+ second;
 
-        Notifications notifications = new Notifications(post.getPostId(),"Comment",post.getPublisher(),id_current_user,date);
-        DocumentReference documentReferenceNOt = FirebaseFirestore.getInstance().collection("Notifications").document();
+        Notifications notifications = new Notifications(post.getPostId()
+                ,"Comment",post.getPublisher(),id_current_user,date);
+        DocumentReference documentReferenceNOt = FirebaseFirestore.getInstance()
+                .collection("Notifications").document();
         notifications.setId(documentReferenceNOt.getId());
 
         documentReferenceNOt.set(notifications).addOnCompleteListener(new OnCompleteListener<Void>() {

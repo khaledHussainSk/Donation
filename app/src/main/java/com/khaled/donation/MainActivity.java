@@ -4,13 +4,10 @@ import android.app.Activity;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
-import android.view.View;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.etebarian.meowbottomnavigation.MeowBottomNavigation;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -18,7 +15,6 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
-import com.khaled.donation.Adapters.RvNotificationsAdapter;
 import com.khaled.donation.Models.Notifications;
 import com.khaled.donation.Models.User;
 import com.khaled.donation.databinding.ActivityMainBinding;
@@ -28,6 +24,7 @@ import java.util.ArrayList;
 public class MainActivity extends AppCompatActivity {
     public static final String USER_ID_KEY = "USER_ID_KEY";
     public final static String USER_KEY = "USER_KEY";
+    public static final String count_notifications = "count_notifications";
     ActivityMainBinding binding;
     public static MeowBottomNavigation bottomNavigation;
     public static Activity context;
@@ -36,9 +33,9 @@ public class MainActivity extends AppCompatActivity {
     User currentUser;
     SharedPreferences sp;
     SharedPreferences.Editor editt;
-    ArrayList<Notifications> arrayList;
-    public static int count;
+    ArrayList<Notifications> notifications;
     String currntUserID;
+    int oldCount;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -85,50 +82,48 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        arrayList = new ArrayList<>();
+        notifications = new ArrayList<>();
 
-//        FirebaseFirestore.getInstance().collection("Notifications").get()
-//                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-//                    @Override
-//                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
-//                        for (QueryDocumentSnapshot queryDocumentSnapshot : task.getResult()){
-//                            Notifications notifications = queryDocumentSnapshot.toObject(Notifications.class);
-////                            if (notifications.getId_post_owner().equals(currntUserID)){
-//                                arrayList.add(notifications);
-//
-//
-//
-////                            }
-//                        }
-//                        for (int i = 0 ; i < arrayList.size();i++){
-//                            if (arrayList.size()>0 && arrayList.get(i).getId_post_owner().equals(currntUserID)){
-//                                //Set notification count
-////                                    count = "0";
-////                                        count =  String.valueOf(arrayList.size());
-//                                count = i;
-//                                Toast.makeText(getApplicationContext(), ""+count, Toast.LENGTH_SHORT).show();
-//                                binding.bottomNavigation.setCount(2,count+"");
-//                            }
-//                        }
-//                    }
-//                });
-//
+        FirebaseFirestore.getInstance().collection("Notifications").get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        for (QueryDocumentSnapshot queryDocumentSnapshot : task.getResult()){
+                            Notifications notification = queryDocumentSnapshot.toObject(Notifications.class);
+                            if (notification.getId_post_owner().equals(currntUserID)){
+                                notifications.add(notification);
+                            }
+                        }
 
+                        if (oldCount > 0){
+                            if (notifications.size() > oldCount){
+                                //اذا يوجد اشعارات جديدة
+                                binding.bottomNavigation.setCount(2,notifications.size() - oldCount+"");
+                            }
+                        }else {
+                            binding.bottomNavigation.setCount(2,notifications.size()+"");
+                        }
 
-        //Set home fragment initially selected
-        binding.bottomNavigation.show(1,true);
-        binding.bottomNavigation.setOnClickMenuListener(new MeowBottomNavigation.ClickListener() {
-            @Override
-            public void onClickItem(MeowBottomNavigation.Model item) {
-//                Toast.makeText(getBaseContext(), "You Clicked "+item.getId(), Toast.LENGTH_SHORT).show();
-            }
-        });
-        binding.bottomNavigation.setOnReselectListener(new MeowBottomNavigation.ReselectListener() {
-            @Override
-            public void onReselectItem(MeowBottomNavigation.Model item) {
+                        binding.bottomNavigation.setOnClickMenuListener(new MeowBottomNavigation.ClickListener() {
+                            @Override
+                            public void onClickItem(MeowBottomNavigation.Model item) {
+                                if (item.getId() == 2){
+                                    binding.bottomNavigation.clearCount(2);
+                                    editt.putInt(count_notifications,notifications.size());
+                                    editt.apply();
+                                }
+                            }
+                        });
+                        binding.bottomNavigation.setOnReselectListener(new MeowBottomNavigation.ReselectListener() {
+                            @Override
+                            public void onReselectItem(MeowBottomNavigation.Model item) {
 //                Toast.makeText(getBaseContext(), "You Reselected"+item.getId(), Toast.LENGTH_SHORT).show();
-            }
-        });
+                            }
+                        });
+                    }
+                });
+
+        binding.bottomNavigation.show(1,true);
 
 
     }
@@ -146,6 +141,7 @@ public class MainActivity extends AppCompatActivity {
         sp = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
         editt = sp.edit();
         email = sp.getString(LoginActivity.EMAIL,null);
+        oldCount = sp.getInt(count_notifications,-1);
     }
 
     private void getInfo(){
