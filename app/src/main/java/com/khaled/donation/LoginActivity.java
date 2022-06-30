@@ -36,13 +36,13 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
         fixed();
 
-//        binding.btnForget.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Intent i = new Intent(LoginActivity.this,ActivityNewPassword.class);
-//                startActivity(i);
-//            }
-//        });
+        binding.btnForget.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(LoginActivity.this,ActivityNewPassword.class);
+                startActivity(i);
+            }
+        });
 
         binding.btnSignIn.setOnClickListener(new View.OnClickListener() {
             @Override

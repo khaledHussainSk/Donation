@@ -17,6 +17,10 @@
             android:exported="false"
             android:theme="@style/FullScreen">
         </activity>
+        <activity android:name=".ActivityForgetPassword"
+            android:exported="false"
+            android:theme="@style/FullScreen">
+        </activity>
         <activity
             android:name=".FollowingActivity"
             android:theme="@style/FullScreen"

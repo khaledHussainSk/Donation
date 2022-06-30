@@ -7,6 +7,7 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.text.method.LinkMovementMethod;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
@@ -232,6 +233,7 @@ public class PostDetailsActivity extends AppCompatActivity {
                             binding.tvDonationLink.setVisibility(View.VISIBLE);
                             binding.tvLink.setVisibility(View.VISIBLE);
                             binding.tvDonationLink.setText(post.getDonation_link());
+                            binding.tvDonationLink.setMovementMethod(LinkMovementMethod.getInstance());
                         }
                     });
         }
