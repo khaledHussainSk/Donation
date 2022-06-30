@@ -51,7 +51,6 @@ import es.dmoral.toasty.Toasty;
 public class AllFragment extends Fragment {
     public static final int POST_DETAILS_REQ_CODE = 1;
     FragmentAllBinding binding;
-    RvDisplayPostAdapter adapter;
     ArrayList<Post> posts;
     SharedPreferences sp;
     String currentUserID;
@@ -120,7 +119,7 @@ public class AllFragment extends Fragment {
                             posts.add(post);
                         }
                 }
-                adapter = new RvDisplayPostAdapter(getActivity(), posts, new OnClickMenuPostListener() {
+                RvDisplayPostAdapter adapter = new RvDisplayPostAdapter(getActivity(), posts, new OnClickMenuPostListener() {
                     @Override
                     public void OnClickMenuPostListener(Post post, ImageView iv_menuPost) {
                         PopupMenu popupMenu = new PopupMenu(getActivity(), iv_menuPost);

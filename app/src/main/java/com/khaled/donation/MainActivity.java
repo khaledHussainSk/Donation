@@ -99,6 +99,8 @@ public class MainActivity extends AppCompatActivity {
                             if (notifications.size() > oldCount){
                                 //اذا يوجد اشعارات جديدة
                                 binding.bottomNavigation.setCount(2,notifications.size() - oldCount+"");
+                            }else {
+                                binding.bottomNavigation.clearCount(2);
                             }
                         }else {
                             binding.bottomNavigation.setCount(2,notifications.size()+"");
