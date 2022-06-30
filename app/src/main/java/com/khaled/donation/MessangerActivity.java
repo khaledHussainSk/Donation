@@ -72,7 +72,7 @@ public class MessangerActivity extends AppCompatActivity {
                     message = dataSnapshot.getValue(Message.class);
 //                    String m = dataSnapshot.getValue(String.class);
                     messageArrayList.add(dataSnapshot.getKey().toString());
-                    Toast.makeText(getApplicationContext(), "jjj"+dataSnapshot.getKey().toString(), Toast.LENGTH_SHORT).show();
+//                    Toast.makeText(getApplicationContext(), "jjj"+dataSnapshot.getKey().toString(), Toast.LENGTH_SHORT).show();
                 }
             }
 
