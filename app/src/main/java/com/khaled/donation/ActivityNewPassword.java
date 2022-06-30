@@ -27,7 +27,7 @@ public class ActivityNewPassword extends AppCompatActivity {
     ArrayList<User> arrayList;
     String email;
     public static String USEREMAIL = "USEREMAIL";
-    ProgressDialog progressDialog;
+//    ProgressDialog progressDialog;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,14 +37,14 @@ public class ActivityNewPassword extends AppCompatActivity {
         arrayList = new ArrayList<>();
         email = binding.etEmailForget.getText().toString();
 
-        progressDialog = new ProgressDialog(this);
-        progressDialog.setTitle("Search Email");
+//        progressDialog = new ProgressDialog(this);
+//        progressDialog.setTitle("Search Email");
 
         binding.btnSave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                progressDialog.show();
-                Toast.makeText(getApplicationContext(), "email"+binding.etEmailForget.getText().toString(), Toast.LENGTH_SHORT).show();
+//                progressDialog.show();
+//                Toast.makeText(getApplicationContext(), "email"+binding.etEmailForget.getText().toString(), Toast.LENGTH_SHORT).show();
                 FirebaseFirestore.getInstance().collection("Users").get()
                         .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                             @Override
@@ -64,7 +64,7 @@ public class ActivityNewPassword extends AppCompatActivity {
 //                        if (arrayList.get(i).getEmail().equals(binding.etEmailForget.getText().toString())){
 
                             Toasty.success(getApplicationContext(),"Yes").show();
-                            Toast.makeText(getApplicationContext(), "Yse", Toast.LENGTH_SHORT).show();
+//                            Toast.makeText(getApplicationContext(), "Yse", Toast.LENGTH_SHORT).show();
                             Intent intent = new Intent(getApplicationContext(),ActivityForgetPassword.class);
                             intent.putExtra(USEREMAIL,arrayList.get(0));
                             startActivity(intent);
@@ -82,6 +82,12 @@ public class ActivityNewPassword extends AppCompatActivity {
             }
         });
 
+        binding.icBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
 
     }
 }

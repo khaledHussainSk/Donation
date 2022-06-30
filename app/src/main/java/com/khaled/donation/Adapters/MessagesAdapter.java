@@ -48,7 +48,7 @@ public class MessagesAdapter extends RecyclerView.Adapter {
         this.messages = messages;
         this.imagee = imagee;
         this.recId = recId;
-//        this.context = context;
+        this.context = context;
     }
 
     @Override
@@ -71,12 +71,12 @@ public class MessagesAdapter extends RecyclerView.Adapter {
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 
         if(viewType == ITEM_SENT) {
-            context = parent.getContext();
+//            context = parent.getContext();
             View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_sent, parent, false);
             return new SentViewHolder(view);
         }
         else {
-            context = parent.getContext();
+//            context = parent.getContext();
             View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_receive, parent, false);
             return new ReceiverViewHolder(view);
         }

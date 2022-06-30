@@ -9,15 +9,20 @@ import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.khaled.donation.Adapters.UserAdapter;
+import com.khaled.donation.Models.Message;
 import com.khaled.donation.Models.User;
 import com.khaled.donation.databinding.ActivityMessangerBinding;
 
@@ -28,11 +33,14 @@ public class MessangerActivity extends AppCompatActivity {
     ActivityMessangerBinding binding;
     FirebaseDatabase database;
     ArrayList<User> userArrayList;
+    ArrayList<String> messageArrayList;
+    ArrayList<User> allArrayList;
     String search;
     UserAdapter adapter;
     String currentUserId;
     SharedPreferences sp;
     User user;
+    Message message;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,6 +62,25 @@ public class MessangerActivity extends AppCompatActivity {
         search = binding.etSearch.getText().toString();
 
         database = FirebaseDatabase.getInstance();
+        messageArrayList = new ArrayList<>();
+        allArrayList = new ArrayList<>();
+
+        database.getReference().child("chats").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for (DataSnapshot dataSnapshot :snapshot.getChildren()){
+                    message = dataSnapshot.getValue(Message.class);
+//                    String m = dataSnapshot.getValue(String.class);
+                    messageArrayList.add(dataSnapshot.getKey().toString());
+//                    Toast.makeText(getApplicationContext(), "jjj"+dataSnapshot.getKey().toString(), Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
 
         FirebaseFirestore.getInstance()
                 .collection("Users").get()
@@ -67,10 +94,22 @@ public class MessangerActivity extends AppCompatActivity {
                             if (!user.getIdUser().equals(currentUserId)) {
                                 userArrayList.add(user);
                             }
-                            binding.rvChat.hideShimmerAdapter();
                         }
 
-                        adapter = new UserAdapter(userArrayList);
+                        for (int i = 0 ; i < userArrayList.size(); i++){
+//                            Toast.makeText(getApplicationContext(), "ddd"+userArrayList.get(i).getFullName(), Toast.LENGTH_SHORT).show();
+                            for (int j = 0 ; j < messageArrayList.size() ; j++){
+//                                Toast.makeText(getApplicationContext(), "ttt"+messageArrayList.get(j), Toast.LENGTH_SHORT).show();
+                                String rr = currentUserId + userArrayList.get(i).getIdUser();
+                                if (rr.equals(messageArrayList.get(j))){
+//                                    Toast.makeText(getApplicationContext(), "rrrr", Toast.LENGTH_SHORT).show();
+                                    allArrayList.add(userArrayList.get(i));
+                                    binding.rvChat.hideShimmerAdapter();
+                                }
+                            }
+                        }
+
+                        adapter = new UserAdapter(allArrayList);
                         binding.rvChat.showShimmerAdapter();
                         binding.rvChat.setAdapter(adapter);
                         binding.rvChat.setHasFixedSize(true);

@@ -2,6 +2,8 @@ package com.khaled.donation.Adapters;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,6 +18,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.khaled.donation.ChatActivity;
+import com.khaled.donation.MainActivity;
 import com.khaled.donation.Models.User;
 import com.khaled.donation.R;
 import com.khaled.donation.databinding.CustomChatBinding;
@@ -26,6 +29,8 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ChatViewHolder
 
     ArrayList<User> userArrayList;
     Context context;
+    SharedPreferences sp;
+    String currentUserId;
 
     public UserAdapter(ArrayList<User> userArrayList) {
         this.userArrayList = userArrayList;
@@ -45,8 +50,12 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ChatViewHolder
 
         String senderId = FirebaseAuth.getInstance().getUid();
 
+        sp = PreferenceManager.getDefaultSharedPreferences(context);
+        currentUserId = sp.getString(MainActivity.USER_ID_KEY,null);
+
         FirebaseDatabase.getInstance().getReference().child("chats")
-                .child(FirebaseAuth.getInstance().getUid() + user.getIdUser())
+//                .child(FirebaseAuth.getInstance().getUid() + user.getIdUser())
+                .child(currentUserId + user.getIdUser())
                 .orderByChild("timestamp")
                 .limitToLast(1)
                 .addListenerForSingleValueEvent(new ValueEventListener() {
