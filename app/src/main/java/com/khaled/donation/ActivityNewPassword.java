@@ -10,7 +10,9 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
@@ -64,10 +66,36 @@ public class ActivityNewPassword extends AppCompatActivity {
 //                        if (arrayList.get(i).getEmail().equals(binding.etEmailForget.getText().toString())){
 
                             Toasty.success(getApplicationContext(),"Yes").show();
+                    FirebaseAuth auth = FirebaseAuth.getInstance();
+
+                    auth.sendPasswordResetEmail(arrayList.get(0).getEmail())
+                            .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                @Override
+                                public void onComplete(@NonNull Task<Void> task) {
+                                    if (task.isSuccessful()){
+                                        Toasty.success(getApplicationContext(),"تم تغيير كلمة المرور").show();
+                                    }else {
+                                        Toasty.error(getApplicationContext(),"Error").show();
+                                    }
+                                }
+                            }).addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            Toast.makeText(getApplicationContext(), "rr"+e.getMessage(), Toast.LENGTH_SHORT).show();
+                        }
+                    });
+
+
+
+                    FirebaseFirestore.getInstance().collection("Users")
+                            .document(arrayList.get(0).getIdUser()).update("password",binding.etPassword.getText().toString());
+                    Intent i = new Intent(getApplicationContext(),LoginActivity.class);
+                    startActivity(i);
+                    finish();
 //                            Toast.makeText(getApplicationContext(), "Yse", Toast.LENGTH_SHORT).show();
-                            Intent intent = new Intent(getApplicationContext(),ActivityForgetPassword.class);
-                            intent.putExtra(USEREMAIL,arrayList.get(0));
-                            startActivity(intent);
+//                            Intent intent = new Intent(getApplicationContext(),ActivityForgetPassword.class);
+//                            intent.putExtra(USEREMAIL,arrayList.get(0));
+//                            startActivity(intent);
 //                        }else if (arrayList.size() == i){
 //                            progressDialog.dismiss();
 //

@@ -1,13 +1,23 @@
 package com.khaled.donation;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthCredential;
+import com.google.firebase.auth.EmailAuthProvider;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.khaled.donation.Models.User;
 import com.khaled.donation.databinding.ActivityForgetPasswordBinding;
@@ -20,6 +30,9 @@ public class ActivityForgetPassword extends AppCompatActivity {
     User user;
     String password;
     String confirm_password;
+    FirebaseUser firebaseUser;
+    AuthCredential credential;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,6 +42,7 @@ public class ActivityForgetPassword extends AppCompatActivity {
 
         password = binding.etPassword.getText().toString();
         confirm_password = binding.etConfirmPassword.getText().toString();
+        firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
 
         Intent intent = getIntent();
         user = (User) intent.getSerializableExtra(ActivityNewPassword.USEREMAIL);
@@ -55,12 +69,34 @@ public class ActivityForgetPassword extends AppCompatActivity {
                     return;
                 }
 
-                FirebaseFirestore.getInstance().collection("Users")
-                        .document(user.getIdUser()).update("password",binding.etConfirmPassword.getText().toString());
-                Toasty.success(getApplicationContext(), "تم تغيير كلمة المرور").show();
-                Intent i = new Intent(getApplicationContext(),LoginActivity.class);
-                startActivity(i);
-                finish();
+
+
+//                FirebaseAuth auth = FirebaseAuth.getInstance();
+//
+//                auth.sendPasswordResetEmail(user.getEmail())
+//                        .addOnCompleteListener(new OnCompleteListener<Void>() {
+//                            @Override
+//                            public void onComplete(@NonNull Task<Void> task) {
+//                                if (task.isSuccessful()){
+//                                    Toasty.success(getApplicationContext(),"تم تغيير كلمة المرور").show();
+//                                }else {
+//                                    Toasty.error(getApplicationContext(),"Error").show();
+//                                }
+//                            }
+//                        }).addOnFailureListener(new OnFailureListener() {
+//                    @Override
+//                    public void onFailure(@NonNull Exception e) {
+//                        Toast.makeText(getApplicationContext(), "rr"+e.getMessage(), Toast.LENGTH_SHORT).show();
+//                    }
+//                });
+//
+//
+//
+//                FirebaseFirestore.getInstance().collection("Users")
+//                        .document(user.getIdUser()).update("password",binding.etConfirmPassword.getText().toString());
+//                Intent i = new Intent(getApplicationContext(),LoginActivity.class);
+//                startActivity(i);
+//                finish();
             }
         });
 
