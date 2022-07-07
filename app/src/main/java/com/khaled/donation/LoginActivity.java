@@ -26,6 +26,7 @@ public class LoginActivity extends AppCompatActivity {
     String email;
     String password;
     public static final String EMAIL = "EMAIL";
+    public static final String PASSWORD = "PASSWORD";
     SharedPreferences sp;
     SharedPreferences.Editor editt;
 
@@ -65,7 +66,6 @@ public class LoginActivity extends AppCompatActivity {
 
                 binding.spinKit.setVisibility(View.VISIBLE);
                 disableFeild();
-
                 getInfo();
 
             }
@@ -109,6 +109,7 @@ public class LoginActivity extends AppCompatActivity {
                             binding.spinKit.setVisibility(View.GONE);
                             Intent intent = new Intent(getBaseContext(),MainActivity.class);
                             editt.putString(EMAIL,email);
+                            editt.putString(PASSWORD,password);
                             editt.apply();
                             startActivity(intent);
                             finish();

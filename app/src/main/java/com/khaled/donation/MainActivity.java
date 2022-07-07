@@ -30,6 +30,7 @@ public class MainActivity extends AppCompatActivity {
     public static Activity context;
     Fragment fragment;
     String email;
+    String password;
     User currentUser;
     SharedPreferences sp;
     SharedPreferences.Editor editt;
@@ -45,6 +46,7 @@ public class MainActivity extends AppCompatActivity {
 
         sp = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
         currntUserID = sp.getString(MainActivity.USER_ID_KEY, null);
+        password = sp.getString(LoginActivity.PASSWORD, null);
 
         fixed();
         getInfo();
@@ -156,6 +158,15 @@ public class MainActivity extends AppCompatActivity {
                             if (currentUser.getEmail().equals(email)){
                                 editt.putString(USER_ID_KEY,currentUser.getIdUser());
                                 editt.apply();
+                                if (password!=null){
+                                    if (!password.equals(currentUser.getPassword())){
+                                        FirebaseFirestore
+                                                .getInstance()
+                                                .collection("Users")
+                                                .document(currentUser.getIdUser())
+                                                .update("password",password);
+                                    }
+                                }
                             }
                         }
                     }
