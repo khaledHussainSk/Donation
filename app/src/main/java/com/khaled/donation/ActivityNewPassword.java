@@ -65,7 +65,7 @@ public class ActivityNewPassword extends AppCompatActivity {
 //                    for (int i = 0 ; i < arrayList.size();i++){
 //                        if (arrayList.get(i).getEmail().equals(binding.etEmailForget.getText().toString())){
 
-                            Toasty.success(getApplicationContext(),"Yes").show();
+//                            Toasty.success(getApplicationContext(),"Yes").show();
                     FirebaseAuth auth = FirebaseAuth.getInstance();
 
                     auth.sendPasswordResetEmail(arrayList.get(0).getEmail())
@@ -73,7 +73,8 @@ public class ActivityNewPassword extends AppCompatActivity {
                                 @Override
                                 public void onComplete(@NonNull Task<Void> task) {
                                     if (task.isSuccessful()){
-                                        Toasty.success(getApplicationContext(),"تم تغيير كلمة المرور").show();
+                                        Toasty.success(getApplicationContext(),"تم إرسال رابط تغيير كلمة المرور إلى الإيميل المدخل").show();
+                                        finish();
                                     }else {
                                         Toasty.error(getApplicationContext(),"Error").show();
                                     }
@@ -81,17 +82,17 @@ public class ActivityNewPassword extends AppCompatActivity {
                             }).addOnFailureListener(new OnFailureListener() {
                         @Override
                         public void onFailure(@NonNull Exception e) {
-                            Toast.makeText(getApplicationContext(), "rr"+e.getMessage(), Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getApplicationContext(), "Error"+e.getMessage(), Toast.LENGTH_SHORT).show();
                         }
                     });
 
 
 
-                    FirebaseFirestore.getInstance().collection("Users")
-                            .document(arrayList.get(0).getIdUser()).update("password",binding.etPassword.getText().toString());
-                    Intent i = new Intent(getApplicationContext(),LoginActivity.class);
-                    startActivity(i);
-                    finish();
+//                    FirebaseFirestore.getInstance().collection("Users")
+//                            .document(arrayList.get(0).getIdUser()).update("password",binding.etPassword.getText().toString());
+//                    Intent i = new Intent(getApplicationContext(),LoginActivity.class);
+//                    startActivity(i);
+//                    finish();
 //                            Toast.makeText(getApplicationContext(), "Yse", Toast.LENGTH_SHORT).show();
 //                            Intent intent = new Intent(getApplicationContext(),ActivityForgetPassword.class);
 //                            intent.putExtra(USEREMAIL,arrayList.get(0));
