@@ -157,5 +157,7 @@
     <string name="notification_like">تفاعل مع منشورك</string>
     <string name="notification_comment">علق على منشورك</string>
     <string name="notification_follow">بدأ في متابعتك</string>
+    <string name="forget_password_message">تم إرسال رابط تغيير كلمة المرور إلى الإيميل المدخل</string>
+    <string name="search_email">"البحث عن البريد الإلكتروني"</string>
 
 </resources>

@@ -1,13 +1,14 @@
 package com.khaled.donation;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.app.ProgressDialog;
-import android.content.Intent;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -29,7 +30,8 @@ public class ActivityNewPassword extends AppCompatActivity {
     ArrayList<User> arrayList;
     String email;
     public static String USEREMAIL = "USEREMAIL";
-//    ProgressDialog progressDialog;
+    ProgressDialog progressDialog;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,14 +41,14 @@ public class ActivityNewPassword extends AppCompatActivity {
         arrayList = new ArrayList<>();
         email = binding.etEmailForget.getText().toString();
 
-//        progressDialog = new ProgressDialog(this);
-//        progressDialog.setTitle("Search Email");
+        progressDialog = new ProgressDialog(this);
+        progressDialog.setTitle(R.string.search_email);
+        progressDialog.setCancelable(false);
 
         binding.btnSave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                progressDialog.show();
-//                Toast.makeText(getApplicationContext(), "email"+binding.etEmailForget.getText().toString(), Toast.LENGTH_SHORT).show();
+                progressDialog.show();
                 FirebaseFirestore.getInstance().collection("Users").get()
                         .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                             @Override
@@ -55,58 +57,50 @@ public class ActivityNewPassword extends AppCompatActivity {
                                     User user = queryDocumentSnapshot.toObject(User.class);
                                     if (user.getEmail().equals(binding.etEmailForget.getText().toString())) {
                                         arrayList.add(user);
+                                        if (arrayList.size()!=0){
+
+                                            FirebaseAuth auth = FirebaseAuth.getInstance();
+
+                                            auth.sendPasswordResetEmail(arrayList.get(0).getEmail())
+                                                    .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                                        @Override
+                                                        public void onComplete(@NonNull Task<Void> task) {
+                                                            if (task.isSuccessful()){
+                                                                progressDialog.dismiss();
+                                                                AlertDialog.Builder builder
+                                                                        = new AlertDialog.Builder(ActivityNewPassword.this);
+                                                                builder.setMessage(R.string.forget_password_message);
+                                                                builder.setPositiveButton(R.string.ok
+                                                                        , new DialogInterface.OnClickListener() {
+                                                                            @Override
+                                                                            public void onClick(DialogInterface dialogInterface, int i) {
+                                                                                finish();
+                                                                            }
+                                                                        });
+                                                                builder.setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
+                                                                    @Override
+                                                                    public void onClick(DialogInterface dialogInterface, int i) {
+                                                                        dialogInterface.dismiss();
+                                                                    }
+                                                                });
+                                                                builder.show();
+                                                            }else {
+                                                                progressDialog.dismiss();
+                                                                Toasty.error(getApplicationContext(),"Error").show();
+                                                            }
+                                                        }
+                                                    }).addOnFailureListener(new OnFailureListener() {
+                                                @Override
+                                                public void onFailure(@NonNull Exception e) {
+                                                    progressDialog.dismiss();
+                                                    Toast.makeText(getApplicationContext(), "Error"+e.getMessage(), Toast.LENGTH_SHORT).show();
+                                                }
+                                            });
+                                        }
                                     }
-//                                    Toast.makeText(getApplicationContext(), ""+user.getFullName(), Toast.LENGTH_SHORT).show();
                                 }
                             }
                         });
-
-                if (arrayList.size()!=0){
-//                    for (int i = 0 ; i < arrayList.size();i++){
-//                        if (arrayList.get(i).getEmail().equals(binding.etEmailForget.getText().toString())){
-
-//                            Toasty.success(getApplicationContext(),"Yes").show();
-                    FirebaseAuth auth = FirebaseAuth.getInstance();
-
-                    auth.sendPasswordResetEmail(arrayList.get(0).getEmail())
-                            .addOnCompleteListener(new OnCompleteListener<Void>() {
-                                @Override
-                                public void onComplete(@NonNull Task<Void> task) {
-                                    if (task.isSuccessful()){
-                                        Toasty.success(getApplicationContext(),"تم إرسال رابط تغيير كلمة المرور إلى الإيميل المدخل").show();
-                                        finish();
-                                    }else {
-                                        Toasty.error(getApplicationContext(),"Error").show();
-                                    }
-                                }
-                            }).addOnFailureListener(new OnFailureListener() {
-                        @Override
-                        public void onFailure(@NonNull Exception e) {
-                            Toast.makeText(getApplicationContext(), "Error"+e.getMessage(), Toast.LENGTH_SHORT).show();
-                        }
-                    });
-
-
-
-//                    FirebaseFirestore.getInstance().collection("Users")
-//                            .document(arrayList.get(0).getIdUser()).update("password",binding.etPassword.getText().toString());
-//                    Intent i = new Intent(getApplicationContext(),LoginActivity.class);
-//                    startActivity(i);
-//                    finish();
-//                            Toast.makeText(getApplicationContext(), "Yse", Toast.LENGTH_SHORT).show();
-//                            Intent intent = new Intent(getApplicationContext(),ActivityForgetPassword.class);
-//                            intent.putExtra(USEREMAIL,arrayList.get(0));
-//                            startActivity(intent);
-//                        }else if (arrayList.size() == i){
-//                            progressDialog.dismiss();
-//
-//                        }
-//                    }
-                }
-//                else {
-//                    progressDialog.dismiss();
-//                    Toast.makeText(getApplicationContext(), "uyyy", Toast.LENGTH_SHORT).show();
-//                }
 
             }
         });

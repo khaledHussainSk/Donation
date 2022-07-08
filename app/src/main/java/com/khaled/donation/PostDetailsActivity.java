@@ -160,7 +160,6 @@ public class PostDetailsActivity extends AppCompatActivity {
     }
 
     private void getPostNotification() {
-        Toast.makeText(getApplicationContext(), ""+id_post, Toast.LENGTH_SHORT).show();
         FirebaseFirestore.getInstance().collection("Posts")
                 .document(id_post).get()
                 .addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
@@ -823,19 +822,7 @@ public class PostDetailsActivity extends AppCompatActivity {
                             DocumentReference documentReferenceNOt = FirebaseFirestore.getInstance().collection("Notifications").document();
                             notifications.setId(documentReferenceNOt.getId());
 
-                            documentReferenceNOt.set(notifications).addOnCompleteListener(new OnCompleteListener<Void>() {
-                                @Override
-                                public void onComplete(@NonNull Task<Void> task) {
-                                    if (task.isSuccessful()){
-                                        Toast.makeText(getApplicationContext(), "تم إرسال الأشعار", Toast.LENGTH_SHORT).show();
-                                    }
-                                }
-                            }).addOnFailureListener(new OnFailureListener() {
-                                @Override
-                                public void onFailure(@NonNull Exception e) {
-                                    Toast.makeText(getApplicationContext(), "فشل إرسال الأشعار", Toast.LENGTH_SHORT).show();
-                                }
-                            });
+                            documentReferenceNOt.set(notifications);
 
                         }
                     }

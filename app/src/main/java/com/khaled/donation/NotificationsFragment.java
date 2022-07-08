@@ -38,8 +38,10 @@ public class NotificationsFragment extends Fragment {
     ArrayList<Notifications> notifications;
     String currntUserID;
     SharedPreferences sp;
+    SharedPreferences.Editor editt;
     NetworkInfo netInfo;
     public static String NOTIFICATION_KEY = "notification_key";
+    public static final String count_notifications = "count_notifications";
     RvNotificationsAdapter rvNotificationsAdapter;
 
     @Override
@@ -51,6 +53,7 @@ public class NotificationsFragment extends Fragment {
 
         sp = PreferenceManager.getDefaultSharedPreferences(getActivity());
         currntUserID = sp.getString(MainActivity.USER_ID_KEY, null);
+        editt = sp.edit();
 
         FirebaseFirestore.getInstance().collection("Notifications").orderBy("date_notifications", Query.Direction.DESCENDING).get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
@@ -118,10 +121,12 @@ public class NotificationsFragment extends Fragment {
                                                                             .collection("Notifications")
                                                                             .document(notifications.getId()).delete();
 
+                                                                    int value = sp.getInt(count_notifications+sp.getString(LoginActivity.EMAIL,null),-1);
+                                                                    editt.putInt(count_notifications+sp.getString(LoginActivity.EMAIL,null),value - 1);
+                                                                    editt.apply();
                                                                     Toast.makeText(getContext()
                                                                             , R.string.toast_notification_delete
                                                                             , Toast.LENGTH_SHORT).show();
-
                                                                 }
                                                             });
                                                     builder.show();

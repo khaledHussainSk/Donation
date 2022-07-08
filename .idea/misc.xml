@@ -57,6 +57,7 @@
         <entry key="..\:/Users/hp/AndroidStudioProjects/Donation/app/src/main/res/layout/activity_login.xml" value="0.22" />
         <entry key="..\:/Users/hp/AndroidStudioProjects/Donation/app/src/main/res/layout/activity_main.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/hp/AndroidStudioProjects/Donation/app/src/main/res/layout/activity_messanger.xml" value="0.16" />
+        <entry key="..\:/Users/hp/AndroidStudioProjects/Donation/app/src/main/res/layout/activity_new_password.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/hp/AndroidStudioProjects/Donation/app/src/main/res/layout/activity_notifications.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/hp/AndroidStudioProjects/Donation/app/src/main/res/layout/activity_on_boarding01.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/hp/AndroidStudioProjects/Donation/app/src/main/res/layout/activity_on_boarding02.xml" value="0.20416666666666666" />
@@ -132,12 +133,10 @@
         <entry key="..\:/Users/pc world/AndroidStudioProjects/Donation/app/src/main/res/layout/activity_welcome_login.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/pc world/AndroidStudioProjects/Donation/app/src/main/res/layout/activity_welcome_screen.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/pc world/AndroidStudioProjects/Donation/app/src/main/res/layout/custom_chat.xml" value="0.20416666666666666" />
-        <entry key="..\:/Users/pc world/AndroidStudioProjects/Donation/app/src/main/res/layout/custom_comments_rv.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/pc world/AndroidStudioProjects/Donation/app/src/main/res/layout/custom_display_images_rv.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/pc world/AndroidStudioProjects/Donation/app/src/main/res/layout/custom_display_video_rv.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/pc world/AndroidStudioProjects/Donation/app/src/main/res/layout/custom_display_video_rv_post.xml" value="0.1" />
         <entry key="..\:/Users/pc world/AndroidStudioProjects/Donation/app/src/main/res/layout/custom_favorite.xml" value="0.20416666666666666" />
-        <entry key="..\:/Users/pc world/AndroidStudioProjects/Donation/app/src/main/res/layout/custom_follwers_following_rv.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/pc world/AndroidStudioProjects/Donation/app/src/main/res/layout/custom_just_display_images_post_rv.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/pc world/AndroidStudioProjects/Donation/app/src/main/res/layout/custom_notification.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/pc world/AndroidStudioProjects/Donation/app/src/main/res/layout/custom_notifications.xml" value="0.18" />
