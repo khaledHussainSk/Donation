@@ -158,5 +158,7 @@
     <string name="notification_like">reacted to your post</string>
     <string name="notification_comment">commented on your post</string>
     <string name="notification_follow">started following you</string>
+    <string name="forget_password_message">"The password change link has been sent to the email you entered "</string>
+    <string name="search_email">"Email search"</string>
 
 </resources>

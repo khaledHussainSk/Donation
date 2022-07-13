@@ -31,7 +31,6 @@ public class MainActivity extends AppCompatActivity {
     Fragment fragment;
     String email;
     String password;
-    User currentUser;
     SharedPreferences sp;
     SharedPreferences.Editor editt;
     ArrayList<Notifications> notifications;
@@ -44,12 +43,9 @@ public class MainActivity extends AppCompatActivity {
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        sp = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
-        currntUserID = sp.getString(MainActivity.USER_ID_KEY, null);
-        password = sp.getString(LoginActivity.PASSWORD, null);
-
         fixed();
         getInfo();
+
         bottomNavigation = binding.bottomNavigation;
         binding.bottomNavigation.add(new MeowBottomNavigation.Model(1,R.drawable.ic_home));
         binding.bottomNavigation.add(new MeowBottomNavigation.Model(2,R.drawable.ic_notifications));
@@ -84,8 +80,60 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        notifications = new ArrayList<>();
+        binding.bottomNavigation.show(1,true);
 
+    }
+
+    private void loadFragment(Fragment fragment) {
+        // Replace fragment
+        getSupportFragmentManager()
+                .beginTransaction()
+                .replace(R.id.frame_layout,fragment)
+                .commit();
+    }
+
+    private void fixed(){
+        context = this;
+        notifications = new ArrayList<>();
+        sp = PreferenceManager.getDefaultSharedPreferences(MainActivity.this);
+        editt = sp.edit();
+        getData();
+    }
+
+    private void getData(){
+        email = sp.getString(LoginActivity.EMAIL,null);
+        currntUserID = sp.getString(MainActivity.USER_ID_KEY, null);
+        password = sp.getString(LoginActivity.PASSWORD, null);
+    }
+
+    private void getInfo(){
+        FirebaseFirestore.getInstance().collection("Users").get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        for (QueryDocumentSnapshot queryDocumentSnapshot : task.getResult()){
+                            User currentUser = queryDocumentSnapshot.toObject(User.class);
+                            if (currentUser.getEmail().equals(email)){
+                                oldCount = sp.getInt(count_notifications+currentUser.getEmail(),-1);
+                                getNotifications();
+                                editt.putString(USER_ID_KEY,currentUser.getIdUser());
+                                editt.apply();
+                                if (password!=null){
+                                    if (!password.equals(currentUser.getPassword())){
+                                        FirebaseFirestore
+                                                .getInstance()
+                                                .collection("Users")
+                                                .document(currentUser.getIdUser())
+                                                .update("password",password);
+                                    }
+                                }
+                            }
+                        }
+                    }
+                });
+    }
+
+    private void getNotifications(){
         FirebaseFirestore.getInstance().collection("Notifications").get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override
@@ -104,8 +152,10 @@ public class MainActivity extends AppCompatActivity {
                             }else {
                                 binding.bottomNavigation.clearCount(2);
                             }
-                        }else {
+                        }else if (notifications.size() > 0){
                             binding.bottomNavigation.setCount(2,notifications.size()+"");
+                        }else {
+                            binding.bottomNavigation.clearCount(2);
                         }
 
                         binding.bottomNavigation.setOnClickMenuListener(new MeowBottomNavigation.ClickListener() {
@@ -113,7 +163,9 @@ public class MainActivity extends AppCompatActivity {
                             public void onClickItem(MeowBottomNavigation.Model item) {
                                 if (item.getId() == 2){
                                     binding.bottomNavigation.clearCount(2);
-                                    editt.putInt(count_notifications,notifications.size());
+                                    editt.putInt(
+                                            count_notifications+sp.getString(LoginActivity.EMAIL,null)
+                                            ,notifications.size());
                                     editt.apply();
                                 }
                             }
@@ -126,50 +178,6 @@ public class MainActivity extends AppCompatActivity {
                         });
                     }
                 });
-
-        binding.bottomNavigation.show(1,true);
-
-
     }
 
-    private void loadFragment(Fragment fragment) {
-        // Replace fragment
-        getSupportFragmentManager()
-                .beginTransaction()
-                .replace(R.id.frame_layout,fragment)
-                .commit();
-    }
-
-    private void fixed(){
-        context = this;
-        sp = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
-        editt = sp.edit();
-        email = sp.getString(LoginActivity.EMAIL,null);
-        oldCount = sp.getInt(count_notifications,-1);
-    }
-
-    private void getInfo(){
-        FirebaseFirestore.getInstance().collection("Users").get()
-                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                    @Override
-                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                        for (QueryDocumentSnapshot queryDocumentSnapshot : task.getResult()){
-                            currentUser = queryDocumentSnapshot.toObject(User.class);
-                            if (currentUser.getEmail().equals(email)){
-                                editt.putString(USER_ID_KEY,currentUser.getIdUser());
-                                editt.apply();
-                                if (password!=null){
-                                    if (!password.equals(currentUser.getPassword())){
-                                        FirebaseFirestore
-                                                .getInstance()
-                                                .collection("Users")
-                                                .document(currentUser.getIdUser())
-                                                .update("password",password);
-                                    }
-                                }
-                            }
-                        }
-                    }
-                });
-    }
 }

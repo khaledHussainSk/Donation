@@ -62,7 +62,7 @@
                     android:inputType="textEmailAddress"
                     android:padding="@dimen/_8sdp"
                     android:textColor="#1C2340"
-                    android:textColorHint="#1C2340"
+                    android:textColorHint="@color/divider"
                     android:textSize="@dimen/_12sdp"></EditText>
 
                 <EditText
@@ -80,7 +80,7 @@
                     android:inputType="textPassword"
                     android:padding="@dimen/_8sdp"
                     android:textColor="#1C2340"
-                    android:textColorHint="#1C2340"
+                    android:textColorHint="@color/divider"
                     android:textSize="@dimen/_12sdp"></EditText>
 
                 <CheckBox
@@ -94,13 +94,16 @@
                     android:textColor="#1C2340"
                     android:textSize="@dimen/_10ssp"></CheckBox>
 
+
                 <TextView
-                    android:id="@+id/btn_forget"
+                    android:id="@+id/tv_forget_password"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/et_password"
                     android:layout_alignBaseline="@+id/remember_me_cb"
                     android:layout_alignEnd="@+id/et_password"
+                    android:layout_alignBottom="@+id/remember_me_cb"
+                    android:layout_marginBottom="15dp"
                     android:text="@string/forget_password_tv"
                     android:textColor="#340CB9"
                     android:textSize="@dimen/_10sdp"></TextView>

@@ -4,7 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.ProgressDialog;
-import android.content.Intent;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
@@ -47,7 +47,7 @@ public class ActivityNewPassword extends AppCompatActivity {
             public void onClick(View view) {
 //                progressDialog.show();
 //                Toast.makeText(getApplicationContext(), "email"+binding.etEmailForget.getText().toString(), Toast.LENGTH_SHORT).show();
-                FirebaseFirestore.getInstance().collection("Users").get()//جلب المستخدمين من الجدول ومقارنة الإيميل المدخل إذا كان موجود في الجدول
+                FirebaseFirestore.getInstance().collection("Users").get()
                         .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                             @Override
                             public void onComplete(@NonNull Task<QuerySnapshot> task) {
@@ -76,7 +76,7 @@ public class ActivityNewPassword extends AppCompatActivity {
                                         Toasty.success(getApplicationContext(),"تم إرسال رابط تغيير كلمة المرور إلى الإيميل المدخل").show();
                                         finish();
                                     }else {
-                                        Toasty.error(getApplicationContext(),"هذا الإيميل غير صحيح").show();
+                                        Toasty.error(getApplicationContext(),"Error").show();
                                     }
                                 }
                             }).addOnFailureListener(new OnFailureListener() {

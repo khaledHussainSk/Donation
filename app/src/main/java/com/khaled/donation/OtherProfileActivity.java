@@ -39,6 +39,7 @@ import java.util.Locale;
 
 public class OtherProfileActivity extends AppCompatActivity {
     ActivityOtherProfileBinding binding;
+    public static final String IMAGE_KEY = "IMAGE_KEY";
     String id_current_user;
     User current_user;
     SharedPreferences sp;
@@ -55,6 +56,7 @@ public class OtherProfileActivity extends AppCompatActivity {
         binding = ActivityOtherProfileBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         fixed();
+        onClick();
         getCurrentUser();
         follow();
         unFollow();
@@ -100,6 +102,7 @@ public class OtherProfileActivity extends AppCompatActivity {
         id_current_user = sp.getString(MainActivity.USER_ID_KEY,null);
         Intent intent = getIntent();
         user = (User) intent.getSerializableExtra(MainActivity.USER_KEY);
+
         binding.icBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -124,6 +127,17 @@ public class OtherProfileActivity extends AppCompatActivity {
                 i.putExtra("name",user.getFullName());
                 i.putExtra("uid",user.getIdUser());
                 startActivity(i);
+            }
+        });
+    }
+
+    private void onClick(){
+        binding.ivProfile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(OtherProfileActivity.this,DisplayImageActivity.class);
+                intent.putExtra(IMAGE_KEY,user.getImageProfile());
+                startActivity(intent);
             }
         });
     }
@@ -187,20 +201,7 @@ public class OtherProfileActivity extends AppCompatActivity {
                             ,"Follow",user.getIdUser(),id_current_user,date);
                     DocumentReference documentReferenceNOt = FirebaseFirestore.getInstance().collection("Notifications").document();
                     notifications.setId(documentReferenceNOt.getId());
-
-                    documentReferenceNOt.set(notifications).addOnCompleteListener(new OnCompleteListener<Void>() {
-                        @Override
-                        public void onComplete(@NonNull Task<Void> task) {
-                            if (task.isSuccessful()){
-                                Toast.makeText(getApplicationContext(), "تم إرسال الأشعار", Toast.LENGTH_SHORT).show();
-                            }
-                        }
-                    }).addOnFailureListener(new OnFailureListener() {
-                        @Override
-                        public void onFailure(@NonNull Exception e) {
-                            Toast.makeText(getApplicationContext(), "فشل إرسال الأشعار", Toast.LENGTH_SHORT).show();
-                        }
-                    });
+                    documentReferenceNOt.set(notifications);
                 }
             });
         }
