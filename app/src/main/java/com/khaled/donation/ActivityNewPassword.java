@@ -47,7 +47,7 @@ public class ActivityNewPassword extends AppCompatActivity {
             public void onClick(View view) {
 //                progressDialog.show();
 //                Toast.makeText(getApplicationContext(), "email"+binding.etEmailForget.getText().toString(), Toast.LENGTH_SHORT).show();
-                FirebaseFirestore.getInstance().collection("Users").get()
+                FirebaseFirestore.getInstance().collection("Users").get()//جلب المستخدمين من الجدول ومقارنة الإيميل المدخل إذا كان موجود في الجدول
                         .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                             @Override
                             public void onComplete(@NonNull Task<QuerySnapshot> task) {
@@ -76,7 +76,7 @@ public class ActivityNewPassword extends AppCompatActivity {
                                         Toasty.success(getApplicationContext(),"تم إرسال رابط تغيير كلمة المرور إلى الإيميل المدخل").show();
                                         finish();
                                     }else {
-                                        Toasty.error(getApplicationContext(),"Error").show();
+                                        Toasty.error(getApplicationContext(),"هذا الإيميل غير صحيح").show();
                                     }
                                 }
                             }).addOnFailureListener(new OnFailureListener() {
